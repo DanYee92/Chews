@@ -1,38 +1,28 @@
+const router = require("express").Router();
 const db = require("../models");
 const axios = require("axios");
 
 module.exports = app => {
+	console.log("Back end routes connected to server 3001");
+
+	app.get("/test", (req, res) => res.json("pls work"));
+
 	app.post("/test", (req, res) => {
-		console.log("TEST BODY", req);
-		res.json("POST /test route worked!");
+		console.log("req.body:", req.body);
+		res.json(req.body);
 	});
 
-	app.post("/api/user/create", (req, res) => {
-		const newUser = req.body;
-		console.log(req);
-		console.log("newUser:", newUser);
+	// app.post("/api/user/create", (req, res) => {
+	// 	const newUser = req.body;
+	// 	console.log("newUser:", newUser);
 
-		// db.User.create(newUser).then(result => {
-		// 	console.log("New user was made");
-		// 	res.json(newUser);
-		// });
-	});
+	// 	db.User.create(newUser).then(result => {
+	// 		res.json("New user:" + result);
+	// 	});
+	// });
 
-	//POST - make a new user
-	//create a new user
-
-	//GET - get a specific user by userId
-	//find a user by their userid
-	//populate that user with their bites
-
-	//POST - make a new bite
-	//create a new bite
-
-	//GET - get bites from the db
-	//find all bites
-	//where: note booked, within specified date range
-
-	//PUT - update a bite to be "booked"
-	//find the biteId
-	//and set isbooked = true
+	// app.get("/api/user/:id", (req, res) => {
+	// 	console.log("user id:", req.params.id);
+	// 	db.User.find({ _id: req.params.id }).then(foundUser => res.json(foundUser));
+	// });
 };
