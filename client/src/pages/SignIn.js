@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Container from "../components/Container";
+import Logo from "../components/Logo";
+import Button from "../components/Button";
 
 class SignIn extends Component {
   state = {
@@ -7,7 +10,13 @@ class SignIn extends Component {
   };
 
   render() {
-    return <h1>[chews]</h1>;
+    return (
+      <Container>
+        <Logo>[chews]</Logo>
+        <Button primary> Sign In </Button>
+        <Button> Create New Account </Button>
+      </Container>
+    );
   }
 }
 
