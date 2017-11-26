@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { FormGroup, FormControl } from "react-bootstrap";
+import FormInput from "./FormInput";
 
 class SignInForm extends Component {
   state = {
@@ -16,13 +17,13 @@ class SignInForm extends Component {
     return (
       <form>
         <FormGroup controlId="signInForm">
-          <FormControl
+          <FormInput
             type="email"
             name="email"
             placeholder="abc123@gmail.com"
             onChange={this.handleInputChange}
           />
-          <FormControl
+          <FormInput
             type="password"
             name="password"
             placeholder="*******"
