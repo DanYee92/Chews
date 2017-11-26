@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { FormGroup, FormControl } from "react-bootstrap";
+import FormGroup from "./FormGroup";
 import FormInput from "./FormInput";
+import Button from "../components/Button";
 
 class SignInForm extends Component {
   state = {
@@ -27,8 +28,10 @@ class SignInForm extends Component {
             type="password"
             name="password"
             placeholder="*******"
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
           />
+          <Button primary> Sign In </Button>
+          <Button> Create New Account </Button>
         </FormGroup>
       </form>
     );
