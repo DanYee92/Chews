@@ -1,5 +1,3 @@
-// import Nav from react-bootstrap
-// use styled-components
 import React from "react";
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown, FormGroup, FormControl } from "react-bootstrap";
 import { LinkedLogo } from "./Logo";
@@ -8,19 +6,19 @@ import styled from "styled-components";
 
 const MyNav = styled(Navbar)`
   background: transparent;
-  color: tomato;
   border: none;
 `;
-  
-const MyNavBrand = styled(Navbar.Brand)`
-  color: tomato
-` 
-
+ 
+const styles = {
+  brand: {
+    color: "tomato"
+  }
+}
 
 const NavBar = () => (
   <MyNav collapseOnSelect>
     <Navbar.Header>
-      <Navbar.Brand>
+      <Navbar.Brand styles={styles.brand}>
         {/* Logo links to Home */}
         <LinkedLogo activehref="#" />
       </Navbar.Brand>
@@ -53,4 +51,5 @@ const NavBar = () => (
     </Navbar.Collapse>
   </MyNav>
 );
+
 export default NavBar;
