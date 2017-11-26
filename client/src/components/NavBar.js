@@ -8,48 +8,91 @@ const MyNav = styled(Navbar)`
   background: transparent;
   border: none;
 `;
- 
-const styles = {
-  brand: {
-    color: "tomato"
+
+const MyBrand = styled(Navbar.Brand)`
+  color: tomato !important;
+
+  @media (max-width: 600px){
+    margin: auto !important;
+    float: none !important;
+  }
+`
+
+class NavBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { width: "0", height: "0" };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener("resize", this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({
+      width: Math.floor(window.innerWidth * 0.8),
+      height: window.innerHeight
+    });
+  }
+
+  render() {
+    return (
+      <MyNav collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Toggle />
+          <MyBrand>
+            {/* Logo links to Home */}
+            <LinkedLogo href="#" />
+          </MyBrand>
+        </Navbar.Header>
+
+        {this.state.width > 613 ? (
+          <div>
+            <Navbar.Form pullLeft>
+              <FormGroup>
+                <FormControl type="text" placeholder="Search" />
+              </FormGroup>{" "}
+              <Button type="submit" primary>
+                Submit
+              </Button>
+            </Navbar.Form>
+
+            <Navbar.Collapse>
+              <Nav pullRight>
+                <NavItem eventKey={1} href="#">
+                  Sign Up
+                </NavItem>
+                <NavItem eventKey={2} href="#">
+                  Log In
+                </NavItem>
+              </Nav>
+            </Navbar.Collapse>
+          </div>
+        ) : (
+          <div>
+            <p> TEST </p>
+
+            <Navbar.Collapse>
+              <Nav pullLeft>
+                <NavItem eventKey={1} href="#">
+                  Sign Up
+                </NavItem>
+                <NavItem eventKey={2} href="#">
+                  Log In
+                </NavItem>
+              </Nav>
+            </Navbar.Collapse>
+          </div>
+        )}
+      </MyNav>
+    );
   }
 }
-
-const NavBar = () => (
-  <MyNav collapseOnSelect>
-    <Navbar.Header>
-      <Navbar.Brand styles={styles.brand}>
-        {/* Logo links to Home */}
-        <LinkedLogo activehref="#" />
-      </Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
-    <Navbar.Collapse>
-      <Nav>
-        <Navbar.Form pullLeft>
-          <FormGroup>
-            <FormControl type="text" placeholder="Search" />
-          </FormGroup>{" "}
-          <Button type="submit" primary>Submit</Button>
-        </Navbar.Form>
-        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-          <MenuItem eventKey={3.1}>Action</MenuItem>
-          <MenuItem eventKey={3.2}>Another action</MenuItem>
-          <MenuItem eventKey={3.3}>Something else here</MenuItem>
-          <MenuItem divider />
-          <MenuItem eventKey={3.3}>Separated link</MenuItem>
-        </NavDropdown>
-      </Nav>
-      <Nav pullRight>
-        <NavItem eventKey={1} href="#">
-          Link Right
-        </NavItem>
-        <NavItem eventKey={2} href="#">
-          Link Right
-        </NavItem>
-      </Nav>
-    </Navbar.Collapse>
-  </MyNav>
-);
 
 export default NavBar;
