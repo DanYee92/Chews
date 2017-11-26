@@ -11,7 +11,7 @@ class SignIn extends Component {
 
   render() {
     return (
-      <Container>
+      <Container column margin="150px">
         <Logo large />
         <SignInForm />
       </Container>

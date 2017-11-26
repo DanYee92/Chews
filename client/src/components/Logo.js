@@ -4,7 +4,8 @@ export const Logo = styled.h1`
   &:before {
     content: "[chews]";
   }
-  // text-align: center;
+  color: tomato;
+  text-align: center
   font-size: ${props => (props.large ? "3em" : "1em")};
 `;
 
