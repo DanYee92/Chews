@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
-import Logo from "../components/Logo";
+import { Logo, LinkedLogo } from "../components/Logo";
 import SignInForm from "../components/SignInForm";
 import Button from "../components/Button";
 
