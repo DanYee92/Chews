@@ -47,15 +47,24 @@ const MyNavCollapse = styled(Navbar.Collapse)`
 const SearchContainer = styled.div`
   float: right;
   font-size: 1.25em;
-  margin-top: 0.75em;
 `;
 
 const SearchIcon = styled.i`
   color: tomato;
   float: right;
+  margin-top: 1em;
   &:hover {
     cursor: pointer;
   }
+`;
+
+const MyNavForm = styled(Navbar.Form)`
+  border: none;
+  position: absolute;
+  float: left;
+  right: 3.5em;
+  padding: 0;
+  margin-top: 0.5em;
 `;
 
 class NavBar extends React.Component {
@@ -81,7 +90,7 @@ class NavBar extends React.Component {
     });
   };
 
-  onCollapsedSearchClick = arg => {
+  onCollapsedSearchClick = () => {
     console.log("searchVisibility before", this.state.searchVisibility);
     Promise.resolve(
       this.setState({ searchVisibility: !this.state.searchVisibility })
@@ -134,20 +143,20 @@ class NavBar extends React.Component {
         {this.state.searchVisibility ? (
           <SearchContainer>
             <SearchIcon
-              onClick={this.onCollapsedSearchClick}
               className="fa fa-search"
+              onClick={this.onCollapsedSearchClick}
             />
-            <Navbar.Form pullLeft>
+            <MyNavForm pullLeft>
               <FormGroup>
                 <FormControl type="text" placeholder="Search" />
               </FormGroup>{" "}
-            </Navbar.Form>
+            </MyNavForm>
           </SearchContainer>
         ) : (
           <SearchContainer>
             <SearchIcon
-              onClick={this.onCollapsedSearchClick}
               className="fa fa-search"
+              onClick={this.onCollapsedSearchClick}
             />
           </SearchContainer>
         )}
