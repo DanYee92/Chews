@@ -5,6 +5,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: ${props => (props.column ? "column" : "row")};
   text-align: ${props => (props.column ? "center" : "left")};
+
+  @media (max-width: 768px) {
+    margin: 3em;
+  }
 `;
 
 export default Container;
