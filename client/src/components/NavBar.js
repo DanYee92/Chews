@@ -132,8 +132,11 @@ class NavBar extends React.Component {
         </Navbar.Header>
 
         {this.state.searchVisibility ? (
-          <SearchContainer onClick={this.onCollapsedSearchClick}>
-            <SearchIcon className="fa fa-search" />
+          <SearchContainer>
+            <SearchIcon
+              onClick={this.onCollapsedSearchClick}
+              className="fa fa-search"
+            />
             <Navbar.Form pullLeft>
               <FormGroup>
                 <FormControl type="text" placeholder="Search" />
@@ -141,8 +144,11 @@ class NavBar extends React.Component {
             </Navbar.Form>
           </SearchContainer>
         ) : (
-          <SearchContainer onClick={this.onCollapsedSearchClick}>
-            <SearchIcon className="fa fa-search" />
+          <SearchContainer>
+            <SearchIcon
+              onClick={this.onCollapsedSearchClick}
+              className="fa fa-search"
+            />
           </SearchContainer>
         )}
 
