@@ -23,23 +23,47 @@ const MyBrand = styled(Navbar.Brand)`
   @media (max-width: 768px) {
     position: absolute;
     left: 50%;
-    margin-left: -50px !important; /* 50% of your logo width */
+    margin-left: -2.5em !important; /* 50% of logo width */
     display: block;
   }
 `;
 
-const styles = {
-  brand: {
-    color: "tomato"
+const MyNavToggle = styled(Navbar.Toggle)`
+  border: 0 !important;
+
+  @media (max-width: 768px) {
+    position: absolute;
+    left: 1em;
+    display: block;
   }
-};
+`;
+
+const MyNavCollapse = styled(Navbar.Collapse)`
+  @media (max-width: 768px) {
+    margin-top: 3.5em;
+  }
+`;
+
+const SearchContainer = styled.div`
+  float: right;
+  font-size: 1.25em;
+  margin-top: 0.75em;
+`;
+
+const SearchIcon = styled.i`
+  color: tomato;
+  float: right;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { width: "0", height: "0" };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-  }
+  state = {
+    width: "0",
+    height: "0",
+    searchVisibility: false
+  };
 
   componentDidMount() {
     this.updateWindowDimensions();
@@ -50,34 +74,43 @@ class NavBar extends React.Component {
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
-  updateWindowDimensions() {
+  updateWindowDimensions = () => {
     this.setState({
       width: window.innerWidth,
       height: window.innerHeight
     });
-  }
+  };
+
+  onCollapsedSearchClick = arg => {
+    console.log("searchVisibility before", this.state.searchVisibility);
+    Promise.resolve(
+      this.setState({ searchVisibility: !this.state.searchVisibility })
+    ).then(() =>
+      console.log("searchVisibility after", this.state.searchVisibility)
+    );
+  };
 
   render() {
     return this.state.width > 768 ? (
       <MyNav collapseOnSelect>
         <Navbar.Header>
-          <Navbar.Toggle />
+          <MyNavToggle />
           <MyBrand>
             {/* Logo links to Home */}
             <LinkedLogo href="#" />
           </MyBrand>
-
-          <Navbar.Form pullLeft>
-            <FormGroup>
-              <FormControl type="text" placeholder="Search" />
-            </FormGroup>{" "}
-            <Button type="submit" primary>
-              Submit
-            </Button>
-          </Navbar.Form>
         </Navbar.Header>
 
-        <Navbar.Collapse>
+        <Navbar.Form pullLeft>
+          <FormGroup>
+            <FormControl type="text" placeholder="Search" />
+          </FormGroup>{" "}
+          <Button type="submit" primary>
+            Submit
+          </Button>
+        </Navbar.Form>
+
+        <MyNavCollapse>
           <Nav pullRight>
             <NavItem eventKey={1} href="#">
               Sign Up
@@ -86,19 +119,34 @@ class NavBar extends React.Component {
               Log In
             </NavItem>
           </Nav>
-        </Navbar.Collapse>
+        </MyNavCollapse>
       </MyNav>
     ) : (
       <MyNav collapseOnSelect>
+        <MyNavToggle />
         <Navbar.Header>
-          <Navbar.Toggle />
           <MyBrand>
             {/* Logo links to Home */}
             <LinkedLogo href="#" />
           </MyBrand>
         </Navbar.Header>
 
-        <Navbar.Collapse>
+        {this.state.searchVisibility ? (
+          <SearchContainer onClick={this.onCollapsedSearchClick}>
+            <SearchIcon className="fa fa-search" />
+            <Navbar.Form pullLeft>
+              <FormGroup>
+                <FormControl type="text" placeholder="Search" />
+              </FormGroup>{" "}
+            </Navbar.Form>
+          </SearchContainer>
+        ) : (
+          <SearchContainer onClick={this.onCollapsedSearchClick}>
+            <SearchIcon className="fa fa-search" />
+          </SearchContainer>
+        )}
+
+        <MyNavCollapse>
           <Nav pullLeft>
             <NavItem eventKey={1} href="#">
               Sign Up
@@ -107,7 +155,7 @@ class NavBar extends React.Component {
               Log In
             </NavItem>
           </Nav>
-        </Navbar.Collapse>
+        </MyNavCollapse>
       </MyNav>
     );
   }
