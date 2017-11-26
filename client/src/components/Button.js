@@ -5,12 +5,12 @@ const StyledButton = styled.button`
   padding: 0.5em 1em;
   margin: 1em;
   border-radius: 0.5em;
-  color: ${props => (props.primary ? "white" : "tomato")};
+  color: tomato;
+  background: white;
   border: ${props => (props.primary ? "2px solid tomato" : "none")};
-  background: ${props => (props.primary ? "tomato" : "transparent")};
   &:hover {
-    background: white;
-    color: tomato;
+    background: ${props => (props.primary ? "tomato" : "transparent")};
+    color: ${props => (props.primary ? "white" : "tomato")};
     text-decoration: ${props => (props.primary ? "none" : "underline")};
   }
 `;

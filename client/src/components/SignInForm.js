@@ -1,31 +1,30 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 class SignInForm extends Component {
   state = {
-    username: "",
+    email: "",
     password: ""
   };
 
-  handleChange = event => {
-    this.setState({ [name]: event.target.value });
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   };
 
   render() {
     return (
       <form>
-        <FormGroup>
+        <FormGroup controlId="signInForm">
           <FormControl
             type="email"
             name="email"
-            value={this.state.value}
             placeholder="abc123@gmail.com"
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
           />
           <FormControl
             type="password"
             name="password"
-            value={this.state.value}
             placeholder="*******"
             onChange={this.handleChange}
           />

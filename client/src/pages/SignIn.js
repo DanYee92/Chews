@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import Logo from "../components/Logo";
+import SignInForm from "../components/SignInForm";
 import Button from "../components/Button";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 class SignIn extends Component {
   state = {
@@ -14,6 +14,7 @@ class SignIn extends Component {
     return (
       <Container>
         <Logo large />
+        <SignInForm />
         <Button primary> Sign In </Button>
         <Button> Create New Account </Button>
       </Container>
