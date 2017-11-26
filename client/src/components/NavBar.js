@@ -30,13 +30,13 @@ const MyBrand = styled(Navbar.Brand)`
 
 const MyNavToggle = styled(Navbar.Toggle)`
   border: 0 !important;
-  
+
   @media (max-width: 768px) {
     position: absolute;
     left: 1em;
     display: block;
   }
-`
+`;
 
 const MyNavCollapse = styled(Navbar.Collapse)`
   @media (max-width: 768px) {
@@ -44,12 +44,35 @@ const MyNavCollapse = styled(Navbar.Collapse)`
   }
 `;
 
-class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { width: "0", height: "0" };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+const SearchContainer = styled.div`
+  float: right;
+  font-size: 1.25em;
+`;
+
+const SearchIcon = styled.i`
+  color: tomato;
+  float: right;
+  margin-top: 1em;
+  &:hover {
+    cursor: pointer;
   }
+`;
+
+const MyNavForm = styled(Navbar.Form)`
+  border: none;
+  position: absolute;
+  float: left;
+  right: 3.5em;
+  padding: 0;
+  margin-top: 0.5em;
+`
+
+class NavBar extends React.Component {
+  state = {
+    width: "0",
+    height: "0",
+    searchVisibility: false
+  };
 
   componentDidMount() {
     this.updateWindowDimensions();
@@ -60,32 +83,40 @@ class NavBar extends React.Component {
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
-  updateWindowDimensions() {
+  updateWindowDimensions = () => {
     this.setState({
       width: window.innerWidth,
       height: window.innerHeight
     });
-  }
+  };
+
+  onCollapsedSearchClick = () => {
+    console.log("searchVisibility before", this.state.searchVisibility);
+    Promise.resolve(
+      this.setState({ searchVisibility: !this.state.searchVisibility })
+    ).then(() =>
+      console.log("searchVisibility after", this.state.searchVisibility)
+    );
+  };
+
 
   render() {
-    return this.state.width > 768 ? (
-      <MyNav collapseOnSelect>
+    return this.state.width > 768 ? <MyNav collapseOnSelect>
         <Navbar.Header>
           <MyNavToggle />
           <MyBrand>
             {/* Logo links to Home */}
             <LinkedLogo href="#" />
           </MyBrand>
-
-          <Navbar.Form pullLeft>
-            <FormGroup>
-              <FormControl type="text" placeholder="Search" />
-            </FormGroup>{" "}
-            <Button type="submit" primary>
-              Submit
-            </Button>
-          </Navbar.Form>
         </Navbar.Header>
+
+        <Navbar.Form pullLeft>
+          <FormGroup>
+            <FormControl type="text" placeholder="Search" />
+          </FormGroup> <Button type="submit" primary>
+            Submit
+          </Button>
+        </Navbar.Form>
 
         <MyNavCollapse>
           <Nav pullRight>
@@ -97,9 +128,7 @@ class NavBar extends React.Component {
             </NavItem>
           </Nav>
         </MyNavCollapse>
-      </MyNav>
-    ) : (
-      <MyNav collapseOnSelect>
+      </MyNav> : <MyNav collapseOnSelect>
         <MyNavToggle />
         <Navbar.Header>
           <MyBrand>
@@ -107,6 +136,20 @@ class NavBar extends React.Component {
             <LinkedLogo href="#" />
           </MyBrand>
         </Navbar.Header>
+
+        {this.state.searchVisibility ? <SearchContainer>
+            <SearchIcon className="fa fa-search" onClick={this.onCollapsedSearchClick} />
+            <MyNavForm pullLeft>
+              <FormGroup>
+                <FormControl type="text" placeholder="Search" />
+              </FormGroup>{" "}
+            </MyNavForm>
+          </SearchContainer> 
+          : 
+          <SearchContainer>
+            <SearchIcon className="fa fa-search" onClick={this.onCollapsedSearchClick} />
+          </SearchContainer>
+        }
 
         <MyNavCollapse>
           <Nav pullLeft>
@@ -118,8 +161,7 @@ class NavBar extends React.Component {
             </NavItem>
           </Nav>
         </MyNavCollapse>
-      </MyNav>
-    );
+      </MyNav>;
   }
 }
 
