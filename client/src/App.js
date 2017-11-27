@@ -1,20 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
-import SignIn from "./pages/SignIn";
+import LogIn from "./pages/LogIn";
 import Landing from "./pages/Landing";
 import Browse from "./pages/Browse";
 
-//if not signed in, route to pages/SignIn
+//if not logged in, route to pages/LogIn
 const App = () => {
 	return (
 		<Router>
 			<div>
 				<Navbar />
 				<Route exact path="/" component={Landing} />
-				<Route path="/landing" component={Landing} />
-				<Route path="/signIn" component={SignIn} />
-				<Route path="/browse" component={Browse} />
+				<Route exact path="/home" component={Landing} />
+				<Route exact path="/login" component={LogIn} />
+				<Route exact path="/browse" component={Browse} />
+				<Route />
 			</div>
 		</Router>
 	);

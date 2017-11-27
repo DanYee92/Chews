@@ -1,8 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { LinkedLogo } from "./Logo";
 import styled from "styled-components";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
+
+const MyLink = styled(Link)`
+  color: gray;
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+  &:visited {
+    color: black;
+    text-decoration: none;
+  }
+  &:active {
+    color: black;
+    text-decoration: none;
+  }
+`;
 
 const MyNav = styled(Navbar)`
   background: transparent;
@@ -40,10 +57,12 @@ class NavBar extends React.Component {
   state = {
     windowWidth: "0",
     searchBarVisible: false,
-    navbarSearchQuery: ""
+    navbarSearchQuery: "",
+    activeKey: ""
   };
 
   componentDidMount() {
+    console.log(window.location.pathname);
     this.updateWindowWidth();
     window.addEventListener("resize", this.updateWindowWidth);
   }
@@ -72,6 +91,10 @@ class NavBar extends React.Component {
     this.setState({ searchBarVisible: false });
   };
 
+  handleNavSelect = selectedKey => {
+    this.setState({ activeKey: selectedKey });
+  };
+
   render() {
     return (
       <MyNav collapseOnSelect>
@@ -79,7 +102,7 @@ class NavBar extends React.Component {
           <MyNavToggle />
           <MyBrand>
             {/* Logo links to Home */}
-            <LinkedLogo href="#" />
+            <LinkedLogo to="/" />
           </MyBrand>
         </Navbar.Header>
 
@@ -100,12 +123,16 @@ class NavBar extends React.Component {
         )}
 
         <MyNavCollapse>
-          <Nav pullRight>
-            <NavItem eventKey={1} href="#">
-              Sign Up
+          <Nav
+            pullRight
+            activeKey={this.state.activeKey}
+            onSelect={this.handleNavSelect}
+          >
+            <NavItem eventKey={1}>
+              <MyLink to="/signup">Sign Up</MyLink>
             </NavItem>
-            <NavItem eventKey={2} href="#">
-              Log In
+            <NavItem eventKey={2}>
+              <MyLink to="/login">Log In</MyLink>
             </NavItem>
           </Nav>
         </MyNavCollapse>
@@ -115,3 +142,19 @@ class NavBar extends React.Component {
 }
 
 export default NavBar;
+
+// <Nav pullRight>
+//   <li>
+//     <Link to="/signup">Sign Up</Link>
+//   </li>
+//   <li>
+//     <Link to="/login">Log In</Link>
+//   </li>
+// </Nav>
+
+// <NavItem eventKey={1}>
+//   <Link to="/signup">Sign Up</Link>
+// </NavItem>
+// <NavItem eventKey={2}>
+//   <Link to="/login">Log In</Link>
+// </NavItem>

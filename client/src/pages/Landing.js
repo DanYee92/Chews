@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import { Logo } from "../components/Logo";
-import SignInForm from "../components/SignInForm";
-import { FormGroup, ControlLabel, FormControl } from "react-bootstrap";
+import { FormGroup, FormControl } from "react-bootstrap";
 import Button from "../components/Button";
 
 class Landing extends Component {
