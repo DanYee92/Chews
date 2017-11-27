@@ -15,7 +15,10 @@ module.exports = {
 			.find({ _id: req.params.userId })
 			//populate that user with their bites
 			.populate("bites")
-			.then(foundUser => res.json(foundUser));
+			.then(foundUser => {
+				console.log(foundUser);
+				res.json(foundUser);
+			});
 	},
 
 	getUserBookedBites: (req, res) => {

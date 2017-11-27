@@ -4,6 +4,7 @@ import { Logo } from "../components/Logo";
 import SignInForm from "../components/SignInForm";
 import { FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 import Button from "../components/Button";
+import API from "../util/API";
 
 class Landing extends Component {
   state = {
@@ -21,6 +22,10 @@ class Landing extends Component {
   handleSearchSubmit = event => {
     event.preventDefault();
     console.log(this.state.landingSearchQuery);
+
+    console.log("User unbooked bites search");
+    const userId = "5a1c4d67f497743d9428014e";
+    API.getUserUnbookedBites(userId).then(result => console.log(result));
   };
 
   render() {
