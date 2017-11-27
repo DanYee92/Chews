@@ -13,7 +13,7 @@ export const ExpandedNavbarSearch = props => {
 					onChange={props.handleInputChange}
 					value={props.navbarSearchQuery}
 				/>
-			</FormGroup>
+			</FormGroup>{" "}
 			<Button type="submit" primary>
 				Submit
 			</Button>

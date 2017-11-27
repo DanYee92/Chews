@@ -12,7 +12,7 @@ const MySearchIcon = styled.i`
 
 export const SearchIcon = props => (
 	<MySearchIcon
-		className={props.icon ? "fa fa-search-minus" : "fa fa-search-plus"}
+		className={props.icon ? "fa fa-search-minus" : "fa fa-search"}
 		onClick={props.onClick}
 	/>
 );

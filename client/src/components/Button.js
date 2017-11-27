@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
   text-align: center;
-  margin-left: 0.25em;
   padding: 0.5em 1em;
   border-radius: 0.5em;
   color: tomato;
