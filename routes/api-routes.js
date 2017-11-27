@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const db = require("../models");
+// const db = require("../models");
+const userController = require("../controllers/userController");
 
 module.exports = app => {
 	console.log("Back end routes connected to server 3001");
@@ -21,13 +22,14 @@ module.exports = app => {
 
 	// GET - Get a user's info
 	app.get("/api/user/:userId", (req, res) => {
-		console.log("User ID to find:", req.params.userId);
-		db.User
-			//find a user by their userid
-			.find({ _id: req.params.userId })
-			//populate that user with their bites
-			.populate("bites")
-			.then(foundUser => res.json(foundUser));
+		// console.log("User ID to find:", req.params.userId);
+		// db.User
+		// 	//find a user by their userid
+		// 	.find({ _id: req.params.userId })
+		// 	//populate that user with their bites
+		// 	.populate("bites")
+		// 	.then(foundUser => res.json(foundUser));
+		userController.getAllUserInfo(req, res);
 	});
 
 	//POST - make a new bite
