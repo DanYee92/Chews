@@ -11,18 +11,17 @@ const MyLinkContainer = styled.ul`
   margin-top: 1.25em;
 
   & li {
-    display: inline-block;
+    display: inline;
     margin: 0 0.5em;
+    @media (max-width: 767px) {
+      display: initial;
+    }
   }
 
   @media (max-width: 767px) {
-    padding: 0;
     float: left;
-    margin-top: 0;
-
     & li {
-      display: block;
-      margin: 1em;
+      display: initial;
     }
   }
 `;
@@ -72,9 +71,10 @@ const MyNavToggle = styled(Navbar.Toggle)`
 `;
 
 const MyNavCollapse = styled(Navbar.Collapse)`
+  position: relative;
+
   @media (max-width: 767px) {
     margin-top: 3.5em;
-    padding-left: 0.75em;
   }
 `;
 
