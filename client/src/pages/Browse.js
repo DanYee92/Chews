@@ -11,10 +11,10 @@ const Browse = () => {
     <div>
       <NavBar />
       <Grid>
-        <Row>
+        <Row className="show-grid">
           {/* dynamically generate here */}
 
-          <Col xs={12} sm={6} md={3}>
+          <Col xs={12} sm={6} md={4} lg={3}>
             <Card
               title="Ippudo Ramen"
               local="Imran Kazmi"
@@ -26,7 +26,7 @@ const Browse = () => {
 
           {/* to here */}
 
-          <Col xs={12} sm={6} md={3}>
+          <Col xs={12} sm={6} md={4} lg={3}>
             <Card
               title="Ippudo Ramen"
               local="Imran Kazmi"
@@ -35,7 +35,7 @@ const Browse = () => {
               location="West Loop"
             />
           </Col>
-          <Col xs={12} sm={6} md={3}>
+          <Col xs={12} sm={6} md={4} lg={3}>
             <Card
               title="Ippudo Ramen"
               local="Imran Kazmi"
@@ -44,7 +44,7 @@ const Browse = () => {
               location="West Loop"
             />
           </Col>
-          <Col xs={12} sm={6} md={3}>
+          <Col xs={12} sm={6} md={4} lg={3}>
             <Card
               title="Ippudo Ramen"
               local="Imran Kazmi"
@@ -53,7 +53,8 @@ const Browse = () => {
               location="West Loop"
             />
           </Col>
-          <Col xs={12} sm={6} md={3}>
+
+          <Col xs={12} sm={6} md={4} lg={3}>
             <Card
               title="Ippudo Ramen"
               local="Imran Kazmi"
@@ -62,7 +63,7 @@ const Browse = () => {
               location="West Loop"
             />
           </Col>
-          <Col xs={12} sm={6} md={3}>
+          <Col xs={12} sm={6} md={4} lg={3}>
             <Card
               title="Ippudo Ramen"
               local="Imran Kazmi"

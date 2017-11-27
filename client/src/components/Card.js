@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const CardContainer = styled.div`
   background: papayawhip;
-  width: 15em;
-  margin-bottom: 1em;
+  width: 18em;
+  margin-bottom: 2.5em;
 `;
 
 // ======= Thumbnail Container START ========
@@ -15,8 +15,8 @@ const ThumbnailContainer = styled.div`
 const CardTitle = styled.h3`
   color: white;
   position: absolute;
-  top: 3.5em;
-  left: 0.25em;
+  top: 4.5em;
+  left: 0.5em;
 `;
 
 const CardThumbnail = styled.img`
@@ -28,7 +28,7 @@ const CardThumbnail = styled.img`
 const CardBody = styled.div`
   color: black;
   margin-top: 1em;
-  padding: 0.5em;
+  padding: 0.75em;
 `;
 
 // Card takes in props: title, local, startDate, endDate, location
