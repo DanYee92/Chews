@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import Container from "../components/Container";
-import NavBar from "../components/NavBar";
 import { Grid, Row, Col } from "react-bootstrap";
+import Container from "../components/Container";
 
 // Card takes in props: title, local, startDate, endDate, location
 import Card from "../components/Card";
@@ -9,7 +8,6 @@ import Card from "../components/Card";
 const Browse = () => {
   return (
     <div>
-      <NavBar />
       <Grid>
         <Row className="show-grid">
           {/* dynamically generate here */}

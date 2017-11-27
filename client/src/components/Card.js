@@ -16,7 +16,7 @@ const CardTitle = styled.h3`
   color: white;
   position: absolute;
   bottom: 0.5em;
-  left: 0.5em;
+  left: 0.75em;
 `;
 
 const CardThumbnail = styled.img`
