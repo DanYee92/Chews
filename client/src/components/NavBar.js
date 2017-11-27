@@ -65,6 +65,13 @@ class NavBar extends React.Component {
   handleSearchIconClick = () =>
     this.setState({ searchBarVisible: !this.state.searchBarVisible });
 
+  handleSearchSubmit = event => {
+    event.preventDefault();
+    console.log(this.state.navbarSearchQuery);
+
+    this.setState({ searchBarVisible: false });
+  };
+
   render() {
     return (
       <MyNav collapseOnSelect>
@@ -80,6 +87,7 @@ class NavBar extends React.Component {
           <ExpandedNavbarSearch
             handleInputChange={this.handleInputChange}
             navbarSearchQuery={this.state.navbarSearchQuery}
+            handleSearchSubmit={this.handleSearchSubmit}
           />
         ) : (
           <CollapsedNavbarSearch
@@ -87,6 +95,7 @@ class NavBar extends React.Component {
             handleSearchIconClick={this.handleSearchIconClick}
             handleInputChange={this.handleInputChange}
             navbarSearchQuery={this.state.navbarSearchQuery}
+            handleSearchSubmit={this.handleSearchSubmit}
           />
         )}
 
