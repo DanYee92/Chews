@@ -32,17 +32,17 @@ module.exports = app => {
 
 	//POST - make a new bite
 	//Adding userId, because after a bite is created, we need to add this new bite to the user's array of bites
-	app.post("/api/user/:userId/bite/create", (req, res) => {
+	app.post("/api/user/:localId/bite/create", (req, res) => {
 		console.log("new bite created");
 		//Added this line for testing purposes
-		console.log("User ID making the bite:", req.params.userId);
+		console.log("User ID making the bite:", req.params.localId);
 		console.log("req.body:", req.body);
 		db.Bite
 			.create(req.body)
 			.then(newBite => {
 				//find the user creating a new bite
 				return db.User.findOneAndUpdate(
-					{ _id: req.params.userId },
+					{ _id: req.params.localId },
 					//add the new bite to the user's array of bites
 					{ $push: { bites: newBite._id } },
 					{ new: true }
@@ -70,11 +70,23 @@ module.exports = app => {
 	});
 
 	//PUT - update a bite to be "booked"
-	app.patch("/api/bite/:biteId/book", (req, res) => {
+	app.patch("/api/user/:travelerId/bite/:biteId/book", (req, res) => {
 		console.log("biteId to find:", req.params.biteId);
+		console.log("UserID booking:", req.params.travelerId);
 		db.Bite
-			//find the biteId and update isBooked: true
-			.findOneAndUpdate({ _biteId: req.params.id }, { isBooked: true })
-			.then(biteIsBooked => res.json(biteIsBooked));
+			//find the biteId and update isBooked: true, and add a travelerId to the bite
+			.findOneAndUpdate(
+				{ _id: req.params.biteId },
+				{ isBooked: true, $set: { travelerId: req.params.travelerId } }
+			)
+			.then(bookedBite => {
+				//add the bite to the traveler's bites
+				return db.User.findOneAndUpdate(
+					{ _id: req.params.travelerId },
+					{ $push: { bites: bookedBite._id } },
+					{ new: true }
+				);
+			})
+			.then(result => res.json(result));
 	});
 };

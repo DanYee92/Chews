@@ -24,11 +24,14 @@ const BiteSchema = new Schema({
 		required: true
 	},
 
-	//format this properly. look into date ranges in mongoose
 	//add validation to reformat front end dates into the mongoDB date format
-	dateRange: {
-		type: String,
-		required: true
+	startDateRange: {
+		type: Date
+	},
+
+	//add validation to reformat front end dates into the mongoDB date format
+	endDateRange: {
+		type: Date
 	},
 
 	biteDate: {
