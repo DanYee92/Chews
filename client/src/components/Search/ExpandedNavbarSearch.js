@@ -10,7 +10,7 @@ export const ExpandedNavbarSearch = props => {
 					name="navbarSearchQuery"
 					type="text"
 					placeholder="Search"
-					onChange={this.handleInputChange}
+					onChange={props.handleInputChange}
 					value={props.navbarSearchQuery}
 				/>
 			</FormGroup>{" "}
