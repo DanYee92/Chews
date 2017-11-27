@@ -8,7 +8,7 @@ const SearchContainer = styled.div`
 	font-size: 1.25em;
 `;
 
-const MyNavForm = styled(Navbar.Form)`
+const MyNavbarForm = styled(Navbar.Form)`
 	border: none;
 	position: absolute;
 	float: left;
@@ -20,9 +20,12 @@ const MyNavForm = styled(Navbar.Form)`
 export const CollapsedNavbarSearch = props => {
 	return (
 		<SearchContainer>
-			<SearchIcon className="fa fa-search" onClick={props.searchIcon} />
+			<SearchIcon
+				icon={props.searchVisibility}
+				onClick={props.searchIconClick}
+			/>
 			{props.searchVisibility ? (
-				<MyNavForm pullLeft>
+				<MyNavbarForm pullLeft>
 					<FormGroup>
 						<FormControl
 							name="navbarSearchQuery"
@@ -32,7 +35,7 @@ export const CollapsedNavbarSearch = props => {
 							value={props.navbarSearchQuery}
 						/>
 					</FormGroup>
-				</MyNavForm>
+				</MyNavbarForm>
 			) : (
 				""
 			)}

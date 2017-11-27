@@ -39,18 +39,18 @@ const MyNavCollapse = styled(Navbar.Collapse)`
 
 class NavBar extends React.Component {
   state = {
-    width: "0",
+    windowWidth: "0",
     searchVisibility: false,
     navbarSearchQuery: ""
   };
 
   componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener("resize", this.updateWindowDimensions);
+    this.updateWindowWidth();
+    window.addEventListener("resize", this.updateWindowWidth);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowDimensions);
+    window.removeEventListener("resize", this.updateWindowWidth);
   }
 
   handleInputChange = event => {
@@ -61,11 +61,10 @@ class NavBar extends React.Component {
     });
   };
 
-  updateWindowDimensions = () => this.setState({ width: window.innerWidth });
+  updateWindowWidth = () => this.setState({ windowWidth: window.innerWidth });
 
-  onSearchIconClick = () => {
+  onSearchIconClick = () =>
     this.setState({ searchVisibility: !this.state.searchVisibility });
-  };
 
   render() {
     return (
@@ -78,7 +77,7 @@ class NavBar extends React.Component {
           </MyBrand>
         </Navbar.Header>
 
-        {this.state.width > 767 ? (
+        {this.state.windowWidth > 767 ? (
           <ExpandedNavbarSearch
             handleInputChange={this.handleInputChange}
             navbarSearchQuery={this.state.navbarSearchQuery}
@@ -86,7 +85,7 @@ class NavBar extends React.Component {
         ) : (
           <CollapsedNavbarSearch
             searchVisibility={this.state.searchVisibility}
-            searchIcon={this.onSearchIconClick}
+            searchIconClick={this.onSearchIconClick}
             handleInputChange={this.handleInputChange}
             navbarSearchQuery={this.state.navbarSearchQuery}
           />

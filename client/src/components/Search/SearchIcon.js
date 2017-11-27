@@ -11,5 +11,8 @@ const MySearchIcon = styled.i`
 `;
 
 export const SearchIcon = props => (
-	<MySearchIcon className="fa fa-search" onClick={props.onClick} />
+	<MySearchIcon
+		className={props.icon ? "fa fa-search-minus" : "fa fa-search-plus"}
+		onClick={props.onClick}
+	/>
 );
