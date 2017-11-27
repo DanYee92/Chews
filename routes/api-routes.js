@@ -1,17 +1,10 @@
 const router = require("express").Router();
-// const db = require("../models");
+const db = require("../models");
 const userController = require("../controllers/userController");
 const biteController = require("../controllers/biteController");
 
 module.exports = app => {
 	console.log("Back end routes connected to server 3001");
-
-	app.get("/test", (req, res) => res.json("pls work"));
-
-	app.post("/test", (req, res) => {
-		console.log("req.body:", req.body);
-		res.json(req.body);
-	});
 
 	//POST - make a new user
 	app.post("/api/user/create", (req, res) =>
@@ -37,5 +30,15 @@ module.exports = app => {
 	//PUT - update a bite to be "booked"
 	app.patch("/api/user/:travelerId/bite/:biteId/book", (req, res) =>
 		biteController.bookBite(req, res)
+	);
+
+	//GET - all of a user's booked bites
+	app.get("/api/user/:userId/bites/booked", (req, res) =>
+		userController.getUserBookedBites(req, res)
+	);
+
+	//GET - all of a user's unbooked bites
+	app.get("/api/user/:userId/bites/unbooked", (req, res) =>
+		userController.getUserUnbookedBites(req, res)
 	);
 };
