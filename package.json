@@ -6,19 +6,21 @@
   "scripts": {
     "server": "node server.js",
     "client": "cd client && npm run start",
-    "start": "concurrently \"nodemon\" \"npm run client\"",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "cd client && npm run build",
-    "deploy":
-      "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
+    "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
+    "eslint": "^4.11.0",
+    "eslint-plugin-react": "^7.5.1",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "express": "^4.15.4",
     "mongoose": "^4.13.4"
   }
