@@ -41,5 +41,4 @@ const BiteSchema = new Schema({
 });
 
 const Bite = mongoose.model("Bite", BiteSchema);
-
 module.exports = Bite;
