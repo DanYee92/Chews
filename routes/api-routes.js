@@ -31,7 +31,6 @@ module.exports = app => {
 	});
 
 	//POST - make a new bite
-<<<<<<< HEAD
 	//Adding userId, because after a bite is created, we need to add this new bite to the user's array of bites
 	app.post("/api/user/:userId/bite/create", (req, res) => {
 		console.log("new bite created");
