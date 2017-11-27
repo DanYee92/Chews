@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
-// import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from "react-bootstrap";
 import { LinkedLogo } from "./Logo";
 import styled from "styled-components";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
@@ -77,21 +76,19 @@ class NavBar extends React.Component {
           </MyBrand>
         </Navbar.Header>
 
-        {this.state.windowWidth > 767 ? 
-          (
-            <ExpandedNavbarSearch
-              handleInputChange={this.handleInputChange}
-              navbarSearchQuery={this.state.navbarSearchQuery}
-            />
-          ) : (
-            <CollapsedNavbarSearch
-              searchBarVisible={this.state.searchBarVisible}
-              handleSearchIconClick={this.handleSearchIconClick}
-              handleInputChange={this.handleInputChange}
-              navbarSearchQuery={this.state.navbarSearchQuery}
-            />
-          )
-        }
+        {this.state.windowWidth > 767 ? (
+          <ExpandedNavbarSearch
+            handleInputChange={this.handleInputChange}
+            navbarSearchQuery={this.state.navbarSearchQuery}
+          />
+        ) : (
+          <CollapsedNavbarSearch
+            searchBarVisible={this.state.searchBarVisible}
+            handleSearchIconClick={this.handleSearchIconClick}
+            handleInputChange={this.handleInputChange}
+            navbarSearchQuery={this.state.navbarSearchQuery}
+          />
+        )}
 
         <MyNavCollapse>
           <Nav pullRight>

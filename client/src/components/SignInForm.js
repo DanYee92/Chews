@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import FormGroup from "./FormGroup";
-import FormInput from "./FormInput";
+import { FormGroup, FormInput } from "./Form";
 import Button from "../components/Button";
 
 class SignInForm extends Component {
