@@ -19,5 +19,13 @@ export default {
 
 	bookBite: (travelerId, biteId) => {
 		return axios.patch(`/api/user/${travelerId}/bite/${biteId}/book`);
+	},
+
+	getUserBookedBites: userId => {
+		return axios.get(`/api/user/${userId}/bites/booked`);
+	},
+
+	getUserUnbookedBites: userId => {
+		return axios.get(`/api/user/${userId}/bites/unbooked`);
 	}
 };
