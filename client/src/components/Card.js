@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const CardContainer = styled.div`
   background: papayawhip;
-  width: 18em;
+  width: 100%;
   margin-bottom: 2.5em;
 `;
 
@@ -15,7 +15,7 @@ const ThumbnailContainer = styled.div`
 const CardTitle = styled.h3`
   color: white;
   position: absolute;
-  top: 4.5em;
+  bottom: 0.5em;
   left: 0.5em;
 `;
 
