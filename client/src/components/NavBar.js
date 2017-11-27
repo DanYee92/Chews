@@ -1,16 +1,9 @@
 import React from "react";
-import {
-  Navbar,
-  Nav,
-  NavItem,
-  MenuItem,
-  NavDropdown,
-  FormGroup,
-  FormControl
-} from "react-bootstrap";
+import { Navbar, Nav, NavItem } from "react-bootstrap";
+// import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from "react-bootstrap";
 import { LinkedLogo } from "./Logo";
-import Button from "./Button";
 import styled from "styled-components";
+import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 
 const MyNav = styled(Navbar)`
   background: transparent;
@@ -20,7 +13,7 @@ const MyNav = styled(Navbar)`
 const MyBrand = styled(Navbar.Brand)`
   color: tomato !important;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     position: absolute;
     left: 50%;
     margin-left: -2.5em !important; /* 50% of logo width */
@@ -31,7 +24,7 @@ const MyBrand = styled(Navbar.Brand)`
 const MyNavToggle = styled(Navbar.Toggle)`
   border: 0 !important;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     position: absolute;
     left: 1em;
     display: block;
@@ -39,39 +32,16 @@ const MyNavToggle = styled(Navbar.Toggle)`
 `;
 
 const MyNavCollapse = styled(Navbar.Collapse)`
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     margin-top: 3.5em;
   }
-`;
-
-const SearchContainer = styled.div`
-  float: right;
-  font-size: 1.25em;
-`;
-
-const SearchIcon = styled.i`
-  color: tomato;
-  float: right;
-  margin-top: 1em;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const MyNavForm = styled(Navbar.Form)`
-  border: none;
-  position: absolute;
-  float: left;
-  right: 3.5em;
-  padding: 0;
-  margin-top: 0.5em;
 `;
 
 class NavBar extends React.Component {
   state = {
     width: "0",
-    height: "0",
-    searchVisibility: false
+    searchVisibility: false,
+    navbarSearchQuery: ""
   };
 
   componentDidMount() {
@@ -83,24 +53,22 @@ class NavBar extends React.Component {
     window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
-  updateWindowDimensions = () => {
+  handleInputChange = event => {
+    const { name, value } = event.target;
+
     this.setState({
-      width: window.innerWidth,
-      height: window.innerHeight
+      [name]: value
     });
   };
 
-  onCollapsedSearchClick = () => {
-    console.log("searchVisibility before", this.state.searchVisibility);
-    Promise.resolve(
-      this.setState({ searchVisibility: !this.state.searchVisibility })
-    ).then(() =>
-      console.log("searchVisibility after", this.state.searchVisibility)
-    );
+  updateWindowDimensions = () => this.setState({ width: window.innerWidth });
+
+  onSearchIconClick = () => {
+    this.setState({ searchVisibility: !this.state.searchVisibility });
   };
 
   render() {
-    return this.state.width > 768 ? (
+    return (
       <MyNav collapseOnSelect>
         <Navbar.Header>
           <MyNavToggle />
@@ -110,59 +78,22 @@ class NavBar extends React.Component {
           </MyBrand>
         </Navbar.Header>
 
-        <Navbar.Form pullLeft>
-          <FormGroup>
-            <FormControl type="text" placeholder="Search" />
-          </FormGroup>{" "}
-          <Button type="submit" primary>
-            Submit
-          </Button>
-        </Navbar.Form>
-
-        <MyNavCollapse>
-          <Nav pullRight>
-            <NavItem eventKey={1} href="#">
-              Sign Up
-            </NavItem>
-            <NavItem eventKey={2} href="#">
-              Log In
-            </NavItem>
-          </Nav>
-        </MyNavCollapse>
-      </MyNav>
-    ) : (
-      <MyNav collapseOnSelect>
-        <MyNavToggle />
-        <Navbar.Header>
-          <MyBrand>
-            {/* Logo links to Home */}
-            <LinkedLogo href="#" />
-          </MyBrand>
-        </Navbar.Header>
-
-        {this.state.searchVisibility ? (
-          <SearchContainer>
-            <SearchIcon
-              className="fa fa-search"
-              onClick={this.onCollapsedSearchClick}
-            />
-            <MyNavForm pullLeft>
-              <FormGroup>
-                <FormControl type="text" placeholder="Search" />
-              </FormGroup>{" "}
-            </MyNavForm>
-          </SearchContainer>
+        {this.state.width > 767 ? (
+          <ExpandedNavbarSearch
+            handleInputChange={this.handleInputChange}
+            navbarSearchQuery={this.state.navbarSearchQuery}
+          />
         ) : (
-          <SearchContainer>
-            <SearchIcon
-              className="fa fa-search"
-              onClick={this.onCollapsedSearchClick}
-            />
-          </SearchContainer>
+          <CollapsedNavbarSearch
+            searchVisibility={this.state.searchVisibility}
+            searchIcon={this.onSearchIconClick}
+            handleInputChange={this.handleInputChange}
+            navbarSearchQuery={this.state.navbarSearchQuery}
+          />
         )}
 
         <MyNavCollapse>
-          <Nav pullLeft>
+          <Nav pullRight>
             <NavItem eventKey={1} href="#">
               Sign Up
             </NavItem>
