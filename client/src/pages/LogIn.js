@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import { Logo } from "../components/Logo";
-import SignInForm from "../components/SignInForm";
+import LogInForm from "../components/LogInForm";
 
-class SignIn extends Component {
+class LogIn extends Component {
   state = {
     email: "",
     password: ""
@@ -13,10 +13,10 @@ class SignIn extends Component {
     return (
       <Container column margin="35vh">
         <Logo large />
-        <SignInForm />
+        <LogInForm />
       </Container>
     );
   }
 }
 
-export default SignIn;
+export default LogIn;

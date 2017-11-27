@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormGroup, FormInput } from "./Form";
 import Button from "../components/Button";
 
-class SignInForm extends Component {
+class LogInForm extends Component {
   state = {
     email: "",
     password: ""
@@ -16,7 +16,7 @@ class SignInForm extends Component {
   render() {
     return (
       <form>
-        <FormGroup controlId="signInForm">
+        <FormGroup controlId="logInForm">
           <FormInput
             type="email"
             name="email"
@@ -29,7 +29,7 @@ class SignInForm extends Component {
             placeholder="*******"
             onChange={this.handleInputChange}
           />
-          <Button primary> Sign In </Button>
+          <Button primary> Log In </Button>
           <Button> Create New Account </Button>
         </FormGroup>
       </form>
@@ -37,4 +37,4 @@ class SignInForm extends Component {
   }
 }
 
-export default SignInForm;
+export default LogInForm;
