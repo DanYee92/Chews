@@ -21,10 +21,10 @@ export const CollapsedNavbarSearch = props => {
 	return (
 		<SearchContainer>
 			<SearchIcon
-				icon={props.searchBarVisibile}
+				icon={props.searchBarVisible}
 				onClick={props.handleSearchIconClick}
 			/>
-			{props.searchBarVisibile ? (
+			{props.searchBarVisible ? (
 				<MyNavbarForm pullLeft>
 					<FormGroup>
 						<FormControl
