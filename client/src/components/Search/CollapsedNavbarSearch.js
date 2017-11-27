@@ -26,15 +26,17 @@ export const CollapsedNavbarSearch = props => {
 			/>
 			{props.searchBarVisible ? (
 				<MyNavbarForm pullLeft>
-					<FormGroup>
-						<FormControl
-							name="navbarSearchQuery"
-							type="text"
-							placeholder="Search"
-							onChange={props.handleInputChange}
-							value={props.navbarSearchQuery}
-						/>
-					</FormGroup>
+					<form onSubmit={props.handleSearchSubmit}>
+						<FormGroup>
+							<FormControl
+								name="navbarSearchQuery"
+								type="text"
+								placeholder="Search"
+								onChange={props.handleInputChange}
+								value={props.navbarSearchQuery}
+							/>
+						</FormGroup>
+					</form>
 				</MyNavbarForm>
 			) : (
 				""
