@@ -5,8 +5,8 @@ export const Logo = styled.h1`
     content: "[chews]";
   }
   color: tomato;
-  text-align: center
-  font-size: ${props => (props.large ? "3em" : "1em")};
+
+  font-size: ${props => (props.large ? "3em" : "1.5em")};
 `;
 
 export const LinkedLogo = Logo.withComponent("a");
