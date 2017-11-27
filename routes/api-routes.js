@@ -54,12 +54,18 @@ module.exports = app => {
 
 	//GET - get bites from the db
 	//Need to add within a specified date range
-	app.get("/api/bites/search", (req, res) => {
+	app.get("/api/bites/search/city/:city", (req, res) => {
 		console.log("all available bites to book!");
+		console.log("searching for bites in city:", req.params.city);
+		const query = {
+			isBooked: false,
+			city: req.params.city
+		};
+
 		db.Bite
 			//find all bites where: not booked
 			//Need to add within a specified date range
-			.find({ isBooked: false })
+			.find(query)
 			.then(foundBites => res.json(foundBites));
 	});
 

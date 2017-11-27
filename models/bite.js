@@ -25,6 +25,7 @@ const BiteSchema = new Schema({
 	},
 
 	//format this properly. look into date ranges in mongoose
+	//add validation to reformat front end dates into the mongoDB date format
 	dateRange: {
 		type: String,
 		required: true
