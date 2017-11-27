@@ -4,6 +4,7 @@ import styled from "styled-components";
 const CardContainer = styled.div`
   background: papayawhip;
   width: 15em;
+  margin-bottom: 1em;
 `;
 
 // ======= Thumbnail Container START ========
@@ -14,7 +15,7 @@ const ThumbnailContainer = styled.div`
 const CardTitle = styled.h3`
   color: white;
   position: absolute;
-  top: 2em;
+  top: 3.5em;
   left: 0.25em;
 `;
 
@@ -30,30 +31,31 @@ const CardBody = styled.div`
   padding: 0.5em;
 `;
 
-const Card = props => {
+// Card takes in props: title, local, startDate, endDate, location
+const Card = ({ title, local, startDate, endDate, location }) => {
   return (
     <CardContainer>
       <ThumbnailContainer>
-        <CardThumbnail src="http://via.placeholder.com/300x150" />
-        <CardTitle>{props.title}</CardTitle>
+        <CardThumbnail src="http://via.placeholder.com/300x200" />
+        <CardTitle>{title}</CardTitle>
       </ThumbnailContainer>
       <CardBody>
-        <p>with {props.local}</p>
+        <p>with {local}</p>
         <p>
           <i
-            class="fa fa-calendar-o"
+            className="fa fa-calendar-o"
             aria-hidden="true"
             style={{ marginRight: "0.5em" }}
           />
-          {props.startDate} - {props.endDate}
+          {startDate} - {endDate}
         </p>
         <p>
           <i
-            class="fa fa-map-marker"
+            className="fa fa-map-marker"
             aria-hidden="true"
             style={{ marginRight: "0.5em" }}
           />
-          {props.location}
+          {location}
         </p>
       </CardBody>
     </CardContainer>
