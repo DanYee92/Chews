@@ -92,8 +92,7 @@ const MyNavCollapse = styled(Navbar.Collapse)`
 class NavBar extends React.Component {
   state = {
     windowWidth: "0",
-    searchBarVisible: false,
-    navbarSearchQuery: ""
+    searchBarVisible: false
   };
 
   componentDidMount() {

@@ -7,9 +7,7 @@ import API from "../util/API";
 import MySearchBox from "../components/Search/SearchInput";
 
 class Landing extends Component {
-  state = {
-    landingSearchQuery: ""
-  };
+  state = {};
 
   handleSearchSubmit = event => {
     event.preventDefault();
