@@ -12,21 +12,59 @@ const ViewContainer = styled.div`
 `;
 
 //if not logged in, route to pages/LogIn
-const App = () => {
-  return (
-    <Router>
-      <div>
-        <Navbar />
-        <ViewContainer>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/home" component={Landing} />
-          <Route exact path="/login" component={LogIn} />
-          <Route exact path="/browse" component={Browse} />
-          <Route exact path="/create" component={CreateBite} />
-        </ViewContainer>
-      </div>
-    </Router>
-  );
-};
+class App extends React.Component {
+  state = {
+    navbarSearchQuery: "",
+    landingSearchQuery: ""
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Navbar
+            handleInputChange={this.handleInputChange}
+            navbarSearchQuery={this.state.navbarSearchQuery}
+          />
+          <ViewContainer>
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Landing
+                  {...props}
+                  handleInputChange={this.handleInputChange}
+                  landingSearchQuery={this.state.landingSearchQuery}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/home"
+              render={props => (
+                <Landing
+                  {...props}
+                  handleInputChange={this.handleInputChange}
+                  landingSearchQuery={this.state.landingSearchQuery}
+                />
+              )}
+            />
+            <Route exact path="/login" component={LogIn} />
+            <Route exact path="/browse" component={Browse} />
+            <Route exact path="/create" component={CreateBite} />
+          </ViewContainer>
+        </div>
+      </Router>
+    );
+  }
+}
 
 export default App;

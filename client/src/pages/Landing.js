@@ -11,14 +11,6 @@ class Landing extends Component {
     landingSearchQuery: ""
   };
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-
-    this.setState({
-      [name]: value
-    });
-  };
-
   handleSearchSubmit = event => {
     event.preventDefault();
     console.log(this.state.landingSearchQuery);
@@ -29,6 +21,7 @@ class Landing extends Component {
   };
 
   render() {
+    console.log(this);
     return (
       <Container column margin="35vh">
         <Logo large />
@@ -39,8 +32,8 @@ class Landing extends Component {
               name="landingSearchQuery"
               type="text"
               placeholder="Try 'Ippudo Ramen Chicago'"
-              onChange={this.handleInputChange}
-              value={this.state.landingSearchQuery}
+              onChange={this.props.handleInputChange}
+              value={this.props.landingSearchQuery}
             />
           </FormGroup>{" "}
           <Button type="submit" primary>
