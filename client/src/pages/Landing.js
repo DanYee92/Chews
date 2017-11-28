@@ -4,6 +4,8 @@ import { Logo } from "../components/Logo";
 import { FormGroup, FormControl } from "react-bootstrap";
 import Button from "../components/Button";
 import API from "../util/API";
+import styled from "styled-components";
+import MySearchBox from "../components/Search/SearchInput";
 
 class Landing extends Component {
   state = {
@@ -33,16 +35,17 @@ class Landing extends Component {
         <Logo large />
         <form onSubmit={this.handleSearchSubmit}>
           <FormGroup>
-            <FormControl
+            <MySearchBox
+              margin="1em"
               name="landingSearchQuery"
               type="text"
-              placeholder="Search"
+              placeholder="Try 'Ippudo Ramen Chicago'"
               onChange={this.handleInputChange}
               value={this.state.landingSearchQuery}
             />
           </FormGroup>{" "}
           <Button type="submit" primary>
-            Submit
+            Search
           </Button>
         </form>
       </Container>

@@ -50,8 +50,10 @@ const MyLink = styled(Link)`
 `;
 
 const MyNav = styled(Navbar)`
+  padding: 0.6em;
   background: white;
   border: none;
+  min-height: 4.5em;
   -webkit-box-shadow: 0px 10px 20px rgba(100, 100, 100, 0.1);
   -moz-box-shadow: 0px 10px 20px rgba(100, 100, 100, 0.1);
   box-shadow: 0px 10px 20px rgba(100, 100, 100, 0.1);
@@ -176,7 +178,7 @@ class NavBar extends React.Component {
 export default NavBar;
 
 // <Nav pullRight>
-//   <li>
+//   <li></li>
 //     <Link to="/signup">Sign Up</Link>
 //   </li>
 //   <li>
