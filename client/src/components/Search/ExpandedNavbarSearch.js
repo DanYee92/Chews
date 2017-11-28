@@ -2,13 +2,7 @@ import React from "react";
 import { Navbar, FormGroup, FormControl } from "react-bootstrap";
 import Button from "../Button";
 import styled from "styled-components";
-
-const MySearchBox = styled(FormControl)`
-  box-shadow: none;
-  border-radius: 0;
-  border: 0.12em solid tomato;
-  color: tomato;
-`;
+import MySearchBox from "./SearchInput";
 
 export const ExpandedNavbarSearch = props => {
   return (

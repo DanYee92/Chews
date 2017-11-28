@@ -5,13 +5,7 @@ import { FormGroup, FormControl } from "react-bootstrap";
 import Button from "../components/Button";
 import API from "../util/API";
 import styled from "styled-components";
-
-const MySearchBox = styled(FormControl)`
-  box-shadow: none;
-  border-radius: 0;
-  border: 0.12em solid tomato;
-  margin: 1em;
-`;
+import MySearchBox from "../components/Search/SearchInput";
 
 class Landing extends Component {
   state = {
@@ -42,6 +36,7 @@ class Landing extends Component {
         <form onSubmit={this.handleSearchSubmit}>
           <FormGroup>
             <MySearchBox
+              margin="1em"
               name="landingSearchQuery"
               type="text"
               placeholder="Try 'Ippudo Ramen Chicago'"

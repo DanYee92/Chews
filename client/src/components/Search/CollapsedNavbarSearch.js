@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, FormGroup, FormControl } from "react-bootstrap";
 import styled from "styled-components";
 import { SearchIcon } from ".";
+import MySearchBox from "./SearchInput";
 
 const SearchContainer = styled.div`
   float: right;
@@ -15,12 +16,6 @@ const MyNavbarForm = styled(Navbar.Form)`
   right: 3.5em;
   padding: 0;
   margin-top: 0.5em;
-`;
-
-const MySearchBox = styled(FormControl)`
-  box-shadow: none;
-  border-radius: 0;
-  border: 0.12em solid tomato;
 `;
 
 export const CollapsedNavbarSearch = props => {
