@@ -84,6 +84,7 @@ const MyNavCollapse = styled(Navbar.Collapse)`
   @media (max-width: 767px) {
     margin-top: 3.5em;
     padding-left: 0.75em;
+    overflow: hidden;
   }
 `;
 

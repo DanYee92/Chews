@@ -18,7 +18,8 @@ module.exports = {
 			.then(foundUser => {
 				console.log(foundUser);
 				res.json(foundUser);
-			});
+			})
+			.catch(err => console.error(err));
 	},
 
 	getUserBookedBites: (req, res) => {
@@ -32,7 +33,8 @@ module.exports = {
 				//create a new array that only has the user's booked bites
 				const bookedBites = allUserBites.filter(bite => bite.isBooked);
 				res.json(bookedBites);
-			});
+			})
+			.catch(err => console.error(err));
 	},
 
 	getUserUnbookedBites: (req, res) => {
@@ -48,6 +50,7 @@ module.exports = {
 					bite => !bite.isBooked
 				);
 				res.json(unbookedBites);
-			});
+			})
+			.catch(err => console.error(err));
 	}
 };

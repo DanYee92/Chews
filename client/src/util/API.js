@@ -4,30 +4,46 @@ export default {
 	createNewUser: newUser => {
 		return axios.post(`/api/user/create`, newUser);
 	},
+	// newUser is an object that takes
+	// firstName, lastName, and hometown
 
-	getAllUserInfo: userId => {
+	getUserInfo: userId => {
 		return axios.get(`/api/user/${userId}`);
 	},
+	// userId should be a string
+	// returns information about one user as object
+	// firstName, lastName, hometown, dateJoined,
+	// bites[objectIDs]
 
-	createNewBite: (userId, newBite) => {
-		return axios.post(`/api/user/${userId}/bite/create`, newBite);
+	createNewBite: newBite => {
+		return axios.post(`/api/bite/create`, newBite);
 	},
+	// newBite is an object that takes
+	// localId, city, restaurant
+	// startDateRange, endDateRange
 
 	searchForBites: city => {
 		return axios.get(`/api/bites/search/city/${city}`);
 	},
+	// city should be a string
 
 	bookBite: (travelerId, biteId) => {
 		return axios.patch(`/api/user/${travelerId}/bite/${biteId}/book`);
 	},
+	// travelerId should be a string (searching)
+	// biteId should be a string
 
 	getUserBookedBites: userId => {
 		return axios.get(`/api/user/${userId}/bites/booked`);
 	},
+	// userId should be a string
+	// return an array of bite Ids
 
 	getUserUnbookedBites: userId => {
 		return axios.get(`/api/user/${userId}/bites/unbooked`);
 	}
+	// userId should be a string
+	// returns array of bite Ids
 };
 
 //TEST createNewUser
@@ -41,10 +57,10 @@ export default {
 // console.log("calling createNewUser");
 // API.createNewUser(ali);
 
-//TEST getAllUserInfo
+//TEST getUserInfo
 // const userToSearch = "5a1c4d67f497743d9428014e";
 // console.log("Searching for Andrew", userToSearch);
-// API.getAllUserInfo(userToSearch).then(result => console.log(result.data));
+// API.getUserInfo(userToSearch).then(result => console.log(result.data));
 
 //TEST createNewBite
 // const userMakingBite = "5a1c4d67f497743d9428014e";

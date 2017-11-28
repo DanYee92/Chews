@@ -4,21 +4,22 @@ const db = require("../models");
 module.exports = {
 	createNewBite: (req, res) => {
 		console.log("new bite created");
-		console.log("User ID making the bite:", req.params.localId);
+		console.log("User ID (Local) making the bite:", req.body.localId);
 		console.log("req.body:", req.body);
 		db.Bite
 			.create(req.body)
 			.then(newBite => {
 				//find the user creating a new bite
 				return db.User.findOneAndUpdate(
-					{ _id: req.params.localId },
+					{ _id: req.body.localId },
 					//add the new bite to the user's array of bites
 					{ $push: { bites: newBite._id } },
 					{ new: true }
 				);
 			})
 			//return the new user, with the newBite in their array
-			.then(userWithNewBite => res.json(userWithNewBite));
+			.then(userWithNewBite => res.json(userWithNewBite))
+			.catch(err => console.error(err));
 	},
 
 	searchForBites: (req, res) => {
@@ -33,7 +34,8 @@ module.exports = {
 			//find all bites where: not booked
 			//Need to add within a specified date range
 			.find(query)
-			.then(foundBites => res.json(foundBites));
+			.then(foundBites => res.json(foundBites))
+			.catch(err => console.error(err));
 	},
 
 	bookBite: (req, res) => {
@@ -53,6 +55,7 @@ module.exports = {
 					{ new: true }
 				);
 			})
-			.then(result => res.json(result));
+			.then(result => res.json(result))
+			.catch(err => console.error(err));
 	}
 };
