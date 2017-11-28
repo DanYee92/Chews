@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import { Logo } from "../components/Logo";
-import { FormGroup, FormControl } from "react-bootstrap";
+import { FormGroup } from "react-bootstrap";
 import Button from "../components/Button";
 import API from "../util/API";
-import styled from "styled-components";
 import MySearchBox from "../components/Search/SearchInput";
 
 class Landing extends Component {

@@ -1,7 +1,5 @@
 import React from "react";
-import { Navbar, FormGroup, FormControl } from "react-bootstrap";
-import Button from "../Button";
-import styled from "styled-components";
+import { Navbar, FormGroup } from "react-bootstrap";
 import MySearchBox from "./SearchInput";
 
 export const ExpandedNavbarSearch = props => {

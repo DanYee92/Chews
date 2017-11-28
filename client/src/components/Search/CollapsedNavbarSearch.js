@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, FormGroup, FormControl } from "react-bootstrap";
+import { Navbar, FormGroup } from "react-bootstrap";
 import styled from "styled-components";
 import { SearchIcon } from ".";
 import MySearchBox from "./SearchInput";
