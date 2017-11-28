@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import { LinkedLogo } from "./Logo";
 import styled from "styled-components";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
@@ -30,6 +30,7 @@ const MyLinkContainer = styled.ul`
 const MyLink = styled(Link)`
   color: gray !important;
   text-decoration: none;
+  height: 100%;
 
   &:visited {
     color: black;
@@ -43,11 +44,17 @@ const MyLink = styled(Link)`
     color: black;
     text-decoration: none;
   }
+  & div {
+    height: 100%;
+  }
 `;
 
 const MyNav = styled(Navbar)`
-  background: transparent;
+  background: white;
   border: none;
+  -webkit-box-shadow: 0px 10px 20px rgba(100, 100, 100, 0.1);
+  -moz-box-shadow: 0px 10px 20px rgba(100, 100, 100, 0.1);
+  box-shadow: 0px 10px 20px rgba(100, 100, 100, 0.1);
 `;
 
 const MyBrand = styled(Navbar.Brand)`
@@ -122,7 +129,7 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <MyNav fixedTop collapseOnSelect>
+      <MyNav collapseOnSelect fixedTop>
         <Navbar.Header>
           <MyNavToggle />
           <MyBrand>
@@ -150,10 +157,14 @@ class NavBar extends React.Component {
         <MyNavCollapse>
           <MyLinkContainer>
             <li>
-              <MyLink to="/signup">Sign Up</MyLink>
+              <MyLink to="/signup">
+                <div>Sign Up</div>
+              </MyLink>
             </li>
             <li>
-              <MyLink to="/login">Log In</MyLink>
+              <MyLink to="/login">
+                <div>Log In</div>
+              </MyLink>
             </li>
           </MyLinkContainer>
         </MyNavCollapse>
@@ -165,7 +176,7 @@ class NavBar extends React.Component {
 export default NavBar;
 
 // <Nav pullRight>
-//   <li>
+//   <li></li>
 //     <Link to="/signup">Sign Up</Link>
 //   </li>
 //   <li>

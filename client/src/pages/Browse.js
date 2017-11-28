@@ -1,13 +1,18 @@
 import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import Container from "../components/Container";
+import styled from "styled-components";
 
 // Card takes in props: title, local, startDate, endDate, location
 import Card from "../components/Card";
 
+const ViewContainer = styled.div`
+  margin-top: 5em;
+`;
+
 const Browse = () => {
   return (
-    <div>
+    <ViewContainer>
       <Grid>
         <Row className="show-grid">
           {/* dynamically generate here */}
@@ -72,7 +77,7 @@ const Browse = () => {
           </Col>
         </Row>
       </Grid>
-    </div>
+    </ViewContainer>
   );
 };
 
