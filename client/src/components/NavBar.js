@@ -122,7 +122,7 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <MyNav collapseOnSelect>
+      <MyNav fixedTop collapseOnSelect>
         <Navbar.Header>
           <MyNavToggle />
           <MyBrand>
