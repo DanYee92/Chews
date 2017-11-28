@@ -81,10 +81,11 @@ const MyNavToggle = styled(Navbar.Toggle)`
 `;
 
 const MyNavCollapse = styled(Navbar.Collapse)`
+  overflow: hidden;
+
   @media (max-width: 767px) {
     margin-top: 3.5em;
     padding-left: 0.75em;
-    overflow: hidden;
   }
 `;
 

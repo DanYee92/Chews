@@ -21,7 +21,6 @@ class Landing extends Component {
   };
 
   render() {
-    console.log(this);
     return (
       <Container column margin="35vh">
         <Logo large />
