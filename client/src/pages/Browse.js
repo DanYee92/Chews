@@ -1,7 +1,5 @@
 import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import Container from "../components/Container";
-import styled from "styled-components";
 
 // Card takes in props: title, local, startDate, endDate, location
 import Card from "../components/Card";
