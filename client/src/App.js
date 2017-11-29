@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from "./components/NavBar";
+import API from "./util/API";
 import {
   LogIn,
   Landing,
@@ -20,8 +21,8 @@ const ViewContainer = styled.div`
 
 class App extends React.Component {
   state = {
-    navbarSearchQuery: "",
-    landingSearchQuery: ""
+    searchQuery: "",
+    searchResults: []
   };
 
   handleInputChange = event => {
@@ -32,13 +33,27 @@ class App extends React.Component {
     });
   };
 
+  handleSearchSubmit = event => {
+    event.preventDefault();
+    console.log(this.state.searchQuery);
+
+    console.log("User unbooked bites search");
+    const userId = "5a1c4d67f497743d9428014e";
+    API.searchForBites(this.state.searchQuery).then(res => {
+      Promise.resolve(this.setState({ searchResults: res.data })).then(() =>
+        console.log(this.state.searchResults)
+      );
+    });
+  };
+
   render() {
     return (
       <Router>
         <div>
           <Navbar
             handleInputChange={this.handleInputChange}
-            navbarSearchQuery={this.state.navbarSearchQuery}
+            searchQuery={this.state.searchQuery}
+            handleSearchSubmit={this.handleSearchSubmit}
           />
           <ViewContainer>
             <Route
@@ -48,7 +63,8 @@ class App extends React.Component {
                 <Landing
                   {...props}
                   handleInputChange={this.handleInputChange}
-                  landingSearchQuery={this.state.landingSearchQuery}
+                  searchQuery={this.state.searchQuery}
+                  handleSearchSubmit={this.handleSearchSubmit}
                 />
               )}
             />
@@ -59,7 +75,8 @@ class App extends React.Component {
                 <Landing
                   {...props}
                   handleInputChange={this.handleInputChange}
-                  landingSearchQuery={this.state.landingSearchQuery}
+                  searchQuery={this.state.searchQuery}
+                  handleSearchSubmit={this.handleSearchSubmit}
                 />
               )}
             />

@@ -30,11 +30,11 @@ export const CollapsedNavbarSearch = props => {
           <form onSubmit={props.handleSearchSubmit}>
             <FormGroup>
               <MySearchBox
-                name="navbarSearchQuery"
+                name="searchQuery"
                 type="text"
                 placeholder="Search..."
                 onChange={props.handleInputChange}
-                value={props.navbarSearchQuery}
+                value={props.searchQuery}
               />
             </FormGroup>
           </form>
