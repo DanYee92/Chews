@@ -91,7 +91,7 @@ class App extends React.Component {
               exact 
               path="/login" 
               render={props => (
-                <Landing
+                <LogIn
                 {...props}
                 auth={auth.login()}
                 />

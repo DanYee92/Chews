@@ -266,6 +266,12 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
+boron@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/boron/-/boron-0.2.3.tgz#63a1800771c0cb2b0d8f616687c62c1248cfb8a0"
+  dependencies:
+    domkit "^0.0.1"
+
 boxen@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/boxen/-/boxen-1.2.2.tgz#3f1d4032c30ffea9d4b02c322eaf2ea741dcbce5"
@@ -626,6 +632,10 @@ doctrine@^2.0.0:
 dom-helpers@^3.2.0, dom-helpers@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.2.1.tgz#3203e07fed217bd1f424b019735582fc37b2825a"
+
+domkit@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/domkit/-/domkit-0.0.1.tgz#88399d586794efc1154fec6c22cfe50f19bd4dbb"
 
 dot-prop@^4.1.0:
   version "4.2.0"
