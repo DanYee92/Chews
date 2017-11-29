@@ -26,6 +26,13 @@ const contentStyle = {
   textAlign: "center"
 };
 
+const ParallaxContent = styled.div`
+  height: 21em;
+  -webkit-box-shadow: inset 0px -45px 113px -44px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: inset 0px -45px 113px -44px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0px -45px 113px -44px rgba(0, 0, 0, 0.75);
+`;
+
 export class BiteDetail extends Component {
   showModal = () => {
     this.refs.modal.show();
@@ -53,7 +60,18 @@ export class BiteDetail extends Component {
         </OutlineModal>
 
         <Parallax bgImage="http://via.placeholder.com/1000x200" strength={300}>
-          <div style={{ height: 300 }} />
+          <ParallaxContent>
+            <h1
+              style={{
+                position: "absolute",
+                color: "white",
+                left: "1em",
+                bottom: "0.5em"
+              }}
+            >
+              Ippudo Ramen
+            </h1>
+          </ParallaxContent>
         </Parallax>
 
         <Grid>
@@ -83,7 +101,7 @@ export class BiteDetail extends Component {
                 Streeterville
               </Col>
               <Col xs={12} md={4}>
-                <h1>Ippudo Ramen</h1>
+                {/* <h1>Ippudo Ramen</h1> */}
               </Col>
               <Col xs={12} md={4}>
                 <h4>(MAP HERE)</h4>
