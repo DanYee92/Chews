@@ -4,12 +4,13 @@ import styled from "styled-components";
 import Navbar from "./components/NavBar";
 import API from "./util/API";
 import {
-  LogIn,
-  Landing,
+  BiteDetail,
   Browse,
   CreateBite,
   CreateUser,
-  BiteDetail
+  Landing,
+  LogIn,
+  SearchResults
 } from "./views";
 
 const ViewContainer = styled.div`
@@ -82,6 +83,7 @@ class App extends React.Component {
             />
             <Route exact path="/login" component={LogIn} />
             <Route exact path="/browse" component={Browse} />
+            <Route exact path="/search" component={SearchResults} />
             <Route exact path="/create/bite" component={CreateBite} />
             <Route exact path="/create/user" component={CreateUser} />
             <Route exact path="/bite-detail" component={BiteDetail} />

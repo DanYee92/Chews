@@ -15,7 +15,7 @@ export const Landing = props => {
             margin="1em"
             name="searchQuery"
             type="text"
-            placeholder="Try 'Ippudo Ramen Chicago'"
+            placeholder="Try 'Chicago'"
             onChange={props.handleInputChange}
             value={props.searchQuery}
           />

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import Button from "../components/Button";
 import styled from "styled-components";
-// import { OutlineModal } from "boron";
+import { OutlineModal } from "../components/boron/Boron";
 
 const DetailContainer = styled.div`
   overflow: hidden;
