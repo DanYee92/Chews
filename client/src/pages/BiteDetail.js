@@ -9,9 +9,11 @@ const DetailContainer = styled.div`
   margin: 2em;
 `;
 
+//https://www.npmjs.com/package/react-parallax
 const FullWidthImg = styled.img`
   width: 100%;
 `;
+
 const Divider = styled.hr``;
 const Spacer = styled.br``;
 
