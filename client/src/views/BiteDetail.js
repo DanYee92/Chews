@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import Button from "../components/Button";
+import Container from "../components/Container";
+import CloseBtn from "../components/CloseBtn";
 import styled from "styled-components";
 import { Parallax, Background } from "react-parallax";
 import { OutlineModal } from "../components/boron/Boron";
@@ -10,7 +12,6 @@ const DetailContainer = styled.div`
   margin: 2em;
 `;
 
-//https://www.npmjs.com/package/react-parallax
 const FullWidthImg = styled.img`
   width: 100%;
 `;
@@ -18,25 +19,37 @@ const FullWidthImg = styled.img`
 const Divider = styled.hr``;
 const Spacer = styled.br``;
 
+const contentStyle = {
+  backgroundColor: "white",
+  height: "100%",
+  padding: "1em",
+  textAlign: "center"
+};
+
 export class BiteDetail extends Component {
-  // showModal() {
-  //  this.refs.modal.show();
-  // }
+  showModal = () => {
+    this.refs.modal.show();
+  };
 
-  // hideModal() {
-  //  this.refs.modal.hide();
-  // }
-
-  // callback(event){
-  //       console.log(event);
-  // }
+  hideModal = () => {
+    this.refs.modal.hide();
+  };
 
   render() {
     return (
       <div>
-        <OutlineModal ref="modal" keyboard={this.callback}>
-          <h2>I am a dialog</h2>
-          <button onClick={this.hideModal}>Close</button>
+        <OutlineModal ref="modal" contentStyle={contentStyle}>
+          <CloseBtn onClick={this.hideModal} />
+          <Container column>
+            <h4>
+              Want to grab a Bite with Nicole Ersing at Ippudo Ramen on Nov 30
+              at 3pm?
+            </h4>
+            <Button primary onClick={this.hideModal}>
+              Sure!
+            </Button>
+            <Button onClick={this.hideModal}>No, thanks</Button>
+          </Container>
         </OutlineModal>
 
         <Parallax bgImage="http://via.placeholder.com/1000x200" strength={300}>
