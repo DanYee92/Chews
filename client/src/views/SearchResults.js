@@ -5,11 +5,12 @@ import { Grid, Row, Col } from "react-bootstrap";
 import Card from "../components/Card";
 
 export const SearchResults = props => {
+  console.log(props);
   return (
     <Grid>
       <Row className="show-grid">
         {/* dynamically generate here */}
-
+        {/*props.searchResults*/}
         <Col xs={12} sm={6} md={4} lg={3}>
           <Card
             title="Ippudo Ramen"

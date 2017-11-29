@@ -83,7 +83,16 @@ class App extends React.Component {
             />
             <Route exact path="/login" component={LogIn} />
             <Route exact path="/browse" component={Browse} />
-            <Route exact path="/search" component={SearchResults} />
+            <Route
+              exact
+              path="/search"
+              render={props => (
+                <SearchResults
+                  {...props}
+                  searchResults={this.state.searchResults}
+                />
+              )}
+            />
             <Route exact path="/create/bite" component={CreateBite} />
             <Route exact path="/create/user" component={CreateUser} />
             <Route exact path="/bite-detail" component={BiteDetail} />
