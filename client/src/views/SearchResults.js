@@ -5,21 +5,25 @@ import { Grid, Row, Col } from "react-bootstrap";
 import Card from "../components/Card";
 
 export const SearchResults = props => {
-  console.log(props);
   return (
     <Grid>
       <Row className="show-grid">
         {/* dynamically generate here */}
-        {/*props.searchResults*/}
-        <Col xs={12} sm={6} md={4} lg={3}>
-          <Card
-            title="Ippudo Ramen"
-            local="Imran Kazmi"
-            startDate="Nov 29"
-            endDate="Dec 30"
-            location="West Loop"
-          />
-        </Col>
+        {props.searchResults.length > 0
+          ? props.searchResults.map((bite, i) => {
+              return (
+                <Col key={i} xs={12} sm={6} md={4} lg={3}>
+                  <Card
+                    title={bite.restaurant}
+                    local={bite.localId}
+                    startDate={bite.startDateRange}
+                    endDate={bite.endDateRange}
+                    location={bite.city}
+                  />
+                </Col>
+              );
+            })
+          : "No results"}
 
         {/* to here */}
 

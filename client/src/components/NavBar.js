@@ -110,11 +110,15 @@ class NavBar extends React.Component {
   handleSearchIconClick = () =>
     this.setState({ searchBarVisible: !this.state.searchBarVisible });
 
+  // this is sort of patchwork, but it does the job.
+  // this will have to be refactored later.
   handleSearchSubmit = event => {
     event.preventDefault();
-    console.log(this.state.navbarSearchQuery);
-
-    this.setState({ searchBarVisible: false });
+    Promise.resolve(this.props.handleSearchSubmit()).then(() => {
+      console.log("done searching");
+      console.log("redirecting to /search");
+      this.props.history.push("/search");
+    });
   };
 
   handleNavSelect = selectedKey => {
@@ -136,7 +140,7 @@ class NavBar extends React.Component {
           <ExpandedNavbarSearch
             handleInputChange={this.props.handleInputChange}
             searchQuery={this.props.searchQuery}
-            handleSearchSubmit={this.props.handleSearchSubmit}
+            handleSearchSubmit={this.handleSearchSubmit}
           />
         ) : (
           <CollapsedNavbarSearch
@@ -144,7 +148,7 @@ class NavBar extends React.Component {
             handleSearchIconClick={this.handleSearchIconClick}
             handleInputChange={this.props.handleInputChange}
             searchQuery={this.props.searchQuery}
-            handleSearchSubmit={this.props.handleSearchSubmit}
+            handleSearchSubmit={this.handleSearchSubmit}
           />
         )}
 
