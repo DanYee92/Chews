@@ -16,21 +16,21 @@ const Divider = styled.hr``;
 const Spacer = styled.br``;
 
 class BiteDetail extends Component {
-	// showModal() {
-	// 	this.refs.modal.show();
-	// }
+  // showModal() {
+  //  this.refs.modal.show();
+  // }
 
-	// hideModal() {
-	// 	this.refs.modal.hide();
-	// }
+  // hideModal() {
+  //  this.refs.modal.hide();
+  // }
 
-	// callback(event){
+  // callback(event){
   //       console.log(event);
   // }
-	
-	render() {
-		return <div>
-        
+
+  render() {
+    return (
+      <div>
         <FullWidthImg src="http://via.placeholder.com/1000x300" />
         <Grid>
           <DetailContainer>
@@ -75,8 +75,9 @@ class BiteDetail extends Component {
 
 export default BiteDetail;
 
-
-{/* <OutlineModal ref="modal" keyboard={this.callback}>
+{
+  /* <OutlineModal ref="modal" keyboard={this.callback}>
   <h2>I am a dialog</h2>
   <button onClick={this.hideModal}>Close</button>
-</OutlineModal>; */}
+</OutlineModal>; */
+}
