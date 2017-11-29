@@ -8,10 +8,15 @@ import CreateBite from "./pages/CreateBite";
 import CreateUser from "./pages/CreateUser";
 import BiteDetail from "./pages/BiteDetail";
 import styled from "styled-components";
+import Auth from './Auth/Auth.js'
 
 const ViewContainer = styled.div`
   margin-top: 6.5em;
-`;
+`
+
+const auth = new Auth();
+
+// auth.login();
 
 //if not logged in, route to pages/LogIn
 
@@ -29,7 +34,10 @@ class App extends React.Component {
     });
   };
 
+
+
   render() {
+
     return (
       <Router>
         <div>
@@ -60,7 +68,16 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route exact path="/login" component={LogIn} />
+            <Route 
+              exact 
+              path="/login" 
+              render={props => (
+                <Landing
+                {...props}
+                auth={auth.login()}
+                />
+              )}
+             />
             <Route exact path="/browse" component={Browse} />
             <Route exact path="/create/bite" component={CreateBite} />
             <Route exact path="/create/user" component={CreateUser} />
