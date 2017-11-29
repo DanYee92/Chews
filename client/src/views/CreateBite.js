@@ -5,7 +5,7 @@ import Button from "../components/Button";
 import Container from "../components/Container";
 import API from "../util/API.js";
 
-class CreateListing extends Component {
+export class CreateBite extends Component {
 	state = { city: "", restaurant: "", startDateRange: "", endDateRange: "" };
 
 	handleInputChange = event => {
@@ -58,7 +58,7 @@ class CreateListing extends Component {
 		return (
 			<Container column>
 				<form onSubmit={this.handleFormSubmit}>
-					<FormGroup controlId="createListingForm">
+					<FormGroup controlId="createBiteForm">
 						<ControlLabel>
 							Where do you want to grab a Bite?
 						</ControlLabel>
@@ -89,12 +89,10 @@ class CreateListing extends Component {
 							placeholder="End Date Range"
 							onChange={this.handleInputChange}
 						/>
-						<Button primary> Create Listing </Button>
+						<Button primary> Create Bite </Button>
 					</FormGroup>
 				</form>
 			</Container>
 		);
 	}
 }
-
-export default CreateListing;

@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import API from "../util/API";
 import MySearchBox from "../components/Search/SearchInput";
 
-class Landing extends Component {
+export class Landing extends Component {
   state = {};
 
   handleSearchSubmit = event => {
@@ -41,5 +41,3 @@ class Landing extends Component {
     );
   }
 }
-
-export default Landing;
