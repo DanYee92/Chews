@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import Button from "../components/Button"
 import styled from "styled-components";
-import { OutlineModal } from "boron";
+// import { OutlineModal } from "boron";
 
 const DetailContainer = styled.div`
 	overflow: hidden;
@@ -16,24 +16,21 @@ const Divider = styled.hr``;
 const Spacer = styled.br``;
 
 class BiteDetail extends Component {
-	showModal() {
-		this.refs.modal.show();
-	}
+	// showModal() {
+	// 	this.refs.modal.show();
+	// }
 
-	hideModal() {
-		this.refs.modal.hide();
-	}
+	// hideModal() {
+	// 	this.refs.modal.hide();
+	// }
 
-	callback(event){
-        console.log(event);
-  }
+	// callback(event){
+  //       console.log(event);
+  // }
 	
 	render() {
 		return <div>
-        <OutlineModal ref="modal" keyboard={this.callback}>
-          <h2>I am a dialog</h2>
-          <button onClick={this.hideModal}>Close</button>
-        </OutlineModal>
+        
         <FullWidthImg src="http://via.placeholder.com/1000x300" />
         <Grid>
           <DetailContainer>
@@ -69,3 +66,9 @@ class BiteDetail extends Component {
 }
 
 export default BiteDetail;
+
+
+{/* <OutlineModal ref="modal" keyboard={this.callback}>
+  <h2>I am a dialog</h2>
+  <button onClick={this.hideModal}>Close</button>
+</OutlineModal>; */}
