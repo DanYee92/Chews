@@ -81,19 +81,18 @@ const MyNavToggle = styled(Navbar.Toggle)`
 `;
 
 const MyNavCollapse = styled(Navbar.Collapse)`
+  overflow: hidden;
+
   @media (max-width: 767px) {
     margin-top: 3.5em;
     padding-left: 0.75em;
-    overflow: hidden;
   }
 `;
 
 class NavBar extends React.Component {
   state = {
     windowWidth: "0",
-    searchBarVisible: false,
-    navbarSearchQuery: "",
-    activeKey: ""
+    searchBarVisible: false
   };
 
   componentDidMount() {
@@ -105,14 +104,6 @@ class NavBar extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWindowWidth);
   }
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-
-    this.setState({
-      [name]: value
-    });
-  };
 
   updateWindowWidth = () => this.setState({ windowWidth: window.innerWidth });
 
@@ -143,16 +134,16 @@ class NavBar extends React.Component {
 
         {this.state.windowWidth > 767 ? (
           <ExpandedNavbarSearch
-            handleInputChange={this.handleInputChange}
-            navbarSearchQuery={this.state.navbarSearchQuery}
+            handleInputChange={this.props.handleInputChange}
+            navbarSearchQuery={this.props.navbarSearchQuery}
             handleSearchSubmit={this.handleSearchSubmit}
           />
         ) : (
           <CollapsedNavbarSearch
             searchBarVisible={this.state.searchBarVisible}
             handleSearchIconClick={this.handleSearchIconClick}
-            handleInputChange={this.handleInputChange}
-            navbarSearchQuery={this.state.navbarSearchQuery}
+            handleInputChange={this.props.handleInputChange}
+            navbarSearchQuery={this.props.navbarSearchQuery}
             handleSearchSubmit={this.handleSearchSubmit}
           />
         )}
