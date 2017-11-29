@@ -69,7 +69,7 @@ class BiteDetail extends Component {
           </DetailContainer>
         </Grid>
       </div>
-    );
+    ;
   }
 }
 
