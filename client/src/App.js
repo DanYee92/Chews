@@ -1,14 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Navbar from "./components/NavBar";
-import LogIn from "./pages/LogIn";
-import Landing from "./pages/Landing";
-import Browse from "./pages/Browse";
-import CreateBite from "./pages/CreateBite";
-import CreateUser from "./pages/CreateUser";
-import BiteDetail from "./pages/BiteDetail";
 import styled from "styled-components";
 import Auth from './Auth/Auth.js'
+import Navbar from "./components/NavBar";
+import API from "./util/API";
+import {
+  BiteDetail,
+  Browse,
+  CreateBite,
+  CreateUser,
+  Landing,
+  LogIn,
+  SearchResults
+} from "./views";
 
 const ViewContainer = styled.div`
   margin-top: 6.5em;
@@ -19,11 +23,12 @@ const auth = new Auth();
 // auth.login();
 
 //if not logged in, route to pages/LogIn
+// i do not agree with this - ali
 
 class App extends React.Component {
   state = {
-    navbarSearchQuery: "",
-    landingSearchQuery: ""
+    searchQuery: "",
+    searchResults: []
   };
 
   handleInputChange = event => {
@@ -34,7 +39,18 @@ class App extends React.Component {
     });
   };
 
+  handleSearchSubmit = event => {
+    event.preventDefault();
+    console.log(this.state.searchQuery);
 
+    console.log("User unbooked bites search");
+    const userId = "5a1c4d67f497743d9428014e";
+    API.searchForBites(this.state.searchQuery).then(res => {
+      Promise.resolve(this.setState({ searchResults: res.data })).then(() =>
+        console.log(this.state.searchResults)
+      );
+    });
+  };
 
   render() {
 
@@ -43,7 +59,8 @@ class App extends React.Component {
         <div>
           <Navbar
             handleInputChange={this.handleInputChange}
-            navbarSearchQuery={this.state.navbarSearchQuery}
+            searchQuery={this.state.searchQuery}
+            handleSearchSubmit={this.handleSearchSubmit}
           />
           <ViewContainer>
             <Route
@@ -53,7 +70,8 @@ class App extends React.Component {
                 <Landing
                   {...props}
                   handleInputChange={this.handleInputChange}
-                  landingSearchQuery={this.state.landingSearchQuery}
+                  searchQuery={this.state.searchQuery}
+                  handleSearchSubmit={this.handleSearchSubmit}
                 />
               )}
             />
@@ -64,7 +82,8 @@ class App extends React.Component {
                 <Landing
                   {...props}
                   handleInputChange={this.handleInputChange}
-                  landingSearchQuery={this.state.landingSearchQuery}
+                  searchQuery={this.state.searchQuery}
+                  handleSearchSubmit={this.handleSearchSubmit}
                 />
               )}
             />
@@ -79,6 +98,7 @@ class App extends React.Component {
               )}
              />
             <Route exact path="/browse" component={Browse} />
+            <Route exact path="/search" component={SearchResults} />
             <Route exact path="/create/bite" component={CreateBite} />
             <Route exact path="/create/user" component={CreateUser} />
             <Route exact path="/bite-detail" component={BiteDetail} />

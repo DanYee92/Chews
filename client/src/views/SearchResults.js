@@ -4,7 +4,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 // Card takes in props: title, local, startDate, endDate, location
 import Card from "../components/Card";
 
-const Browse = props => {
+export const SearchResults = props => {
   return (
     <Grid>
       <Row className="show-grid">
@@ -72,5 +72,3 @@ const Browse = props => {
     </Grid>
   );
 };
-
-export default Browse;

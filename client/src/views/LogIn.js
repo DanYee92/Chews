@@ -7,7 +7,7 @@ import Auth from '../Auth/Auth.js'
 // const auth = new Auth();
 // auth.login();
 
-class LogIn extends Component {
+export class LogIn extends Component {
   state = {
     email: "",
     password: ""
@@ -24,5 +24,3 @@ class LogIn extends Component {
     );
   }
 }
-
-export default LogIn;

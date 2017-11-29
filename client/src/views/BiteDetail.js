@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import Button from "../components/Button";
 import styled from "styled-components";
-// import { OutlineModal } from "boron";
+import { OutlineModal } from "../components/boron/Boron";
 
 const DetailContainer = styled.div`
   overflow: hidden;
@@ -15,7 +15,7 @@ const FullWidthImg = styled.img`
 const Divider = styled.hr``;
 const Spacer = styled.br``;
 
-class BiteDetail extends Component {
+export class BiteDetail extends Component {
   // showModal() {
   //  this.refs.modal.show();
   // }
@@ -72,8 +72,6 @@ class BiteDetail extends Component {
     );
   }
 }
-
-export default BiteDetail;
 
 {
   /* <OutlineModal ref="modal" keyboard={this.callback}>

@@ -135,16 +135,16 @@ class NavBar extends React.Component {
         {this.state.windowWidth > 767 ? (
           <ExpandedNavbarSearch
             handleInputChange={this.props.handleInputChange}
-            navbarSearchQuery={this.props.navbarSearchQuery}
-            handleSearchSubmit={this.handleSearchSubmit}
+            searchQuery={this.props.searchQuery}
+            handleSearchSubmit={this.props.handleSearchSubmit}
           />
         ) : (
           <CollapsedNavbarSearch
             searchBarVisible={this.state.searchBarVisible}
             handleSearchIconClick={this.handleSearchIconClick}
             handleInputChange={this.props.handleInputChange}
-            navbarSearchQuery={this.props.navbarSearchQuery}
-            handleSearchSubmit={this.handleSearchSubmit}
+            searchQuery={this.props.searchQuery}
+            handleSearchSubmit={this.props.handleSearchSubmit}
           />
         )}
 

@@ -7,7 +7,7 @@ import Container from "../components/Container";
 import ProfilePicture from "../components/ProfilePicture";
 import API from "../util/API.js";
 
-class CreateUser extends Component {
+export class CreateUser extends Component {
 	state = { firstName: "", lastName: "", hometown: "", summary: "" };
 
 	handleInputChange = event => {
@@ -40,7 +40,9 @@ class CreateUser extends Component {
 				<Row className="show-grid">
 					<Col xs={12} md={4}>
 						<Container margin={"0.5em"} column>
-							<ProfilePicture src={"http://via.placeholder.com/350x350"} />
+							<ProfilePicture
+								src={"http://via.placeholder.com/350x350"}
+							/>
 						</Container>
 					</Col>
 					<Col xs={12} md={8}>
@@ -66,7 +68,9 @@ class CreateUser extends Component {
 									placeholder="City"
 									onChange={this.handleInputChange}
 								/>
-								<ControlLabel>Write a little about yourself!</ControlLabel>
+								<ControlLabel>
+									Write a little about yourself!
+								</ControlLabel>
 								<FormTextArea
 									rows="6"
 									type="text"
@@ -83,5 +87,3 @@ class CreateUser extends Component {
 		);
 	}
 }
-
-export default CreateUser;
