@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import Button from "../components/Button"
+import Button from "../components/Button";
 import styled from "styled-components";
 // import { OutlineModal } from "boron";
 
 const DetailContainer = styled.div`
-	overflow: hidden;
-	margin: 2em;
-`
+  overflow: hidden;
+  margin: 2em;
+`;
 
 const FullWidthImg = styled.img`
-	width: 100%;
-`
+  width: 100%;
+`;
 const Divider = styled.hr``;
 const Spacer = styled.br``;
 
@@ -44,10 +44,18 @@ class BiteDetail extends Component {
                 <Spacer />
                 Grab a Bite with Nicole Ersing
                 <Divider />
-                <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                <i
+                  className="fa fa-calendar-o"
+                  aria-hidden="true"
+                  style={{ marginRight: "0.5em" }}
+                />
                 Nov 9 - Nov 30
                 <Divider />
-                <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                <i
+                  className="fa fa-map-marker"
+                  aria-hidden="true"
+                  style={{ marginRight: "0.5em" }}
+                />
                 Streeterville
               </Col>
               <Col xs={12} md={4}>
@@ -60,9 +68,9 @@ class BiteDetail extends Component {
             </Row>
           </DetailContainer>
         </Grid>
-      </div>;
-
-	}	
+      </div>
+    );
+  }
 }
 
 export default BiteDetail;
