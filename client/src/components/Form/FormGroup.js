@@ -5,5 +5,5 @@ export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 250px;
+  align-items: center;
 `;

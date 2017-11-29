@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import { Logo } from "../components/Logo";
-import { FormGroup } from "react-bootstrap";
+import { FormGroup } from "../components/Form";
 import Button from "../components/Button";
 import MySearchBox from "../components/Search/SearchInput";
 
@@ -12,17 +12,17 @@ export const Landing = props => {
       <form onSubmit={props.handleSearchSubmit}>
         <FormGroup>
           <MySearchBox
-            margin="1em"
+            landing="true"
             name="searchQuery"
             type="text"
-            placeholder="Try 'Ippudo Ramen Chicago'"
+            placeholder="Try 'Chicago'"
             onChange={props.handleInputChange}
             value={props.searchQuery}
           />
-        </FormGroup>{" "}
-        <Button type="submit" primary>
-          Search
-        </Button>
+          <Button type="submit" primary>
+            Search
+          </Button>
+        </FormGroup>
       </form>
     </Container>
   );

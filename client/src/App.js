@@ -16,7 +16,10 @@ import {
 } from "./views";
 
 const ViewContainer = styled.div`
-  margin-top: 6.5em;
+  margin-top: 4.75em;
+  @media (max-width: 768px) {
+    margin-top: 8.7vh;
+  }
 `;
 
 const auth = new Auth();
@@ -36,8 +39,6 @@ class App extends React.Component {
     });
   };
 
-  // this is sort of patchwork, but it does the job.
-  // this will have to be refactored later.
   handleSearchSubmit = event => {
     event.preventDefault();
     console.log("searching for", this.state.searchQuery);
