@@ -8,11 +8,11 @@ export const ExpandedNavbarSearch = props => {
       <form onSubmit={props.handleSearchSubmit}>
         <FormGroup>
           <MySearchBox
-            name="navbarSearchQuery"
+            name="searchQuery"
             type="text"
             placeholder="Search..."
             onChange={props.handleInputChange}
-            value={props.navbarSearchQuery}
+            value={props.searchQuery}
           />
         </FormGroup>{" "}
         {/* <Button type="submit" primary>

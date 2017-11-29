@@ -3,6 +3,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import Button from "../components/Button";
 import styled from "styled-components";
 import { Parallax, Background } from "react-parallax";
+import { OutlineModal } from "../components/boron/Boron";
 
 const DetailContainer = styled.div`
   overflow: hidden;
