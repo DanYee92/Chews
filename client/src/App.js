@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
-import Auth from './Auth/Auth.js'
+import Auth from "./Auth/Auth.js";
 import Navbar from "./components/NavBar";
 import API from "./util/API";
 import {
@@ -11,12 +11,13 @@ import {
   CreateUser,
   Landing,
   LogIn,
+  MyBites,
   SearchResults
 } from "./views";
 
 const ViewContainer = styled.div`
   margin-top: 6.5em;
-`
+`;
 
 const auth = new Auth();
 
@@ -53,7 +54,6 @@ class App extends React.Component {
   };
 
   render() {
-
     return (
       <Router>
         <div>
@@ -87,16 +87,11 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route 
-              exact 
-              path="/login" 
-              render={props => (
-                <Landing
-                {...props}
-                auth={auth.login()}
-                />
-              )}
-             />
+            <Route
+              exact
+              path="/login"
+              render={props => <Landing {...props} auth={auth.login()} />}
+            />
             <Route exact path="/browse" component={Browse} />
             <Route
               exact
@@ -111,6 +106,7 @@ class App extends React.Component {
             <Route exact path="/create/bite" component={CreateBite} />
             <Route exact path="/create/user" component={CreateUser} />
             <Route exact path="/bite-detail" component={BiteDetail} />
+            <Route exact path="/my-bites" component={MyBites} />
           </ViewContainer>
         </div>
       </Router>
