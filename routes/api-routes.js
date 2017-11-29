@@ -41,4 +41,8 @@ module.exports = app => {
 	app.get("/api/user/:userId/bites/unbooked", (req, res) =>
 		userController.getUserUnbookedBites(req, res)
 	);
+
+	app.get("/api/apologize", (req, res) => {
+		//TO DO - nicole apologize counter
+	});
 };

@@ -5,6 +5,7 @@ import LogIn from "./pages/LogIn";
 import Landing from "./pages/Landing";
 import Browse from "./pages/Browse";
 import CreateBite from "./pages/CreateBite";
+import CreateUser from "./pages/CreateUser";
 import styled from "styled-components";
 
 const ViewContainer = styled.div`
@@ -22,7 +23,8 @@ const App = () => {
           <Route exact path="/home" component={Landing} />
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/browse" component={Browse} />
-          <Route exact path="/create" component={CreateBite} />
+          <Route exact path="/create/bite" component={CreateBite} />
+          <Route exact path="/create/user" component={CreateUser} />
         </ViewContainer>
       </div>
     </Router>
