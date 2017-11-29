@@ -40,9 +40,7 @@
     "gulp-react": "^3.0.1"
   },
   "browserify": {
-    "transform": [
-      "reactify"
-    ]
+    "transform": ["reactify"]
   },
   "browserify-shim": {
     "react": "global:React"
@@ -50,10 +48,5 @@
   "scripts": {
     "release": "gulp release"
   },
-  "keywords": [
-    "react",
-    "react-component",
-    "dialog",
-    "modal"
-  ]
+  "keywords": ["react", "react-component", "dialog", "modal"]
 }

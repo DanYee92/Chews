@@ -34,6 +34,11 @@ export class BiteDetail extends Component {
   render() {
     return (
       <div>
+        <OutlineModal ref="modal" keyboard={this.callback}>
+          <h2>I am a dialog</h2>
+          <button onClick={this.hideModal}>Close</button>
+        </OutlineModal>
+
         <Parallax bgImage="http://via.placeholder.com/1000x200" strength={300}>
           <div style={{ height: 300 }} />
         </Parallax>
@@ -77,11 +82,4 @@ export class BiteDetail extends Component {
       </div>
     );
   }
-}
-
-{
-  /* <OutlineModal ref="modal" keyboard={this.callback}>
-  <h2>I am a dialog</h2>
-  <button onClick={this.hideModal}>Close</button>
-</OutlineModal>; */
 }
