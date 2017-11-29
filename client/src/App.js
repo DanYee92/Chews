@@ -23,11 +23,6 @@ const ViewContainer = styled.div`
 
 const auth = new Auth();
 
-// auth.login();
-
-//if not logged in, route to pages/LogIn
-// i do not agree with this - ali
-
 class App extends React.Component {
   state = {
     searchQuery: "",
@@ -42,15 +37,14 @@ class App extends React.Component {
     });
   };
 
+  // this is sort of patchwork, but it does the job.
+  // this will have to be refactored later.
   handleSearchSubmit = event => {
-    event.preventDefault();
-    console.log(this.state.searchQuery);
+    console.log("searching for", this.state.searchQuery);
 
-    console.log("User unbooked bites search");
-    const userId = "5a1c4d67f497743d9428014e";
     API.searchForBites(this.state.searchQuery).then(res => {
       Promise.resolve(this.setState({ searchResults: res.data })).then(() =>
-        console.log(this.state.searchResults)
+        console.log("results", this.state.searchResults)
       );
     });
   };

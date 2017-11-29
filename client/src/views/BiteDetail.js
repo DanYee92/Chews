@@ -4,16 +4,12 @@ import Button from "../components/Button";
 import Container from "../components/Container";
 import CloseBtn from "../components/CloseBtn";
 import styled from "styled-components";
-import { Parallax, Background } from "react-parallax";
+import { Parallax } from "react-parallax";
 import { OutlineModal } from "../components/boron/Boron";
 
 const DetailContainer = styled.div`
   overflow: hidden;
   margin: 2em;
-`;
-
-const FullWidthImg = styled.img`
-  width: 100%;
 `;
 
 const Divider = styled.hr``;
