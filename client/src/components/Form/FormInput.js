@@ -5,5 +5,5 @@ export const FormInput = styled.input`
   outline: 0;
   background: transparent;
   border-bottom: 2px solid tomato;
-  padding: 0.25em 0.5em;
+  padding: 0.25em 0.5em; 
 `;
