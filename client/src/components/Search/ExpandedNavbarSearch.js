@@ -1,23 +1,23 @@
 import React from "react";
-import { Navbar, FormGroup, FormControl } from "react-bootstrap";
-import Button from "../Button";
+import { Navbar, FormGroup } from "react-bootstrap";
+import MySearchBox from "./SearchInput";
 
 export const ExpandedNavbarSearch = props => {
   return (
     <Navbar.Form pullLeft>
       <form onSubmit={props.handleSearchSubmit}>
         <FormGroup>
-          <FormControl
+          <MySearchBox
             name="navbarSearchQuery"
             type="text"
-            placeholder="Search"
+            placeholder="Search..."
             onChange={props.handleInputChange}
             value={props.navbarSearchQuery}
           />
         </FormGroup>{" "}
-        <Button type="submit" primary>
+        {/* <Button type="submit" primary>
           Submit
-        </Button>
+        </Button> */}
       </form>
     </Navbar.Form>
   );

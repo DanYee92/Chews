@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import { LinkedLogo } from "./Logo";
 import styled from "styled-components";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
@@ -30,6 +30,7 @@ const MyLinkContainer = styled.ul`
 const MyLink = styled(Link)`
   color: gray !important;
   text-decoration: none;
+  height: 100%;
 
   &:visited {
     color: black;
@@ -43,11 +44,19 @@ const MyLink = styled(Link)`
     color: black;
     text-decoration: none;
   }
+  & div {
+    height: 100%;
+  }
 `;
 
 const MyNav = styled(Navbar)`
-  background: transparent;
+  padding: 0.6em;
+  background: white;
   border: none;
+  min-height: 4.5em;
+  -webkit-box-shadow: 0px 10px 20px rgba(100, 100, 100, 0.1);
+  -moz-box-shadow: 0px 10px 20px rgba(100, 100, 100, 0.1);
+  box-shadow: 0px 10px 20px rgba(100, 100, 100, 0.1);
 `;
 
 const MyBrand = styled(Navbar.Brand)`
@@ -72,6 +81,8 @@ const MyNavToggle = styled(Navbar.Toggle)`
 `;
 
 const MyNavCollapse = styled(Navbar.Collapse)`
+  overflow: hidden;
+
   @media (max-width: 767px) {
     margin-top: 3.5em;
     padding-left: 0.75em;
@@ -81,9 +92,7 @@ const MyNavCollapse = styled(Navbar.Collapse)`
 class NavBar extends React.Component {
   state = {
     windowWidth: "0",
-    searchBarVisible: false,
-    navbarSearchQuery: "",
-    activeKey: ""
+    searchBarVisible: false
   };
 
   componentDidMount() {
@@ -95,14 +104,6 @@ class NavBar extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWindowWidth);
   }
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-
-    this.setState({
-      [name]: value
-    });
-  };
 
   updateWindowWidth = () => this.setState({ windowWidth: window.innerWidth });
 
@@ -122,7 +123,7 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <MyNav collapseOnSelect>
+      <MyNav collapseOnSelect fixedTop>
         <Navbar.Header>
           <MyNavToggle />
           <MyBrand>
@@ -133,16 +134,16 @@ class NavBar extends React.Component {
 
         {this.state.windowWidth > 767 ? (
           <ExpandedNavbarSearch
-            handleInputChange={this.handleInputChange}
-            navbarSearchQuery={this.state.navbarSearchQuery}
+            handleInputChange={this.props.handleInputChange}
+            navbarSearchQuery={this.props.navbarSearchQuery}
             handleSearchSubmit={this.handleSearchSubmit}
           />
         ) : (
           <CollapsedNavbarSearch
             searchBarVisible={this.state.searchBarVisible}
             handleSearchIconClick={this.handleSearchIconClick}
-            handleInputChange={this.handleInputChange}
-            navbarSearchQuery={this.state.navbarSearchQuery}
+            handleInputChange={this.props.handleInputChange}
+            navbarSearchQuery={this.props.navbarSearchQuery}
             handleSearchSubmit={this.handleSearchSubmit}
           />
         )}
@@ -150,10 +151,14 @@ class NavBar extends React.Component {
         <MyNavCollapse>
           <MyLinkContainer>
             <li>
-              <MyLink to="/signup">Sign Up</MyLink>
+              <MyLink to="/signup">
+                <div>Sign Up</div>
+              </MyLink>
             </li>
             <li>
-              <MyLink to="/login">Log In</MyLink>
+              <MyLink to="/login">
+                <div>Log In</div>
+              </MyLink>
             </li>
           </MyLinkContainer>
         </MyNavCollapse>
@@ -165,7 +170,7 @@ class NavBar extends React.Component {
 export default NavBar;
 
 // <Nav pullRight>
-//   <li>
+//   <li></li>
 //     <Link to="/signup">Sign Up</Link>
 //   </li>
 //   <li>

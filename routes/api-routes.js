@@ -16,8 +16,8 @@ module.exports = app => {
 		userController.getAllUserInfo(req, res)
 	);
 
-	//POST - make a new bite
-	app.post("/api/user/:localId/bite/create", (req, res) =>
+	//POST - create a new bite
+	app.post("/api/bite/create", (req, res) =>
 		biteController.createNewBite(req, res)
 	);
 

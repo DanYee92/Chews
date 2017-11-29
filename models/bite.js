@@ -19,19 +19,21 @@ const BiteSchema = new Schema({
 		required: true
 	},
 
-	location: {
+	restaurant: {
 		type: String,
 		required: true
 	},
 
 	//add validation to reformat front end dates into the mongoDB date format
 	startDateRange: {
-		type: Date
+		type: String // THIS NEEDS TO BE CHANGED TO DATE
+		// type: Date
 	},
 
 	//add validation to reformat front end dates into the mongoDB date format
 	endDateRange: {
-		type: Date
+		type: String // THIS NEEDS TO BE CHANGED TO DATE
+		// type: Date
 	},
 
 	biteDate: {

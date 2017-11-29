@@ -1,22 +1,13 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import { Logo } from "../components/Logo";
-import { FormGroup, FormControl } from "react-bootstrap";
+import { FormGroup } from "react-bootstrap";
 import Button from "../components/Button";
 import API from "../util/API";
+import MySearchBox from "../components/Search/SearchInput";
 
 class Landing extends Component {
-  state = {
-    landingSearchQuery: ""
-  };
-
-  handleInputChange = event => {
-    const { name, value } = event.target;
-
-    this.setState({
-      [name]: value
-    });
-  };
+  state = {};
 
   handleSearchSubmit = event => {
     event.preventDefault();
@@ -33,16 +24,17 @@ class Landing extends Component {
         <Logo large />
         <form onSubmit={this.handleSearchSubmit}>
           <FormGroup>
-            <FormControl
+            <MySearchBox
+              margin="1em"
               name="landingSearchQuery"
               type="text"
-              placeholder="Search"
-              onChange={this.handleInputChange}
-              value={this.state.landingSearchQuery}
+              placeholder="Try 'Ippudo Ramen Chicago'"
+              onChange={this.props.handleInputChange}
+              value={this.props.landingSearchQuery}
             />
           </FormGroup>{" "}
           <Button type="submit" primary>
-            Submit
+            Search
           </Button>
         </form>
       </Container>
