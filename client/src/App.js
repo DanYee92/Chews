@@ -1,19 +1,22 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Navbar from "./components/NavBar";
-import LogIn from "./pages/LogIn";
-import Landing from "./pages/Landing";
-import Browse from "./pages/Browse";
-import CreateBite from "./pages/CreateBite";
-import CreateUser from "./pages/CreateUser";
-import BiteDetail from "./pages/BiteDetail";
 import styled from "styled-components";
+import Navbar from "./components/NavBar";
+import {
+  LogIn,
+  Landing,
+  Browse,
+  CreateBite,
+  CreateUser,
+  BiteDetail
+} from "./views";
 
 const ViewContainer = styled.div`
   margin-top: 6.5em;
 `;
 
 //if not logged in, route to pages/LogIn
+// i do not agree with this - ali
 
 class App extends React.Component {
   state = {

@@ -17,7 +17,7 @@ const FullWidthImg = styled.img`
 const Divider = styled.hr``;
 const Spacer = styled.br``;
 
-class BiteDetail extends Component {
+export class BiteDetail extends Component {
   // showModal() {
   //  this.refs.modal.show();
   // }
@@ -74,8 +74,6 @@ class BiteDetail extends Component {
     ;
   }
 }
-
-export default BiteDetail;
 
 {
   /* <OutlineModal ref="modal" keyboard={this.callback}>

@@ -3,7 +3,7 @@ import Container from "../components/Container";
 import { Logo } from "../components/Logo";
 import LogInForm from "../components/LogInForm";
 
-class LogIn extends Component {
+export class LogIn extends Component {
   state = {
     email: "",
     password: ""
@@ -18,5 +18,3 @@ class LogIn extends Component {
     );
   }
 }
-
-export default LogIn;
