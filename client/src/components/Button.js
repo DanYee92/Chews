@@ -7,6 +7,7 @@ const StyledButton = styled.button`
   color: tomato;
   background: white;
   border: ${props => (props.primary ? "2px solid tomato" : "none")};
+  max-width: 10em;
   &:hover {
     background: ${props => (props.primary ? "tomato" : "transparent")};
     color: ${props => (props.primary ? "white" : "tomato")};
