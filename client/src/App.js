@@ -31,8 +31,10 @@ console.log(auth);
 class App extends React.Component {
   state = {
     searchQuery: "",
-    searchResults: []
+    searchResults: [],
+    shadow: false
   };
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -58,12 +60,6 @@ class App extends React.Component {
     });
   };
 
-  const handleAuthentication = (nextState, replace) => {
-  if (/access_token|id_token|error/.test(nextState.location.hash)) {
-    auth.handleAuthentication();
-  }
-}
-
   render() {
     return (
       <Router history={history}>
@@ -73,6 +69,7 @@ class App extends React.Component {
             searchQuery={this.state.searchQuery}
             handleSearchSubmit={this.handleSearchSubmit}
             history={history}
+            shadow={this.state.shadow}
           />
           <ViewContainer>
             <Route
