@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Grid, Row, Col, Image } from "react-bootstrap";
 import styled from "styled-components";
 
 // Card takes in props: title, local, startDate, endDate, location
@@ -7,11 +7,9 @@ import Card from "../components/Card";
 
 const ThumbnailContainer = styled.div`
 	position: relative;
-	display: flex;
 `;
 
 const CardThumbnail = styled.img`
-	height: auto;
 	border-radius: 0.1em;
 	border: tomato 0.1em solid;
 	padding: none;
@@ -25,35 +23,66 @@ const CardContainer = styled.div`
 
 const CardBody = styled.div`
 	color: black;
-	padding: 0.75em;
+	position: relative;
+`;
+
+const BiteDate = styled.div`
+	display: inline block;
+	border: tomato 0.1em solid;
+	padding: 0em 0.5em 0em 0.5em;
+	margin-bottom: 0em;
+	background: white;
+	position: absolute;
+	text-align: center;
+	top: 0.25em;
+	right: 1.5em;
+	clear: left;
+`;
+
+const BiteMonth = styled.p`
+	font-size: 10px;
+	margin-bottom: 0em;
+	border-bottom: tomato 0.1em solid;
+`;
+
+const BiteDay = styled.p`
+	font-size: 15px;
+	margin-bottom: 0em;
+`;
+
+const BiteInfo = styled.h5`
+	width: 100%;
 `;
 
 const noPadding = {
-	padding: "none",
-	margin: "none",
-	border: "1em solid"
+	padding: "0em",
+	margin: "0em"
+};
+
+const noMarginRight = {
+	marginRight: "0em"
 };
 
 export const MyBites = props => {
-	//get the user's booked bites on component load
 	return (
 		<Grid>
-			<Row className="show-grid">
-				<Col xs={3}>
-					<CardThumbnail src="http://via.placeholder.com/300x200" />
-				</Col>
-				<Col xs={9}>
-					<CardContainer>
+			<CardContainer>
+				<Row className="show-grid">
+					<Col style={noMarginRight} xs={4} md={3}>
+						<Image src="http://via.placeholder.com/300x200" responsive />
+					</Col>
+					<Col style={noPadding} xs={8} md={9}>
 						<CardBody>
-							<div>
-								<p> Jim's Original </p>
-								<p> with Andrew Huang </p>
-								<p> Chicago </p>
-							</div>
+							<BiteInfo>Jim's Original with Andrew Huang</BiteInfo>
+							<p>Chicago</p>
+							<BiteDate>
+								<BiteMonth> NOV </BiteMonth>
+								<BiteDay> 14 </BiteDay>
+							</BiteDate>
 						</CardBody>
-					</CardContainer>
-				</Col>
-			</Row>
+					</Col>
+				</Row>
+			</CardContainer>
 		</Grid>
 	);
 };
