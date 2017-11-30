@@ -69,7 +69,10 @@ export const MyBites = props => {
 			<CardContainer>
 				<Row className="show-grid">
 					<Col style={noMarginRight} xs={4} md={3}>
-						<Image src="http://via.placeholder.com/300x200" responsive />
+						<Image
+							src="http://via.placeholder.com/300x200"
+							responsive
+						/>
 					</Col>
 					<Col style={noPadding} xs={8} md={9}>
 						<CardBody>

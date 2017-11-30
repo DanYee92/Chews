@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { FormGroup, FormInput } from "./Form";
 import Button from "../components/Button";
-import Auth from '../Auth/Auth.js'
 
-const auth = new Auth();
+// import Auth from "../Auth/Auth.js";
+// const auth = new Auth();
 
 class LogInForm extends Component {
   state = {
@@ -48,8 +48,7 @@ class LogInForm extends Component {
             placeholder="*******"
             onChange={this.handleInputChange}
           />
-         
-          
+
           <Button primary> Log In </Button>
           <Button> Create New Account </Button>
         </FormGroup>

@@ -14,7 +14,7 @@ export class SearchResults extends React.Component {
       <Grid>
         <Row className="show-grid">
           {/* dynamically generate here */}
-          {this.props.searchResults.length > 0
+          {this.props.searchResults
             ? this.props.searchResults.map((bite, i) => {
                 return (
                   <Col key={i} xs={12} sm={6} md={4} lg={3}>
