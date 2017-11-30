@@ -12,6 +12,7 @@ export default class Auth {
   
   
     login() {
+        console.log("auth0 working??")
       this.auth0.authorize();
     }
 
