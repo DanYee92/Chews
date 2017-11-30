@@ -93,15 +93,8 @@ class App extends React.Component {
             />
             <Route 
               exact 
-              path="/login" 
-              render={props => (
-                <LogIn
-                {...props}
-                auth={auth.login()}
-                
-                />
-              
-              )}
+              path="/login"
+              render={auth.login()}
              />
             <Route exact path="/browse" component={Browse} />
             <Route
