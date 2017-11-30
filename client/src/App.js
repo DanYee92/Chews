@@ -102,7 +102,6 @@ class App extends React.Component {
             <Route
               exact
               path="/login"
-<<<<<<< HEAD
               render={props => (
                 <LogIn
                   {...props}
