@@ -14,7 +14,7 @@ export default class Auth {
     login() {
         console.log("working?")
         console.log(this)
-      return this.auth0.authorize();
+      this.auth0.authorize();
     }
 
   
