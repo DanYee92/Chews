@@ -18,7 +18,7 @@ const UserSchema = new Schema({
 	},
 
 	dateJoined: {
-		type: Date,
+		type: Number,
 		default: Date.now()
 	},
 

@@ -26,18 +26,20 @@ const BiteSchema = new Schema({
 
 	//add validation to reformat front end dates into the mongoDB date format
 	startDateRange: {
-		type: String // THIS NEEDS TO BE CHANGED TO DATE
-		// type: Date
+		// type: String // THIS NEEDS TO BE CHANGED TO DATE
+		type: Number,
+		required: true
 	},
 
 	//add validation to reformat front end dates into the mongoDB date format
 	endDateRange: {
-		type: String // THIS NEEDS TO BE CHANGED TO DATE
-		// type: Date
+		// type: String // THIS NEEDS TO BE CHANGED TO DATE
+		type: Number,
+		required: true
 	},
 
 	biteDate: {
-		type: Date
+		type: Number
 	},
 
 	isBooked: {
