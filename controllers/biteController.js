@@ -34,7 +34,7 @@ module.exports = {
 			//find all bites where: not booked
 			//Need to add within a specified date range
 			.find(query)
-			.populate("User")
+			.populate("localId")
 			.then(foundBites => res.json(foundBites))
 			.catch(err => console.error(err));
 	},

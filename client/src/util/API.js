@@ -28,6 +28,11 @@ export default {
 	},
 	// city should be a string
 
+	getBiteDetail: biteId => {
+		return axios.get(`/api/bites/${biteId}`);
+	},
+	// city should be a string
+
 	bookBite: (travelerId, biteId, biteDate) => {
 		//convert biteDate to ISO
 		biteDate = moment(biteDate).toISOString();

@@ -36,6 +36,9 @@ export class BiteDetail extends Component {
   state = {
     selectedDate: ""
   };
+
+  componentDidMount() {}
+
   showModal = () => {
     this.refs.modal.show();
   };
@@ -92,7 +95,9 @@ export class BiteDetail extends Component {
                 <Spacer />
                 <Spacer />
                 <Spacer />
-                Grab a Bite with {this.props.localId}
+                Grab a Bite with{" "}
+                {`${this.props.localId.firstName} ${this.props.localId
+                  .lastName}`}
                 <Divider />
                 <i
                   className="fa fa-calendar-o"
