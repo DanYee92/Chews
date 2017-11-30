@@ -56,12 +56,6 @@ class App extends React.Component {
     });
   };
 
-  const handleAuthentication = (nextState, replace) => {
-  if (/access_token|id_token|error/.test(nextState.location.hash)) {
-    auth.handleAuthentication();
-  }
-}
-
   render() {
     return (
       <Router history={history}>
@@ -108,7 +102,6 @@ class App extends React.Component {
                   )}
                 />
               )}
-
             />
             <Route exact path="/browse" component={Browse} />
             <Route
