@@ -3,17 +3,17 @@ import { Grid, Row, Col, Image } from "react-bootstrap";
 import styled from "styled-components";
 
 // Card takes in props: title, local, startDate, endDate, location
-import Card from "../components/Card";
+// import Card from "../components/Card";
 
-const ThumbnailContainer = styled.div`
-	position: relative;
-`;
+// const ThumbnailContainer = styled.div`
+// 	position: relative;
+// `;
 
-const CardThumbnail = styled.img`
-	border-radius: 0.1em;
-	border: tomato 0.1em solid;
-	padding: none;
-`;
+// const CardThumbnail = styled.img`
+// 	border-radius: 0.1em;
+// 	border: tomato 0.1em solid;
+// 	padding: none;
+// `;
 
 const CardContainer = styled.div`
 	background: papayawhip;

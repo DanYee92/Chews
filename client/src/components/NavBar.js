@@ -4,8 +4,7 @@ import { Navbar } from "react-bootstrap";
 import { LinkedLogo } from "./Logo";
 import styled from "styled-components";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
-import Auth from "../Auth/Auth.js"
-
+// import Auth from "../Auth/Auth.js"
 
 const MyLinkContainer = styled.ul`
   list-style: none;
@@ -63,7 +62,7 @@ const MyNav = styled(Navbar)`
 
 const MyBrand = styled(Navbar.Brand)`
   color: tomato !important;
-
+  padding: auto 0;
   @media (max-width: 767px) {
     position: absolute;
     left: 50%;

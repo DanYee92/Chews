@@ -8,7 +8,7 @@ import { Parallax } from "react-parallax";
 import { OutlineModal } from "../components/boron/Boron";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import DatePicker from "material-ui/DatePicker";
-import TimePicker from "material-ui/TimePicker";
+// import TimePicker from "material-ui/TimePicker";
 
 const DetailContainer = styled.div`
   overflow: hidden;
@@ -35,7 +35,7 @@ const ParallaxContent = styled.div`
 export class BiteDetail extends Component {
   state = {
     selectedDate: ""
-  }
+  };
   showModal = () => {
     this.refs.modal.show();
   };
@@ -53,12 +53,14 @@ export class BiteDetail extends Component {
   };
 
   render() {
-    return <div>
+    return (
+      <div>
         <OutlineModal ref="modal" contentStyle={contentStyle}>
           <CloseBtn onClick={this.hideModal} />
           <Container column>
             <h4>
-              Want to grab a Bite with {this.props.localId} at {this.props.restaurant} on Nov 30 at 3pm?
+              Want to grab a Bite with {this.props.localId} at{" "}
+              {this.props.restaurant} on Nov 30 at 3pm?
             </h4>
             <Button primary onClick={this.hideModal}>
               Sure!
@@ -70,7 +72,14 @@ export class BiteDetail extends Component {
 
         <Parallax bgImage="http://via.placeholder.com/1000x200" strength={300}>
           <ParallaxContent>
-            <h1 style={{ position: "absolute", color: "white", left: "1em", bottom: "0.5em" }}>
+            <h1
+              style={{
+                position: "absolute",
+                color: "white",
+                left: "1em",
+                bottom: "0.5em"
+              }}
+            >
               {this.props.restaurant}
             </h1>
           </ParallaxContent>
@@ -85,12 +94,28 @@ export class BiteDetail extends Component {
                 <Spacer />
                 Grab a Bite with {this.props.localId}
                 <Divider />
-                <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                <i
+                  className="fa fa-calendar-o"
+                  aria-hidden="true"
+                  style={{ marginRight: "0.5em" }}
+                />
                 <MuiThemeProvider>
-                  <DatePicker style={{display: "inline-block", height: "1em"}} name="selectedDate" onChange={this.handleChangeSelectedDate} autoOk={false} floatingLabelText="Select a Date" shouldDisableDate={this.disableOutOfRange} disableYearSelection={false} />
+                  <DatePicker
+                    style={{ display: "inline-block", height: "1em" }}
+                    name="selectedDate"
+                    onChange={this.handleChangeSelectedDate}
+                    autoOk={false}
+                    floatingLabelText="Select a Date"
+                    shouldDisableDate={this.disableOutOfRange}
+                    disableYearSelection={false}
+                  />
                 </MuiThemeProvider>
                 <Divider />
-                <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                <i
+                  className="fa fa-map-marker"
+                  aria-hidden="true"
+                  style={{ marginRight: "0.5em" }}
+                />
                 {this.props.city}
                 <Divider />
               </Col>
@@ -102,11 +127,15 @@ export class BiteDetail extends Component {
               </Col>
               <Col xs={12} md={4}>
                 <h4>(MAP HERE)</h4>
-                <img alt="placeholder" src="http://via.placeholder.com/300x200" />
+                <img
+                  alt="placeholder"
+                  src="http://via.placeholder.com/300x200"
+                />
               </Col>
             </Row>
           </DetailContainer>
         </Grid>
-      </div>;
+      </div>
+    );
   }
 }
