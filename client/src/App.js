@@ -25,6 +25,7 @@ const ViewContainer = styled.div`
 `;
 
 const auth = new Auth();
+let userInfo;
 console.log(auth);
 
 class App extends React.Component {
@@ -56,6 +57,12 @@ class App extends React.Component {
       });
     });
   };
+
+  const handleAuthentication = (nextState, replace) => {
+  if (/access_token|id_token|error/.test(nextState.location.hash)) {
+    auth.handleAuthentication();
+  }
+}
 
   render() {
     return (
@@ -95,7 +102,15 @@ class App extends React.Component {
             <Route
               exact
               path="/login"
-              render={props => <LogIn {...props} auth={auth.login()} />}
+              render={props => (
+                <LogIn
+                  {...props}
+                  auth={Promise.resolve(
+                    auth.login().then(result => console.log(result))
+                  )}
+                />
+              )}
+
             />
             <Route exact path="/browse" component={Browse} />
             <Route
