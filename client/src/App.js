@@ -12,6 +12,7 @@ import {
   CreateUser,
   Landing,
   LogIn,
+  MyBites,
   SearchResults
 } from "./views";
 
@@ -116,6 +117,7 @@ class App extends React.Component {
             <Route exact path="/create/bite" component={CreateBite} />
             <Route exact path="/create/user" component={CreateUser} />
             <Route exact path="/bite-detail" component={BiteDetail} />
+            <Route exact path="/my-bites" component={MyBites} />
           </ViewContainer>
         </div>
       </Router>
