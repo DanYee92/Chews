@@ -18,7 +18,6 @@ const CardThumbnail = styled.img`
 const CardContainer = styled.div`
 	background: papayawhip;
 	margin-bottom: 2.5em;
-	border: tomato 0.1em solid;
 `;
 
 const CardBody = styled.div`
@@ -34,9 +33,9 @@ const BiteDate = styled.div`
 	background: white;
 	position: absolute;
 	text-align: center;
-	top: 0.25em;
+	top: 0.5em;
 	right: 1.5em;
-	clear: left;
+	clear: both;
 `;
 
 const BiteMonth = styled.p`
@@ -52,6 +51,7 @@ const BiteDay = styled.p`
 
 const BiteInfo = styled.h5`
 	width: 100%;
+	float: left;
 `;
 
 const noPadding = {
@@ -73,8 +73,10 @@ export const MyBites = props => {
 					</Col>
 					<Col style={noPadding} xs={8} md={9}>
 						<CardBody>
-							<BiteInfo>Jim's Original with Andrew Huang</BiteInfo>
-							<p>Chicago</p>
+							<BiteInfo>
+								<p>Jim's Original with Andrew Huang</p>
+								<p>Chicago</p>
+							</BiteInfo>
 							<BiteDate>
 								<BiteMonth> NOV </BiteMonth>
 								<BiteDay> 14 </BiteDay>
