@@ -63,7 +63,7 @@ const MyNav = styled(Navbar)`
 
 const MyBrand = styled(Navbar.Brand)`
   color: tomato !important;
-
+  padding: auto 0;
   @media (max-width: 767px) {
     position: absolute;
     left: 50%;
