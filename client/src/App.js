@@ -30,7 +30,7 @@ const ViewContainer = styled.div`
 const auth = new Auth();
 const history = createHistory();
 
-console.log(auth)
+console.log(auth);
 
 class App extends React.Component {
   state = {
@@ -95,18 +95,11 @@ class App extends React.Component {
                 />
               )}
             />
-            <Route 
-              exact 
-              path="/login" 
-              render={props => (
-                <LogIn
-                {...props}
-                auth={auth.login()}
-                
-                />
-              
-              )}
-             />
+            <Route
+              exact
+              path="/login"
+              render={props => <LogIn {...props} auth={auth.login()} />}
+            />
             <Route exact path="/browse" component={Browse} />
             <Route
               exact

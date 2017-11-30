@@ -17,9 +17,6 @@ export class CreateBite extends Component {
 	};
 
 	disablePast = date => {
-		console.log("date:", date);
-		console.log("Date.parse(date):", Date.parse(date));
-		console.log("Date.now():", Date.now());
 		return Date.parse(date) < Date.now();
 	};
 
