@@ -29,7 +29,7 @@ export default {
 	// city should be a string
 
 	getBiteDetail: biteId => {
-		return axios.get(`/api/bites/${biteId}`);
+		return axios.get(`/api/bite/${biteId}`);
 	},
 	// city should be a string
 

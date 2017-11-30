@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "../util/API.js";
 import { Grid, Row, Col } from "react-bootstrap";
 import Button from "../components/Button";
 import Container from "../components/Container";
@@ -34,10 +35,27 @@ const ParallaxContent = styled.div`
 
 export class BiteDetail extends Component {
   state = {
-    selectedDate: ""
+    selectedDate: "",
+    firstName: "",
+    lastName: "",
+    restaurant: "",
+    city: "",
+    localId: ""
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    API.getBiteDetail(this.props.match.params.biteId).then(res =>{
+      const bite = res.data[0]
+      console.log(bite)
+      this.setState({
+        firstName: bite.localId.firstName,
+        lastName: bite.localId.lastName,
+        restaurant: bite.restaurant,
+        city: bite.city,
+        localId: bite.localId
+      });}
+    );
+  }
 
   showModal = () => {
     this.refs.modal.show();
@@ -62,8 +80,8 @@ export class BiteDetail extends Component {
           <CloseBtn onClick={this.hideModal} />
           <Container column>
             <h4>
-              Want to grab a Bite with {this.props.localId} at{" "}
-              {this.props.restaurant} on Nov 30 at 3pm?
+              Want to grab a Bite with {this.state.localId} at{" "}
+              {this.state.restaurant} on Nov 30 at 3pm?
             </h4>
             <Button primary onClick={this.hideModal}>
               Sure!
@@ -83,7 +101,7 @@ export class BiteDetail extends Component {
                 bottom: "0.5em"
               }}
             >
-              {this.props.restaurant}
+              {this.state.restaurant}
             </h1>
           </ParallaxContent>
         </Parallax>
@@ -95,8 +113,7 @@ export class BiteDetail extends Component {
                 <Spacer />
                 <Spacer />
                 <Spacer />
-                Grab a Bite with{" "}
-                {`${this.props.localId.firstName} ${this.props.localId
+                {`Grab a Bite with ${this.state.firstName} ${this.state
                   .lastName}`}
                 <Divider />
                 <i
@@ -121,7 +138,7 @@ export class BiteDetail extends Component {
                   aria-hidden="true"
                   style={{ marginRight: "0.5em" }}
                 />
-                {this.props.city}
+                {this.state.city}
                 <Divider />
               </Col>
               <Col xs={12} md={4}>
