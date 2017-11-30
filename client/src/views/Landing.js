@@ -20,7 +20,7 @@ export const Landing = props => {
             value={props.searchQuery}
           />
           <Button type="submit" primary>
-            Search
+            Searchpoop
           </Button>
         </FormGroup>
       </form>

@@ -13,7 +13,8 @@ export default class Auth {
   
     login() {
         console.log("working?")
-      this.auth0.authorize();
+        console.log(this)
+      return this.auth0.authorize();
     }
 
   

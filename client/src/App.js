@@ -1,11 +1,9 @@
 import React from "react";
-import injectTapEventPlugin from "react-tap-event-plugin";
-import { Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import styled from "styled-components";
 import Auth from "./Auth/Auth.js";
 import Navbar from "./components/NavBar";
 import API from "./util/API";
-import createHistory from "history/createBrowserHistory";
 import {
   BiteDetail,
   Browse,
@@ -13,12 +11,8 @@ import {
   CreateUser,
   Landing,
   LogIn,
-  MyBites,
   SearchResults
 } from "./views";
-
-// Needed for onTouchTap
-injectTapEventPlugin();
 
 const ViewContainer = styled.div`
   margin-top: 4.75em;
@@ -28,7 +22,6 @@ const ViewContainer = styled.div`
 `;
 
 const auth = new Auth();
-const history = createHistory();
 
 console.log(auth)
 
@@ -46,29 +39,26 @@ class App extends React.Component {
     });
   };
 
+  // this is sort of patchwork, but it does the job.
+  // this will have to be refactored later.
   handleSearchSubmit = event => {
-    event.preventDefault();
     console.log("searching for", this.state.searchQuery);
 
     API.searchForBites(this.state.searchQuery).then(res => {
-      Promise.resolve(this.setState({ searchResults: res.data })).then(() => {
-        console.log("done searching");
-        console.log("results", this.state.searchResults);
-        console.log("redirecting to /search");
-        history.push("/search");
-      });
+      Promise.resolve(this.setState({ searchResults: res.data })).then(() =>
+        console.log("results", this.state.searchResults)
+      );
     });
   };
 
   render() {
     return (
-      <Router history={history}>
+      <Router>
         <div>
           <Navbar
             handleInputChange={this.handleInputChange}
             searchQuery={this.state.searchQuery}
             handleSearchSubmit={this.handleSearchSubmit}
-            history={history}
           />
           <ViewContainer>
             <Route
@@ -97,8 +87,15 @@ class App extends React.Component {
             />
             <Route 
               exact 
-              path="/login"
-              render={auth.login()}
+              path="/login" 
+              render={props => (
+                <LogIn
+                {...props}
+                auth={auth.login()}
+                
+                />
+              
+              )}
              />
             <Route exact path="/browse" component={Browse} />
             <Route
@@ -114,7 +111,6 @@ class App extends React.Component {
             <Route exact path="/create/bite" component={CreateBite} />
             <Route exact path="/create/user" component={CreateUser} />
             <Route exact path="/bite-detail" component={BiteDetail} />
-            <Route exact path="/my-bites" component={MyBites} />
           </ViewContainer>
         </div>
       </Router>
