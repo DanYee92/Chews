@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-import Container from "./Container";
+// import styled from "styled-components";
+// import Container from "./Container";
 import ProfileImage from "./ProfileImage";
 
 const ProfilePicture = props => {
