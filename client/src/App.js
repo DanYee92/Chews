@@ -23,6 +23,8 @@ const ViewContainer = styled.div`
 
 const auth = new Auth();
 
+console.log(auth)
+
 class App extends React.Component {
   state = {
     searchQuery: "",
@@ -90,7 +92,9 @@ class App extends React.Component {
                 <LogIn
                 {...props}
                 auth={auth.login()}
+                
                 />
+              
               )}
              />
             <Route exact path="/browse" component={Browse} />
