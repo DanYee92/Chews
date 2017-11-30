@@ -8,8 +8,7 @@
     "client": "cd client && npm run start",
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "cd client && npm run build",
-    "deploy":
-      "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
+    "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -25,8 +24,8 @@
     "axios": "^0.17.1",
     "boron": "^0.2.3",
     "express": "^4.15.4",
-    "moment": "^2.19.3",
     "material-ui": "^0.19.4",
+    "moment": "^2.19.3",
     "mongoose": "^4.13.4",
     "react-bootstrap": "^0.31.5",
     "styled-components": "^2.2.3"
