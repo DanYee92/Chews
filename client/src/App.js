@@ -1,9 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import styled from "styled-components";
 import Auth from "./Auth/Auth.js";
 import Navbar from "./components/NavBar";
 import API from "./util/API";
+import createHistory from "history/createBrowserHistory";
 import {
   BiteDetail,
   Browse,
@@ -14,6 +15,8 @@ import {
   SearchResults
 } from "./views";
 
+const history = createHistory();
+
 const ViewContainer = styled.div`
   margin-top: 4.75em;
   @media (max-width: 768px) {
@@ -22,7 +25,6 @@ const ViewContainer = styled.div`
 `;
 
 const auth = new Auth();
-
 console.log(auth);
 
 class App extends React.Component {
@@ -42,23 +44,28 @@ class App extends React.Component {
   // this is sort of patchwork, but it does the job.
   // this will have to be refactored later.
   handleSearchSubmit = event => {
+    event.preventDefault();
     console.log("searching for", this.state.searchQuery);
 
     API.searchForBites(this.state.searchQuery).then(res => {
-      Promise.resolve(this.setState({ searchResults: res.data })).then(() =>
-        console.log("results", this.state.searchResults)
-      );
+      Promise.resolve(this.setState({ searchResults: res.data })).then(() => {
+        console.log("done searching");
+        console.log("results", this.state.searchResults);
+        console.log("redirecting to /search");
+        history.push("/search");
+      });
     });
   };
 
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div>
           <Navbar
             handleInputChange={this.handleInputChange}
             searchQuery={this.state.searchQuery}
             handleSearchSubmit={this.handleSearchSubmit}
+            history={history}
           />
           <ViewContainer>
             <Route
