@@ -80,7 +80,7 @@ module.exports = function(animation) {
       // Apply custom style properties
       if (this.props.modalStyle) {
         var prefixedModalStyle = appendVendorPrefix(this.props.modalStyle);
-        for (var style in prefixedModalStyle) {
+        for (let style in prefixedModalStyle) {
           modalStyle[style] = prefixedModalStyle[style];
         }
       }
@@ -89,14 +89,14 @@ module.exports = function(animation) {
         var prefixedBackdropStyle = appendVendorPrefix(
           this.props.backdropStyle
         );
-        for (var style in prefixedBackdropStyle) {
+        for (let style in prefixedBackdropStyle) {
           backdropStyle[style] = prefixedBackdropStyle[style];
         }
       }
 
       if (this.props.contentStyle) {
         var prefixedContentStyle = appendVendorPrefix(this.props.contentStyle);
-        for (var style in prefixedContentStyle) {
+        for (let style in prefixedContentStyle) {
           contentStyle[style] = prefixedContentStyle[style];
         }
       }
