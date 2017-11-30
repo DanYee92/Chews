@@ -1,4 +1,5 @@
 import React from "react";
+import injectTapEventPlugin from "react-tap-event-plugin";
 import { Router, Route } from "react-router-dom";
 import styled from "styled-components";
 import Auth from "./Auth/Auth.js";
@@ -15,6 +16,9 @@ import {
   MyBites,
   SearchResults
 } from "./views";
+
+// Needed for onTouchTap
+injectTapEventPlugin();
 
 const ViewContainer = styled.div`
   margin-top: 4.75em;
