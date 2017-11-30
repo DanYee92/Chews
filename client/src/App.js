@@ -44,8 +44,6 @@ class App extends React.Component {
     });
   };
 
-  // this is sort of patchwork, but it does the job.
-  // this will have to be refactored later.
   handleSearchSubmit = event => {
     event.preventDefault();
     console.log("searching for", this.state.searchQuery);
@@ -107,7 +105,6 @@ class App extends React.Component {
                   )}
                 />
               )}
-
             />
             <Route exact path="/browse" component={Browse} />
             <Route
@@ -122,7 +119,7 @@ class App extends React.Component {
             />
             <Route exact path="/create/bite" component={CreateBite} />
             <Route exact path="/create/user" component={CreateUser} />
-            <Route exact path="/bite-detail" component={BiteDetail} />
+            <Route exact path="/bite/:biteId" component={BiteDetail} />
           </ViewContainer>
         </div>
       </Router>
