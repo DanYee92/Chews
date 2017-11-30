@@ -41,11 +41,16 @@ module.exports = {
 	bookBite: (req, res) => {
 		console.log("biteId to find:", req.params.biteId);
 		console.log("UserID booking:", req.params.travelerId);
+		console.log("biteDate set:", req.body.biteDate);
 		db.Bite
 			//find the biteId and update isBooked: true, and add a travelerId to the bite
 			.findOneAndUpdate(
 				{ _id: req.params.biteId },
-				{ isBooked: true, $set: { travelerId: req.params.travelerId } }
+				{
+					isBooked: true,
+					$set: { travelerId: req.params.travelerId },
+					biteDate: req.body.biteDate
+				}
 			)
 			.then(bookedBite => {
 				//add the bite to the traveler's bites
