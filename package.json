@@ -24,6 +24,7 @@
     "axios": "^0.17.1",
     "boron": "^0.2.3",
     "express": "^4.15.4",
+    "moment": "^2.19.3",
     "mongoose": "^4.13.4",
     "react-bootstrap": "^0.31.5",
     "styled-components": "^2.2.3"

@@ -6,7 +6,7 @@ import Container from "../components/Container";
 import API from "../util/API.js";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import DatePicker from "material-ui/DatePicker";
-import TimePicker from "material-ui/TimePicker";
+// import TimePicker from "material-ui/TimePicker";
 
 export class CreateBite extends Component {
 	state = {
