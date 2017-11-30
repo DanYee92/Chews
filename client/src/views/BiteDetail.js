@@ -51,6 +51,7 @@ export class BiteDetail extends Component {
             <Button primary onClick={this.hideModal}>
               Sure!
             </Button>
+
             <Button onClick={this.hideModal}>No, thanks</Button>
           </Container>
         </OutlineModal>
@@ -101,7 +102,10 @@ export class BiteDetail extends Component {
               </Col>
               <Col xs={12} md={4}>
                 <h4>(MAP HERE)</h4>
-                <img src="http://via.placeholder.com/300x200" />
+                <img
+                  alt="placeholder"
+                  src="http://via.placeholder.com/300x200"
+                />
               </Col>
             </Row>
           </DetailContainer>

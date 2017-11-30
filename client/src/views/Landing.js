@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Container from "../components/Container";
 import { Logo } from "../components/Logo";
 import { FormGroup } from "../components/Form";
@@ -20,7 +20,7 @@ export const Landing = props => {
             value={props.searchQuery}
           />
           <Button type="submit" primary>
-            Search
+            Searchpoop
           </Button>
         </FormGroup>
       </form>

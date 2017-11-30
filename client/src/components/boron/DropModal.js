@@ -83,7 +83,7 @@ var hideModalAnimation = animation.hideModalAnimation;
 var showBackdropAnimation = animation.showBackdropAnimation;
 var hideBackdropAnimation = animation.hideBackdropAnimation;
 var showContentAnimation = animation.showContentAnimation;
-var hideContentAnimation = animation.hideContentAnimation;
+// var hideContentAnimation = animation.hideContentAnimation;
 
 module.exports = modalFactory({
   getRef: function(willHidden) {
