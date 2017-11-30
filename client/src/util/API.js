@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 
 export default {
 	createNewUser: newUser => {
@@ -27,8 +28,13 @@ export default {
 	},
 	// city should be a string
 
-	bookBite: (travelerId, biteId) => {
-		return axios.patch(`/api/user/${travelerId}/bite/${biteId}/book`);
+	bookBite: (travelerId, biteId, biteDate) => {
+		//convert biteDate to ISO
+		biteDate = moment(biteDate).toISOString();
+		return axios.patch(
+			`/api/user/${travelerId}/bite/${biteId}/book`,
+			biteDate
+		);
 	},
 	// travelerId should be a string (searching)
 	// biteId should be a string
