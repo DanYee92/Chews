@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const CardContainer = styled.div`
@@ -8,9 +9,8 @@ const CardContainer = styled.div`
 `;
 
 // ======= Thumbnail Container START ========
-const ThumbnailContainer = styled.a`
+const ThumbnailContainer = styled.div`
   position: relative;
-  display: block;
 `;
 
 const CardTitle = styled.h3`
@@ -34,33 +34,25 @@ const CardBody = styled.div`
 
 // Card takes in props: title, local, startDate, endDate, location
 const Card = ({ title, local, startDate, endDate, location, biteId }) => {
-  return (
-    <CardContainer>
-      <ThumbnailContainer href={`/bite/${biteId}`}>
-        <CardThumbnail src="http://via.placeholder.com/300x200" />
-        <CardTitle>{title}</CardTitle>
-      </ThumbnailContainer>
+  return <CardContainer>
+      <Link to={`/bite/${biteId}`}>
+        <ThumbnailContainer>
+          <CardThumbnail src="http://via.placeholder.com/300x200" />
+          <CardTitle>{title}</CardTitle>
+        </ThumbnailContainer>
+      </Link>
       <CardBody>
         <p>with {local}</p>
         <p>
-          <i
-            className="fa fa-calendar-o"
-            aria-hidden="true"
-            style={{ marginRight: "0.5em" }}
-          />
+          <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.5em" }} />
           {startDate} - {endDate}
         </p>
         <p>
-          <i
-            className="fa fa-map-marker"
-            aria-hidden="true"
-            style={{ marginRight: "0.5em" }}
-          />
+          <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
           {location}
         </p>
       </CardBody>
-    </CardContainer>
-  );
+    </CardContainer>;
 };
 
 export default Card;

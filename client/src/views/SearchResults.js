@@ -20,8 +20,7 @@ export class SearchResults extends React.Component {
                   <Col key={i} xs={12} sm={6} md={4} lg={3}>
                     <Card
                       title={bite.restaurant}
-                      local={`${bite.localId.firstName} ${bite.localId
-                        .lastName}`}
+                      local={`${bite.localId.firstName} ${bite.localId.lastName}`}
                       startDate={bite.startDateRange}
                       endDate={bite.endDateRange}
                       location={bite.city}

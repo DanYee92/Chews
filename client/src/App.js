@@ -3,6 +3,7 @@ import { Router, Route } from "react-router-dom";
 import styled from "styled-components";
 import Auth from "./Auth/Auth.js";
 import Navbar from "./components/NavBar";
+import ViewContainer from "./components/ViewContainer"
 import API from "./util/API";
 import createHistory from "history/createBrowserHistory";
 import {
@@ -16,6 +17,7 @@ import {
 } from "./views";
 
 const history = createHistory();
+
 
 const ViewContainer = styled.div`
   margin-top: 4.75em;
@@ -31,27 +33,32 @@ class App extends React.Component {
     searchResults: [],
     shadow: false
   };
-
+  
   handleInputChange = event => {
     const { name, value } = event.target;
-
+    
     this.setState({
       [name]: value
     });
   };
-
+  
   handleSearchSubmit = event => {
     event.preventDefault();
-    console.log("searching for", this.state.searchQuery);
-
-    API.searchForBites(this.state.searchQuery).then(res => {
-      Promise.resolve(this.setState({ searchResults: res.data })).then(() => {
-        console.log("done searching");
-        console.log("results", this.state.searchResults);
-        console.log("redirecting to /search");
-        history.push("/search");
+    
+    if(this.state.searchQuery !== "") {
+      console.log("searching for", this.state.searchQuery);
+      
+      API.searchForBites(this.state.searchQuery).then(res => {
+        Promise.resolve(this.setState({ searchResults: res.data })).then(() => {
+          console.log("done searching");
+          console.log("results", this.state.searchResults);
+          console.log("redirecting to /search");
+          history.push("/search");
+        });
       });
-    });
+    } else {
+      console.log("No search query provided.")
+    }
   };
 
   const auth = new Auth();
@@ -62,17 +69,43 @@ class App extends React.Component {
       auth.handleAuthentication();
     }
   };
-
+  
   render() {
     return (
       <Router history={history}>
-        <div>
-          <Navbar
-            handleInputChange={this.handleInputChange}
-            searchQuery={this.state.searchQuery}
-            handleSearchSubmit={this.handleSearchSubmit}
-            history={history}
-            shadow={this.state.shadow}
+      <div>
+      <Navbar
+      handleInputChange={this.handleInputChange}
+      searchQuery={this.state.searchQuery}
+      handleSearchSubmit={this.handleSearchSubmit}
+      history={history}
+      shadow={this.state.shadow}
+      />
+      <ViewContainer>
+      <Route
+      exact
+      path="/"
+      render={props => (
+        <Landing
+        {...props}
+        handleInputChange={this.handleInputChange}
+        searchQuery={this.state.searchQuery}
+        handleSearchSubmit={this.handleSearchSubmit}
+        />
+      )}
+      />
+      <Route
+      exact
+      path="/home"
+      render={props => {
+        this.handleAuthentication(props);
+        console.log("auth userId", localStorage.getItem("userId"));
+        return (
+          <Landing
+          {...props}
+          handleInputChange={this.handleInputChange}
+          searchQuery={this.state.searchQuery}
+          handleSearchSubmit={this.handleSearchSubmit}
           />
           <ViewContainer>
             <Route
@@ -123,6 +156,7 @@ class App extends React.Component {
             <Route exact path="/bite/:biteId" component={BiteDetail} />
           </ViewContainer>
         </div>
+
       </Router>
     );
   }

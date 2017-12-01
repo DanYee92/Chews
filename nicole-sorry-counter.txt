@@ -1,2 +1,2 @@
-Times Nicole has apologized: 23
+Times Nicole has apologized: 25
 // it's actually like 23 + above
