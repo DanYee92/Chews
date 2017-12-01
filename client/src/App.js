@@ -3,8 +3,8 @@ import { Router, Route } from "react-router-dom";
 import styled from "styled-components";
 import Auth from "./Auth/Auth.js";
 import Navbar from "./components/NavBar";
-import ViewContainer from "./components/ViewContainer"
 import API from "./util/API";
+// import ViewContainer from "./components/ViewContainer";
 import createHistory from "history/createBrowserHistory";
 import {
   BiteDetail,
@@ -16,15 +16,19 @@ import {
   SearchResults
 } from "./views";
 
+const auth = new Auth();
 const history = createHistory();
 
-const auth = new Auth();
-let userInfo;
+const ViewContainer = styled.div`
+  margin-top: 4.75em;
+  @media (max-width: 768px) {
+    margin-top: 8.7vh;
+  }
+`;
 
 class App extends React.Component {
   state = {
     searchQuery: "",
-    searchResults: [],
     shadow: false
   };
 
@@ -38,16 +42,14 @@ class App extends React.Component {
 
   handleSearchSubmit = event => {
     event.preventDefault();
-    console.log("searching for", this.state.searchQuery);
 
-    API.searchForBites(this.state.searchQuery).then(res => {
-      Promise.resolve(this.setState({ searchResults: res.data })).then(() => {
-        console.log("done searching");
-        console.log("results", this.state.searchResults);
-        console.log("redirecting to /search");
-        history.push("/search");
-      });
-    });
+    if (this.state.searchQuery !== "") {
+      console.log("searching for", this.state.searchQuery);
+      console.log(`redirecting to /search/${this.state.searchQuery}`);
+      history.push(`/search/${this.state.searchQuery}`);
+    } else {
+      console.log("No search query provided.");
+    }
   };
 
   handleAuthentication = (nextState, replace) => {
@@ -106,6 +108,16 @@ class App extends React.Component {
             <Route
               exact
               path="/search"
+              render={props => (
+                <SearchResults
+                  {...props}
+                  searchResults={this.state.searchResults}
+                />
+              )}
+            />
+            <Route exact path="/browse" component={Browse} />
+            <Route
+              path="/search/:searchQuery"
               render={props => (
                 <SearchResults
                   {...props}

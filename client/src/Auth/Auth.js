@@ -12,12 +12,26 @@ export default class Auth {
     scope: "openid"
   });
 
+  auth0SignUp = new auth0.WebAuth({
+    domain: "app81460790.auth0.com",
+    clientID: "Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP",
+    redirectUri: "http://localhost:3000/create/user",
+    audience: "https://app81460790.auth0.com/userinfo",
+    responseType: "token id_token",
+    scope: "openid"
+  });
+
   login() {
     return this.auth0.authorize();
   }
 
+  signUp() {
+    return this.auth0SignUp.authorize();
+  }
+
   constructor() {
     this.login = this.login.bind(this);
+    this.signUp = this.signUp.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
@@ -40,19 +54,20 @@ export default class Auth {
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     );
-    localStorage.setItem("access_token", authResult.accessToken);
-    localStorage.setItem("id_token", authResult.idToken);
+
+    const userId = authResult.idTokenPayload.sub;
+
     localStorage.setItem("expires_at", expiresAt);
-    localStorage.setItem("userId", authResult.idTokenPayload.sub);
+    localStorage.setItem("userId", userId);
     // navigate to the home route
+    console.log(userId);
     history.replace("/home");
   }
 
   logout() {
-    // Clear access token and ID token from local storage
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("id_token");
+    // Clear access information from local storage
     localStorage.removeItem("expires_at");
+    localStorage.removeItem("userId");
     // navigate to the home route
     history.replace("/home");
   }
