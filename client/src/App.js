@@ -19,6 +19,7 @@ import {
 const history = createHistory();
 
 const auth = new Auth();
+let userInfo;
 
 class App extends React.Component {
   state = {
@@ -50,6 +51,7 @@ class App extends React.Component {
   };
 
   handleAuthentication = (nextState, replace) => {
+    console.log("app handleAuthentication");
     if (/access_token|id_token|error/.test(nextState.location.hash)) {
       auth.handleAuthentication();
     }
@@ -83,7 +85,8 @@ class App extends React.Component {
               exact
               path="/home"
               render={props => {
-                auth.handleAuthentication(props);
+                this.handleAuthentication(props);
+                console.log("auth userId", localStorage.getItem("userId"));
                 return (
                   <Landing
                     {...props}
@@ -97,14 +100,7 @@ class App extends React.Component {
             <Route
               exact
               path="/login"
-              render={props => (
-                <LogIn
-                  {...props}
-                  auth={Promise.resolve(
-                    auth.login().then(result => console.log(result))
-                  )}
-                />
-              )}
+              render={props => <LogIn {...props} auth={auth.login()} />}
             />
             <Route exact path="/browse" component={Browse} />
             <Route

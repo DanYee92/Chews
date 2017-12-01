@@ -13,8 +13,6 @@ export default class Auth {
   });
 
   login() {
-    console.log("working?");
-    console.log(this);
     return this.auth0.authorize();
   }
 
@@ -26,9 +24,8 @@ export default class Auth {
   }
 
   handleAuthentication() {
-    this.auth0.parseHash((err, authResult) => {
+    return this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log(authResult);
         this.setSession(authResult);
         history.replace("/home");
       } else if (err) {
@@ -46,6 +43,7 @@ export default class Auth {
     localStorage.setItem("access_token", authResult.accessToken);
     localStorage.setItem("id_token", authResult.idToken);
     localStorage.setItem("expires_at", expiresAt);
+    localStorage.setItem("userId", authResult.idTokenPayload.sub);
     // navigate to the home route
     history.replace("/home");
   }

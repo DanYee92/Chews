@@ -58,24 +58,27 @@ export class CreateBite extends Component {
 
 		event.preventDefault();
 
-		/** localId needs to be replaced
-		    with a dynamic Id based on who's
-		    logged in */
-		const localId = "5a1db997fe0a90352c814946";
+		if (localStorage.getItem("userId")) {
+			const localId = localStorage.userId;
 
-		const newBite = {
-			localId,
-			city: this.state.city,
-			restaurant: this.state.restaurant,
-			startDateRange: this.state.startDateRange,
-			endDateRange: this.state.endDateRange
-		};
+			const newBite = {
+				localId: localId,
+				city: this.state.city,
+				restaurant: this.state.restaurant,
+				startDateRange: this.state.startDateRange,
+				endDateRange: this.state.endDateRange
+			};
 
-		console.log("localId", localId, "newBite", newBite);
+			console.log("localId", localId, "newBite", newBite);
 
-		API.createNewBite(newBite)
-			.then(res => console.log("res", res))
-			.catch(err => console.error(err));
+			API.createNewBite(newBite)
+				.then(res => console.log("res", res))
+				.catch(err => console.error(err));
+		} else {
+			console.log("No user logged in");
+			//TO DO:
+			//Display modal alerting user they are not logged in
+		}
 	};
 
 	render() {
