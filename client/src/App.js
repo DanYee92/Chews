@@ -3,6 +3,7 @@ import { Router, Route } from "react-router-dom";
 import styled from "styled-components";
 import Auth from "./Auth/Auth.js";
 import Navbar from "./components/NavBar";
+import ViewContainer from "./components/ViewContainer"
 import API from "./util/API";
 import createHistory from "history/createBrowserHistory";
 import {
@@ -16,13 +17,6 @@ import {
 } from "./views";
 
 const history = createHistory();
-
-const ViewContainer = styled.div`
-  margin-top: 4.75em;
-  @media (max-width: 768px) {
-    margin-top: 8.7vh;
-  }
-`;
 
 const auth = new Auth();
 
