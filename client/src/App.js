@@ -1,10 +1,9 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Auth from "./Auth/Auth.js";
 import Navbar from "./components/NavBar";
 import ViewContainer from "./components/ViewContainer"
-import API from "./util/API";
 import createHistory from "history/createBrowserHistory";
 import {
   BiteDetail,
@@ -19,12 +18,11 @@ import {
 const history = createHistory();
 
 const auth = new Auth();
-let userInfo;
+// let userInfo;
 
 class App extends React.Component {
   state = {
     searchQuery: "",
-    searchResults: [],
     shadow: false
   };
   
@@ -41,15 +39,8 @@ class App extends React.Component {
     
     if(this.state.searchQuery !== "") {
       console.log("searching for", this.state.searchQuery);
-      
-      API.searchForBites(this.state.searchQuery).then(res => {
-        Promise.resolve(this.setState({ searchResults: res.data })).then(() => {
-          console.log("done searching");
-          console.log("results", this.state.searchResults);
-          console.log("redirecting to /search");
-          history.push("/search");
-        });
-      });
+      console.log(`redirecting to /search/${this.state.searchQuery}`);
+      history.push(`/search/${this.state.searchQuery}`);  
     } else {
       console.log("No search query provided.")
     }
@@ -108,16 +99,9 @@ class App extends React.Component {
       render={props => <LogIn {...props} auth={auth.login()} />}
       />
       <Route exact path="/browse" component={Browse} />
-      <Route
-      exact
-      path="/search"
-      render={props => (
-        <SearchResults
-        {...props}
-        searchResults={this.state.searchResults}
-        />
-      )}
-      />
+      <Route path="/search/:searchQuery" render={props => (
+        <SearchResults {...props} searchResults={this.state.searchResults} />
+      )} />
       <Route exact path="/create/bite" component={CreateBite} />
       <Route exact path="/create/user" component={CreateUser} />
       <Route exact path="/bite/:biteId" component={BiteDetail} />

@@ -38,23 +38,8 @@ export class CreateBite extends Component {
 	};
 
 	handleFormSubmit = event => {
-		// // for dummy user data
-		// const ali = {
-		// 	firstName: "Ali",
-		// 	lastName: "Arfeen",
-		// 	hometown: "Oak Brook"
-		// };
-		// console.log("making ali:", ali);
-		// console.log("calling createNewUser");
-		// API.createNewUser(ali);
-		// const andrew = {
-		// 	firstName: "Andrew",
-		// 	lastName: "Huang",
-		// 	hometown: "Chicago"
-		// };
-		// console.log("making andrew:", andrew);
-		// console.log("calling createNewUser");
-		// API.createNewUser(andrew);
+		// for dummy user data
+		// see userController
 
 		event.preventDefault();
 
