@@ -153,14 +153,7 @@ export class BiteDetail extends Component {
                   />
                 </MuiThemeProvider>
 
-                <Divider />
-                <i
-                  className="fa fa-map-marker"
-                  aria-hidden="true"
-                  style={{ marginRight: "0.5em" }}
-                />
-                {this.state.city}
-                <Divider />
+                
               </Col>
               <Col xs={12} md={4}>
                 <Button primary onClick={this.showModal}>
