@@ -58,8 +58,8 @@ export class BiteDetail extends Component {
         restaurant: bite.restaurant,
         city: bite.city,
         localId: bite.localId
-      });}
-    );
+      });
+    });
   }
 
   showModal = () => {
@@ -92,19 +92,25 @@ export class BiteDetail extends Component {
   };
 
   render() {
-    return (
-      <div>
+    return <div>
         <OutlineModal ref="modal" contentStyle={contentStyle}>
           <CloseBtn onClick={this.hideModal} />
           <Container column>
             <h4>
-              Want to grab a Bite with {this.state.localId} at{" "}
-              {this.state.restaurant} on Nov 30 at 3pm?
+              Want to grab a Bite with {this.state.firstName} {this.state.lastName} at {this.state.restaurant} on Nov 30 at 3pm?
             </h4>
+<<<<<<< HEAD
               
               <Button primary onClick={this.handleConfirmBite}>
                 Sure!
               </Button>
+=======
+            {/* <Link to=""> */}
+            <Button primary onClick={this.handleConfirmBite}>
+              Sure!
+            </Button>
+            {/* </Link> */}
+>>>>>>> 65cf48be8fc883392e1135c26f93b2c62767c2d6
 
             <Button onClick={this.hideModal}>No, thanks</Button>
           </Container>
@@ -112,14 +118,7 @@ export class BiteDetail extends Component {
 
         <Parallax bgImage="http://via.placeholder.com/1000x200" strength={300}>
           <ParallaxContent>
-            <h1
-              style={{
-                position: "absolute",
-                color: "white",
-                left: "1em",
-                bottom: "0.5em"
-              }}
-            >
+            <h1 style={{ position: "absolute", color: "white", left: "1em", bottom: "0.5em" }}>
               {this.state.restaurant}
             </h1>
           </ParallaxContent>
@@ -132,24 +131,11 @@ export class BiteDetail extends Component {
                 <Spacer />
                 <Spacer />
                 <Spacer />
-                {`Grab a Bite with ${this.state.firstName} ${this.state
-                  .lastName}`}
+                {`Grab a Bite with ${this.state.firstName} ${this.state.lastName}`}
                 <Divider />
-                <i
-                  className="fa fa-calendar-o"
-                  aria-hidden="true"
-                  style={{ marginRight: "0.5em" }}
-                />
+                <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.5em" }} />
                 <MuiThemeProvider>
-                  <DatePicker
-                    style={{ display: "inline-block", height: "1em" }}
-                    name="selectedDate"
-                    onChange={this.handleChangeSelectedDate}
-                    autoOk={false}
-                    floatingLabelText="Select a Date"
-                    shouldDisableDate={this.disableOutOfRange}
-                    disableYearSelection={false}
-                  />
+                  <DatePicker style={{ display: "inline-block", height: "1em" }} name="selectedDate" onChange={this.handleChangeSelectedDate} autoOk={false} floatingLabelText="Select a Date" shouldDisableDate={this.disableOutOfRange} disableYearSelection={false} />
                 </MuiThemeProvider>
 
               </Col>
@@ -165,23 +151,15 @@ export class BiteDetail extends Component {
                 }
               </Col>
               <Col xs={12} md={4}>
-                <i
-                  className="fa fa-map-marker"
-                  aria-hidden="true"
-                  style={{ marginRight: "0.5em" }}
-                />
+                <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
                 {this.props.city}
                 <Divider />
                 <h4>(MAP HERE)</h4>
-                <img
-                  alt="placeholder"
-                  src="http://via.placeholder.com/300x200"
-                />
+                <img alt="placeholder" src="http://via.placeholder.com/300x200" />
               </Col>
             </Row>
           </DetailContainer>
         </Grid>
-      </div>
-    );
+      </div>;
   }
 }

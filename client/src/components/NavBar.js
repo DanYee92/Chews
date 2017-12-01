@@ -82,7 +82,6 @@ const MyNavToggle = styled(Navbar.Toggle)`
 `;
 
 const MyNavCollapse = styled(Navbar.Collapse)`
-  
   overflow: hidden;
   &:after {
     background: white;
@@ -93,7 +92,7 @@ const MyNavCollapse = styled(Navbar.Collapse)`
     padding-left: 0.75em;
   }
 `;
-  // border: 1px solid lightgray;
+// border: 1px solid lightgray;
 
 class NavBar extends React.Component {
   state = {
