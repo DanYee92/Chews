@@ -101,11 +101,10 @@ export class BiteDetail extends Component {
               Want to grab a Bite with {this.state.localId} at{" "}
               {this.state.restaurant} on Nov 30 at 3pm?
             </h4>
-            {/* <Link to=""> */}
+              
               <Button primary onClick={this.handleConfirmBite}>
                 Sure!
               </Button>
-            {/* </Link> */}
 
             <Button onClick={this.hideModal}>No, thanks</Button>
           </Container>
@@ -153,13 +152,17 @@ export class BiteDetail extends Component {
                   />
                 </MuiThemeProvider>
 
-                
               </Col>
               <Col xs={12} md={4}>
-                <Button primary onClick={this.showModal}>
-                  Request to Book
-                </Button>
-                {/* <h1>Ippudo Ramen</h1> */}
+                {
+                  this.props.loggedIn ? (
+                    <Button primary onClick={this.showModal}>
+                      Request to Book
+                    </Button>) :
+                    (<Button primary onClick={this.showModal}>
+                      Login to Book
+                    </Button>)
+                }
               </Col>
               <Col xs={12} md={4}>
                 <i
