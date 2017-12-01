@@ -54,13 +54,13 @@ const MyNav = styled(Navbar)`
   padding: 0.6em;
   background: white;
   border-bottom: 0.05em solid lightgray;
-  min-height: 4.5em;
+  height: 5em;
   
 `;
 
 const MyBrand = styled(Navbar.Brand)`
-  color: tomato !important;
-  padding: auto 0;
+  padding: 0;
+  margin-top: 0.5em;
   @media (max-width: 767px) {
     position: absolute;
     left: 50%;
@@ -121,7 +121,7 @@ class NavBar extends React.Component {
           <MyBrand>
             {/* Logo links to Home */}
             <LinkedLogo to="/" />
-          </MyBrand>
+          </MyBrand>  
         </Navbar.Header>
 
         {this.state.windowWidth > 767 ? (
