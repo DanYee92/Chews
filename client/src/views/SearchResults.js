@@ -6,32 +6,54 @@ import { Grid, Row, Col } from "react-bootstrap";
 import Card from "../components/Card";
 
 export class SearchResults extends React.Component {
-  state = {
-    searchResults: []
-  };
+  state = { searchResults: [], searchQuery: this.props.match.params.searchQuery};
 
-  componentDidMount(){
-    API.searchForBites(this.props.match.params.searchQuery).then(res => {
+  componentDidMount() {
+    console.log("componentDidMount, state:", this.state)
+    API.searchForBites(this.state.searchQuery).then(
+      res => {
+        console.log(res);
+        Promise.resolve(
+          this.setState({ searchResults: res.data })
+        ).then(() => {
+          console.log("done searching");
+          console.log(
+            "this.state.searchResults",
+            this.state.searchResults
+          );
+          console.log("end componentDidMount")
+        });
+      }
+    );
+  }
+
+  componentWillReceiveProps() {
+    console.log("component will receive props", this.state)
+    API.searchForBites(this.state.searchQuery).then(res => {
       console.log(res);
-      Promise.resolve(this.setState({ searchResults: res.data })).then(() => {
+      Promise.resolve(this.setState({
+          searchResults: res.data
+        })).then(() => {
         console.log("done searching");
         console.log("this.state.searchResults", this.state.searchResults);
+        console.log("end component will receive props");
       });
     });
   }
 
   render() {
-    return (
-      <Grid>
+    return <Grid>
         <Row className="show-grid">
           {/* dynamically generate here */}
-          {this.state.searchResults
-            ? this.state.searchResults.map((bite, i) => {
+          {this.state.searchResults ? this.state.searchResults.map(
+              (bite, i) => {
                 return (
                   <Col key={i} xs={12} sm={6} md={4} lg={3}>
                     <Card
                       title={bite.restaurant}
-                      local={`${bite.localId.firstName} ${bite.localId.lastName}`}
+                      local={`${bite.localId.firstName} ${
+                        bite.localId.lastName
+                      }`}
                       startDate={bite.startDateRange}
                       endDate={bite.endDateRange}
                       location={bite.city}
@@ -39,59 +61,28 @@ export class SearchResults extends React.Component {
                     />
                   </Col>
                 );
-              })
-            : "No results"}
+              }
+          ) : "No results"}
 
           {/* to here */}
 
           <Col xs={12} sm={6} md={4} lg={3}>
-            <Card
-              title="Ippudo Ramen"
-              local="Imran Kazmi"
-              startDate="Nov 29"
-              endDate="Dec 30"
-              location="West Loop"
-            />
+            <Card title="Ippudo Ramen" local="Imran Kazmi" startDate="Nov 29" endDate="Dec 30" location="West Loop" />
           </Col>
           <Col xs={12} sm={6} md={4} lg={3}>
-            <Card
-              title="Ippudo Ramen"
-              local="Imran Kazmi"
-              startDate="Nov 29"
-              endDate="Dec 30"
-              location="West Loop"
-            />
+            <Card title="Ippudo Ramen" local="Imran Kazmi" startDate="Nov 29" endDate="Dec 30" location="West Loop" />
           </Col>
           <Col xs={12} sm={6} md={4} lg={3}>
-            <Card
-              title="Ippudo Ramen"
-              local="Imran Kazmi"
-              startDate="Nov 29"
-              endDate="Dec 30"
-              location="West Loop"
-            />
+            <Card title="Ippudo Ramen" local="Imran Kazmi" startDate="Nov 29" endDate="Dec 30" location="West Loop" />
           </Col>
 
           <Col xs={12} sm={6} md={4} lg={3}>
-            <Card
-              title="Ippudo Ramen"
-              local="Imran Kazmi"
-              startDate="Nov 29"
-              endDate="Dec 30"
-              location="West Loop"
-            />
+            <Card title="Ippudo Ramen" local="Imran Kazmi" startDate="Nov 29" endDate="Dec 30" location="West Loop" />
           </Col>
           <Col xs={12} sm={6} md={4} lg={3}>
-            <Card
-              title="Ippudo Ramen"
-              local="Imran Kazmi"
-              startDate="Nov 29"
-              endDate="Dec 30"
-              location="West Loop"
-            />
+            <Card title="Ippudo Ramen" local="Imran Kazmi" startDate="Nov 29" endDate="Dec 30" location="West Loop" />
           </Col>
         </Row>
-      </Grid>
-    );
+      </Grid>;
   }
 }

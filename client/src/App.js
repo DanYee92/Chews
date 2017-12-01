@@ -1,5 +1,6 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
+// import API from "./util/API";
 // import styled from "styled-components";
 import Auth from "./Auth/Auth.js";
 import Navbar from "./components/NavBar";
@@ -40,6 +41,22 @@ class App extends React.Component {
     if(this.state.searchQuery !== "") {
       console.log("searching for", this.state.searchQuery);
       console.log(`redirecting to /search/${this.state.searchQuery}`);
+
+      // API.searchForBites(this.state.searchQuery).then(
+      //   res => {
+      //     console.log(res);
+      //     Promise.resolve(
+      //       this.setState({ searchResults: res.data })
+      //     ).then(() => {
+      //       console.log("done searching");
+      //       console.log(
+      //         "this.state.searchResults",
+      //         this.state.searchResults
+      //       );
+      //     });
+      //   }
+      // );
+
       history.push(`/search/${this.state.searchQuery}`);  
     } else {
       console.log("No search query provided.")
@@ -100,7 +117,7 @@ class App extends React.Component {
       />
       <Route exact path="/browse" component={Browse} />
       <Route path="/search/:searchQuery" render={props => (
-        <SearchResults {...props} searchResults={this.state.searchResults} />
+        <SearchResults {...props} searchResults={this.state.searchResults} searchQuery={this.state.searchQuery} />
       )} />
       <Route exact path="/create/bite" component={CreateBite} />
       <Route exact path="/create/user" component={CreateUser} />
