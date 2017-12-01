@@ -9,9 +9,8 @@ const CardContainer = styled.div`
 `;
 
 // ======= Thumbnail Container START ========
-const ThumbnailContainer = styled.a`
+const ThumbnailContainer = styled.div`
   position: relative;
-  display: block;
 `;
 
 const CardTitle = styled.h3`

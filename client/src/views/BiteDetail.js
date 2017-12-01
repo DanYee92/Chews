@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../util/API.js";
 import { Grid, Row, Col } from "react-bootstrap";
+// import {Link} from "react-router-dom";
 import Button from "../components/Button";
 import Container from "../components/Container";
 import CloseBtn from "../components/CloseBtn";
@@ -35,6 +36,7 @@ const ParallaxContent = styled.div`
 
 export class BiteDetail extends Component {
   state = {
+    biteId: "",
     selectedDate: "",
     firstName: "",
     lastName: "",
@@ -48,8 +50,9 @@ export class BiteDetail extends Component {
   componentDidMount() {
     API.getBiteDetail(this.props.match.params.biteId).then(res =>{
       const bite = res.data[0]
-      console.log(bite)
+      console.log("bite from BiteDetail:", bite)
       this.setState({
+        biteId: bite._id,
         firstName: bite.localId.firstName,
         lastName: bite.localId.lastName,
         restaurant: bite.restaurant,
@@ -66,6 +69,19 @@ export class BiteDetail extends Component {
   hideModal = () => {
     this.refs.modal.hide();
   };
+
+  handleConfirmBite = event => {
+    event.preventDefault()
+    console.log("bite confirmed")
+
+    const travelerId = localStorage.getItem("userId");
+    console.log("travelerId:", travelerId);
+    console.log("biteId:", this.state.biteId)
+    console.log("biteDate:", this.state.selectedDate)
+
+    API.bookBite(travelerId, biteId, biteDate)
+    this.hideModal()
+  }
 
   handleChangeSelectedDate = (event, date) => {
     this.setState({ selectedDate: date });
@@ -85,9 +101,11 @@ export class BiteDetail extends Component {
               Want to grab a Bite with {this.state.localId} at{" "}
               {this.state.restaurant} on Nov 30 at 3pm?
             </h4>
-            <Button primary onClick={this.hideModal}>
-              Sure!
-            </Button>
+            {/* <Link to=""> */}
+              <Button primary onClick={this.handleConfirmBite}>
+                Sure!
+              </Button>
+            {/* </Link> */}
 
             <Button onClick={this.hideModal}>No, thanks</Button>
           </Container>
