@@ -8,8 +8,9 @@ const CardContainer = styled.div`
 `;
 
 // ======= Thumbnail Container START ========
-const ThumbnailContainer = styled.div`
+const ThumbnailContainer = styled.a`
   position: relative;
+  display: block;
 `;
 
 const CardTitle = styled.h3`
@@ -32,10 +33,10 @@ const CardBody = styled.div`
 `;
 
 // Card takes in props: title, local, startDate, endDate, location
-const Card = ({ title, local, startDate, endDate, location }) => {
+const Card = ({ title, local, startDate, endDate, location, biteId }) => {
   return (
     <CardContainer>
-      <ThumbnailContainer>
+      <ThumbnailContainer href={`/bite/${biteId}`}>
         <CardThumbnail src="http://via.placeholder.com/300x200" />
         <CardTitle>{title}</CardTitle>
       </ThumbnailContainer>
