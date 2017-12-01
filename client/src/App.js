@@ -26,12 +26,12 @@ const ViewContainer = styled.div`
 
 const auth = new Auth();
 let userInfo;
-console.log(auth);
 
 class App extends React.Component {
   state = {
     searchQuery: "",
-    searchResults: []
+    searchResults: [],
+    shadow: false
   };
 
   handleInputChange = event => {
@@ -56,6 +56,13 @@ class App extends React.Component {
     });
   };
 
+  handleAuthentication = (nextState, replace) => {
+    console.log("app handleAuthentication");
+    if (/access_token|id_token|error/.test(nextState.location.hash)) {
+      auth.handleAuthentication();
+    }
+  };
+
   render() {
     return (
       <Router history={history}>
@@ -65,6 +72,7 @@ class App extends React.Component {
             searchQuery={this.state.searchQuery}
             handleSearchSubmit={this.handleSearchSubmit}
             history={history}
+            shadow={this.state.shadow}
           />
           <ViewContainer>
             <Route
@@ -82,26 +90,23 @@ class App extends React.Component {
             <Route
               exact
               path="/home"
-              render={props => (
-                <Landing
-                  {...props}
-                  handleInputChange={this.handleInputChange}
-                  searchQuery={this.state.searchQuery}
-                  handleSearchSubmit={this.handleSearchSubmit}
-                />
-              )}
+              render={props => {
+                this.handleAuthentication(props);
+                console.log("auth userId", localStorage.getItem("userId"));
+                return (
+                  <Landing
+                    {...props}
+                    handleInputChange={this.handleInputChange}
+                    searchQuery={this.state.searchQuery}
+                    handleSearchSubmit={this.handleSearchSubmit}
+                  />
+                );
+              }}
             />
             <Route
               exact
               path="/login"
-              render={props => (
-                <LogIn
-                  {...props}
-                  auth={Promise.resolve(
-                    auth.login().then(result => console.log(result))
-                  )}
-                />
-              )}
+              render={props => <LogIn {...props} auth={auth.login()} />}
             />
             <Route exact path="/browse" component={Browse} />
             <Route

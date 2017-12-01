@@ -134,6 +134,7 @@ export class BiteDetail extends Component {
                     disableYearSelection={false}
                   />
                 </MuiThemeProvider>
+
                 <Divider />
                 <i
                   className="fa fa-map-marker"
@@ -150,6 +151,13 @@ export class BiteDetail extends Component {
                 {/* <h1>Ippudo Ramen</h1> */}
               </Col>
               <Col xs={12} md={4}>
+                <i
+                  className="fa fa-map-marker"
+                  aria-hidden="true"
+                  style={{ marginRight: "0.5em" }}
+                />
+                {this.props.city}
+                <Divider />
                 <h4>(MAP HERE)</h4>
                 <img
                   alt="placeholder"
