@@ -99,18 +99,10 @@ export class BiteDetail extends Component {
             <h4>
               Want to grab a Bite with {this.state.firstName} {this.state.lastName} at {this.state.restaurant} on Nov 30 at 3pm?
             </h4>
-<<<<<<< HEAD
               
               <Button primary onClick={this.handleConfirmBite}>
                 Sure!
               </Button>
-=======
-            {/* <Link to=""> */}
-            <Button primary onClick={this.handleConfirmBite}>
-              Sure!
-            </Button>
-            {/* </Link> */}
->>>>>>> 65cf48be8fc883392e1135c26f93b2c62767c2d6
 
             <Button onClick={this.hideModal}>No, thanks</Button>
           </Container>

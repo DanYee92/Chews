@@ -1,11 +1,12 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
-import styled from "styled-components";
 import Auth from "./Auth/Auth.js";
-import Navbar from "./components/NavBar";
+// import Navbar from "./components/NavBar";
 import API from "./util/API";
-// import ViewContainer from "./components/ViewContainer";
+import ViewContainer from "./components/ViewContainer";
 import createHistory from "history/createBrowserHistory";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+
 import {
   BiteDetail,
   Browse,
@@ -16,17 +17,11 @@ import {
   SearchResults,
   MyBites
 } from "./views";
+import AppBar from "./components/AppBar"
 
 const auth = new Auth();
 let userInfo;
 const history = createHistory();
-
-const ViewContainer = styled.div`
-  margin-top: 4.75em;
-  @media (max-width: 768px) {
-    margin-top: 8.7vh;
-  }
-`;
 
 class App extends React.Component {
   state = {
@@ -79,13 +74,16 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <div>
-          <Navbar
+          <MuiThemeProvider>
+            <AppBar/>
+          </MuiThemeProvider>
+          {/* <Navbar
             handleInputChange={this.handleInputChange}
             searchQuery={this.state.searchQuery}
             handleSearchSubmit={this.handleSearchSubmit}
             history={history}
             shadow={this.state.shadow}
-          />
+          /> */}
           <ViewContainer>
             <Route
               exact
