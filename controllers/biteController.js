@@ -43,7 +43,10 @@ module.exports = {
 		//Need to add within a specified date range
 		.find(query)
 		.populate("localId")
-		.then(foundBites => res.json(foundBites))
+		.then(foundBites => {
+			console.log(foundBites)
+			res.json(foundBites)
+		})
 		.catch(err => console.error(err));
 	},
 	

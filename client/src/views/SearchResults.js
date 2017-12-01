@@ -1,4 +1,5 @@
 import React from "react";
+import API from "../util/API";
 import { Grid, Row, Col } from "react-bootstrap";
 
 // Card takes in props: title, local, startDate, endDate, location
@@ -9,13 +10,23 @@ export class SearchResults extends React.Component {
     searchResults: []
   };
 
+  componentDidMount(){
+    API.searchForBites(this.props.match.params.searchQuery).then(res => {
+      console.log(res);
+      Promise.resolve(this.setState({ searchResults: res.data })).then(() => {
+        console.log("done searching");
+        console.log("this.state.searchResults", this.state.searchResults);
+      });
+    });
+  }
+
   render() {
     return (
       <Grid>
         <Row className="show-grid">
           {/* dynamically generate here */}
-          {this.props.searchResults
-            ? this.props.searchResults.map((bite, i) => {
+          {this.state.searchResults
+            ? this.state.searchResults.map((bite, i) => {
                 return (
                   <Col key={i} xs={12} sm={6} md={4} lg={3}>
                     <Card
