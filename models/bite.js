@@ -4,13 +4,13 @@ const Schema = mongoose.Schema;
 
 const BiteSchema = new Schema({
 	localId: {
-		type: Schema.Types.ObjectId,
+		type: Schema.Types.String,
 		ref: "User",
 		required: true
 	},
 
 	travelerId: {
-		type: Schema.Types.ObjectId,
+		type: Schema.Types.String,
 		ref: "User"
 	},
 
@@ -24,16 +24,12 @@ const BiteSchema = new Schema({
 		required: true
 	},
 
-	//add validation to reformat front end dates into the mongoDB date format
 	startDateRange: {
-		// type: String // THIS NEEDS TO BE CHANGED TO DATE
 		type: Date,
 		required: true
 	},
 
-	//add validation to reformat front end dates into the mongoDB date format
 	endDateRange: {
-		// type: String // THIS NEEDS TO BE CHANGED TO DATE
 		type: Date,
 		required: true
 	},
