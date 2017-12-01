@@ -13,7 +13,8 @@ import {
   CreateUser,
   Landing,
   LogIn,
-  SearchResults
+  SearchResults,
+  MyBites
 } from "./views";
 
 const auth = new Auth();
@@ -134,6 +135,7 @@ class App extends React.Component {
 
             <Route exact path="/browse" component={Browse} />
             <Route exact path="/create/bite" component={CreateBite} />
+            <Route exact path="/my-bites" component={MyBites} />
             <Route exact path="/create/user" component={CreateUser} />
             <Route exact path="/bite/:biteId" component={BiteDetail} />
           </ViewContainer>
