@@ -155,6 +155,9 @@ class NavBar extends React.Component {
             <MyLi onClick={auth.login}>
               <div>Log In</div>
             </MyLi>
+            <MyLi onClick={auth.logout}>
+              <div>Log Out</div>
+            </MyLi>
           </MyLinkContainer>
         </MyNavCollapse>
       </MyNav>

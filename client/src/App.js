@@ -46,7 +46,23 @@ class App extends React.Component {
     if (this.state.searchQuery !== "") {
       console.log("searching for", this.state.searchQuery);
       console.log(`redirecting to /search/${this.state.searchQuery}`);
-      history.push(`/search/${this.state.searchQuery}`);
+
+      API.searchForBites(this.state.searchQuery).then(
+        res => {
+          console.log(res);
+          Promise.resolve(
+            this.setState({ searchResults: res.data })
+          ).then(() => {
+            console.log("done searching");
+            console.log(
+              "this.state.searchResults",
+              this.state.searchResults
+            );
+          });
+        }
+      );
+
+      history.push(`/search/${this.state.searchQuery}`);  
     } else {
       console.log("No search query provided.");
     }
@@ -60,78 +76,29 @@ class App extends React.Component {
   };
 
   render() {
-    return (
-      <Router history={history}>
+    return <Router history={history}>
         <div>
-          <Navbar
-            handleInputChange={this.handleInputChange}
-            searchQuery={this.state.searchQuery}
-            handleSearchSubmit={this.handleSearchSubmit}
-            history={history}
-            shadow={this.state.shadow}
-          />
+          <Navbar handleInputChange={this.handleInputChange} searchQuery={this.state.searchQuery} handleSearchSubmit={this.handleSearchSubmit} history={history} shadow={this.state.shadow} />
           <ViewContainer>
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <Landing
-                  {...props}
-                  handleInputChange={this.handleInputChange}
-                  searchQuery={this.state.searchQuery}
-                  handleSearchSubmit={this.handleSearchSubmit}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/home"
-              render={props => {
+            <Route exact path="/" render={props => <Landing {...props} handleInputChange={this.handleInputChange} searchQuery={this.state.searchQuery} handleSearchSubmit={this.handleSearchSubmit} />} />
+            <Route exact path="/home" render={props => {
                 this.handleAuthentication(props);
                 console.log("auth userId", localStorage.getItem("userId"));
-                return (
-                  <Landing
-                    {...props}
-                    handleInputChange={this.handleInputChange}
-                    searchQuery={this.state.searchQuery}
-                    handleSearchSubmit={this.handleSearchSubmit}
-                  />
-                );
-              }}
-            />
-            <Route
-              exact
-              path="/login"
-              render={props => <LogIn {...props} auth={auth.login()} />}
-            />
+                return <Landing {...props} handleInputChange={this.handleInputChange} searchQuery={this.state.searchQuery} handleSearchSubmit={this.handleSearchSubmit} />;
+              }} />
             <Route exact path="/browse" component={Browse} />
-            <Route
-              exact
-              path="/search"
-              render={props => (
-                <SearchResults
-                  {...props}
-                  searchResults={this.state.searchResults}
-                />
-              )}
-            />
+            {/* <Route path="/search/:searchQuery" component={SearchResults} /> */}
+            <Route path="/search/:searchQuery" render={props => (
+              <SearchResults {...props} searchResults={this.state.searchResults} />
+            )} />
+
             <Route exact path="/browse" component={Browse} />
-            <Route
-              path="/search/:searchQuery"
-              render={props => (
-                <SearchResults
-                  {...props}
-                  searchResults={this.state.searchResults}
-                />
-              )}
-            />
             <Route exact path="/create/bite" component={CreateBite} />
             <Route exact path="/create/user" component={CreateUser} />
             <Route exact path="/bite/:biteId" component={BiteDetail} />
           </ViewContainer>
         </div>
-      </Router>
-    );
+      </Router>;
   }
 }
 
