@@ -92,7 +92,6 @@ const MyNavCollapse = styled(Navbar.Collapse)`
     padding-left: 0.75em;
   }
 `;
-// border: 1px solid lightgray;
 
 class NavBar extends React.Component {
   state = {
@@ -165,19 +164,3 @@ class NavBar extends React.Component {
 }
 
 export default NavBar;
-
-// <Nav pullRight>
-//   <li></li>
-//     <Link to="/signup">Sign Up</Link>
-//   </li>
-//   <li>
-//     <Link to="/login">Log In</Link>
-//   </li>
-// </Nav>
-
-// <NavItem eventKey={1}>
-//   <Link to="/signup">Sign Up</Link>
-// </NavItem>
-// <NavItem eventKey={2}>
-//   <Link to="/login">Log In</Link>
-// </NavItem>

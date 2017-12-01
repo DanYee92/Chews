@@ -6,7 +6,7 @@ import Button from "../components/Button";
 import MySearchBox from "../components/Search/SearchInput";
 
 export const Landing = props => {
-  return <Container column margin="30vh 20vw">
+  return <Container column margin="25vh 20vw">
       <Logo large />
       <form onSubmit={props.handleSearchSubmit}>
         <FormGroup>
