@@ -24,8 +24,6 @@ const ViewContainer = styled.div`
   }
 `;
 
-const auth = new Auth();
-let userInfo;
 
 class App extends React.Component {
   state = {
@@ -56,6 +54,8 @@ class App extends React.Component {
     });
   };
 
+  const auth = new Auth();
+  
   handleAuthentication = (nextState, replace) => {
     console.log("app handleAuthentication");
     if (/access_token|id_token|error/.test(nextState.location.hash)) {
@@ -92,7 +92,6 @@ class App extends React.Component {
               path="/home"
               render={props => {
                 this.handleAuthentication(props);
-                console.log("auth userId", localStorage.getItem("userId"));
                 return (
                   <Landing
                     {...props}
@@ -103,11 +102,11 @@ class App extends React.Component {
                 );
               }}
             />
-            <Route
-              exact
-              path="/login"
-              render={props => <LogIn {...props} auth={auth.login()} />}
-            />
+            // <Route
+            //   exact
+            //   path="/login"
+            //   render={props => <LogIn {...props} auth={auth.login()} />}
+            // />
             <Route exact path="/browse" component={Browse} />
             <Route
               exact

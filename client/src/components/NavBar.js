@@ -4,7 +4,10 @@ import { Navbar } from "react-bootstrap";
 import { LinkedLogo } from "./Logo";
 import styled from "styled-components";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
-// import Auth from "../Auth/Auth.js"
+import Auth from "../Auth/Auth.js";
+
+const auth = new Auth();
+console.log(auth.signUp);
 
 const MyLinkContainer = styled.ul`
   list-style: none;
@@ -28,7 +31,7 @@ const MyLinkContainer = styled.ul`
   }
 `;
 
-const MyLink = styled(Link)`
+const MyLi = styled.li`
   color: gray !important;
   text-decoration: none;
   height: 100%;
@@ -55,7 +58,6 @@ const MyNav = styled(Navbar)`
   background: white;
   border-bottom: 0.05em solid lightgray;
   min-height: 4.5em;
-  
 `;
 
 const MyBrand = styled(Navbar.Brand)`
@@ -142,16 +144,12 @@ class NavBar extends React.Component {
 
         <MyNavCollapse>
           <MyLinkContainer>
-            <li>
-              <MyLink to="/signup">
-                <div>Sign Up</div>
-              </MyLink>
-            </li>
-            <li>
-              <MyLink to="/login">
-                <div>Log In</div>
-              </MyLink>
-            </li>
+            <MyLi onClick={auth.signUp}>
+              <div>Sign Up</div>
+            </MyLi>
+            <MyLi onClick={auth.login}>
+              <div>Log In</div>
+            </MyLi>
           </MyLinkContainer>
         </MyNavCollapse>
       </MyNav>
