@@ -6,7 +6,8 @@ const MySearchBox = styled(FormControl)`
   border-radius: 0;
   border: 0.12em solid tomato;
   margin: ${props => (props.landing ? "1em auto" : 0)};
-  padding: 0.5em;
+  padding: 1em;
+  height: ${props => (props.landing ? "3.5em" : "2.5em")};
   &:focus {
     border-color: tomato;
     box-shadow: none;
