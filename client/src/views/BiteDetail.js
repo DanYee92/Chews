@@ -79,7 +79,7 @@ export class BiteDetail extends Component {
     console.log("biteId:", this.state.biteId)
     console.log("biteDate:", this.state.selectedDate)
 
-    API.bookBite(travelerId, biteId, biteDate)
+    // API.bookBite(travelerId, biteId, biteDate)
     this.hideModal()
   }
 
