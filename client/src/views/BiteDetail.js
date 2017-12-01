@@ -40,7 +40,9 @@ export class BiteDetail extends Component {
     lastName: "",
     restaurant: "",
     city: "",
-    localId: ""
+    localId: "",
+    startDateRange: "",
+    endDateRange: ""
   };
 
   componentDidMount() {
