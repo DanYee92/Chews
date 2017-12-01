@@ -39,7 +39,7 @@ export class CreateUser extends Component {
 			<Grid>
 				<Row className="show-grid">
 					<Col xs={12} md={4}>
-						<Container margin={"0.5em"} column>
+						<Container margin="1em auto" column>
 							<ProfilePicture
 								src={"http://via.placeholder.com/350x350"}
 							/>
@@ -47,7 +47,7 @@ export class CreateUser extends Component {
 					</Col>
 					<Col xs={12} md={8}>
 						<form onSubmit={this.handleFormSubmit}>
-							<FormGroup controlId="createListingForm">
+							<FormGroup controlId="createListingForm" align="left" width="80%">
 								<ControlLabel>What is your name?</ControlLabel>
 								<FormInput
 									type="text"
@@ -72,13 +72,13 @@ export class CreateUser extends Component {
 									Write a little about yourself!
 								</ControlLabel>
 								<FormTextArea
-									rows="6"
+									rows="5"
 									type="text"
 									name="summary"
 									placeholder="Say something"
 									onChange={this.handleInputChange}
 								/>
-								<Button primary> Create User </Button>
+								<Button primary style={{margin: "5px auto"}}> Save Changes </Button>
 							</FormGroup>
 						</form>
 					</Col>

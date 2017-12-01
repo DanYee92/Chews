@@ -6,24 +6,15 @@ import Button from "../components/Button";
 import MySearchBox from "../components/Search/SearchInput";
 
 export const Landing = props => {
-  return (
-    <Container column margin="35vh">
+  return <Container column margin="30vh 20vw">
       <Logo large />
       <form onSubmit={props.handleSearchSubmit}>
         <FormGroup>
-          <MySearchBox
-            landing="true"
-            name="searchQuery"
-            type="text"
-            placeholder="Try 'Chicago'"
-            onChange={props.handleInputChange}
-            value={props.searchQuery}
-          />
+          <MySearchBox landing="true" name="searchQuery" type="text" placeholder="Try 'Chicago'" onChange={props.handleInputChange} value={props.searchQuery} />
           <Button type="submit" primary>
             Search
           </Button>
         </FormGroup>
       </form>
-    </Container>
-  );
+    </Container>;
 };
