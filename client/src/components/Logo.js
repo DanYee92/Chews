@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 // `;
 export const Logo = styled.img`
   content: url("./assets/logo_v0.png");
-  width: ${props => (props.large ? "100%" : "5em")};
+  width: ${props => (props.large ? "70%" : "6em")};
   height: auto;
   margin: 0 auto;
 `
