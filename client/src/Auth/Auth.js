@@ -40,11 +40,14 @@ export default class Auth {
   handleAuthentication() {
     return this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
+        // this.setSession(authResult);
         history.replace("/home");
+        console.log("2", authResult.idTokenPayload.sub);
+        return authResult.idTokenPayload.sub;
       } else if (err) {
         history.replace("/home");
         console.log(err);
+        return "tom";
       }
     });
   }
@@ -55,12 +58,10 @@ export default class Auth {
       authResult.expiresIn * 1000 + new Date().getTime()
     );
 
-    const userId = authResult.idTokenPayload.sub;
-
     localStorage.setItem("expires_at", expiresAt);
-    localStorage.setItem("userId", userId);
+    // localStorage.setItem("userId", userId);
+
     // navigate to the home route
-    console.log(userId);
     history.replace("/home");
   }
 

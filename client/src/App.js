@@ -18,6 +18,7 @@ import {
 } from "./views";
 
 const auth = new Auth();
+let userInfo;
 const history = createHistory();
 
 const ViewContainer = styled.div`
@@ -30,7 +31,9 @@ const ViewContainer = styled.div`
 class App extends React.Component {
   state = {
     searchQuery: "",
-    shadow: false
+    shadow: false,
+    loggedIn: false,
+    userId: ""
   };
 
   handleInputChange = event => {
@@ -48,48 +51,87 @@ class App extends React.Component {
       console.log("searching for", this.state.searchQuery);
       console.log(`redirecting to /search/${this.state.searchQuery}`);
 
-      API.searchForBites(this.state.searchQuery).then(
-        res => {
-          console.log(res);
-          Promise.resolve(
-            this.setState({ searchResults: res.data })
-          ).then(() => {
-            console.log("done searching");
-            console.log(
-              "this.state.searchResults",
-              this.state.searchResults
-            );
-          });
-        }
-      );
+      API.searchForBites(this.state.searchQuery).then(res => {
+        console.log(res);
+        Promise.resolve(this.setState({ searchResults: res.data })).then(() => {
+          console.log("done searching");
+          console.log("this.state.searchResults", this.state.searchResults);
+        });
+      });
 
-      history.push(`/search/${this.state.searchQuery}`);  
+      history.push(`/search/${this.state.searchQuery}`);
     } else {
       console.log("No search query provided.");
     }
   };
 
   handleAuthentication = (nextState, replace) => {
-    console.log("app handleAuthentication");
+    console.log("1) app handleAuthentication");
     if (/access_token|id_token|error/.test(nextState.location.hash)) {
-      auth.handleAuthentication();
+      // Promise.resolve(auth.handleAuthentication()).then(result =>
+      Promise.resolve(auth.handleAuthentication()).then(result =>
+        console.log("3", result)
+      );
     }
   };
 
   render() {
-    return <Router history={history}>
+    return (
+      <Router history={history}>
         <div>
-          <Navbar handleInputChange={this.handleInputChange} searchQuery={this.state.searchQuery} handleSearchSubmit={this.handleSearchSubmit} history={history} shadow={this.state.shadow} />
+          <Navbar
+            handleInputChange={this.handleInputChange}
+            searchQuery={this.state.searchQuery}
+            handleSearchSubmit={this.handleSearchSubmit}
+            history={history}
+            shadow={this.state.shadow}
+          />
           <ViewContainer>
-            <Route exact path="/" render={props => <Landing {...props} handleInputChange={this.handleInputChange} searchQuery={this.state.searchQuery} handleSearchSubmit={this.handleSearchSubmit} />} />
-            <Route exact path="/home" render={props => {
+            <Route
+              exact
+              path="/"
+              render={props => {
+                console.log("/ props", props);
+                return (
+                  <Landing
+                    {...props}
+                    handleInputChange={this.handleInputChange}
+                    searchQuery={this.state.searchQuery}
+                    handleSearchSubmit={this.handleSearchSubmit}
+                  />
+                );
+              }}
+            />
+            <Route
+              exact
+              path="/home"
+              render={props => {
+                console.log("/home props", props);
                 this.handleAuthentication(props);
-                console.log("auth userId", localStorage.getItem("userId"));
-                return <Landing {...props} handleInputChange={this.handleInputChange} searchQuery={this.state.searchQuery} handleSearchSubmit={this.handleSearchSubmit} />;
-              }} />
+                return (
+                  <Landing
+                    {...props}
+                    handleInputChange={this.handleInputChange}
+                    searchQuery={this.state.searchQuery}
+                    handleSearchSubmit={this.handleSearchSubmit}
+                  />
+                );
+              }}
+            />
             <Route exact path="/browse" component={Browse} />
             {/* <Route path="/search/:searchQuery" component={SearchResults} /> */}
-            <Route path="/search/:searchQuery" render={props => <SearchResults {...props} searchResults={this.state.searchResults} />} />
+            <Route
+              path="/search/:searchQuery"
+              render={props => {
+                console.log("/search props", props);
+                return (
+                  <SearchResults
+                    {...props}
+                    searchResults={this.state.searchResults}
+                  />
+                );
+              }}
+            />
 
             <Route exact path="/browse" component={Browse} />
             <Route exact path="/create/bite" component={CreateBite} />
@@ -98,7 +140,8 @@ class App extends React.Component {
             <Route exact path="/bite/:biteId" component={BiteDetail} />
           </ViewContainer>
         </div>
-      </Router>;
+      </Router>
+    );
   }
 }
 
