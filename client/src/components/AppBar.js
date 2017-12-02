@@ -8,7 +8,7 @@ import NavigationMenu from "material-ui/svg-icons/navigation/menu";
 import { red500 } from "material-ui/styles/colors";
 
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
-import {LinkedLogo} from "./Logo"
+import { LinkedLogo } from "./Logo"
 import Auth from "../Auth/Auth.js";
 
 const auth = new Auth();
@@ -18,10 +18,12 @@ const Button = styled(FlatButton)`
 	& > span {
 		text-transform: none !important
 	}
+	&:hover {
+		background: papayawhip !important
+	}
 ` 
 
 const LogoIcon = styled.img`
-  content: url("./assets/ChewsLogoCookie.png");
   width: 50%;
   margin: 10% 25%;
 `;
@@ -109,7 +111,7 @@ class MyAppBar extends React.Component {
         <Drawer style={styles.drawer} containerStyle={styles.container} docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState(
               { open }
             )}>
-          <LogoIcon />
+          <LogoIcon src={require("../images/ChewsLogoCookie.png")}/>
           <MyMenuItem onClick={() => {
               this.handleClose();
               auth.signUp();
