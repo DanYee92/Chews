@@ -5,6 +5,7 @@ const SearchBoxContainer = styled.div`
   position: relative;
   height: ${props => (props.landing ? "3.5em" : "2.5em")};
   width: ${props => (props.landing ? "100%" : "14em")};
+  margin: ${props => (props.landing ? "3em auto" : 0)};
 `;
 
 const FixedSearchIcon = styled.i.attrs({
@@ -23,7 +24,6 @@ const Input = styled.input`
   border-radius: 0;
   border: 0.12em solid tomato;
   color: gray;
-  margin: ${props => (props.landing ? "1em auto" : 0)};
   margin-top: -0.5em;
   margin-right: 1em;
   padding: 0.5em;
