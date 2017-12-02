@@ -88,15 +88,8 @@ class App extends React.Component {
       <Router history={history}>
         <div>
           <MuiThemeProvider>
-            <AppBar />
+            <AppBar userId={this.state.userId}/>
           </MuiThemeProvider>
-          {/* <Navbar
-            handleInputChange={this.handleInputChange}
-            searchQuery={this.state.searchQuery}
-            handleSearchSubmit={this.handleSearchSubmit}
-            history={history}
-            shadow={this.state.shadow}
-          /> */}
           <ViewContainer>
             <Route
               exact
