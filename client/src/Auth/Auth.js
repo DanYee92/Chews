@@ -42,12 +42,16 @@ let optionsSignUp = {
 
 export default class Auth {
 
- lock = new Auth0Lock('Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP', 'app81460790.auth0.com', options)  
+ lock = new Auth0Lock('Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP', 'app81460790.auth0.com', options) 
+
+
  
  lockSignUp = new Auth0Lock('Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP', 'app81460790.auth0.com', optionsSignUp)
  
   login(){
+    
     return this.lock.show();
+    
   }
 
   signUp() {
@@ -63,19 +67,25 @@ export default class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this);
   }
 
+
+
+  
   handleAuthentication() {
-    return this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        // this.setSession(authResult);
-        history.push("/home");
-        console.log("2", authResult.idTokenPayload.sub);
-        return authResult.idTokenPayload.sub;
-      } else if (err) {
-        history.push("/home");
-        console.log(err);
-        return "tom";
-      }
-    });
+   // Listening for the authenticated event
+this.lock.on("hash_parsed", function(authResult) {
+  // Use the token in authResult to getUserInfo() and save it to localStorage
+  this.lock.getUserInfo(authResult.accessToken, function(error, profile) {
+    if (error) {
+      // Handle error
+      return;
+    }
+
+    document.getElementById('nick').textContent = profile.nickname;
+
+    localStorage.setItem('accessToken', authResult.accessToken);
+    localStorage.setItem('profile', JSON.stringify(profile));
+  });
+});
   }
 
   setSession(authResult) {
@@ -105,4 +115,6 @@ export default class Auth {
     let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
     return new Date().getTime() < expiresAt;
   }
+  
 }
+

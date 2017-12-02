@@ -7,12 +7,6 @@ import Drawer from "material-ui/Drawer";
 import {LinkedLogo} from "./Logo"
 import styled from "styled-components";
 import Auth from "../Auth/Auth.js";
-<<<<<<< HEAD
-
-const auth = new Auth();
-console.log(auth.signUp);
-=======
->>>>>>> 4dabfbde469f7f05171ade915f3240872c8dfeb0
 
 
 const auth = new Auth();
