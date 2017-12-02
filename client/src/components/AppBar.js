@@ -39,7 +39,6 @@ const styles = {
 	}
 };
 
-
 class MyAppBar extends React.Component {
   state = {
     open: false,
