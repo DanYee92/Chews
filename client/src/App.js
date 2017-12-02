@@ -17,11 +17,13 @@ import {
   SearchResults,
   MyBites
 } from "./views";
-import AppBar from "./components/AppBar"
+import AppBar from "./components/AppBar";
 
-const auth = new Auth();
 let userInfo;
 const history = createHistory();
+
+const auth = new Auth();
+const groovy = auth.lock;
 
 class App extends React.Component {
   state = {
@@ -29,6 +31,29 @@ class App extends React.Component {
     shadow: false,
     loggedIn: false,
     userId: ""
+  };
+
+  // auth.testListenerFxn();
+  groovyListener = () => {
+    groovy.on("hash_parsed", authResult => {
+      if (authResult !== null) {
+        auth.lock.getUserInfo(authResult.accessToken, (error, profile) => {
+          if (error) {
+            // Handle error
+            console.log("ERROR:", error);
+            return;
+          }
+          console.log("authResult", authResult);
+          const tempUserId = profile.sub;
+          console.log("userId:", tempUserId);
+          this.setState({ userId: profile.sub });
+        });
+      }
+    });
+  };
+
+  componentDidMount = () => {
+    this.groovyListener();
   };
 
   handleInputChange = event => {
@@ -60,22 +85,12 @@ class App extends React.Component {
     }
   };
 
-  handleAuthentication = (nextState, replace) => {
-    console.log("1) app handleAuthentication");
-    if (/access_token|id_token|error/.test(nextState.location.hash)) {
-      // Promise.resolve(auth.handleAuthentication()).then(result =>
-      Promise.resolve(auth.handleAuthentication()).then(result =>
-        console.log("3", result)
-      );
-    }
-  };
-
   render() {
     return (
       <Router history={history}>
         <div>
           <MuiThemeProvider>
-            <AppBar/>
+            <AppBar />
           </MuiThemeProvider>
           {/* <Navbar
             handleInputChange={this.handleInputChange}
@@ -89,7 +104,6 @@ class App extends React.Component {
               exact
               path="/"
               render={props => {
-                console.log("/ props", props);
                 return (
                   <Landing
                     {...props}
@@ -104,15 +118,16 @@ class App extends React.Component {
               exact
               path="/home"
               render={props => {
-                console.log("/home props", props);
-                this.handleAuthentication(props);
                 return (
-                  <Landing
-                    {...props}
-                    handleInputChange={this.handleInputChange}
-                    searchQuery={this.state.searchQuery}
-                    handleSearchSubmit={this.handleSearchSubmit}
-                  />
+                  <div>
+                    <p> {this.state.userId} </p>
+                    <Landing
+                      {...props}
+                      handleInputChange={this.handleInputChange}
+                      searchQuery={this.state.searchQuery}
+                      handleSearchSubmit={this.handleSearchSubmit}
+                    />
+                  </div>
                 );
               }}
             />
