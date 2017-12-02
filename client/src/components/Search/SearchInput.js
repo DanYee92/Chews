@@ -25,8 +25,9 @@ const Input = styled.input`
   color: gray;
   margin: ${props => (props.landing ? "1em auto" : 0)};
   margin-top: -0.5em;
+  margin-right: 1em;
   padding: 0.5em;
-  width: 100%;
+  width: 90%;
   height: 100%;
   text-indent: ${props => (props.landing ? "3em " : "2em")};
   &:focus {
