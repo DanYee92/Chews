@@ -45,6 +45,7 @@ export class CreateBite extends Component {
 
 		if (localStorage.getItem("userId")) {
 			const localId = localStorage.userId;
+			// const localId = "auth0|5a2171e2083226773d5c2f4a";
 
 			const newBite = {
 				localId: localId,
@@ -54,10 +55,10 @@ export class CreateBite extends Component {
 				endDateRange: this.state.endDateRange
 			};
 
-			console.log("localId", localId, "newBite", newBite);
+			console.log("localId:", localId, "newBite:", newBite);
 
 			API.createNewBite(newBite)
-				.then(res => console.log("res", res))
+				.then(res => console.log("res", res, "new bite created"))
 				.catch(err => console.error(err));
 		} else {
 			console.log("No user logged in");

@@ -34,22 +34,10 @@ export default {
 	// city should be a string
 
 	bookBite: (travelerId, biteId, biteDate) => {
-		console.log("start API.bookBite()")
-		console.log("biteDate:", biteDate);
-		// console.log("biteDate.toString():", biteDate.toString());
-		// console.log("moment(biteDate).toISOString():", moment(biteDate).toISOString());
-
 		//convert biteDate to ISO
-		// biteDate = moment(biteDate).toISOString();
-
-		// console.log("biteDate post conversion:", biteDate)
-		// console.log("biteDate.toString() post conversion:", biteDate.toString());
-		// console.log("biteDate.toString().toISOString() post conversion:", moment(biteDate.toString()).toISOString());
-		
-		console.log("end API.bookBite()");
+		biteDate = moment(biteDate).toISOString();
 
 		const biteObject = {biteDate}
-		console.log(biteObject)
 
 		return axios.patch(
 			`/api/user/${travelerId}/bite/${biteId}/book`,

@@ -31,7 +31,7 @@ export class SearchResults extends React.Component {
                       startDate={bite.startDateRange}
                       endDate={bite.endDateRange}
                       location={bite.city}
-                      biteId={bite._id}
+                      biteLink={`/bite/detail/${bite._id}`}
                     />
                   </Col>
                 );
@@ -49,7 +49,7 @@ export class SearchResults extends React.Component {
                       startDate={bite.startDateRange}
                       endDate={bite.endDateRange}
                       location={bite.city}
-                      biteId={bite._id}
+                      biteLink={`/bite/detail/${bite._id}`}
                     />
                 </Col>)}
           )}
