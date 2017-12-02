@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Configure body parser for AJAX requests
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 require("./routes/api-routes")(app);
 
@@ -15,6 +15,9 @@ require("./routes/api-routes")(app);
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/build"));
 }
+
+// Use express.static to serve the public folder as a static directory
+app.use(express.static("public"));
 
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;

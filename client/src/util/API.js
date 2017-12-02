@@ -36,9 +36,12 @@ export default {
 	bookBite: (travelerId, biteId, biteDate) => {
 		//convert biteDate to ISO
 		biteDate = moment(biteDate).toISOString();
+
+		const biteObject = {biteDate}
+
 		return axios.patch(
 			`/api/user/${travelerId}/bite/${biteId}/book`,
-			biteDate
+			biteObject
 		);
 	},
 	// travelerId should be a string (searching)

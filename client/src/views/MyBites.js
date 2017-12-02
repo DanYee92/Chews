@@ -66,28 +66,50 @@ const noMarginRight = {
 export const MyBites = props => {
 	return (
 		<Grid>
-			<CardContainer>
-				<Row className="show-grid">
-					<Col style={noMarginRight} xs={4} md={3}>
-						<Image
-							src="http://via.placeholder.com/300x200"
-							responsive
-						/>
-					</Col>
-					<Col style={noPadding} xs={8} md={9}>
-						<CardBody>
-							<BiteInfo>
-								<p>Jim's Original with Andrew Huang</p>
-								<p>Chicago</p>
-							</BiteInfo>
-							<BiteDate>
-								<BiteMonth> NOV </BiteMonth>
-								<BiteDay> 14 </BiteDay>
-							</BiteDate>
-						</CardBody>
-					</Col>
-				</Row>
-			</CardContainer>
+			{props.results ? props.results.map((bite, i) => {
+					return (<CardContainer key={i}>
+						<Row className="show-grid">
+							<Col style={noMarginRight} xs={4} md={3}>
+								<Image src="http://via.placeholder.com/300x200" responsive />
+							</Col>
+							<Col style={noPadding} xs={8} md={9}>
+								<CardBody>
+									<BiteInfo>
+									<p>{bite.restaurant} with {bite.firstName} {bite.lastName}</p>
+									<p>{bite.city}</p>
+									</BiteInfo>
+									{/* insert bite date formatting here */}
+									<BiteDate>
+									<BiteMonth> NOV </BiteMonth>
+									<BiteDay> 14 </BiteDay>
+									</BiteDate>
+								</CardBody>
+							</Col>
+						</Row>
+					</CardContainer>)
+				}) : <CardContainer>
+					<Row className="show-grid">
+						<Col style={noMarginRight} xs={4} md={3}>
+							<Image
+								src="http://via.placeholder.com/300x200"
+								responsive
+							/>
+						</Col>
+						<Col style={noPadding} xs={8} md={9}>
+							<CardBody>
+								<BiteInfo>
+									<p>Jim's Original with Andrew Huang</p>
+									<p>Chicago</p>
+								</BiteInfo>
+								<BiteDate>
+									<BiteMonth> NOV </BiteMonth>
+									<BiteDay> 14 </BiteDay>
+								</BiteDate>
+							</CardBody>
+						</Col>
+					</Row>
+				</CardContainer>
+			}
 		</Grid>
 	);
 };

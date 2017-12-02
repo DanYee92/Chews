@@ -75,20 +75,29 @@ export class BiteDetail extends Component {
   };
 
   handleConfirmBite = event => {
+    console.log("start handleConfirmBite()")
     event.preventDefault()
-    console.log("bite confirmed")
 
     const travelerId = localStorage.getItem("userId");
-    const biteId = this.state.biteId
-    const biteDate = this.state.selectedDate
 
-    console.log("travelerId:", travelerId);
-    console.log("biteId:", biteId)
-    console.log("biteDate:", biteDate)
+    if(travelerId === this.state.localId._id) {
+      alert("You can't grab a bite with yourself!")
+    } else {
+      const biteId = this.state.biteId
+      const biteDate = this.state.selectedDate
 
+      console.log("travelerId:", travelerId);
+      console.log("biteId:", biteId)
+      console.log("biteDate:", biteDate)
 
-    API.bookBite(travelerId, biteId, biteDate)
-    this.hideModal()
+      API.bookBite(travelerId, biteId, biteDate)
+        .then(res => console.log("res from API.bookBite() in handleConfirmBite()", res))
+        .then(() => console.log("end handleConfirmBite()"))
+        .catch(err => console.error(err))
+
+      alert(`Bite booked with ${this.state.firstName} ${this.state.lastName} at ${this.state.restaurant} on ${this.state.selectedDate}!`)
+      this.hideModal()
+    }
   }
 
   handleChangeSelectedDate = (event, date) => {

@@ -1,13 +1,15 @@
 import React from "react";
+import styled from "styled-components";
 import AppBar from "material-ui/AppBar";
 import FlatButton from "material-ui/FlatButton";
 import MenuItem from 'material-ui/MenuItem';
-import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import Drawer from "material-ui/Drawer";
-import {LinkedLogo} from "./Logo"
-import styled from "styled-components";
-import Auth from "../Auth/Auth.js";
+import NavigationMenu from "material-ui/svg-icons/navigation/menu";
+import { red500 } from "material-ui/styles/colors";
 
+import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
+import {LinkedLogo} from "./Logo"
+import Auth from "../Auth/Auth.js";
 
 const auth = new Auth();
 
@@ -28,21 +30,29 @@ const styles = {
 		boxShadow: "0",
 
 	},
+	title: {
+		height: "100%",
+		width: "auto"
+	},
   iconRight: {
-      marginTop: "1em",
-      color: "white"
+		marginTop: "1.25em",
+		color: "white",
 	},
 	drawer: {
 		marginTop: "2em"
+	},
+	iconLeft: {
+		float: "left",
+		margin: "0.75em 1.5em 0.5em 0.5em",
 	}
 };
-
 
 class MyAppBar extends React.Component {
   state = {
     open: false,
     windowWidth: "0",
-    searchBarVisible: false
+    searchBarVisible: false,
+    hamburgerVisible: false
   };
 
   componentDidMount() {
@@ -55,28 +65,69 @@ class MyAppBar extends React.Component {
     window.removeEventListener("resize", this.updateWindowWidth);
   }
 
+  handleSearchIconClick = () =>
+    this.setState({ searchBarVisible: !this.state.searchBarVisible });
+
   handleToggle = () => this.setState({ open: !this.state.open });
 
   handleClose = () => this.setState({ open: false });
 
-  updateWindowWidth = () => this.setState({ windowWidth: window.innerWidth });
+  updateWindowWidth = () => {
+    this.setState({ hamburgerVisible: window.innerWidth < 768 ? true : false });
+    this.setState({ windowWidth: window.innerWidth });
+  };
 
   render() {
-    return <div>
-        <AppBar title={<LinkedLogo to="/" />} titleStyle={{ marginTop: "0.5em" }} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={false} onLeftIconButtonTouchTap={this.handleToggle} iconElementRight={<div>
-              {this.state.windowWidth > 767 ? <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} /> : <CollapsedNavbarSearch searchBarVisible={this.state.searchBarVisible} handleSearchIconClick={this.handleSearchIconClick} handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />}
-              <Button onClick={auth.signUp} label="Sign Up" />
-              <Button  onClick={auth.login} label="Log In" />
-              <Button label="Log Out" />
-            </div>} iconStyleRight={styles.iconRight} />
+    return (
+      <div>
+        <AppBar
+          title={<LinkedLogo to="/" style={{ marginTop: "0.75em" }} />}
+          titleStyle={styles.title}
+          style={styles.appbar}
+          onTitleTouchTap={handleTouchTap}
+          showMenuIconButton={this.state.hamburgerVisible}
+          onLeftIconButtonTouchTap={this.handleToggle}
+          iconElementLeft={
+            <NavigationMenu style={styles.iconLeft} hoverColor={red500} />
+          }
+          iconStyleLeft={styles.iconLeft}
+          iconElementRight={
+            this.state.windowWidth > 767 ? (
+              <div>
+                <ExpandedNavbarSearch
+                  handleInputChange={this.props.handleInputChange}
+                  searchQuery={this.props.searchQuery}
+                  handleSearchSubmit={this.props.handleSearchSubmit}
+                />
+                <Button onClick={auth.signUp}> Sign Up </Button>
+                <Button onClick={auth.login}> Log In </Button>
+                <Button onClick={auth.logout}> Log Out </Button>
+              </div>
+            ) : (
+              <CollapsedNavbarSearch
+                searchBarVisible={this.state.searchBarVisible}
+                handleSearchIconClick={this.handleSearchIconClick}
+                handleInputChange={this.props.handleInputChange}
+                searchQuery={this.props.searchQuery}
+                handleSearchSubmit={this.props.handleSearchSubmit}
+              />
+            )
+          }
+          iconStyleRight={styles.iconRight}
+        />
 
-        <Drawer style={styles.drawer} docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState(
-              { open }
-            )}>
+        <Drawer
+          style={styles.drawer}
+          docked={false}
+          width={200}
+          open={this.state.open}
+          onRequestChange={open => this.setState({ open })}
+        >
           <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
           <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
         </Drawer>
-      </div>;
+      </div>
+    );
   }
 }
 
@@ -84,15 +135,3 @@ class MyAppBar extends React.Component {
   
 
 export default MyAppBar;
-
-{/* <IconMenu
-        iconButtonElement={
-          <IconButton><MoreVertIcon color="red" /></IconButton>
-        }
-        targetOrigin={{horizontal: 'right', vertical: 'top'}}
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-      >
-        <MenuItem primaryText="Refresh" />
-        <MenuItem primaryText="Help" />
-        <MenuItem primaryText="Sign out" />
-      </IconMenu> */}
