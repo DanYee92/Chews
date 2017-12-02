@@ -1,7 +1,6 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
 import Auth from "./Auth/Auth.js";
-// import Navbar from "./components/NavBar";
 import API from "./util/API";
 import ViewContainer from "./components/ViewContainer";
 import createHistory from "history/createBrowserHistory";
@@ -17,7 +16,6 @@ import {
   SearchResults,
   MyBites
 } from "./views";
-import AppBar from "./components/AppBar";
 
 let userInfo;
 const history = createHistory();
