@@ -13,8 +13,8 @@ const FixedSearchIcon = styled.i.attrs({
   color: tomato;
   float: none;
   position: absolute;
-  top: 0.3em;
-  left: 1em;
+  top: 14%;
+  left: 7%;
   font-size: ${props => (props.landing ? "1.5em" : "1em")};
 `;
 
@@ -29,7 +29,7 @@ const Input = styled.input`
   padding: 0.5em;
   width: 90%;
   height: 100%;
-  text-indent: ${props => (props.landing ? "3em " : "2em")};
+  text-indent: ${props => (props.landing ? "3.5em " : "2em")};
   &:focus {
     border-color: tomato;
     box-shadow: none;
