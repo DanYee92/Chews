@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { SearchIcon } from "."
 
 const SearchBoxContainer = styled.div`
   position: relative;

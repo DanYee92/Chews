@@ -1,19 +1,15 @@
 import React from "react";
+import styled from "styled-components";
 import AppBar from "material-ui/AppBar";
 import FlatButton from "material-ui/FlatButton";
 import MenuItem from 'material-ui/MenuItem';
-import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import Drawer from "material-ui/Drawer";
+import NavigationMenu from "material-ui/svg-icons/navigation/menu";
+import { red500 } from "material-ui/styles/colors";
+
+import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import {LinkedLogo} from "./Logo"
-import styled from "styled-components";
 import Auth from "../Auth/Auth.js";
-<<<<<<< HEAD
-
-const auth = new Auth();
-console.log(auth.signUp);
-=======
->>>>>>> 4dabfbde469f7f05171ade915f3240872c8dfeb0
-
 
 const auth = new Auth();
 
@@ -34,13 +30,20 @@ const styles = {
 		boxShadow: "0",
 
 	},
+	title: {
+		height: "100%",
+		width: "auto"
+	},
   iconRight: {
 		marginTop: "1em",
 		color: "white",
-
 	},
 	drawer: {
 		marginTop: "2em"
+	},
+	iconLeft: {
+		float: "left",
+		margin: "0.75em 1.5em 0.5em 0.5em",
 	}
 };
 
@@ -73,7 +76,7 @@ class MyAppBar extends React.Component {
  
   render() {
     return <div>
-        <AppBar title={<LinkedLogo to="/" />} titleStyle={{ marginTop: "0.5em" }} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementRight={this.state.windowWidth > 767 ? <div>
+        <AppBar title={<LinkedLogo to="/" style={{marginTop: "0.5em"}}/>} titleStyle={styles.title} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementLeft={<NavigationMenu style={styles.iconLeft} hoverColor={red500} />} iconStyleLeft={styles.iconLeft} iconElementRight={this.state.windowWidth > 767 ? <div>
                 <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />
                 <Button onClick={auth.signUp}> Sign Up </Button>
                 <Button onClick={auth.login}> Log In </Button>

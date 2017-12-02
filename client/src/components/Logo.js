@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 //   font-size: ${props => (props.large ? "3em" : "1.5em")};
 // `;
 export const Logo = styled.img`
-  content: url("./assets/logo_v0.png");
+  content: url("./assets/logo_v1.png");
   width: ${props => (props.large ? "70%" : "6em")};
   height: auto;
   margin: 0 auto;
