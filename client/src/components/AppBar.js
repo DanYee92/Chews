@@ -8,9 +8,6 @@ import NavigationMenu from "material-ui/svg-icons/navigation/menu";
 import { red500 } from "material-ui/styles/colors";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import { LinkedLogo } from "./Logo"
-import Auth from "../Auth/Auth.js";
-
-const auth = new Auth();
 
 const Button = styled(FlatButton)`
 	color: gray !important;
@@ -102,9 +99,9 @@ class MyAppBar extends React.Component {
     return <div>
         <AppBar title={<LinkedLogo to="/" style={{ marginTop: "0.75em" }} />} titleStyle={styles.title} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementLeft={<NavigationMenu style={styles.iconLeft} hoverColor={red500} />} iconStyleLeft={styles.iconLeft} iconElementRight={this.state.windowWidth > 767 ? <div>
                 <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />
-                <Button onClick={auth.signUp}> Sign Up </Button>
-                <Button onClick={auth.login}> Log In </Button>
-                <Button onClick={auth.logout}> Log Out </Button>
+                <Button onClick={this.props.auth.signUp}> Sign Up </Button>
+                <Button onClick={this.props.auth.login}> Log In </Button>
+                <Button onClick={this.props.auth.logout}> Log Out </Button>
               </div> : <CollapsedNavbarSearch searchBarVisible={this.state.searchBarVisible} handleSearchIconClick={this.handleSearchIconClick} handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />} iconStyleRight={styles.iconRight} />
 
         <Drawer style={styles.drawer} containerStyle={styles.container} docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState(
@@ -113,19 +110,19 @@ class MyAppBar extends React.Component {
           <LogoIcon src={require("../images/ChewsLogoCookie.png")}/>
           <MyMenuItem onClick={() => {
               this.handleClose();
-              auth.signUp();
+              this.props.auth.signUp();
             }}>
             Sign Up
           </MyMenuItem>
           <MyMenuItem onClick={() => {
               this.handleClose();
-              auth.login();
+              this.props.auth.login();
             }}>
             Log In
           </MyMenuItem>
           <MyMenuItem onClick={() => {
               this.handleClose();
-              auth.logout();
+              this.props.auth.logout();
             }}>
             Log Out
           </MyMenuItem>

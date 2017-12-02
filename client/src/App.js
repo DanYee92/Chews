@@ -87,7 +87,7 @@ class App extends React.Component {
       <Router history={history}>
         <div>
           <MuiThemeProvider>
-            <AppBar userId={this.state.userId} />
+            <AppBar auth={auth} userId={this.state.userId} />
           </MuiThemeProvider>
           {/* <Navbar
             handleInputChange={this.handleInputChange}
@@ -144,9 +144,8 @@ class App extends React.Component {
               }}
             />
 
-            {/** Landing Page */}
             <Route exact path="/bite/create" render={props => <CreateBite {...props} userId={this.state.userId} />} />
-            <Route exact path="/bite/detail/:biteId" render={props => <BiteDetail {...props} userId={this.state.userId} />} />
+            <Route exact path="/bite/detail/:biteId" render={props => <BiteDetail {...props} auth={auth} userId={this.state.userId} />} />
             <Route exact path="/user/edit" render={props => <EditUser {...props} userId={this.state.userId} />} />
             <Route exact path="/my-bites" render={props => <MyBites {...props} userId={this.state.userId} />} />
 
