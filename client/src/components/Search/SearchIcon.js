@@ -4,7 +4,7 @@ import styled from "styled-components";
 const MySearchIcon = styled.i`
   color: tomato;
   float: right;
-  margin-top: 1em;
+  margin: 1em;
   &:hover {
     cursor: pointer;
   }
