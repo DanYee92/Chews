@@ -37,17 +37,19 @@ const ParallaxContent = styled.div`
 export class BiteDetail extends Component {
   state = {
     biteId: "",
-    selectedDate: "",
+    localId: "",
     firstName: "",
     lastName: "",
-    restaurant: "",
     city: "",
-    localId: "",
+    restaurant: "",
     startDateRange: "",
-    endDateRange: ""
+    endDateRange: "",
+    selectedDate: "",
+    selectedDateString: "",
+    selectedTime: "3 pm"
   };
 
-  componentDidMount() {
+  componentWillMount() {
     API.getBiteDetail(this.props.match.params.biteId).then(res =>{
       const bite = res.data[0]
       console.log("bite from BiteDetail:", bite)
@@ -57,7 +59,9 @@ export class BiteDetail extends Component {
         lastName: bite.localId.lastName,
         restaurant: bite.restaurant,
         city: bite.city,
-        localId: bite.localId
+        localId: bite.localId,
+        startDateRange: bite.startDateRange,
+        endDateRange: bite.endDateRange
       });
     });
   }
@@ -75,16 +79,20 @@ export class BiteDetail extends Component {
     console.log("bite confirmed")
 
     const travelerId = localStorage.getItem("userId");
-    console.log("travelerId:", travelerId);
-    console.log("biteId:", this.state.biteId)
-    console.log("biteDate:", this.state.selectedDate)
+    const biteId = this.state.biteId
+    const biteDate = this.state.selectedDate
 
-    // API.bookBite(travelerId, biteId, biteDate)
+    console.log("travelerId:", travelerId);
+    console.log("biteId:", biteId)
+    console.log("biteDate:", biteDate)
+
+
+    API.bookBite(travelerId, biteId, biteDate)
     this.hideModal()
   }
 
   handleChangeSelectedDate = (event, date) => {
-    this.setState({ selectedDate: date });
+    this.setState({ selectedDate: date, selectedDateString: date.toString() });
   };
 
   disableOutOfRange = date => {
@@ -97,7 +105,7 @@ export class BiteDetail extends Component {
           <CloseBtn onClick={this.hideModal} />
           <Container column>
             <h4>
-              Want to grab a Bite with {this.state.firstName} {this.state.lastName} at {this.state.restaurant} on Nov 30 at 3pm?
+              Want to grab a Bite with {this.state.firstName} {this.state.lastName} at {this.state.restaurant} on {this.state.selectedDateString} at {this.state.selectedTime}?
             </h4>
               
               <Button primary onClick={this.handleConfirmBite}>

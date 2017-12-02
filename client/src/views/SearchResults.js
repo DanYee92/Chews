@@ -8,7 +8,7 @@ import Card from "../components/Card";
 export class SearchResults extends React.Component {
   state = { searchResults: [], searchQuery: this.props.match.params.searchQuery};
 
-  componentDidMount() {
+  componentWillMount() {
     API.searchForBites(this.state.searchQuery).then(res =>
       this.setState({ searchResults: res.data })
     );
