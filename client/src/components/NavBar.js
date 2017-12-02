@@ -7,7 +7,7 @@ import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import Auth from "../Auth/Auth.js";
 
 const auth = new Auth();
-console.log(auth.signUp);
+console.log("This is in nav bar", auth.signUp);
 
 const MyLinkContainer = styled.ul`
   list-style: none;
@@ -83,12 +83,9 @@ const MyNavToggle = styled(Navbar.Toggle)`
 
 const MyNavCollapse = styled(Navbar.Collapse)`
   overflow: hidden;
-  &:after {
-    background: white;
-    border-bottom: 1px solid lightgrey;
-  }
+
   @media (max-width: 767px) {
-    margin-top: 4.3em;
+    margin-top: 3.5em;
     padding-left: 0.75em;
   }
 `;
@@ -151,10 +148,8 @@ class NavBar extends React.Component {
               <div>Sign Up</div>
             </MyLi>
             <MyLi onClick={auth.login}>
+            
               <div>Log In</div>
-            </MyLi>
-            <MyLi onClick={auth.logout}>
-              <div>Log Out</div>
             </MyLi>
           </MyLinkContainer>
         </MyNavCollapse>
@@ -164,3 +159,19 @@ class NavBar extends React.Component {
 }
 
 export default NavBar;
+
+// <Nav pullRight>
+//   <li></li>
+//     <Link to="/signup">Sign Up</Link>
+//   </li>
+//   <li>
+//     <Link to="/login">Log In</Link>
+//   </li>
+// </Nav>
+
+// <NavItem eventKey={1}>
+//   <Link to="/signup">Sign Up</Link>
+// </NavItem>
+// <NavItem eventKey={2}>
+//   <Link to="/login">Log In</Link>
+// </NavItem>
