@@ -17,7 +17,6 @@ import {
   SearchResults,
   MyBites
 } from "./views";
-import AppBar from "./components/AppBar";
 
 let userInfo;
 const history = createHistory();
