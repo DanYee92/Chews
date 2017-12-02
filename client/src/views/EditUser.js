@@ -7,7 +7,7 @@ import Container from "../components/Container";
 import ProfilePicture from "../components/ProfilePicture";
 import API from "../util/API.js";
 
-export class CreateUser extends Component {
+export class EditUser extends Component {
 	state = { firstName: "", lastName: "", hometown: "", summary: "" };
 
 	handleInputChange = event => {
