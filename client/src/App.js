@@ -6,7 +6,7 @@ import API from "./util/API";
 import ViewContainer from "./components/ViewContainer";
 import createHistory from "history/createBrowserHistory";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-
+import AppBar from "./components/AppBar"
 import {
   BiteDetail,
   Browse,
@@ -17,7 +17,6 @@ import {
   SearchResults,
   MyBites
 } from "./views";
-import AppBar from "./components/AppBar"
 
 const auth = new Auth();
 let userInfo;
@@ -89,7 +88,6 @@ class App extends React.Component {
               exact
               path="/"
               render={props => {
-                console.log("/ props", props);
                 return (
                   <Landing
                     {...props}
@@ -121,7 +119,6 @@ class App extends React.Component {
             <Route
               path="/search/:searchQuery"
               render={props => {
-                console.log("/search props", props);
                 return (
                   <SearchResults
                     {...props}
@@ -132,10 +129,10 @@ class App extends React.Component {
             />
 
             <Route exact path="/browse" component={Browse} />
-            <Route exact path="/create/bite" component={CreateBite} />
+            <Route exact path="/bite/create" component={CreateBite} />
+            <Route exact path="/bite/detail/:biteId" component={BiteDetail} />
+            <Route exact path="/user/create" component={CreateUser} />
             <Route exact path="/my-bites" component={MyBites} />
-            <Route exact path="/create/user" component={CreateUser} />
-            <Route exact path="/bite/:biteId" component={BiteDetail} />
           </ViewContainer>
         </div>
       </Router>

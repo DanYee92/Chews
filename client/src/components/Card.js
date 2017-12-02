@@ -33,9 +33,11 @@ const CardBody = styled.div`
 `;
 
 // Card takes in props: title, local, startDate, endDate, location
-const Card = ({ title, local, startDate, endDate, location, biteId }) => {
+const Card = ({ title, local, startDate, endDate, location, biteLink }) => {
+  console.log("biteLink:", biteLink);
+  console.log("typeof biteLink:", typeof biteLink)
   return <CardContainer>
-      <Link to={`/bite/${biteId}`}>
+      <Link to={`${biteLink}`}>
         <ThumbnailContainer>
           <CardThumbnail src="http://via.placeholder.com/300x200" />
           <CardTitle>{title}</CardTitle>
