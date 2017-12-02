@@ -6,7 +6,6 @@ import MenuItem from 'material-ui/MenuItem';
 import Drawer from "material-ui/Drawer";
 import NavigationMenu from "material-ui/svg-icons/navigation/menu";
 import { red500 } from "material-ui/styles/colors";
-
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import {LinkedLogo} from "./Logo"
 import Auth from "../Auth/Auth.js";

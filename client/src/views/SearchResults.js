@@ -1,6 +1,7 @@
 import React from "react";
 import API from "../util/API";
 import { Grid, Row, Col } from "react-bootstrap";
+import moment from "moment";
 
 // Card takes in props: title, local, startDate, endDate, location
 import Card from "../components/Card";
@@ -28,8 +29,8 @@ export class SearchResults extends React.Component {
                       local={`${bite.localId.firstName} ${
                         bite.localId.lastName
                       }`}
-                      startDate={bite.startDateRange}
-                      endDate={bite.endDateRange}
+                      startDate={moment(bite.startDateRange).format("ll")}
+                      endDate={moment(bite.endDateRange).format("ll")}
                       location={bite.city}
                       biteLink={`/bite/detail/${bite._id}`}
                     />
@@ -46,8 +47,8 @@ export class SearchResults extends React.Component {
                       local={`${bite.localId.firstName} ${
                         bite.localId.lastName
                       }`}
-                      startDate={bite.startDateRange}
-                      endDate={bite.endDateRange}
+                      startDate={moment(bite.startDateRange).format("ll")}
+                      endDate={moment(bite.endDateRange).format("ll")}
                       location={bite.city}
                       biteLink={`/bite/detail/${bite._id}`}
                     />
