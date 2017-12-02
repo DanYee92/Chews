@@ -75,19 +75,22 @@ export class BiteDetail extends Component {
   };
 
   handleConfirmBite = event => {
+    console.log("start handleConfirmBite()")
     event.preventDefault()
-    console.log("bite confirmed")
 
     const travelerId = localStorage.getItem("userId");
     const biteId = this.state.biteId
-    const biteDate = this.state.selectedDate
+    const biteDate = this.state.selectedDateString
 
     console.log("travelerId:", travelerId);
     console.log("biteId:", biteId)
     console.log("biteDate:", biteDate)
 
-
     API.bookBite(travelerId, biteId, biteDate)
+      .then(res => console.log("res from API.bookBite() in handleConfirmBite()", res))
+      .then(() => console.log("end handleConfirmBite()"))
+      .catch(err => console.error(err))
+
     this.hideModal()
   }
 
