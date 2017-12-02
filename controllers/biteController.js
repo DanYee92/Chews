@@ -52,9 +52,12 @@ module.exports = {
 	},
 
 	bookBite: (req, res) => {
+		console.log("start biteController.bookBite()")
+
 		console.log("biteId to find:", req.params.biteId);
 		console.log("UserID booking:", req.params.travelerId);
 		console.log("biteDate set:", req.body.biteDate);
+		console.log("req.body:", req.body)
 		db.Bite
 			//find the biteId and update isBooked: true, and add a travelerId to the bite
 			.findOneAndUpdate(
@@ -74,6 +77,7 @@ module.exports = {
 				);
 			})
 			.then(result => res.json(result))
+			.then(() => console.log("end biteController.bookBite()"))
 			.catch(err => console.error(err));
 	}
 };
