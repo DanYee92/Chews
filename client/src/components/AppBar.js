@@ -6,7 +6,10 @@ import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import Drawer from "material-ui/Drawer";
 import {LinkedLogo} from "./Logo"
 import styled from "styled-components";
+import Auth from "../Auth/Auth.js";
 
+
+const auth = new Auth();
 
 const Button = styled(FlatButton)`
 	color: gray !important;
@@ -62,8 +65,8 @@ class MyAppBar extends React.Component {
     return <div>
         <AppBar title={<LinkedLogo to="/" />} titleStyle={{ marginTop: "0.5em" }} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={false} onLeftIconButtonTouchTap={this.handleToggle} iconElementRight={<div>
               {this.state.windowWidth > 767 ? <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} /> : <CollapsedNavbarSearch searchBarVisible={this.state.searchBarVisible} handleSearchIconClick={this.handleSearchIconClick} handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />}
-              <Button label="Sign Up" />
-              <Button label="Log In" />
+              <Button onClick={auth.signUp} label="Sign Up" />
+              <Button  onClick={auth.login} label="Log In" />
               <Button label="Log Out" />
             </div>} iconStyleRight={styles.iconRight} />
 
