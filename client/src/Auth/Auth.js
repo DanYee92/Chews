@@ -4,14 +4,12 @@ import createHistory from "history/createBrowserHistory";
 const history = createHistory();
 
 
-const options = {
+let options = {
   auth: {
     redirectUrl: 'http://localhost:3000/home',
     responseType: 'code',
-    
     params: {
       scope: 'openid', // Learn about scopes: https://auth0.com/docs/scopes,
-     
     }
   },
   theme: {
@@ -27,16 +25,14 @@ let optionsSignUp = {
   auth: {
     redirectUrl: 'http://localhost:3000/create/user',
     responseType: 'code',
-    
     params: {
       scope: 'openid', // Learn about scopes: https://auth0.com/docs/scopes,
-     
     }
   },
   theme: {
-    primaryColor: 'tomato'
+    
+    primaryColor: 'tomato',
   },
-
   languageDictionary: {
     emailInputPlaceholder: "something@youremail.com",
     title: "chews"
