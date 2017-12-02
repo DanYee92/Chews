@@ -5,6 +5,34 @@ const history = createHistory();
 
 
 const options = {
+  auth: {
+    redirectUrl: 'http://localhost:3000/home',
+    responseType: 'code',
+    
+    params: {
+      scope: 'openid', // Learn about scopes: https://auth0.com/docs/scopes,
+     
+    }
+  },
+  theme: {
+    primaryColor: 'tomato'
+  },
+  languageDictionary: {
+    emailInputPlaceholder: "something@youremail.com",
+    title: "chews"
+  },
+}
+
+let optionsSignUp = {
+  auth: {
+    redirectUrl: 'http://localhost:3000/create/user',
+    responseType: 'code',
+    
+    params: {
+      scope: 'openid', // Learn about scopes: https://auth0.com/docs/scopes,
+     
+    }
+  },
   theme: {
     primaryColor: 'tomato'
   },
@@ -13,72 +41,23 @@ const options = {
     emailInputPlaceholder: "something@youremail.com",
     title: "chews"
   },
-
 }
 
 
 export default class Auth {
-  // auth0 = new auth0.WebAuth({
-  //   domain: "app81460790.auth0.com",
-  //   clientID: "Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP",
-  //   redirectUri: "http://localhost:3000/home",
-  //   audience: "https://app81460790.auth0.com/userinfo",
-  //   responseType: "token id_token",
-  //   scope: "openid"
-  // });
 
-  // auth0SignUp = new auth0.WebAuth({
-  //   domain: "app81460790.auth0.com",
-  //   clientID: "Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP",
-  //   redirectUri: "http://localhost:3000/create/user",
-  //   audience: "https://app81460790.auth0.com/userinfo",
-  //   responseType: "token id_token",
-  //   scope: "openid"
-  // });
-
-
- lock = new Auth0Lock('Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP', 'app81460790.auth0.com', options,  {
-    auth: {
-      redirectUrl: 'http://localhost:3000/home',
-      responseType: 'code',
-      
-      params: {
-        scope: 'openid', // Learn about scopes: https://auth0.com/docs/scopes,
-       
-      }
-      
-    }
-  });
-
-
-  lockSignUp = new Auth0Lock('Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP', 'app81460790.auth0.com', {
-    auth: {
-      redirectUrl: 'http://localhost:3000/create/user',
-      responseType: 'code',
-      
-      params: {
-        scope: 'openid', // Learn about scopes: https://auth0.com/docs/scopes,
-       
-      },
-      
-      
-    }
-  });
-
+ lock = new Auth0Lock('Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP', 'app81460790.auth0.com', options)  
+ 
+ lockSignUp = new Auth0Lock('Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP', 'app81460790.auth0.com', optionsSignUp)
+ 
   login(){
     return this.lock.show();
   }
 
   signUp() {
-    return this.lockSignUp.show()
+    return this.lockSignUp.show();
   }
-  // login() {
-  //   return this.auth0.authorize();
-  // }
-
-  // signUp() {
-  //   return this.auth0SignUp.authorize();
-  // }
+ 
 
   constructor() {
     this.login = this.login.bind(this);
@@ -92,11 +71,11 @@ export default class Auth {
     return this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         // this.setSession(authResult);
-        history.replace("/home");
+        history.push("/home");
         console.log("2", authResult.idTokenPayload.sub);
         return authResult.idTokenPayload.sub;
       } else if (err) {
-        history.replace("/home");
+        history.push("/home");
         console.log(err);
         return "tom";
       }
