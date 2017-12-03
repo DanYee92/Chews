@@ -11,7 +11,8 @@ import Button from "../components/Button";
 const paperStyles = {
 	width: "100%",
 	height: "10em",
-	background: "papayawhip",
+  background: "papayawhip",
+  margin: "1em 0"
 }
 const BiteImg = styled(Image)`
 	height: 100%;
