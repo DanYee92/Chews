@@ -43,7 +43,7 @@ const BookedStatusIcon = styled.i`
 	border: 3px solid green;
 	border-radius: 50%;
 	font-size: 3.5em;
-	color: ${props => props.color ? props.color : "orange"}
+	color: ${props => props.color ? props.color : "orange"};
 `
 export const MyBites = props => {
 	return <MuiThemeProvider>
