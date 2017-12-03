@@ -66,41 +66,65 @@ const noMarginRight = {
 
 export class MyBites extends React.Component {
 	state = {
-		results: null
+		myBites: null
 	}
 
 	componentDidMount() {
 		console.log("my-bites componentDidMount")
 		console.log(this.props.userId)
 		API.getUserInfo(this.props.userId)
+    .then(res => this.setState({myBites: res.data[0].bites}))
+    .catch(err => console.error(err))
+		
+		// API.getUserInfo("auth0|5a2171e2083226773d5c2f4a")
+		// 	.then(res => console.log(res.data[0].bites))
 	}
 
 	render() {
 	// return this.props.userId ? 
 	return <Grid>
-	{this.state.results ? this.state.results.map((bite, i) => {
+	{this.state.myBites ? this.state.myBites.map((bite, i) => {
+    const restaurant = bite.restaurant
+    const travelerId = bite.travelerId;
+    const localId = bite.localId
+    const name = (() => {
+      // if there is a traveler id and the user is the local
+      if(travelerId && this.props.userId === localId._id) {
+        // return the traveler's name
+        return `${restaurant} with ${travelerId.firstName} ${travelerId.lastName}`
+      // else if there is a traveler id and the user is the traveler
+      } else if (travelerId && this.props.userId === travelerId._id) {
+        // return the local's name
+        return `${restaurant} with ${localId.firstName} ${localId.lastName}`;
+      // else if there is no traveler id
+      } else { 
+        // don't return any name
+        return `${restaurant}`
+      }
+    })()
+
 		return <CardContainer key={i}>
-              <Row className="show-grid">
-                <Col style={noMarginRight} xs={4} md={3}>
-                  <Image src="http://via.placeholder.com/300x200" responsive />
-                </Col>
-                <Col style={noPadding} xs={8} md={9}>
-                  <CardBody>
-                    <BiteInfo>
-                      <p>
-                        {bite.restaurant} with {bite.firstName} {bite.lastName}
-                      </p>
-                      <p>{bite.city}</p>
-                    </BiteInfo>
-                    {/* insert bite date formatting here */}
-                    <BiteDate>
-                      <BiteMonth> NOV </BiteMonth>
-                      <BiteDay> 14 </BiteDay>
-                    </BiteDate>
-                  </CardBody>
-                </Col>
-              </Row>
-            </CardContainer>;
+        <Row className="show-grid">
+          <Col style={noMarginRight} xs={4} md={3}>
+            <Image src="http://via.placeholder.com/300x200" responsive />
+          </Col>
+          <Col style={noPadding} xs={8} md={9}>
+            <CardBody>
+              <BiteInfo>
+                <p>
+                  {name}
+                </p>
+                <p>{bite.city}</p>
+              </BiteInfo>
+              {/* insert bite date formatting here */}
+              <BiteDate>
+                <BiteMonth> NOV </BiteMonth>
+                <BiteDay> 14 </BiteDay>
+              </BiteDate>
+            </CardBody>
+          </Col>
+        </Row>
+      </CardContainer>;
         }) : <CardContainer>
           <Row className="show-grid">
             <Col style={noMarginRight} xs={4} md={3}>
