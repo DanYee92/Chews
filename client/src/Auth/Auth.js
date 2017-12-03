@@ -14,6 +14,7 @@ const options = {
     }
   },
   theme: {
+    logo: require("../images/ChewsLogoCookie.png"),
     primaryColor: "tomato"
   },
   languageDictionary: {
@@ -32,6 +33,7 @@ const optionsSignUp = {
     }
   },
   theme: {
+    logo: require("../images/ChewsLogoCookie.png"),
     primaryColor: "tomato"
   },
   languageDictionary: {
