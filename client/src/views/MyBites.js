@@ -68,63 +68,62 @@ export class MyBites extends React.Component {
       <Tabs>
         <Tab label="All Upcoming" value="a">
           <Grid>
-            {this.state.myBites ? this.state.myBites.map((bite, i) => {
-    const restaurant = bite.restaurant
-    const travelerId = bite.travelerId;
-    const localId = bite.localId
-    const name = (() => {
-      // if there is a traveler id and the user is the local
-      if(travelerId && this.props.userId === localId._id) {
-        // return the traveler's name
-        return `${restaurant} with ${travelerId.firstName} ${travelerId.lastName}`
-      // else if there is a traveler id and the user is the traveler
-      } else if (travelerId && this.props.userId === travelerId._id) {
-        // return the local's name
-        return `${restaurant} with ${localId.firstName} ${localId.lastName}`;
-      // else if there is no traveler id
-      } else { 
-        // don't return any name
-        return `${restaurant}`
-      }
-    })()
-
-		return <div key={i}>
-        <Row className="show-grid">
-          <Col xs={4} md={3}>
-            <Image src="http://via.placeholder.com/300x200" responsive />
-          </Col>
-          <Col style={noPadding} xs={8} md={9}>
-            <CardBody>
-              <BiteInfo>
-                <p>
-                  {name}
-                </p>
-                <p>{bite.city}</p>
-              </BiteInfo>
-              {/* insert bite date formatting here */}
-              <BiteDate>
-                <BiteMonth> NOV </BiteMonth>
-                <BiteDay> 14 </BiteDay>
-              </BiteDate>
-            </CardBody>
-          </Col>
-        </Row>
-      </div>;
-        }) : <Row>
+            <Row>
               <Col xs={12} md={12}>
                 <h2>All Upcoming Bites</h2>
-                <Paper style={paperStyles}>
-                  <BookedStatusIcon color="green" className={props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
 
-                  <BiteBody>
-                    <h3>Jim's Original</h3>
-                    with <h4>Andrew Huang</h4>
-                    <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                    Chicago
-                  </BiteBody>
-                </Paper>
+                {this.state.myBites ? this.state.myBites.map((bite, i) => {
+                    const restaurant = bite.restaurant;
+                    const travelerId = bite.travelerId;
+                    const localId = bite.localId;
+                    const name = (() => {
+                      // if there is a traveler id and the user is the local
+                      if (travelerId && this.props.userId === localId._id) {
+                        // return the traveler's name
+                        return <div>
+                            <h3>{restaurant}</h3> with <h4>
+                              {travelerId.firstName} {travelerId.lastName}
+                            </h4>
+                          </div>;
+                        // else if there is a traveler id and the user is the traveler
+                      } else if (travelerId && this.props.userId === travelerId._id) {
+                        // return the local's name
+                        return <div>
+                            <h3>{restaurant}</h3> with <h4>
+                              {localId.firstName} {localId.lastName}
+                            </h4>
+                          </div>;
+                        // else if there is no traveler id
+                      } else {
+                        // don't return any name
+                        return <h3>{restaurant}</h3>;
+                      }
+                    })();
+
+                    return <Paper style={paperStyles} key={i}>
+                        <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
+                        <BiteBody>
+                          {name}
+                          <p>{bite.city}</p>
+
+                          {/* insert bite date formatting here */}
+                          <div>
+                            <div> NOV </div>
+                            <div> 14 </div>
+                          </div>
+                        </BiteBody>
+                      </Paper>;
+                  }) : <Paper style={paperStyles}>
+                    <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
+                    <BiteBody>
+                      <h3>Jim's Original</h3>
+                      with <h4>Andrew Huang</h4>
+                      <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                      Chicago
+                    </BiteBody>
+                  </Paper>}
               </Col>
-            </Row>}
+            </Row>
           </Grid>
         </Tab>
         <Tab label="Booked" value="b" />
