@@ -6,12 +6,8 @@ import MenuItem from 'material-ui/MenuItem';
 import Drawer from "material-ui/Drawer";
 import NavigationMenu from "material-ui/svg-icons/navigation/menu";
 import { red500 } from "material-ui/styles/colors";
-
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import { LinkedLogo } from "./Logo"
-import Auth from "../Auth/Auth.js";
-
-const auth = new Auth();
 
 const Button = styled(FlatButton)`
 	color: gray !important;
@@ -104,9 +100,9 @@ class MyAppBar extends React.Component {
         <AppBar title={<LinkedLogo to="/" style={{ marginTop: "0.75em" }} />} titleStyle={styles.title} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementLeft={<NavigationMenu style={styles.iconLeft} hoverColor={red500} />} iconStyleLeft={styles.iconLeft} iconElementRight={this.state.windowWidth > 767 ? <div>
                 <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />
                 {!this.props.userId ? <span>
-                    <Button onClick={auth.signUp}> Sign Up </Button>
-                    <Button onClick={auth.login}> Log In </Button>
-                  </span> : <Button onClick={auth.logout}>
+                    <Button onClick={this.props.auth.signUp}> Sign Up </Button>
+                    <Button onClick={this.props.auth.login}> Log In </Button>
+                  </span> : <Button onClick={this.props.auth.logout}>
                     {" "}
                     Log Out{" "}
                   </Button>}
@@ -119,19 +115,19 @@ class MyAppBar extends React.Component {
           {!this.props.userId ? <div>
               <MyMenuItem onClick={() => {
                   this.handleClose();
-                  auth.signUp();
+                  this.props.auth.signUp();
                 }}>
                 Sign Up
               </MyMenuItem>
               <MyMenuItem onClick={() => {
                   this.handleClose();
-                  auth.login();
+                  this.props.auth.login();
                 }}>
                 Log In
               </MyMenuItem>
             </div> : <MyMenuItem onClick={() => {
                 this.handleClose();
-                auth.logout();
+                this.props.auth.logout();
               }}>
               Log Out
             </MyMenuItem>}

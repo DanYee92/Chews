@@ -150,11 +150,11 @@ export class BiteDetail extends Component {
               </Col>
               <Col xs={12} md={4}>
                 {
-                  this.props.loggedIn ? (
+                  this.props.userId ? (
                     <Button primary onClick={this.showModal}>
                       Request to Book
                     </Button>) :
-                    (<Button primary onClick={this.showModal}>
+                    (<Button primary onClick={this.props.auth.login}>
                       Login to Book
                     </Button>)
                 }

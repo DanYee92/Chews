@@ -2,8 +2,10 @@ import Auth0Lock from "auth0-lock";
 import createHistory from "history/createBrowserHistory";
 const history = createHistory();
 
-let options = {
+const options = {
   auth: {
+    // history documentation
+    // https://www.npmjs.com/package/history
     redirectUrl: "http://localhost:3000/home",
     responseType: "token",
 
@@ -20,7 +22,7 @@ let options = {
   }
 };
 
-let optionsSignUp = {
+const optionsSignUp = {
   auth: {
     redirectUrl: "http://localhost:3000/create/user",
     responseType: "code",
