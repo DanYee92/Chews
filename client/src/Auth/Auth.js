@@ -25,7 +25,7 @@ const options = {
 
 const optionsSignUp = {
   auth: {
-    redirectUrl: "http://localhost:3000/create/user",
+    redirectUrl: "http://localhost:3000/user/create",
     responseType: "code",
 
     params: {
