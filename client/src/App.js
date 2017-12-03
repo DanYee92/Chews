@@ -1,7 +1,6 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
 import Auth from "./Auth/Auth.js";
-// import Navbar from "./components/NavBar";
 import API from "./util/API";
 import ViewContainer from "./components/ViewContainer";
 import createHistory from "history/createBrowserHistory";
@@ -11,7 +10,7 @@ import {
   BiteDetail,
   Browse,
   CreateBite,
-  CreateUser,
+  EditUser,
   Landing,
   LogIn,
   SearchResults,
@@ -28,7 +27,6 @@ class App extends React.Component {
   state = {
     searchQuery: "",
     shadow: false,
-    loggedIn: false,
     userId: ""
   };
 
@@ -89,16 +87,10 @@ class App extends React.Component {
       <Router history={history}>
         <div>
           <MuiThemeProvider>
-            <AppBar />
+            <AppBar auth={auth} userId={this.state.userId} />
           </MuiThemeProvider>
-          {/* <Navbar
-            handleInputChange={this.handleInputChange}
-            searchQuery={this.state.searchQuery}
-            handleSearchSubmit={this.handleSearchSubmit}
-            history={history}
-            shadow={this.state.shadow}
-          /> */}
           <ViewContainer>
+            {/** Landing Page */}
             <Route
               exact
               path="/"
@@ -130,8 +122,9 @@ class App extends React.Component {
                 );
               }}
             />
-            <Route exact path="/browse" component={Browse} />
-            {/* <Route path="/search/:searchQuery" component={SearchResults} /> */}
+            {/** End Landing Page */}
+
+            {/* Search Results Page */}
             <Route
               path="/search/:searchQuery"
               render={props => {
@@ -144,11 +137,12 @@ class App extends React.Component {
               }}
             />
 
+            <Route exact path="/bite/create" render={props => <CreateBite {...props} userId={this.state.userId} />} />
+            <Route exact path="/bite/detail/:biteId" render={props => <BiteDetail {...props} auth={auth} userId={this.state.userId} />} />
+            <Route exact path="/user/edit" render={props => <EditUser {...props} userId={this.state.userId} />} />
+            <Route exact path="/my-bites" render={props => <MyBites {...props} userId={this.state.userId} />} />
+
             <Route exact path="/browse" component={Browse} />
-            <Route exact path="/bite/create" component={CreateBite} />
-            <Route exact path="/bite/detail/:biteId" component={BiteDetail} />
-            <Route exact path="/user/create" component={CreateUser} />
-            <Route exact path="/my-bites" component={MyBites} />
           </ViewContainer>
         </div>
       </Router>

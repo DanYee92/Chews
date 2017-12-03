@@ -2,8 +2,10 @@ import Auth0Lock from "auth0-lock";
 import createHistory from "history/createBrowserHistory";
 const history = createHistory();
 
-let options = {
+const options = {
   auth: {
+    // history documentation
+    // https://www.npmjs.com/package/history
     redirectUrl: "http://localhost:3000/home",
     responseType: "token",
 
@@ -12,6 +14,7 @@ let options = {
     }
   },
   theme: {
+    logo: require("../images/ChewsLogoCookie.png"),
     primaryColor: "tomato"
   },
   languageDictionary: {
@@ -20,9 +23,9 @@ let options = {
   }
 };
 
-let optionsSignUp = {
+const optionsSignUp = {
   auth: {
-    redirectUrl: "http://localhost:3000/create/user",
+    redirectUrl: "http://localhost:3000/user/create",
     responseType: "code",
 
     params: {
@@ -30,9 +33,9 @@ let optionsSignUp = {
     }
   },
   theme: {
+    logo: require("../images/ChewsLogoCookie.png"),
     primaryColor: "tomato"
   },
-
   languageDictionary: {
     emailInputPlaceholder: "something@youremail.com",
     title: "chews"
@@ -74,3 +77,4 @@ export default class Auth {
     history.replace("/home");
   }
 }
+
