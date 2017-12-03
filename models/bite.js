@@ -43,6 +43,7 @@ const BiteSchema = new Schema({
 		default: false
 	},
 
+	//array of travelerIds that are requesting to book
 	requests: [
 		{
 			type: Schema.Types.String,

@@ -17,8 +17,7 @@ module.exports = {
 			//find a user by their userid
 			.find({ _id: userId })
 			//populate that user with their bites
-			// deep populate the local and traveler information for each bite
-			.populate({path: "bites", populate: [{path: "localId"}, {path: "travelerId"}] })
+			.populate("bites")
 			.then(foundUser => {
 				console.log(foundUser);
 				res.json(foundUser);
@@ -28,10 +27,61 @@ module.exports = {
 
 	editUserProfile: (req, res) => {
 		const userId = req.params.userId;
+		let updates = {};
+
+		if(req.body.firstName) {
+			updates.firstName = 
+		}
 
 		console.log("User ID to edit:", userId);
-		db.User.find({ _id: userId });
+		db.User
+			.findOneAndUpdate(
+				{ _id: userId },
+				{
+
+				}
+
+			)
+
+
 	},
+
+	//getUserBites
+		//bite filters...
+			//booked and/or unbooked
+			//upcoming - present -> future
+			//past - present -> past
+		//URL: "/api/user/:userId/bites/:bookedStatus/:timePeriod"
+
+	
+	//addRequestToBite
+
+
+	//confirm / deny request
+	//can this be made into one route?
+
+
+	//cancelBite
+	//different if traveler or local canacels
+
+
+	//editBite
+
+
+
+
+
+	//getUserUpcomingBites 
+	//booked and unbooked
+	//Where... 
+		//if booked - biteDate is after today's date 
+		//if unbooked - endDateRange is after today's date
+		//alternatively...
+			//if (biteDate) where biteDate is after today's date
+			// else where endDateRange is after today's date
+	//populate localId
+	//populate travelerId
+	//populate requests
 
 	getUserBookedBites: (req, res) => {
 		const userId = req.params.userId;
