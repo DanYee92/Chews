@@ -1,34 +1,56 @@
 import React from "react";
 import { Router, Route } from "react-router-dom";
 import Auth from "./Auth/Auth.js";
-// import Navbar from "./components/NavBar";
 import API from "./util/API";
 import ViewContainer from "./components/ViewContainer";
 import createHistory from "history/createBrowserHistory";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-
+import AppBar from "./components/AppBar";
 import {
   BiteDetail,
   Browse,
   CreateBite,
-  CreateUser,
+  EditUser,
   Landing,
   LogIn,
   SearchResults,
   MyBites
 } from "./views";
-import AppBar from "./components/AppBar"
 
-const auth = new Auth();
 let userInfo;
 const history = createHistory();
+
+const auth = new Auth();
+const groovy = auth.lock;
 
 class App extends React.Component {
   state = {
     searchQuery: "",
     shadow: false,
-    loggedIn: false,
     userId: ""
+  };
+
+  // auth.testListenerFxn();
+  groovyListener = () => {
+    groovy.on("hash_parsed", authResult => {
+      if (authResult !== null) {
+        auth.lock.getUserInfo(authResult.accessToken, (error, profile) => {
+          if (error) {
+            // Handle error
+            console.log("ERROR:", error);
+            return;
+          }
+          console.log("authResult", authResult);
+          const tempUserId = profile.sub;
+          console.log("userId:", tempUserId);
+          this.setState({ userId: profile.sub });
+        });
+      }
+    });
+  };
+
+  componentDidMount = () => {
+    this.groovyListener();
   };
 
   handleInputChange = event => {
@@ -60,36 +82,19 @@ class App extends React.Component {
     }
   };
 
-  handleAuthentication = (nextState, replace) => {
-    console.log("1) app handleAuthentication");
-    if (/access_token|id_token|error/.test(nextState.location.hash)) {
-      // Promise.resolve(auth.handleAuthentication()).then(result =>
-      Promise.resolve(auth.handleAuthentication()).then(result =>
-        console.log("3", result)
-      );
-    }
-  };
-
   render() {
     return (
       <Router history={history}>
         <div>
           <MuiThemeProvider>
-            <AppBar/>
+            <AppBar auth={auth} userId={this.state.userId} />
           </MuiThemeProvider>
-          {/* <Navbar
-            handleInputChange={this.handleInputChange}
-            searchQuery={this.state.searchQuery}
-            handleSearchSubmit={this.handleSearchSubmit}
-            history={history}
-            shadow={this.state.shadow}
-          /> */}
           <ViewContainer>
+            {/** Landing Page */}
             <Route
               exact
               path="/"
               render={props => {
-                console.log("/ props", props);
                 return (
                   <Landing
                     {...props}
@@ -104,24 +109,25 @@ class App extends React.Component {
               exact
               path="/home"
               render={props => {
-                console.log("/home props", props);
-                this.handleAuthentication(props);
                 return (
-                  <Landing
-                    {...props}
-                    handleInputChange={this.handleInputChange}
-                    searchQuery={this.state.searchQuery}
-                    handleSearchSubmit={this.handleSearchSubmit}
-                  />
+                  <div>
+                    <p> {this.state.userId} </p>
+                    <Landing
+                      {...props}
+                      handleInputChange={this.handleInputChange}
+                      searchQuery={this.state.searchQuery}
+                      handleSearchSubmit={this.handleSearchSubmit}
+                    />
+                  </div>
                 );
               }}
             />
-            <Route exact path="/browse" component={Browse} />
-            {/* <Route path="/search/:searchQuery" component={SearchResults} /> */}
+            {/** End Landing Page */}
+
+            {/* Search Results Page */}
             <Route
               path="/search/:searchQuery"
               render={props => {
-                console.log("/search props", props);
                 return (
                   <SearchResults
                     {...props}
@@ -131,11 +137,12 @@ class App extends React.Component {
               }}
             />
 
+            <Route exact path="/bite/create" render={props => <CreateBite {...props} userId={this.state.userId} />} />
+            <Route exact path="/bite/detail/:biteId" render={props => <BiteDetail {...props} auth={auth} userId={this.state.userId} />} />
+            <Route exact path="/user/edit" render={props => <EditUser {...props} userId={this.state.userId} />} />
+            <Route exact path="/my-bites" render={props => <MyBites {...props} userId={this.state.userId} />} />
+
             <Route exact path="/browse" component={Browse} />
-            <Route exact path="/create/bite" component={CreateBite} />
-            <Route exact path="/my-bites" component={MyBites} />
-            <Route exact path="/create/user" component={CreateUser} />
-            <Route exact path="/bite/:biteId" component={BiteDetail} />
           </ViewContainer>
         </div>
       </Router>

@@ -79,19 +79,25 @@ export class BiteDetail extends Component {
     event.preventDefault()
 
     const travelerId = localStorage.getItem("userId");
-    const biteId = this.state.biteId
-    const biteDate = this.state.selectedDateString
 
-    console.log("travelerId:", travelerId);
-    console.log("biteId:", biteId)
-    console.log("biteDate:", biteDate)
+    if(travelerId === this.state.localId._id) {
+      alert("You can't grab a bite with yourself!")
+    } else {
+      const biteId = this.state.biteId
+      const biteDate = this.state.selectedDate
 
-    API.bookBite(travelerId, biteId, biteDate)
-      .then(res => console.log("res from API.bookBite() in handleConfirmBite()", res))
-      .then(() => console.log("end handleConfirmBite()"))
-      .catch(err => console.error(err))
+      console.log("travelerId:", travelerId);
+      console.log("biteId:", biteId)
+      console.log("biteDate:", biteDate)
 
-    this.hideModal()
+      API.bookBite(travelerId, biteId, biteDate)
+        .then(res => console.log("res from API.bookBite() in handleConfirmBite()", res))
+        .then(() => console.log("end handleConfirmBite()"))
+        .catch(err => console.error(err))
+
+      alert(`Bite booked with ${this.state.firstName} ${this.state.lastName} at ${this.state.restaurant} on ${this.state.selectedDate}!`)
+      this.hideModal()
+    }
   }
 
   handleChangeSelectedDate = (event, date) => {
@@ -144,11 +150,11 @@ export class BiteDetail extends Component {
               </Col>
               <Col xs={12} md={4}>
                 {
-                  this.props.loggedIn ? (
+                  this.props.userId ? (
                     <Button primary onClick={this.showModal}>
                       Request to Book
                     </Button>) :
-                    (<Button primary onClick={this.showModal}>
+                    (<Button primary onClick={this.props.auth.login}>
                       Login to Book
                     </Button>)
                 }

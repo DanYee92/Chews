@@ -1,3 +1,4 @@
+import React from "react"
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -9,13 +10,14 @@ import { Link } from "react-router-dom";
 
 //   font-size: ${props => (props.large ? "3em" : "1.5em")};
 // `;
-export const Logo = styled.img`
-  content: url("./assets/logo_v0.png");
+const Image = styled.img`
   width: ${props => (props.large ? "70%" : "6em")};
   height: auto;
   margin: 0 auto;
 `
-
+export const Logo = props => {
+  return <Image src={require("../images/logo_v1.png")} {...props}/>;
+}
 // export const LinkedLogo = () => {
 //   return (
 //     <Link>
@@ -23,4 +25,9 @@ export const Logo = styled.img`
 //     </Link>)
 // }
 
-export const LinkedLogo = Logo.withComponent(Link);
+export const LinkedLogo = props => {
+    return (<Link {...props}>
+      <Logo/>
+    </Link>)
+};
+// export const LinkedLogo = Logo.withComponent(Link);
