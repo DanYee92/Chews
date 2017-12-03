@@ -1,12 +1,79 @@
 import React from "react";
-import { Grid, Row, Col, Image } from "react-bootstrap";
+import { Grid, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import Paper from "material-ui/Paper";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { Tabs, Tab } from "material-ui/Tabs";
+import Button from "../components/Button";
 
 
-// Card takes in props: title, local, startDate, endDate, location
-// import Card from "../components/Card";
+const paperStyles = {
+	width: "100%",
+	height: "10em",
+	background: "papayawhip",
+}
+const BiteImg = styled(Image)`
+	height: 100%;
+	float: left;
+`
+const BiteDate = styled.div`
+	height: 8em;
+	width: 8em;
+	border: 0.5em solid tomato;
+	background: white;
+	
+	color: tomato;
+	padding: 0.5em 2em;
+	text-align: center;
+	position: absolute;
+	right: 2.5em;
+	top: 2.5em
+`
+const Divider = styled.hr`
+	border: 1px solid tomato
+`
+const BiteBody = styled.div`
+	padding: 0em;
+	color: black;
+	width: 70%;
+	text-indent: 2em;
+`
+const BookedStatusIcon = styled.i`
+	padding: 0.5em;
+	border: 3px solid green;
+	border-radius: 50%;
+	font-size: 3.5em;
+	color: ${props => props.color ? props.color : "orange"}
+`
+export const MyBites = props => {
+	return <MuiThemeProvider>
+      <Tabs>
+        <Tab label="All Upcoming" value="a">
+          <Grid>
+            <Row>
+              <Col xs={12} md={12}>
+                <h2>All Upcoming Bites</h2>
+                <Paper style={paperStyles}>
+                  <BookedStatusIcon color="green" className={props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
+
+                  <BiteBody>
+                    <h3>Jim's Original</h3>
+                    with <h4>Andrew Huang</h4>
+                    <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                    Chicago
+                  </BiteBody>
+                </Paper>
+              </Col>
+            </Row>
+          </Grid>
+        </Tab>
+        <Tab label="Booked" value="b" />
+        <Tab label="Pending" value="c" />
+        <Tab label="Past Bites" value="d" />
+      </Tabs>
+    </MuiThemeProvider>;
+}
+
 
 // const ThumbnailContainer = styled.div`
 // 	position: relative;
@@ -65,59 +132,6 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 // const noMarginRight = {
 // 	marginRight: "0em"
 // };
-const paperStyles = {
-	width: "100%",
-	height: "10em",
-	background: "papayawhip",
-}
-const BiteImg = styled.img`
-	height: 100%;
-	float: left;
-`
-const BiteDate = styled.div`
-	height: 8em;
-	width: 8em;
-	border: 0.5em solid tomato;
-	background: white;
-	
-	color: tomato;
-	padding: 0.5em 2em;
-	text-align: center;
-	position: absolute;
-	right: 2.5em;
-	top: 2.5em
-`
-const Divider = styled.hr`
-	border: 1px solid tomato
-`
-const BiteBody = styled.div`
-	padding: 0em;
-	color: black;
-	width: 70%;
-	text-indent: 2em;
-`
-export const MyBites = props => {
-	return <MuiThemeProvider>
-      <Grid>
-        <Row>
-          <Col xs={12} md={12}>
-            <Paper style={paperStyles}>
-              <BiteImg src="http://via.placeholder.com/300x200" />
-              <BiteBody>
-                <h3>Jim's Original</h3>
-                with <h4>Andrew Huang</h4>
-                <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-								Chicago
-              </BiteBody>
-							<BiteDate>
-								NOV <Divider /> <h4>29</h4>
-							</BiteDate>
-            </Paper>
-          </Col>
-        </Row>
-      </Grid>
-    </MuiThemeProvider>;
-}
 // export const MyBites = props => {
 // 	return (
 // 		<Grid>
