@@ -9,10 +9,13 @@ module.exports = {
 	},
 
 	getAllUserInfo: (req, res) => {
-		console.log("User ID to find:", req.params.userId);
+		const userId = req.params.userId;
+
+		console.log("User ID to find:", userId);
+
 		db.User
 			//find a user by their userid
-			.find({ _id: req.params.userId })
+			.find({ _id: userId })
 			//populate that user with their bites
 			.populate("bites")
 			.then(foundUser => {
@@ -22,10 +25,19 @@ module.exports = {
 			.catch(err => console.error(err));
 	},
 
+	editUserProfile: (req, res) => {
+		const userId = req.params.userId;
+
+		console.log("User ID to edit:", userId);
+		db.User.find({ _id: userId });
+	},
+
 	getUserBookedBites: (req, res) => {
+		const userId = req.params.userId;
+
 		db.User
 			//for the specific user
-			.find({ _id: req.params.userId })
+			.find({ _id: userId })
 			.populate("bites")
 			.then(result => {
 				//get their bites
@@ -38,23 +50,22 @@ module.exports = {
 	},
 
 	getUserUnbookedBites: (req, res) => {
+		const userId = req.params.userId;
+
 		db.User
 			//for the specific user
-			.find({ _id: req.params.userId })
+			.find({ _id: userId })
 			.populate("bites")
 			.then(result => {
 				//get their bites
 				const allUserBites = result[0].bites;
 				//create a new array that only has the user's booked bites
-				const unbookedBites = allUserBites.filter(
-					bite => !bite.isBooked
-				);
+				const unbookedBites = allUserBites.filter(bite => !bite.isBooked);
 				res.json(unbookedBites);
 			})
 			.catch(err => console.error(err));
 	}
 };
-
 
 // postman body to create users
 // URL: `http://localhost:3001/api/user/create'

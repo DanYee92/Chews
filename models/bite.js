@@ -41,7 +41,14 @@ const BiteSchema = new Schema({
 	isBooked: {
 		type: Boolean,
 		default: false
-	}
+	},
+
+	requests: [
+		{
+			type: Schema.Types.String,
+			ref: "User"
+		}
+	]
 });
 
 const Bite = mongoose.model("Bite", BiteSchema);
