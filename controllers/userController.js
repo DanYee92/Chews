@@ -17,7 +17,8 @@ module.exports = {
 			//find a user by their userid
 			.find({ _id: userId })
 			//populate that user with their bites
-			.populate("bites")
+			// deep populate the local and traveler information for each bite
+			.populate({path: "bites", populate: [{path: "localId"}, {path: "travelerId"}] })
 			.then(foundUser => {
 				console.log(foundUser);
 				res.json(foundUser);

@@ -102,10 +102,10 @@ class MyAppBar extends React.Component {
                 {!this.props.userId ? <span>
                     <Button onClick={this.props.auth.signUp}> Sign Up </Button>
                     <Button onClick={this.props.auth.login}> Log In </Button>
-                  </span> : <Button onClick={this.props.auth.logout}>
-                    {" "}
-                    Log Out{" "}
-                  </Button>}
+                  </span> : <span>
+                    <Button onClick={() => this.props.history.push("/my-bites")}>My Bites</Button>
+                    <Button onClick={this.props.auth.logout}>Log Out</Button>
+                  </span>}
               </div> : <CollapsedNavbarSearch searchBarVisible={this.state.searchBarVisible} handleSearchIconClick={this.handleSearchIconClick} handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />} iconStyleRight={styles.iconRight} />
 
         <Drawer style={styles.drawer} containerStyle={styles.container} docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState(
