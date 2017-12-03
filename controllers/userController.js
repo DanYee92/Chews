@@ -25,60 +25,51 @@ module.exports = {
 			.catch(err => console.error(err));
 	},
 
-	editUserProfile: (req, res) => {
-		const userId = req.params.userId;
-		let updates = {};
+	// editUserProfile: (req, res) => {
+	// 	const userId = req.params.userId;
+	// 	let updates = {};
 
-		if(req.body.firstName) {
-			updates.firstName = 
-		}
+	// 	if(req.body.firstName) {
+	// 		updates.firstName =
+	// 	}
 
-		console.log("User ID to edit:", userId);
-		db.User
-			.findOneAndUpdate(
-				{ _id: userId },
-				{
+	// 	console.log("User ID to edit:", userId);
+	// 	db.User
+	// 		.findOneAndUpdate(
+	// 			{ _id: userId },
+	// 			{
 
-				}
+	// 			}
 
-			)
+	// 		)
 
-
-	},
+	// },
 
 	//getUserBites
-		//bite filters...
-			//booked and/or unbooked
-			//upcoming - present -> future
-			//past - present -> past
-		//URL: "/api/user/:userId/bites/:bookedStatus/:timePeriod"
+	//bite filters...
+	//booked and/or unbooked
+	//upcoming - present -> future
+	//past - present -> past
+	//URL: "/api/user/:userId/bites/:bookedStatus/:timePeriod"
 
-	
 	//addRequestToBite
-
 
 	//confirm / deny request
 	//can this be made into one route?
 
-
 	//cancelBite
 	//different if traveler or local canacels
 
-
 	//editBite
 
-
-
-
-
-	//getUserUpcomingBites 
+	//getUserUpcomingBites
 	//booked and unbooked
-	//Where... 
-		//if booked - biteDate is after today's date 
-		//if unbooked - endDateRange is after today's date
-		//alternatively...
-			//if (biteDate) where biteDate is after today's date
-			// else where endDateRange is after today's date
+	//Where...
+	//if booked - biteDate is after today's date
+	//if unbooked - endDateRange is after today's date
+	//alternatively...
+	//if (biteDate) where biteDate is after today's date
+	// else where endDateRange is after today's date
 	//populate localId
 	//populate travelerId
 	//populate requests
@@ -111,7 +102,9 @@ module.exports = {
 				//get their bites
 				const allUserBites = result[0].bites;
 				//create a new array that only has the user's booked bites
-				const unbookedBites = allUserBites.filter(bite => !bite.isBooked);
+				const unbookedBites = allUserBites.filter(
+					bite => !bite.isBooked
+				);
 				res.json(unbookedBites);
 			})
 			.catch(err => console.error(err));
