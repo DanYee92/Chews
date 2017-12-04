@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { ControlLabel } from "react-bootstrap";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import DatePicker from "material-ui/DatePicker";
 import { FormGroup, FormInput } from "../components/Form";
 import Button from "../components/Button";
 import Container from "../components/Container";
 import API from "../util/API.js";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import DatePicker from "material-ui/DatePicker";
+import muiTheme from "../components/CustomMUI";
+
 // import TimePicker from "material-ui/TimePicker";
 
 export class CreateBite extends Component {
@@ -73,10 +75,10 @@ export class CreateBite extends Component {
 
 	render() {
 		return (
-			<MuiThemeProvider>
+			<MuiThemeProvider muiTheme={muiTheme}>
 				<Container column>
 					<form onSubmit={this.handleFormSubmit}>
-						<FormGroup controlId="createBiteForm">
+						<FormGroup width="22em" controlId="createBiteForm">
 							<ControlLabel>
 								Where do you want to grab a Bite?
 							</ControlLabel>

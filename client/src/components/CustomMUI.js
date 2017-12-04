@@ -6,7 +6,7 @@ const muiTheme = getMuiTheme({
   palette: {
     primary1Color: "tomato",
     primary2Color: "tomato",
-    accent1Color: "papayawhip",
+    accent1Color: "tomato",
     pickerHeaderColor: "tomato"
   },
   tabs: {

@@ -8,7 +8,7 @@ import muiTheme from "../components/CustomMUI";
 import styled from "styled-components"
 
 const MyTabs = styled(Tabs)`
-  height: 4.5em
+  height: 4.5em !important
 `
 
 export class MyBites extends React.Component {
