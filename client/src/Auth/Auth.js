@@ -8,6 +8,7 @@ const options = {
     // https://www.npmjs.com/package/history
     redirectUrl: "http://localhost:3000/home",
     responseType: "token",
+  
     
     params: {
       scope: "openid" // Learn about scopes: https://auth0.com/docs/scopes,
@@ -26,6 +27,8 @@ const options = {
   }
 };
 
+
+
 const optionsSignUp = {
   auth: {
     redirectUrl: "http://localhost:3000/api/user/create",
@@ -38,7 +41,7 @@ const optionsSignUp = {
   },
 
   allowLogin: false, 
-  
+
   theme: {
     logo: require("../images/ChewsLogoCookie.png"),
     primaryColor: "tomato"
@@ -48,6 +51,10 @@ const optionsSignUp = {
     title: "chews"
   }
 };
+
+
+
+
 
 export default class Auth {
   lock = new Auth0Lock(
@@ -64,6 +71,9 @@ export default class Auth {
 
   
 
+  
+
+
   constructor() {
     this.login = this.login.bind(this);
     this.signUp = this.signUp.bind(this);
@@ -79,12 +89,24 @@ export default class Auth {
   }
 
   logout() {
+    console.log("logging out???")
     // Clear access information from local storage
     localStorage.removeItem("expires_at");
     localStorage.removeItem("userId");
+    localStorage.clear("accessToken")
+    
+    
     // navigate to the home route
     history.replace("/home");
+    
+  
+    
   }
+
+
+
+
+  
 
   
 }
