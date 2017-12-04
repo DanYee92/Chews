@@ -79,35 +79,32 @@ module.exports = {
 	},
 
 	cancelBiteTraveler: (req, res) => {
-		console.log("cancel this bite as a traveler", req.params.travelerId)
+		console.log("cancel this bite as a traveler", req.params.travelerId);
 		db.Bite
-		//find the biteId and update isBooked: false and remove travelerId and biteDate (Travler)
-		.findOneAndUpdate( 
-			{_id: req.params.biteId},
-			{
-				isBooked: false,
-				travelerId: "",
-				biteDate: "",
-			}
-		)
-		.then(result => res.json(result))
-		.catch(err => console.log(err))
+			//find the biteId and update isBooked: false and remove travelerId and biteDate (Travler)
+			.findOneAndUpdate(
+				{ _id: req.params.biteId },
+				{
+					isBooked: false,
+					travelerId: "",
+					biteDate: ""
+				},
+				{ new: true }
+			)
+			.then(result => {
+				console.log(result);
+				res.json(result);
+			})
+			.catch(err => console.log(err));
 	},
 
 	cancelBiteLocal: (req, res) => {
-		console.log("cancel this bite as a Local", req.params.localId)
+		console.log("cancel this bite as a Local", req.params.localId);
 		db.Bite
-		.findOneAndRemove(
-			{_id: req.params.biteId}
-		)
-		.then(result => res.json(result))
-		.catch(err => console.log(err))
+			.findOneAndRemove({ _id: req.params.biteId })
+			.then(result => res.json(result))
+			.catch(err => console.log(err));
 	},
-
-
-
-
-	
 
 	// "/api/user/:userId/bites/:bookingStatus/:timePeriod/:category?"
 	//bookingStatus - booked, unbooked, all

@@ -59,14 +59,14 @@ module.exports = app => {
   );
 
   //PUT - cancel a bite by a traveler, update isBooked to false
-  app.patch("/api/user/:travelerId/:biteId/cancel", (req, res) =>
+  app.patch("/api/user/:travelerId/bite/:biteId/cancel", (req, res) =>
     biteController.cancelBiteTraveler(req, res)
-);
+  );
 
-//PUT - cancel a bite by a local
-  app.delete("/api/user/:localId/:biteId/cancel", (req, res) => 
+  //PUT - cancel a bite by a local
+  app.delete("/api/user/:localId/bite/:biteId/cancel", (req, res) =>
     biteController.cancelBiteLocal(req, res)
-)
+  );
 
   app.get("/api/apologize", (req, res) => {
     //TO DO - nicole apologize counter
