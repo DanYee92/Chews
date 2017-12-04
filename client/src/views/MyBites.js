@@ -132,7 +132,7 @@ export class MyBites extends React.Component {
 	render() {
     return <MuiThemeProvider>
       <Tabs>
-        <Tab label="All Upcoming" value="a">
+        <Tab label="Upcoming" value="a">
           <Grid>
             <Row>
               <Col xs={12} md={12}>
