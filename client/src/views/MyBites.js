@@ -161,7 +161,10 @@ export class MyBites extends React.Component {
                               {bite.city}
                               {/** insert bite date formatting here */}
                             </BiteBody>
+                            <Link to={`user/bite/cancel`}><SeeMoreButton primary>Cancel Bite</SeeMoreButton></Link>
                                 <Link to={`/bite/detail/${bite._id}`}><SeeMoreButton primary>See Details</SeeMoreButton></Link>
+
+                                
                         </div>
                       }
                     >

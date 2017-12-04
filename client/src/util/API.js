@@ -59,8 +59,12 @@ export default {
 	// userId should be a string
 	// returns array of bite Ids
 
-	cancelBiteTraveler: (biteId, userId) => {
-		
+	cancelBiteTraveler: (travelerId, biteId) => {
+		return axios.get(`/api/user/${travelerId}/bite/${biteId}/cancel`);
+	},
+
+	cancelBiteLocal: (localId, biteId) => {
+		return axios.get(`/api/user/${localId}/bite/${biteId}/cancel`)
 	}
 
 };
