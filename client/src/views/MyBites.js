@@ -11,7 +11,7 @@ import Button from "../components/Button";
 const paperStyles = {
 	width: "100%",
 	height: "10em",
-  background: "papayawhip",
+  background: "white",
 	margin: "1em 0",	
 	position: "relative"
 }
