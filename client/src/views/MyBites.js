@@ -56,16 +56,65 @@ export class MyBites extends React.Component {
 		console.log("my-bites componentDidMount")
 		console.log(this.props.userId)
 		API.getUserInfo(this.props.userId)
-    .then(res => this.setState({myBites: res.data[0].bites}))
-    .catch(err => console.error(err))
+      .then(res => {
+        let myBites = []
+        
+        if (res.data[0].bites) {
+          res.data[0].bites.map(bite => {
+            let travelerId = null
+            let localId = null
+
+            if(bite.travelerId) {
+              travelerId = bite.travelerId;
+            }
+            if(bite.localId) {
+              localId = bite.localId;
+            }
+
+            const thisBite = {
+              _id: bite._id,
+              biteDate: bite.biteDate,
+              restaurant: bite.restaurant,
+              city: bite.city,
+              startDateRange: bite.startDateRange,
+              endDateRange: bite.endDateRange,
+              isBooked: bite.isBooked,
+            };
+
+            // if there is a traveler id and the user is the local
+            if (travelerId && this.props.userId === localId._id) {
+              // record the traveler as the other party
+              thisBite.otherParty = travelerId;
+              // else if there is a traveler id and the user is the traveler
+            } else if (travelerId && this.props.userId === travelerId._id) {
+              // record the local as the other party
+              thisBite.otherParty = localId;
+              // else if there is no traveler id
+            } else {
+              // don't record any name
+              thisBite.otherParty = null;
+            }
+
+            myBites.push(thisBite);
+            console.log(myBites);
+          });
+        } else {
+          myBites = null;
+        }
+
+        this.setState({ myInfo: res.data, myBites: myBites });
+
+      })
+      .catch(err => console.error(err));
 		
 		// API.getUserInfo("auth0|5a2171e2083226773d5c2f4a")
 		// 	.then(res => console.log(res.data[0].bites))
   }
   
 	render() {
+    console.log()
   
-	return <MuiThemeProvider>
+    return <MuiThemeProvider>
       <Tabs>
         <Tab label="All Upcoming" value="a">
           <Grid>
@@ -74,39 +123,13 @@ export class MyBites extends React.Component {
                 <h2>All Upcoming Bites</h2>
 
                 {this.state.myBites ? this.state.myBites.map((bite, i) => {
-                    const restaurant = bite.restaurant;
-                    const travelerId = bite.travelerId;
-                    const localId = bite.localId;
-                    const name = (() => {
-                      // if there is a traveler id and the user is the local
-                      if (travelerId && this.props.userId === localId._id) {
-                        // return the traveler's name
-                        return <div>
-                            <h3>{restaurant}</h3> with <h4>
-                              {travelerId.firstName} {travelerId.lastName}
-                            </h4>
-                          </div>;
-                        // else if there is a traveler id and the user is the traveler
-                      } else if (travelerId && this.props.userId === travelerId._id) {
-                        // return the local's name
-                        return <div>
-                            <h3>{restaurant}</h3> with <h4>
-                              {localId.firstName} {localId.lastName}
-                            </h4>
-                          </div>;
-                        // else if there is no traveler id
-                      } else {
-                        // don't return any name
-                        return <h3>{restaurant}</h3>;
-                      }
-                    })();
-
                     return <Paper style={paperStyles} key={i}>
                         <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
                         <BiteBody>
-                          {name}
-                          <p>{bite.city}</p>
-
+                          <h3>{bite.restaurant}</h3>
+                          with <h4>{bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}</h4>
+                          <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                          {bite.city}
                           {/* insert bite date formatting here */}
                           <div>
                             <div> NOV </div>
