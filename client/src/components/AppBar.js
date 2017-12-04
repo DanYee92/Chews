@@ -103,6 +103,7 @@ class MyAppBar extends React.Component {
                     <Button onClick={this.props.auth.signUp}> Sign Up </Button>
                     <Button onClick={this.props.auth.login}> Log In </Button>
                   </span> : <span>
+                    <Button onClick={() => this.props.history.push("/message/auth0|5a2172bf45157711be81ac47")}>Messages</Button>
                     <Button onClick={() => this.props.history.push("/my-bites")}>My Bites</Button>
                     <Button onClick={this.props.auth.logout}>Log Out</Button>
                   </span>}

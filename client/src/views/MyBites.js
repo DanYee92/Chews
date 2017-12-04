@@ -117,17 +117,17 @@ export class MyBites extends React.Component {
 
             // push the relevant info to an array
             myBites.push(thisBite);
-          });
+          }); // END res.data[0].bites.map()
         } else {
           // if the user has no bites, make myBites falsy
           myBites = null;
-        }
+        } // END if (res.data[0].bites) {} else {}
 
         // save the results and myBites in state
         this.setState({ myInfo: res.data, myBites: myBites });
-      })
+      }) // END API.getUserInfo().then()
       .catch(err => console.error(err));
-  }
+  } // END componentDidMount
   
 	render() {
     return <MuiThemeProvider>
