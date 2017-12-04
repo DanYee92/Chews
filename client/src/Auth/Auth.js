@@ -9,13 +9,12 @@ const options = {
     // https://www.npmjs.com/package/history
     redirectUrl: "http://localhost:3000/home",
     responseType: "token",
-  
-    
+
     params: {
       scope: "openid" // Learn about scopes: https://auth0.com/docs/scopes,
     }
   },
-  
+
   allowSignUp: false,
 
   theme: {
@@ -28,38 +27,59 @@ const options = {
   }
 };
 
-
 //Signup on homepage and redirects you to user/create page
 const optionsSignUp = {
   auth: {
     redirectUrl: "http://localhost:3000/api/user/create",
     responseType: "token",
-    
 
     params: {
       scope: "openid" // Learn about scopes: https://auth0.com/docs/scopes,
     }
   },
 
-  allowLogin: false, 
+  allowLogin: false,
 
   theme: {
     logo: require("../images/ChewsLogoCookie.png"),
     primaryColor: "tomato"
   },
+
   languageDictionary: {
     emailInputPlaceholder: "something@youremail.com",
     title: "chews"
-  }
+  },
+
+  additionalSignUpFields: [
+    {
+      name: "firstName",
+      placeholder: "First name",
+      validator: firstName => {
+        return {
+          valid: firstName.length > 0,
+          hint: "Please enter your first name"
+        };
+      }
+    },
+    {
+      name: "lastName",
+      placeholder: "Last name",
+      validator: lastName => {
+        return {
+          valid: lastName.length > 0,
+          hint: "Please enter your last"
+        };
+      }
+    }
+  ]
 };
 
 //Login and signup on bite details page
 const optionsBiteSigninLogin = {
   auth: {
- 
-    redirect : false,
+    redirect: false,
     responseType: "token",
-  
+
     params: {
       scope: "openid" // Learn about scopes: https://auth0.com/docs/scopes,
     }
@@ -78,10 +98,6 @@ const optionsBiteSigninLogin = {
   }
 };
 
-
-
-
-
 export default class Auth {
   lock = new Auth0Lock(
     "Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP",
@@ -95,12 +111,11 @@ export default class Auth {
     optionsSignUp
   );
 
-  bitesSigninLogin = new Auth0Lock (
+  bitesSigninLogin = new Auth0Lock(
     "Evy4W2oGK1HUFAr7XvVAcKTCq-GcF5kP",
     "app81460790.auth0.com",
     optionsBiteSigninLogin
   );
-  
 
   constructor() {
     this.login = this.login.bind(this);
@@ -116,31 +131,18 @@ export default class Auth {
     return this.lockSignUp.show();
   }
 
-  bookBiteLoginSignup () {
-    return this.bitesSigninLogin.show()
+  bookBiteLoginSignup() {
+    return this.bitesSigninLogin.show();
   }
 
-
   logout() {
-    console.log("logging out???")
+    console.log("logging out???");
     // Clear access information from local storage
     localStorage.removeItem("expires_at");
     localStorage.removeItem("userId");
-    localStorage.clear("accessToken")
-    
-    
+    localStorage.clear("accessToken");
+
     // navigate to the home route
     history.replace("/home");
-    
-  
-    
   }
-
-
-
-
-  
-
-  
 }
-
