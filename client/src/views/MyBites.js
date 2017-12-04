@@ -1,10 +1,8 @@
 import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import API from "../util/API";
-import styled from "styled-components";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Tabs, Tab } from "material-ui/Tabs";
-import { Link } from "react-router-dom";
 import { BitePaper } from "../components/BitePaper"
 
 

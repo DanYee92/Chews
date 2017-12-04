@@ -24,6 +24,7 @@ export const CollapsedNavbarSearch = props => {
       <SearchIcon
         icon={props.searchBarVisible}
         onClick={props.handleSearchIconClick}
+        style={{marginTop: "-0.5em"}}
       />
       {props.searchBarVisible ? (
         <MyNavbarForm pullLeft>

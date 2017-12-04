@@ -135,7 +135,7 @@ class App extends React.Component {
           <MuiThemeProvider>
             <AppBar auth={auth} userId={this.state.userId} history={history} />
           </MuiThemeProvider>
-          <ViewContainer>
+          <ViewContainer location={window.location.pathname}>
             {/** Landing Page */}
             <Route
               exact
