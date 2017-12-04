@@ -68,7 +68,7 @@ export default {
 		return axios.get(`/api/user/${localId}/bite/${biteId}/cancel`)
 
 
-		
+	}
 	// emitMessage: message => {
 	// 	console.log("API.emitMessage(mesasge):", message)
 	// 	socket.emit("message", message)

@@ -45,7 +45,7 @@ const BiteDateContainer = styled.div`
   color: gray;
 `;
 
-// BitePaper takes ({isBooked, restaurant, otherParty, biteId})
+// BitePaper takes ({isBooked, restaurant, otherParty, city, biteId})
 export const BitePaper = ({ isBooked, restaurant, otherParty, city, biteId }) => {
     return <Paper style={paperStyles} children={<div>
             <BookedStatusIcon isBooked={isBooked} className={isBooked ? `fa fa-check` : `fa fa-hourglass-o`} />
@@ -87,7 +87,7 @@ export const BitePaper = ({ isBooked, restaurant, otherParty, city, biteId }) =>
                       <Link to={`/bite/detail/${biteId}`}>
                         <SeeMoreButton primary>
                           <span>
-                            <i class="fa fa-list" aria-hidden="true" />
+                            <i className="fa fa-list" style={{ marginRight: "0.5em" }}aria-hidden="true" />
                           </span>
                         </SeeMoreButton>
                       </Link>

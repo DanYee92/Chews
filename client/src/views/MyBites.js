@@ -100,9 +100,9 @@ export class MyBites extends React.Component {
                         return parsedBiteDate > now;
                       })
                       .map((bite, i) => {
-                        return <BitePaper key={1} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />
+                        return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />
                       }) 
-                      : <BitePaper key={1} isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                      : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
                   }
                 </Col>
               </Row>
@@ -118,9 +118,9 @@ export class MyBites extends React.Component {
                   {this.state.myBites ? this.state.myBites
                     .filter(bite => bite.isBooked)
                     .map((bite, i) => {
-                      return <BitePaper key={1} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
+                      return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
                     }) 
-                    : <BitePaper key={1} isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                    : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
                   }
                 </Col>
               </Row>
@@ -136,9 +136,9 @@ export class MyBites extends React.Component {
                   {this.state.myBites ? this.state.myBites
                     .filter(bite => !bite.isBooked)
                     .map((bite, i) => {
-                      return <BitePaper key={1} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
+                      return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
                     }) 
-                    : <BitePaper key={1} isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                    : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
                   }
                 </Col>
               </Row>
@@ -159,9 +159,9 @@ export class MyBites extends React.Component {
                       return parsedBiteDate < now;
                     })
                     .map((bite, i) => {
-                      return <BitePaper key={1} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
+                      return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
                     }) 
-                    : <BitePaper key={1} isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                    : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
                   }
                 </Col>
               </Row>
