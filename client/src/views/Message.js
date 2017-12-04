@@ -57,7 +57,7 @@ export class Message extends React.Component{
         return <div>Hello, world.
             <div>
                 {this.state.messages ? this.state.messages.map((message, i) => {
-                    return <div key={i}>{message.body}</div>
+                    return <div key={i}>{this.props.match.params.id === message.senderId ? `${this.state.theirId.firstName} ${this.state.theirId.lastName}` : `${this.state.myId.firstName} ${this.state.myId.lastName}`}{message.body}</div>
                 }) : ""}
             </div>
             <form onSubmit={this.sendMessage}>
