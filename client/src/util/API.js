@@ -66,11 +66,16 @@ export default {
 
 	cancelBiteLocal: (localId, biteId) => {
 		return axios.get(`/api/user/${localId}/bite/${biteId}/cancel`)
+	},
 
+	getMessages: (myId, theirId) => {
+		return axios.get(`/api/messages/${myId}/${theirId}`)
+	},
 
-	getMessages: (senderId) => {
-		return axios.get(`api/messages/senderId/${senderId}`)
+	sendMessage: newMessage => {
+		return axios.post("/api/message/create", newMessage)
 	}
+}
 
 	// emitMessage: message => {
 	// 	console.log("API.emitMessage(mesasge):", message)
@@ -78,7 +83,6 @@ export default {
 	// }
 	
 
-}
 
 //TEST createNewUser
 // const ali = {
@@ -131,4 +135,3 @@ export default {
 // console.log("User unbooked bites search");
 // const userId = "5a1c4d67f497743d9428014e";
 // API.getUserUnbookedBites(userId).then(result => console.log(result));
-}

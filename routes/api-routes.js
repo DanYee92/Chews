@@ -70,9 +70,14 @@ module.exports = app => {
   );
 
   //GET - get all messages by id
-  app.get("/api/messages/senderId/:senderId", (req, res) =>
+  app.get("/api/messages/:myId/:theirId", (req, res) =>
     messagesController.getMessages(req, res)
-)
+  );
+
+  // POST - send a new message
+  app.post("/api/message/create", (req, res) =>
+    messagesController.sendMessage(req, res)
+  );
 
   app.get("/api/apologize", (req, res) => {
     //TO DO - nicole apologize counter
