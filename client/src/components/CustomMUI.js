@@ -10,7 +10,7 @@ const muiTheme = getMuiTheme({
     pickerHeaderColor: "tomato"
   },
   tabs: {
-    height: "4.5em",
+    height: "4.5em !important",
     backgroundColor: "rgb(203, 145, 78)"
   }
 });

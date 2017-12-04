@@ -7,9 +7,12 @@ import { BitePaper } from "../components/BitePaper"
 import muiTheme from "../components/CustomMUI";
 import styled from "styled-components"
 
-const MyTabs = styled(Tabs)`
-  height: 4.5em !important
-`
+const styles = {
+  tabs:{
+    height: "4.5em"
+  }
+}
+
 
 export class MyBites extends React.Component {
 	state = {
@@ -87,7 +90,7 @@ export class MyBites extends React.Component {
   
 	render() {
     return <MuiThemeProvider muiTheme={muiTheme}>
-        <MyTabs>
+        <Tabs contentContainerStyle={styles.tabs}>
           <Tab label="Upcoming" value="a">
             <Grid>
               <Row>
@@ -178,7 +181,7 @@ export class MyBites extends React.Component {
               </Row>
             </Grid>
           </Tab>
-        </MyTabs>
+        </Tabs>
       </MuiThemeProvider>;
   }
 }
