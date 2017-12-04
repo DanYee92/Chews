@@ -57,20 +57,20 @@ export class MyBites extends React.Component {
 		console.log(this.props.userId)
 		API.getUserInfo(this.props.userId)
       .then(res => {
+        // create an array to store relevant bites info
         let myBites = []
         
+        // if the user has any bites, go through them
         if (res.data[0].bites) {
           res.data[0].bites.map(bite => {
+            // get the local and traveler information, if it exists
+            const localId = bite.localId
             let travelerId = null
-            let localId = null
-
             if(bite.travelerId) {
               travelerId = bite.travelerId;
             }
-            if(bite.localId) {
-              localId = bite.localId;
-            }
 
+            // save relevant bite information to an object
             const thisBite = {
               _id: bite._id,
               biteDate: bite.biteDate,
@@ -95,20 +95,18 @@ export class MyBites extends React.Component {
               thisBite.otherParty = null;
             }
 
+            // push the relevant info to an array
             myBites.push(thisBite);
-            console.log(myBites);
           });
         } else {
+          // if the user has no bites, make myBites falsy
           myBites = null;
         }
 
+        // save the results and myBites in state
         this.setState({ myInfo: res.data, myBites: myBites });
-
       })
       .catch(err => console.error(err));
-		
-		// API.getUserInfo("auth0|5a2171e2083226773d5c2f4a")
-		// 	.then(res => console.log(res.data[0].bites))
   }
   
 	render() {
@@ -122,15 +120,20 @@ export class MyBites extends React.Component {
               <Col xs={12} md={12}>
                 <h2>All Upcoming Bites</h2>
 
+                {/** if there are bites, go through them and make papers for each of them */}
                 {this.state.myBites ? this.state.myBites.map((bite, i) => {
                     return <Paper style={paperStyles} key={i}>
                         <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
                         <BiteBody>
                           <h3>{bite.restaurant}</h3>
+                          {/**
+                           * if there is another party, display their name, else display nobody
+                           * this needs to be refactored a bit
+                           */}
                           with <h4>{bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}</h4>
                           <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
                           {bite.city}
-                          {/* insert bite date formatting here */}
+                          {/** insert bite date formatting here */}
                           <div>
                             <div> NOV </div>
                             <div> 14 </div>
