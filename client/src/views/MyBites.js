@@ -6,7 +6,7 @@ import Paper from "material-ui/Paper";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Tabs, Tab } from "material-ui/Tabs";
 import Button from "../components/Button";
-
+import { Link } from "react-router-dom";
 
 const paperStyles = {
 	width: "100%",
@@ -60,10 +60,9 @@ export class MyBites extends React.Component {
 		myBites: null
 	}
 
-	componentDidMount() {
-		console.log("my-bites componentDidMount")
-		console.log(this.props.userId)
-		API.getUserInfo(this.props.userId)
+	componentWillMount() {
+    const myId = this.props.userId || "auth0|5a2171e2083226773d5c2f4a";
+		API.getUserInfo(myId)
       .then(res => {
         // create an array to store relevant bites info
         let myBites = []
@@ -72,8 +71,11 @@ export class MyBites extends React.Component {
         if (res.data[0].bites) {
           res.data[0].bites.map(bite => {
             // get the local and traveler information, if it exists
-            const localId = bite.localId
+            let localId = null
             let travelerId = null
+            if(bite.localId) {
+              localId = bite.localId;
+            }
             if(bite.travelerId) {
               travelerId = bite.travelerId;
             }
@@ -90,11 +92,11 @@ export class MyBites extends React.Component {
             };
 
             // if there is a traveler id and the user is the local
-            if (travelerId && this.props.userId === localId._id) {
+            if (travelerId && myId === localId._id) {
               // record the traveler as the other party
               thisBite.otherParty = travelerId;
               // else if there is a traveler id and the user is the traveler
-            } else if (travelerId && this.props.userId === travelerId._id) {
+            } else if (travelerId && myId === travelerId._id) {
               // record the local as the other party
               thisBite.otherParty = localId;
               // else if there is no traveler id
@@ -130,24 +132,27 @@ export class MyBites extends React.Component {
 
                 {/** if there are bites, go through them and make papers for each of them */}
                 {this.state.myBites ? this.state.myBites.map((bite, i) => {
-                    return <Paper style={paperStyles} key={i}>
-                        <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
-                        <BiteBody>
-                          <h3>{bite.restaurant}</h3>
-                          {/**
-                           * if there is another party, display their name, else display nobody
-                           * this needs to be refactored a bit
-                           */}
-                          with <h4>{bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}</h4>
-                          <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                          {bite.city}
-                          {/** insert bite date formatting here */}
-                          <div>
-                            <div> NOV </div>
-                            <div> 14 </div>
-                          </div>
-                        </BiteBody>
-                      </Paper>;
+                    return <Paper key={i}
+                      style={paperStyles}
+                      children={
+                        <div>
+                            <BookedStatusIcon color="green" className={this.state.isBooked ? "fa fa-check" : "fa fa-hourglass-o"} />
+                            <BiteBody>
+                              <h3>{bite.restaurant}</h3>
+                              {/**
+                              * if there is another party, display their name, else display nobody
+                              * this needs to be refactored a bit
+                              */}
+                              with <h4>{bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}</h4>
+                              <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                              {bite.city}
+                              {/** insert bite date formatting here */}
+                            </BiteBody>
+                                <Link to={`/bite/detail/${bite._id}`}><SeeMoreButton primary>See Details</SeeMoreButton></Link>
+                        </div>
+                      }
+                    >
+                    </Paper>;
 									}) : <Paper style={paperStyles} 
 													children={
 													<div>
@@ -159,14 +164,58 @@ export class MyBites extends React.Component {
 															Chicago
 														</BiteBody>
 														<SeeMoreButton primary>See Details</SeeMoreButton>
-
 													</div>}>
                   </Paper>}
               </Col>
             </Row>
           </Grid>
         </Tab>
-        <Tab label="Booked" value="b" />
+        <Tab label="Booked" value="b">
+          <Grid>
+            <Row>
+              <Col xs={12} md={12}>
+                <h2>All Booked Bites</h2>
+
+                {/** if there are bites, go through them and make papers for each of them */}
+                {this.state.myBites ? this.state.myBites.map((bite, i) => {
+                    return <Paper key={i}
+                      style={paperStyles}
+                      children={
+                        <div>
+                            <BookedStatusIcon color="green" className={this.state.isBooked ? "fa fa-check" : "fa fa-hourglass-o"} />
+                            <BiteBody>
+                              <h3>{bite.restaurant}</h3>
+                              {/**
+                              * if there is another party, display their name, else display nobody
+                              * this needs to be refactored a bit
+                              */}
+                              with <h4>{bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}</h4>
+                              <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                              {bite.city}
+                              {/** insert bite date formatting here */}
+                            </BiteBody>
+                                <Link to={`/bite/detail/${bite._id}`}><SeeMoreButton primary>See Details</SeeMoreButton></Link>
+                        </div>
+                      }
+                    >
+                    </Paper>;
+									}) : <Paper style={paperStyles} 
+													children={
+													<div>
+														<BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
+														<BiteBody>
+															<h3>Jim's Original</h3>
+															with <h4>Andrew Huang</h4>
+															<i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+															Chicago
+														</BiteBody>
+														<SeeMoreButton primary>See Details</SeeMoreButton>
+													</div>}>
+                  </Paper>}
+              </Col>
+            </Row>
+          </Grid>
+        </Tab>
         <Tab label="Pending" value="c" />
         <Tab label="Past Bites" value="d" />
       </Tabs>
