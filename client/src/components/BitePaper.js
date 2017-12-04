@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Grid, Row, Col } from "react-bootstrap";
 import Paper from "material-ui/Paper";
 import Button from "../components/Button";
 
@@ -73,18 +74,24 @@ export const BitePaper = ({ isBooked, restaurant, otherParty, city, biteId }) =>
                      * this needs to be refactored a bit
                      */}
                     <h4>
-                      with
-                      {otherParty ? `${otherParty.firstName} ${otherParty.lastName}` : "nobody yet"}
+                      <p>
+                        with{" "}
+                        {otherParty
+                          ? `${otherParty.firstName} ${otherParty.lastName}`
+                          : "your mom"}
+                      </p>
                     </h4>
                     <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
                     {city}
-                    <Link to={`/bite/detail/${biteId}`}>
-                      <SeeMoreButton primary>
-                        <span>
-                          <i class="fa fa-list" aria-hidden="true" />
-                        </span>
-                      </SeeMoreButton>
-                    </Link>
+                    <div style={{marginTop: "1em"}}>
+                      <Link to={`/bite/detail/${biteId}`}>
+                        <SeeMoreButton primary>
+                          <span>
+                            <i class="fa fa-list" aria-hidden="true" />
+                          </span>
+                        </SeeMoreButton>
+                      </Link>
+                    </div>
                   </BiteBody>
                 </Col>
               </Row>
