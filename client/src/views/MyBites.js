@@ -131,202 +131,251 @@ export class MyBites extends React.Component {
   
 	render() {
     return <MuiThemeProvider>
-      <Tabs>
-        <Tab label="All Upcoming" value="a">
-          <Grid>
-            <Row>
-              <Col xs={12} md={12}>
-                <h2>All Upcoming Bites</h2>
+        <Tabs>
+          <Tab label="Upcoming" value="a">
+            <Grid>
+              <Row>
+                <Col xs={12} md={12}>
+                  <h2>All Upcoming Bites</h2>
 
-                {/** if there are bites, go through them and make papers for each of them */}
-                {this.state.myBites ? this.state.myBites.filter(bite => {
-                  const parsedBiteDate = Date.parse(bite.biteDate) || Date.parse(bite.endDateRange)
-                  const now = Date.now()
-                  console.log("parsedBiteDate:", parsedBiteDate, "now:", now)
-                  return parsedBiteDate > now
-                }).map((bite, i) => {
-                    return <Paper key={i}
-                      style={paperStyles}
-                      children={
-                        <div>
-                            <BookedStatusIcon color="green" className={bite.isBooked ? `fa fa-check` : `fa fa-hourglass-o`} />
-                            <BiteBody>
-                              <h3>{bite.restaurant}</h3>
-                              {/**
-                              * if there is another party, display their name, else display nobody
-                              * this needs to be refactored a bit
-                              */}
-                              with <h4>{bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}</h4>
-                              <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                              {bite.city}
-                              {/** insert bite date formatting here */}
-                            </BiteBody>
-                                <Link to={`/bite/detail/${bite._id}`}><SeeMoreButton primary>See Details</SeeMoreButton></Link>
-                        </div>
-                      }
-                    >
-                    </Paper>;
-									}) : <Paper style={paperStyles} 
-													children={
-													<div>
-														<BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
-														<BiteBody>
-															<h3>Jim's Original</h3>
-															with <h4>Andrew Huang</h4>
-															<i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-															Chicago
-														</BiteBody>
-														<SeeMoreButton primary>See Details</SeeMoreButton>
-													</div>}>
-                  </Paper>}
-              </Col>
-            </Row>
-          </Grid>
-        </Tab>
-        <Tab label="Booked" value="b">
-          <Grid>
-            <Row>
-              <Col xs={12} md={12}>
-                <h2>All Booked Bites</h2>
+                  {/** if there are bites, go through them and make papers for each of them */}
+                  {this.state.myBites ? this.state.myBites
+                      .filter(bite => {
+                        const parsedBiteDate = Date.parse(bite.biteDate) || Date.parse(bite.endDateRange);
+                        const now = Date.now();
+                        console.log("parsedBiteDate:", parsedBiteDate, "now:", now);
+                        return parsedBiteDate > now;
+                      })
+                      .map((bite, i) => {
+                        return <Paper key={i} style={paperStyles} children={<div>
+                                <BookedStatusIcon color="green" className={bite.isBooked ? `fa fa-check` : `fa fa-hourglass-o`} />
+                                <BiteBody>
+                                  <h3>{bite.restaurant}</h3>
+                                  {/**
+                                   * if there is another party, display their name, else display nobody
+                                   * this needs to be refactored a bit
+                                   */}
+                                  <h4>
+                                    with
+                                    {bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}
+                                  </h4>
+                                  <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                                  {bite.city}
+                                  {/** insert bite date formatting here */}
+                                </BiteBody>
+                                <Link to={`/bite/detail/${bite._id}`}>
+                                  <SeeMoreButton primary>
+                                    <span>
+                                      <i class="fa fa-list" aria-hidden="true" />
+                                    </span>
+                                    See Details
+                                  </SeeMoreButton>
+                                </Link>
+                              </div>} />;
+                      }) : <Paper style={paperStyles} children={<div>
+                          <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
+                          <BiteBody>
+                            <h3>Jim's Original</h3>
+                            <h4>with Andrew Huang</h4>
+                            <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                            Chicago
+                          </BiteBody>
+                          <SeeMoreButton primary>
+                            <span>
+                              <i class="fa fa-list" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                            </span>
+                            See Details
+                          </SeeMoreButton>
+                        </div>} />}
+                </Col>
+              </Row>
+            </Grid>
+          </Tab>
+          <Tab label="Booked" value="b">
+            <Grid>
+              <Row>
+                <Col xs={12} md={12}>
+                  <h2>All Booked Bites</h2>
 
-                {/** if there are bites, go through them and make papers for each of them */}
-                {this.state.myBites ? this.state.myBites.filter(bite => bite.isBooked).map((bite, i) => {
-                    return <Paper key={i}
-                      style={paperStyles}
-                      children={
-                        <div>
-                            <BookedStatusIcon color="green" className="fa fa-check" />
-                            <BiteBody>
-                              <h3>{bite.restaurant}</h3>
-                              {/**
-                              * if there is another party, display their name, else display nobody
-                              * this needs to be refactored a bit
-                              */}
-                              with <h4>{bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}</h4>
-                              <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                              {bite.city}
-                              {/** insert bite date formatting here */}
-                            </BiteBody>
-                                <Link to={`/bite/detail/${bite._id}`}><SeeMoreButton primary>See Details</SeeMoreButton></Link>
-                        </div>
-                      }
-                    >
-                    </Paper>;
-									}) : <Paper style={paperStyles} 
-													children={
-													<div>
-														<BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
-														<BiteBody>
-															<h3>Jim's Original</h3>
-															with <h4>Andrew Huang</h4>
-															<i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-															Chicago
-														</BiteBody>
-														<SeeMoreButton primary>See Details</SeeMoreButton>
-													</div>}>
-                  </Paper>}
-              </Col>
-            </Row>
-          </Grid>
-        </Tab>
-        <Tab label="Pending" value="c">
-          <Grid>
-            <Row>
-              <Col xs={12} md={12}>
-                <h2>All Pending Bites</h2>
+                  {/** if there are bites, go through them and make papers for each of them */}
+                  {this.state.myBites ? this.state.myBites
+                      .filter(bite => bite.isBooked)
+                      .map((bite, i) => {
+                        return (
+                          <Paper
+                            key={i}
+                            style={paperStyles}
+                            children={
+                              <div>
+                                <BookedStatusIcon
+                                  color="green"
+                                  className="fa fa-check"
+                                />
+                                <BiteBody>
+                                  <h3>{bite.restaurant}</h3>
+                                  {/**
+                                   * if there is another party, display their name, else display nobody
+                                   * this needs to be refactored a bit
+                                   */}
+                                  with{" "}
+                                  <h4>
+                                    {bite.otherParty
+                                      ? `${bite.otherParty.firstName} ${
+                                          bite.otherParty.lastName
+                                        }`
+                                      : "nobody yet"}
+                                  </h4>
+                                  <i
+                                    className="fa fa-map-marker"
+                                    aria-hidden="true"
+                                    style={{ marginRight: "0.5em" }}
+                                  />
+                                  {bite.city}
+                                  {/** insert bite date formatting here */}
+                                </BiteBody>
+                                <Link to={`/bite/detail/${bite._id}`}>
+                                  <SeeMoreButton primary>
+                                    See Details
+                                  </SeeMoreButton>
+                                </Link>
+                              </div>
+                            }
+                          />
+                        );
+                      }) : <Paper style={paperStyles} children={<div>
+                          <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
+                          <BiteBody>
+                            <h3>Jim's Original</h3>
+                            with <h4>Andrew Huang</h4>
+                            <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                            Chicago
+                          </BiteBody>
+                          <SeeMoreButton primary>See Details</SeeMoreButton>
+                        </div>} />}
+                </Col>
+              </Row>
+            </Grid>
+          </Tab>
+          <Tab label="Pending" value="c">
+            <Grid>
+              <Row>
+                <Col xs={12} md={12}>
+                  <h2>All Pending Bites</h2>
 
-                {/** if there are bites, go through them and make papers for each of them */}
-                {this.state.myBites ? this.state.myBites.filter(bite => !bite.isBooked).map((bite, i) => {
-                    return <Paper key={i}
-                      style={paperStyles}
-                      children={
-                        <div>
-                            <BookedStatusIcon color="green" className="fa fa-hourglass-o" />
-                            <BiteBody>
-                              <h3>{bite.restaurant}</h3>
-                              {/**
-                              * if there is another party, display their name, else display nobody
-                              * this needs to be refactored a bit
-                              */}
-                              with <h4>{bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}</h4>
-                              <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                              {bite.city}
-                              {/** insert bite date formatting here */}
-                            </BiteBody>
-                                <Link to={`/bite/detail/${bite._id}`}><SeeMoreButton primary>See Details</SeeMoreButton></Link>
-                        </div>
-                      }
-                    >
-                    </Paper>;
-									}) : <Paper style={paperStyles} 
-													children={
-													<div>
-														<BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
-														<BiteBody>
-															<h3>Jim's Original</h3>
-															with <h4>Andrew Huang</h4>
-															<i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-															Chicago
-														</BiteBody>
-														<SeeMoreButton primary>See Details</SeeMoreButton>
-													</div>}>
-                  </Paper>}
-              </Col>
-            </Row>
-          </Grid>
-        </Tab>
-        <Tab label="Past Bites" value="d">
-          <Grid>
-            <Row>
-              <Col xs={12} md={12}>
-                <h2>All Past Bites</h2>
+                  {/** if there are bites, go through them and make papers for each of them */}
+                  {this.state.myBites ? this.state.myBites
+                      .filter(bite => !bite.isBooked)
+                      .map((bite, i) => {
+                        return (
+                          <Paper
+                            key={i}
+                            style={paperStyles}
+                            children={
+                              <div>
+                                <BookedStatusIcon
+                                  color="green"
+                                  className="fa fa-hourglass-o"
+                                />
+                                <BiteBody>
+                                  <h3>{bite.restaurant}</h3>
+                                  {/**
+                                   * if there is another party, display their name, else display nobody
+                                   * this needs to be refactored a bit
+                                   */}
+                                  with{" "}
+                                  <h4>
+                                    {bite.otherParty
+                                      ? `${bite.otherParty.firstName} ${
+                                          bite.otherParty.lastName
+                                        }`
+                                      : "nobody yet"}
+                                  </h4>
+                                  <i
+                                    className="fa fa-map-marker"
+                                    aria-hidden="true"
+                                    style={{ marginRight: "0.5em" }}
+                                  />
+                                  {bite.city}
+                                  {/** insert bite date formatting here */}
+                                </BiteBody>
+                                <Link to={`/bite/detail/${bite._id}`}>
+                                  <SeeMoreButton primary>
+                                    See Details
+                                  </SeeMoreButton>
+                                </Link>
+                              </div>
+                            }
+                          />
+                        );
+                      }) : <Paper style={paperStyles} children={<div>
+                          <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
+                          <BiteBody>
+                            <h3>Jim's Original</h3>
+                            with <h4>Andrew Huang</h4>
+                            <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                            Chicago
+                          </BiteBody>
+                          <SeeMoreButton primary>See Details</SeeMoreButton>
+                        </div>} />}
+                </Col>
+              </Row>
+            </Grid>
+          </Tab>
+          <Tab label="Past Bites" value="d">
+            <Grid>
+              <Row>
+                <Col xs={12} md={12}>
+                  <h2>All Past Bites</h2>
 
-                {/** if there are bites, go through them and make papers for each of them */}
-                {this.state.myBites ? this.state.myBites.filter(bite => {
-                  const parsedBiteDate = Date.parse(bite.biteDate) || Date.parse(bite.endDateRange)
-                  const now = Date.now()
-                  console.log("parsedBiteDate:", parsedBiteDate, "now:", now)
-                  return parsedBiteDate < now
-                }).map((bite, i) => {
-                    return <Paper key={i}
-                      style={paperStyles}
-                      children={
-                        <div>
-                            <BookedStatusIcon color="green" className={bite.isBooked ? `fa fa-check` : `fa fa-hourglass-o`} />
-                            <BiteBody>
-                              <h3>{bite.restaurant}</h3>
-                              {/**
-                              * if there is another party, display their name, else display nobody
-                              * this needs to be refactored a bit
-                              */}
-                              with <h4>{bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}</h4>
-                              <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                              {bite.city}
-                              {/** insert bite date formatting here */}
-                            </BiteBody>
-                                <Link to={`/bite/detail/${bite._id}`}><SeeMoreButton primary>See Details</SeeMoreButton></Link>
-                        </div>
-                      }
-                    >
-                    </Paper>;
-									}) : <Paper style={paperStyles} 
-													children={
-													<div>
-														<BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
-														<BiteBody>
-															<h3>Jim's Original</h3>
-															with <h4>Andrew Huang</h4>
-															<i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-															Chicago
-														</BiteBody>
-														<SeeMoreButton primary>See Details</SeeMoreButton>
-													</div>}>
-                  </Paper>}
-              </Col>
-            </Row>
-          </Grid>
-        </Tab>
-      </Tabs>
-    </MuiThemeProvider>;
+                  {/** if there are bites, go through them and make papers for each of them */}
+                  {this.state.myBites ? this.state.myBites
+                      .filter(bite => {
+                        const parsedBiteDate = Date.parse(bite.biteDate) || Date.parse(bite.endDateRange);
+                        const now = Date.now();
+                        console.log("parsedBiteDate:", parsedBiteDate, "now:", now);
+                        return parsedBiteDate < now;
+                      })
+                      .map((bite, i) => {
+                        return <Paper key={i} style={paperStyles} children={<div>
+                                <BookedStatusIcon color="green" className={bite.isBooked ? `fa fa-check` : `fa fa-hourglass-o`} />
+                                <BiteBody>
+                                  <h3>{bite.restaurant}</h3>
+                                  {/**
+                                   * if there is another party, display their name, else display nobody
+                                   * this needs to be refactored a bit
+                                   */}
+                                  with <h4>
+                                    {bite.otherParty
+                                      ? `${bite.otherParty.firstName} ${
+                                          bite.otherParty.lastName
+                                        }`
+                                      : "nobody yet"}
+                                  </h4>
+                                  <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                                  {bite.city}
+                                  {/** insert bite date formatting here */}
+                                </BiteBody>
+                                <Link to={`/bite/detail/${bite._id}`}>
+                                  <SeeMoreButton primary>
+                                    See Details
+                                  </SeeMoreButton>
+                                </Link>
+                              </div>} />;
+                      }) : <Paper style={paperStyles} children={<div>
+                          <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
+                          <BiteBody>
+                            <h3>Jim's Original</h3>
+                            with <h4>Andrew Huang</h4>
+                            <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                            Chicago
+                          </BiteBody>
+                          <SeeMoreButton primary>See Details</SeeMoreButton>
+                        </div>} />}
+                </Col>
+              </Row>
+            </Grid>
+          </Tab>
+        </Tabs>
+      </MuiThemeProvider>;
   }
 }
