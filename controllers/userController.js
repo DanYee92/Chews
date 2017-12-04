@@ -45,13 +45,6 @@ module.exports = {
 
 	// },
 
-	//getUserBites
-	//bite filters...
-	//booked and/or unbooked
-	//upcoming - present -> future
-	//past - present -> past
-	//URL: "/api/user/:userId/bites/:bookedStatus/:timePeriod"
-
 	//addRequestToBite
 
 	//confirm / deny request
@@ -102,9 +95,7 @@ module.exports = {
 				//get their bites
 				const allUserBites = result[0].bites;
 				//create a new array that only has the user's booked bites
-				const unbookedBites = allUserBites.filter(
-					bite => !bite.isBooked
-				);
+				const unbookedBites = allUserBites.filter(bite => !bite.isBooked);
 				res.json(unbookedBites);
 			})
 			.catch(err => console.error(err));
