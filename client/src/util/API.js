@@ -67,13 +67,10 @@ export default {
 	cancelBiteLocal: (localId, biteId) => {
 		return axios.get(`/api/user/${localId}/bite/${biteId}/cancel`)
 	},
-<<<<<<< HEAD
 
 	getMessages: (myId, theirId) => {
 		return axios.get(`/api/messages/${myId}/${theirId}`)
 	},
-=======
->>>>>>> 93579fdea469943d5bd57c7b72b4aa9018de63be
 
 	sendMessage: newMessage => {
 		return axios.post("/api/message/create", newMessage)
