@@ -76,5 +76,95 @@ module.exports = {
 			})
 			.then(result => res.json(result))
 			.catch(err => console.error(err));
+	},
+
+	// "/api/user/:userId/bites/:bookingStatus/:timePeriod/:category?"
+	//bookingStatus
+	//booked
+	//unbooked
+	//all (booked and unbooked)
+	//timePeriod
+	//upcoming (from now (most recent) until the future)
+	//past (from now to oldest)
+	//all (think about how this will work more...)
+	//category
+	//request, offer, ""
+
+	//UPCOMING -> "/bites/all/upcoming" - DONE
+	//BOOKED -> "/bites/booked/upcoming" - DONE
+	//PENDING REQUESTS -> "/bites/unbooked/upcoming/requests"
+	//upcoming where...
+	//userId is in biteRequests
+	//not booked
+	//MY OFFERS -> "/bites/unbooked/upcoming/offers" - DONE
+	//upcoming where...
+	//userId is localId
+	//not booked
+	//PAST BITES -> "/bites/booked/past" - DONE
+	//booked bites
+	//from most recent (now) to oldest
+
+	getUserBites: (req, res) => {
+		console.log("RUNNING getUserBites");
+		const userId = req.params.userId;
+		const bookingStatus = req.params.bookingStatus;
+		const timePeriod = req.params.timePeriod;
+		const category = req.params.category;
+		const findQuery = {};
+
+		if (bookingStatus === "booked") {
+			findQuery.isBooked = true;
+		} else if (bookingStatus === "unbooked") {
+			findQuery.isBooked = false;
+		} else if (bookingStatus === "all") {
+			//do not query on isBooked
+		}
+
+		if (timePeriod === "upcoming") {
+			//if isBooked -> find where biteDate >= now
+			if (findQuery.isBooked) {
+				findQuery.biteDate = { $gte: Date.now() };
+				//if notBooked -> find where endDateRange > now
+			} else if (findQuery.isBooked === false) {
+				findQuery.endDateRange = { $gt: Date.now() };
+				//if all bites -> find where biteDate >= now OR endDateRange > now
+			} else {
+				findQuery.$or = [
+					{ biteDate: { $gte: Date.now() } },
+					{ endDateRange: { $gt: Date.now() } }
+				];
+			}
+		} else if (timePeriod === "past") {
+			//find where biteDate < now
+			//assumes we are only displaying past booked bites
+			findQuery.biteDate = { $lt: Date.now() };
+		}
+
+		if (category === "offers") {
+			//find my offer
+			findQuery.localId = userId;
+		} else if (category === "requests") {
+			//find my requests
+			//findQuery = find where userId is in the requests table
+			console.log("finding my requests");
+		} else {
+			//find my booked bites
+			findQuery.$or = [{ localId: userId }, { travelerId: userId }];
+		}
+
+		console.log("userId:", userId);
+		console.log("bookingStatus:", bookingStatus);
+		console.log("timePeriod:", timePeriod);
+		console.log("category:", category);
+		console.log("findQuery:");
+		console.log(findQuery);
+
+		db.Bite
+			.find(findQuery)
+			.populate("localId")
+			.populate("travelerId")
+			.then(result => {
+				res.json(result);
+			});
 	}
 };

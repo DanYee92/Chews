@@ -17,7 +17,9 @@ module.exports = {
 			//find a user by their userid
 			.find({ _id: userId })
 			//populate that user with their bites
-			.populate("bites")
+			// deep populate the local and traveler information for each bite
+			// this line needs to be here in order for my-bites page to work
+			.populate({path: "bites", populate: [{path: "localId"}, {path: "travelerId"}] })
 			.then(foundUser => {
 				console.log(foundUser);
 				res.json(foundUser);
@@ -44,13 +46,6 @@ module.exports = {
 	// 		)
 
 	// },
-
-	//getUserBites
-	//bite filters...
-	//booked and/or unbooked
-	//upcoming - present -> future
-	//past - present -> past
-	//URL: "/api/user/:userId/bites/:bookedStatus/:timePeriod"
 
 	//addRequestToBite
 
@@ -102,9 +97,7 @@ module.exports = {
 				//get their bites
 				const allUserBites = result[0].bites;
 				//create a new array that only has the user's booked bites
-				const unbookedBites = allUserBites.filter(
-					bite => !bite.isBooked
-				);
+				const unbookedBites = allUserBites.filter(bite => !bite.isBooked);
 				res.json(unbookedBites);
 			})
 			.catch(err => console.error(err));

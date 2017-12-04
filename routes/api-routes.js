@@ -51,6 +51,13 @@ module.exports = app => {
     userController.getUserUnbookedBites(req, res)
   );
 
+  app.get(
+    "/api/user/:userId/bites/:bookingStatus/:timePeriod/:category?",
+    (req, res) => {
+      biteController.getUserBites(req, res);
+    }
+  );
+
   app.get("/api/apologize", (req, res) => {
     //TO DO - nicole apologize counter
   });

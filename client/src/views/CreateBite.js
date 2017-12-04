@@ -16,6 +16,10 @@ export class CreateBite extends Component {
 		endDateRange: ""
 	};
 
+	componentWillMount() {
+	    document.title = "Create Bite | Chews";
+	}
+
 	disablePast = date => {
 		return Date.parse(date) < Date.now();
 	};
