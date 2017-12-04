@@ -5,6 +5,7 @@ import FlatButton from "material-ui/FlatButton";
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from "material-ui/Drawer";
 import NavigationMenu from "material-ui/svg-icons/navigation/menu";
+import Divider from "material-ui/Divider";
 import { red500 } from "material-ui/styles/colors";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import { LinkedLogo } from "./Logo"
@@ -100,8 +101,14 @@ class MyAppBar extends React.Component {
         <AppBar title={<LinkedLogo to="/" style={{ marginTop: "0.75em" }} />} titleStyle={styles.title} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementLeft={<NavigationMenu style={styles.iconLeft} hoverColor={red500} />} iconStyleLeft={styles.iconLeft} iconElementRight={this.state.windowWidth > 767 ? <div>
                 <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />
                 {!this.props.userId ? <span>
-                    <Button onClick={this.props.auth.signUp}> Sign Up </Button>
-                    <Button onClick={this.props.auth.login}> Log In </Button>
+                    <Button onClick={this.props.auth.signUp}>
+                      {" "}
+                      Sign Up{" "}
+                    </Button>
+                    <Button onClick={this.props.auth.login}>
+                      {" "}
+                      Log In{" "}
+                    </Button>
                   </span> : <span>
                     <Button onClick={() => this.props.history.push("/message/auth0|5a2172bf45157711be81ac47")}>Messages</Button>
                     <Button onClick={() => this.props.history.push("/my-bites")}>My Bites</Button>
@@ -126,12 +133,40 @@ class MyAppBar extends React.Component {
                 }}>
                 Log In
               </MyMenuItem>
-            </div> : <MyMenuItem onClick={() => {
-                this.handleClose();
-                this.props.auth.logout();
-              }}>
-              Log Out
-            </MyMenuItem>}
+            </div> : <div>
+              <MyMenuItem onClick={() => {
+                  this.handleClose();
+                  this.props.history.push("/my-bites");
+                }}>
+                Profile
+              </MyMenuItem>
+              <MyMenuItem onClick={() => {
+                  this.handleClose();
+                  this.props.history.push("/my-bites");
+                }}>
+                Messages
+              </MyMenuItem>
+              <Divider />
+              <MyMenuItem onClick={() => {
+                  this.handleClose();
+                  this.props.history.push("/my-bites");
+                }}>
+                My Bites
+              </MyMenuItem>
+              <MyMenuItem onClick={() => {
+                  this.handleClose();
+                  this.props.history.push("/my-bites");
+                }}>
+                Create a Bite
+              </MyMenuItem>
+              <Divider />
+              <MyMenuItem onClick={() => {
+                  this.handleClose();
+                  this.props.auth.logout();
+                }}>
+                Log Out
+              </MyMenuItem>
+            </div>}
         </Drawer>
       </div>;
   }
