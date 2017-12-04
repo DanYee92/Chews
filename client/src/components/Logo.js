@@ -18,16 +18,15 @@ const Image = styled.img`
 export const Logo = props => {
   return <Image src={require("../images/logo_v1.png")} {...props}/>;
 }
-// export const LinkedLogo = () => {
-//   return (
-//     <Link>
-//       {Logo}
-//     </Link>)
-// }
-
+const SearchBarLogo = styled(Link)`
+  margin: 0;
+  @media (max-width: 768px) {
+    margin: 25%;
+  }
+`;
 export const LinkedLogo = props => {
-    return (<Link {...props}>
+    return (<SearchBarLogo {...props}>
       <Logo/>
-    </Link>)
+    </SearchBarLogo>)
 };
 // export const LinkedLogo = Logo.withComponent(Link);

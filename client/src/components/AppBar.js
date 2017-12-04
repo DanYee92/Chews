@@ -10,6 +10,7 @@ import { red500 } from "material-ui/styles/colors";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import { LinkedLogo } from "./Logo"
 
+
 const Button = styled(FlatButton)`
 	color: gray !important;
 	& > span {
@@ -52,7 +53,7 @@ const styles = {
 	},
 	iconLeft: {
 		float: "left",
-		margin: "0.75em 1.5em 0.5em 0.5em",
+		margin: "auto 0.35em",
 	},
 	menuItem: {
 
@@ -97,7 +98,7 @@ class MyAppBar extends React.Component {
 
   render() {
     return <div>
-        <AppBar title={<LinkedLogo to="/" style={{ marginTop: "0.75em" }} />} titleStyle={styles.title} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementLeft={<NavigationMenu style={styles.iconLeft} hoverColor={red500} />} iconStyleLeft={styles.iconLeft} iconElementRight={this.state.windowWidth > 767 ? <div>
+        <AppBar title={<LinkedLogo to="/" />} titleStyle={styles.title} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementLeft={<NavigationMenu style={styles.iconLeft} hoverColor={red500} />} iconStyleLeft={styles.iconLeft} iconElementRight={this.state.windowWidth > 767 ? <div>
                 <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />
                 {!this.props.userId ? <span>
                     <Button onClick={this.props.auth.signUp}>
