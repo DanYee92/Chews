@@ -5,6 +5,7 @@ import FlatButton from "material-ui/FlatButton";
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from "material-ui/Drawer";
 import NavigationMenu from "material-ui/svg-icons/navigation/menu";
+import Divider from "material-ui/Divider";
 import { red500 } from "material-ui/styles/colors";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import { LinkedLogo } from "./Logo"
@@ -144,20 +145,38 @@ class MyAppBar extends React.Component {
               </MyMenuItem>
             </div> : <div>
               <MyMenuItem onClick={() => {
-                this.handleClose();
-                this.props.history.push("/my-bites");
-              }}>
-              My Bites
-            </MyMenuItem>
-          <MyMenuItem onClick={() => {
-                this.handleClose();
-                this.props.auth.logout();
-              }}>
-              Log Out
-            </MyMenuItem>
-              
-              </div>
-          }
+                  this.handleClose();
+                  this.props.history.push("/my-bites");
+                }}>
+                Profile
+              </MyMenuItem>
+              <MyMenuItem onClick={() => {
+                  this.handleClose();
+                  this.props.history.push("/my-bites");
+                }}>
+                Messages
+              </MyMenuItem>
+              <Divider />
+              <MyMenuItem onClick={() => {
+                  this.handleClose();
+                  this.props.history.push("/my-bites");
+                }}>
+                My Bites
+              </MyMenuItem>
+              <MyMenuItem onClick={() => {
+                  this.handleClose();
+                  this.props.history.push("/my-bites");
+                }}>
+                Create a Bite
+              </MyMenuItem>
+              <Divider />
+              <MyMenuItem onClick={() => {
+                  this.handleClose();
+                  this.props.auth.logout();
+                }}>
+                Log Out
+              </MyMenuItem>
+            </div>}
         </Drawer>
       </div>;
   }

@@ -2,59 +2,45 @@ import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import API from "../util/API";
 import styled from "styled-components";
-import Paper from "material-ui/Paper";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Tabs, Tab } from "material-ui/Tabs";
-import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import { BitePaper } from "../components/BitePaper"
+
+import Paper from "material-ui/Paper";
+import Button from "../components/Button";
 
 const paperStyles = {
-	width: "100%",
-	height: "10em",
+  width: "100%",
+  height: "10em",
   background: "white",
-	margin: "1em 0",	
-	position: "relative"
-}
-const BiteImg = styled(Image)`
-	height: 100%;
-	float: left;
-`
-const BiteDate = styled.div`
-	height: 8em;
-	width: 8em;
-	border: 0.5em solid tomato;
-	background: white;
-	
-	color: tomato;
-	padding: 0.5em 2em;
-	text-align: center;
-	position: absolute;
-	right: 2.5em;
-	top: 2.5em
-`
-const Divider = styled.hr`
-	border: 1px solid tomato
-`
+  margin: "1em 0",
+  position: "relative"
+};
 const BiteBody = styled.span`
-	color: black;
-	position: absolute;
-	left: 10em;
-	width: 15em
-`
+  color: black;
+  position: absolute;
+  left: 10em;
+  width: 15em;
+`;
 const BookedStatusIcon = styled.i`
-	padding: 0.5em;
-	margin: 0.3em;
-	border: 3px solid green;
-	border-radius: 50%;
-	font-size: 3.5em;
-	color: ${props => props.color ? props.color : "orange"};
-`
+  padding: 0.5em;
+  margin: 0.3em;
+  border: 3px solid;
+  border-color: ${props => (props.isBooked ? "green" : "orange")};
+  border-radius: 50%;
+  font-size: 3.5em;
+  color: ${props => (props.isBooked ? "green" : "orange")};
+`;
 const SeeMoreButton = Button.extend`
-	background: transparent;
-	position: absolute;
-	bottom: 2em;
-	right: 2em	
-`
+  content: "See Details";
+  background: transparent;
+  position: absolute;
+  bottom: 2em;
+  right: 2em;
+`;
+
+
 export class MyBites extends React.Component {
 	state = {
 		myBites: null
@@ -147,31 +133,8 @@ export class MyBites extends React.Component {
                         return parsedBiteDate > now;
                       })
                       .map((bite, i) => {
-                        return <Paper key={i} style={paperStyles} children={<div>
-                                <BookedStatusIcon color="green" className={bite.isBooked ? `fa fa-check` : `fa fa-hourglass-o`} />
-                                <BiteBody>
-                                  <h3>{bite.restaurant}</h3>
-                                  {/**
-                                   * if there is another party, display their name, else display nobody
-                                   * this needs to be refactored a bit
-                                   */}
-                                  <h4>
-                                    with
-                                    {bite.otherParty ? `${bite.otherParty.firstName} ${bite.otherParty.lastName}` : "nobody yet"}
-                                  </h4>
-                                  <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                                  {bite.city}
-                                  {/** insert bite date formatting here */}
-                                </BiteBody>
-                                <Link to={`/bite/detail/${bite._id}`}>
-                                  <SeeMoreButton primary>
-                                    <span>
-                                      <i class="fa fa-list" aria-hidden="true" />
-                                    </span>
-                                    See Details
-                                  </SeeMoreButton>
-                                </Link>
-                              </div>} />;
+                        return 
+												<BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
                       }) : <Paper style={paperStyles} children={<div>
                           <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
                           <BiteBody>
