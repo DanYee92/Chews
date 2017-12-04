@@ -9,10 +9,13 @@ module.exports = {
 	},
 
 	getAllUserInfo: (req, res) => {
-		console.log("User ID to find:", req.params.userId);
+		const userId = req.params.userId;
+
+		console.log("User ID to find:", userId);
+
 		db.User
 			//find a user by their userid
-			.find({ _id: req.params.userId })
+			.find({ _id: userId })
 			//populate that user with their bites
 			.populate("bites")
 			.then(foundUser => {
@@ -22,10 +25,61 @@ module.exports = {
 			.catch(err => console.error(err));
 	},
 
+	// editUserProfile: (req, res) => {
+	// 	const userId = req.params.userId;
+	// 	let updates = {};
+
+	// 	if(req.body.firstName) {
+	// 		updates.firstName =
+	// 	}
+
+	// 	console.log("User ID to edit:", userId);
+	// 	db.User
+	// 		.findOneAndUpdate(
+	// 			{ _id: userId },
+	// 			{
+
+	// 			}
+
+	// 		)
+
+	// },
+
+	//getUserBites
+	//bite filters...
+	//booked and/or unbooked
+	//upcoming - present -> future
+	//past - present -> past
+	//URL: "/api/user/:userId/bites/:bookedStatus/:timePeriod"
+
+	//addRequestToBite
+
+	//confirm / deny request
+	//can this be made into one route?
+
+	//cancelBite
+	//different if traveler or local canacels
+
+	//editBite
+
+	//getUserUpcomingBites
+	//booked and unbooked
+	//Where...
+	//if booked - biteDate is after today's date
+	//if unbooked - endDateRange is after today's date
+	//alternatively...
+	//if (biteDate) where biteDate is after today's date
+	// else where endDateRange is after today's date
+	//populate localId
+	//populate travelerId
+	//populate requests
+
 	getUserBookedBites: (req, res) => {
+		const userId = req.params.userId;
+
 		db.User
 			//for the specific user
-			.find({ _id: req.params.userId })
+			.find({ _id: userId })
 			.populate("bites")
 			.then(result => {
 				//get their bites
@@ -38,9 +92,11 @@ module.exports = {
 	},
 
 	getUserUnbookedBites: (req, res) => {
+		const userId = req.params.userId;
+
 		db.User
 			//for the specific user
-			.find({ _id: req.params.userId })
+			.find({ _id: userId })
 			.populate("bites")
 			.then(result => {
 				//get their bites
@@ -54,7 +110,6 @@ module.exports = {
 			.catch(err => console.error(err));
 	}
 };
-
 
 // postman body to create users
 // URL: `http://localhost:3001/api/user/create'

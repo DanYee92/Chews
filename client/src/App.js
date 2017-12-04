@@ -117,7 +117,7 @@ class App extends React.Component {
       <Router history={history}>
         <div>
           <MuiThemeProvider>
-            <AppBar auth={auth} userId={this.state.userId} />
+            <AppBar auth={auth} userId={this.state.userId} history={history} />
           </MuiThemeProvider>
           <ViewContainer>
             {/** Landing Page */}
