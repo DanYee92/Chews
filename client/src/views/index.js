@@ -6,3 +6,4 @@ export * from "./Landing";
 export * from "./LogIn";
 export * from "./MyBites";
 export * from "./SearchResults";
+export * from "./Message";

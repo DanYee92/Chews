@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from "moment";
+// import socket from "../components/Socket.js";
 
 export default {
 	createNewUser: newUser => {
@@ -65,9 +66,16 @@ export default {
 
 	cancelBiteLocal: (localId, biteId) => {
 		return axios.get(`/api/user/${localId}/bite/${biteId}/cancel`)
-	}
 
-};
+
+		
+	// emitMessage: message => {
+	// 	console.log("API.emitMessage(mesasge):", message)
+	// 	socket.emit("message", message)
+	// }
+	
+
+}
 
 //TEST createNewUser
 // const ali = {

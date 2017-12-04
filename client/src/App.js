@@ -12,12 +12,13 @@ import {
   CreateBite,
   EditUser,
   Landing,
-  LogIn,
+  // LogIn,
   SearchResults,
-  MyBites
+  Message,
+  MyBites,
 } from "./views";
 
-let userInfo;
+// let userInfo;
 const history = createHistory();
 
 const auth = new Auth();
@@ -186,6 +187,7 @@ class App extends React.Component {
             <Route exact path="/bite/detail/:biteId" render={props => <BiteDetail {...props} auth={auth} userId={this.state.userId} />} />
             <Route exact path="/user/edit" render={props => <EditUser {...props} userId={this.state.userId} />} />
             <Route exact path="/my-bites" render={props => <MyBites {...props} userId={this.state.userId} />} />
+            <Route exact path="/message/:userId" render={props => <Message {...props} userId={this.state.userId} />} />
 
             <Route exact path="/browse" component={Browse} />
           </ViewContainer>
