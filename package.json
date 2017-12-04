@@ -29,6 +29,7 @@
     "moment": "^2.19.3",
     "mongoose": "^4.13.4",
     "react-bootstrap": "^0.31.5",
+    "socket.io": "^2.0.4",
     "styled-components": "^2.2.3"
   }
 }

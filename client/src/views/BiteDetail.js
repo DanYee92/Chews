@@ -29,6 +29,9 @@ const contentStyle = {
 
 const ParallaxContent = styled.div`
   height: 21em;
+  @media (max-width: 768px) {
+    height: 15em;
+  }
   -webkit-box-shadow: inset 0px -45px 113px -44px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: inset 0px -45px 113px -44px rgba(0, 0, 0, 0.75);
   box-shadow: inset 0px -45px 113px -44px rgba(0, 0, 0, 0.75);

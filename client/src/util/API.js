@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from "moment";
+// import socket from "../components/Socket.js";
 
 export default {
 	createNewUser: newUser => {
@@ -59,11 +60,29 @@ export default {
 	// userId should be a string
 	// returns array of bite Ids
 
-	cancelBiteTraveler: (biteId, userId) => {
-		
-	}
+	cancelBiteTraveler: (travelerId, biteId) => {
+		return axios.get(`/api/user/${travelerId}/bite/${biteId}/cancel`);
+	},
 
-};
+	cancelBiteLocal: (localId, biteId) => {
+		return axios.get(`/api/user/${localId}/bite/${biteId}/cancel`)
+	},
+
+	getMessages: (myId, theirId) => {
+		return axios.get(`/api/messages/${myId}/${theirId}`)
+	},
+
+	sendMessage: newMessage => {
+		return axios.post("/api/message/create", newMessage)
+	}
+}
+
+	// emitMessage: message => {
+	// 	console.log("API.emitMessage(mesasge):", message)
+	// 	socket.emit("message", message)
+	// }
+	
+
 
 //TEST createNewUser
 // const ali = {
