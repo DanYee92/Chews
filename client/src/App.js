@@ -42,22 +42,30 @@ class App extends React.Component {
             console.log("ERROR:", error);
             return;
           }
-          console.log("authResult", authResult);
-          const tempUserId = profile.sub;
-          console.log("userId:", tempUserId);
-          this.setState({ userId: profile.sub });
+          const userId = profile.sub;
+          const storedInDb = profile.user_metadata.storedInDb;
+
+          console.log("userId:", userId);
+          console.log("profile", profile);
+          console.log(storedInDb);
+
+          if (!storedInDb) {
+            const lastName = profile.user_metadata.lastName;
+            const firstName = profile.user_metadata.firstName;
+            const newUser = {
+              _id: userId,
+              firstName: firstName,
+              lastName: lastName
+            };
+
+            console.log("newUser", newUser);
+            console.log("STORING USER IN DB");
+            API.createNewUser(newUser);
+          }
+          this.setState({ userId: userId });
           localStorage.setItem("accessToken", authResult.accessToken);
         });
       }
-    });
-  };
-
-  groovesterSignedUpListener = () => {
-    console.log("userSignedUpListener is listening");
-
-    groovy.on("signup submit", result => {
-      console.log("a user signed up");
-      console.log(result);
     });
   };
 
@@ -74,33 +82,9 @@ class App extends React.Component {
   // }
 
   // auth.testListenerFxn();
-  SignUpGroovyListener = () => {
-    groovy.on("hash_parsed", authResult => {
-      console.log("looking in the authResult for token", authResult);
-      if (authResult !== null) {
-        auth.lockSignUp.getUserInfo(
-          authResult.accessToken,
-          (error, profile) => {
-            if (error) {
-              // Handle error
-              console.log("ERROR:", error);
-              return;
-            }
-            console.log("authResult", authResult);
-            const tempUserId = profile.sub;
-            console.log("userId:", tempUserId);
-            this.setState({ userId: profile.sub });
-            localStorage.setItem("accessToken", authResult.accessToken);
-          }
-        );
-      }
-    });
-  };
 
   componentDidMount = () => {
     this.groovyListener();
-    // this.SignUpGroovyListener();
-    this.groovesterSignedUpListener();
   };
 
   handleInputChange = event => {
