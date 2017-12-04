@@ -10,6 +10,10 @@ import API from "../util/API.js";
 export class EditUser extends Component {
 	state = { firstName: "", lastName: "", hometown: "", summary: "" };
 
+	componentWillMount() {
+		document.title = "Edit Profile | Chews";
+	}
+
 	handleInputChange = event => {
 		const { name, value } = event.target;
 		this.setState({ [name]: value });

@@ -50,6 +50,8 @@ export class BiteDetail extends Component {
   };
 
   componentWillMount() {
+    document.title = "Bite Details | Chews";
+    
     API.getBiteDetail(this.props.match.params.biteId).then(res =>{
       const bite = res.data[0]
       console.log("bite from BiteDetail:", bite)

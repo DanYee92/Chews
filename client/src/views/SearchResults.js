@@ -10,6 +10,9 @@ export class SearchResults extends React.Component {
   state = { searchResults: [], searchQuery: this.props.match.params.searchQuery};
 
   componentWillMount() {
+    document.title = "Search Results | Chews";
+
+
     API.searchForBites(this.state.searchQuery).then(res =>
       this.setState({ searchResults: res.data })
     );
