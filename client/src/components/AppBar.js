@@ -27,9 +27,8 @@ const LogoIcon = styled.img`
 `;
 
 const MyMenuItem = styled(MenuItem)`
-	color: tomato !important;
-	text-indent: 1em !important
-`
+  color: rgb(126, 81, 50) !important;
+`;
 
 function handleTouchTap() {
 }
@@ -38,7 +37,7 @@ const styles = {
 	appbar: {
 		backgroundColor: "rgba(0, 0, 0, 0)",
 		boxShadow: "0",
-
+    borderBottom: "0.1em solid lightgrey"
 	},
 	title: {
 		height: "100%",
