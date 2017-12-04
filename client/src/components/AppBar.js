@@ -45,11 +45,11 @@ const styles = {
 		width: "auto"
 	},
   iconRight: {
-		marginTop: "1.25em",
+		marginTop: "1em",
 		color: "white",
 	},
 	drawer: {
-		marginTop: "2em"
+		marginTop: "0em"
 	},
 	iconLeft: {
 		float: "left",
@@ -121,6 +121,7 @@ class MyAppBar extends React.Component {
             )}>
           <LogoIcon src={require("../images/ChewsLogoCookie.png")} />
           {!this.props.userId ? <div>
+              
               <MyMenuItem onClick={() => {
                   this.handleClose();
                   this.props.auth.signUp();
