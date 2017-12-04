@@ -60,7 +60,16 @@ export class MyBites extends React.Component {
 		myBites: null
 	}
 
-	componentWillMount() {
+  componentWillMount() {
+    document.title = "My Bites | Chews";
+    // if user is not logged in
+    if(!this.props.userId) {
+      // redirect user to homepage
+      // this.props.history.replace("/")
+    }
+  }
+
+	componentDidMount() {
     const myId = this.props.userId || "auth0|5a2171e2083226773d5c2f4a";
 		API.getUserInfo(myId)
       .then(res => {
