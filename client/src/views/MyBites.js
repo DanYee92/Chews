@@ -70,7 +70,8 @@ export class MyBites extends React.Component {
   }
 
 	componentDidMount() {
-    const myId = this.props.userId || "auth0|5a2171e2083226773d5c2f4a";
+    // const myId = this.props.userId || "auth0|5a2171e2083226773d5c2f4a";
+    const myId = this.props.userId;
 		API.getUserInfo(myId)
       .then(res => {
         // create an array to store relevant bites info
