@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from "moment";
+// import socket from "../components/Socket.js";
 
 export default {
 	createNewUser: newUser => {
@@ -55,10 +56,26 @@ export default {
 
 	getUserUnbookedBites: userId => {
 		return axios.get(`/api/user/${userId}/bites/unbooked`);
-	}
+	},
 	// userId should be a string
 	// returns array of bite Ids
-};
+
+	cancelBiteTraveler: (travelerId, biteId) => {
+		return axios.get(`/api/user/${travelerId}/bite/${biteId}/cancel`);
+	},
+
+	cancelBiteLocal: (localId, biteId) => {
+		return axios.get(`/api/user/${localId}/bite/${biteId}/cancel`)
+
+
+		
+	// emitMessage: message => {
+	// 	console.log("API.emitMessage(mesasge):", message)
+	// 	socket.emit("message", message)
+	// }
+	
+
+}
 
 //TEST createNewUser
 // const ali = {

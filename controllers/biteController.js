@@ -78,17 +78,38 @@ module.exports = {
 			.catch(err => console.error(err));
 	},
 
+	cancelBiteTraveler: (req, res) => {
+		console.log("cancel this bite as a traveler", req.params.travelerId);
+		db.Bite
+			//find the biteId and update isBooked: false and remove travelerId and biteDate (Travler)
+			.findOneAndUpdate(
+				{ _id: req.params.biteId },
+				{
+					isBooked: false,
+					travelerId: "",
+					biteDate: ""
+				},
+				{ new: true }
+			)
+			.then(result => {
+				console.log(result);
+				res.json(result);
+			})
+			.catch(err => console.log(err));
+	},
+
+	cancelBiteLocal: (req, res) => {
+		console.log("cancel this bite as a Local", req.params.localId);
+		db.Bite
+			.findOneAndRemove({ _id: req.params.biteId })
+			.then(result => res.json(result))
+			.catch(err => console.log(err));
+	},
+
 	// "/api/user/:userId/bites/:bookingStatus/:timePeriod/:category?"
-	//bookingStatus
-	//booked
-	//unbooked
-	//all (booked and unbooked)
-	//timePeriod
-	//upcoming (from now (most recent) until the future)
-	//past (from now to oldest)
-	//all (think about how this will work more...)
-	//category
-	//request, offer, ""
+	//bookingStatus - booked, unbooked, all
+	//timePeriod - upcoming (from now until the future), past (from now to oldest)
+	//category - request, offer, ""
 
 	//UPCOMING -> "/bites/all/upcoming" - DONE
 	//BOOKED -> "/bites/booked/upcoming" - DONE
@@ -112,14 +133,14 @@ module.exports = {
 		const category = req.params.category;
 		const findQuery = {};
 
+		//set booking status query
 		if (bookingStatus === "booked") {
 			findQuery.isBooked = true;
 		} else if (bookingStatus === "unbooked") {
 			findQuery.isBooked = false;
-		} else if (bookingStatus === "all") {
-			//do not query on isBooked
 		}
 
+		//set time period for query, depending on booked/unbooked
 		if (timePeriod === "upcoming") {
 			//if isBooked -> find where biteDate >= now
 			if (findQuery.isBooked) {
@@ -136,10 +157,11 @@ module.exports = {
 			}
 		} else if (timePeriod === "past") {
 			//find where biteDate < now
-			//assumes we are only displaying past booked bites
+			//for now, assumes we are only displaying past booked bites
 			findQuery.biteDate = { $lt: Date.now() };
 		}
 
+		//sets query to get only offers or requests that have not been booked
 		if (category === "offers") {
 			//find my offer
 			findQuery.localId = userId;
@@ -156,8 +178,7 @@ module.exports = {
 		console.log("bookingStatus:", bookingStatus);
 		console.log("timePeriod:", timePeriod);
 		console.log("category:", category);
-		console.log("findQuery:");
-		console.log(findQuery);
+		console.log("findQuery:", findQuery);
 
 		db.Bite
 			.find(findQuery)
