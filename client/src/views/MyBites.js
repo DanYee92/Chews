@@ -10,35 +10,7 @@ import { BitePaper } from "../components/BitePaper"
 import Paper from "material-ui/Paper";
 import Button from "../components/Button";
 
-const paperStyles = {
-  width: "100%",
-  height: "10em",
-  background: "white",
-  margin: "1em 0",
-  position: "relative"
-};
-const BiteBody = styled.span`
-  color: black;
-  position: absolute;
-  left: 10em;
-  width: 15em;
-`;
-const BookedStatusIcon = styled.i`
-  padding: 0.5em;
-  margin: 0.3em;
-  border: 3px solid;
-  border-color: ${props => (props.isBooked ? "green" : "orange")};
-  border-radius: 50%;
-  font-size: 3.5em;
-  color: ${props => (props.isBooked ? "green" : "orange")};
-`;
-const SeeMoreButton = Button.extend`
-  content: "See Details";
-  background: transparent;
-  position: absolute;
-  bottom: 2em;
-  right: 2em;
-`;
+
 
 
 export class MyBites extends React.Component {
@@ -133,22 +105,45 @@ export class MyBites extends React.Component {
                         return parsedBiteDate > now;
                       })
                       .map((bite, i) => {
-                        return 
-												<BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
+                        return;
+                        <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
                       }) : <Paper style={paperStyles} children={<div>
                           <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
-                          <BiteBody>
-                            <h3>Jim's Original</h3>
-                            <h4>with Andrew Huang</h4>
-                            <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                            Chicago
-                          </BiteBody>
-                          <SeeMoreButton primary>
-                            <span>
-                              <i class="fa fa-list" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                            </span>
-                            See Details
-                          </SeeMoreButton>
+
+                          <Grid>
+                            <Row>
+                              <Col xs={12} md={2}>
+                                <BiteDateContainer>
+                                  <span style={{ display: "inline-block" }}>
+                                    <h5>DEC</h5>
+                                    <h2 style={{ lineHeight: 0 }}>20</h2>
+                                  </span>
+                                  <p style={{ display: "inline-block", margin: "0em 0.25em", fontSize: "4.5em" }}>
+                                    /
+                                  </p>
+                                  <span style={{ display: "inline-block" }}>
+                                    <h5>DEC</h5>
+                                    <h2 style={{ lineHeight: 0 }}>21</h2>
+                                  </span>
+                                </BiteDateContainer>
+                              </Col>
+                              <Col xs={12} md={10}>
+                                <BiteBody>
+                                  <h3>Jim's Original</h3>
+                                  <h4>with Andrew Huang</h4>
+                                  <p>
+                                    <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                                    Chicago
+                                  </p>
+                                  <SeeMoreButton primary>
+                                    <span>
+                                      <i class="fa fa-list" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                                    </span>
+                                  </SeeMoreButton>
+                                </BiteBody>
+                              </Col>
+                            </Row>
+                          </Grid>
                         </div>} />}
                 </Col>
               </Row>
