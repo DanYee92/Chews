@@ -11,8 +11,9 @@ import Button from "../components/Button";
 const paperStyles = {
 	width: "100%",
 	height: "10em",
-  background: "papayawhip",
-  margin: "1em 0"
+  background: "white",
+	margin: "1em 0",	
+	position: "relative"
 }
 const BiteImg = styled(Image)`
 	height: 100%;
@@ -34,18 +35,25 @@ const BiteDate = styled.div`
 const Divider = styled.hr`
 	border: 1px solid tomato
 `
-const BiteBody = styled.div`
-	padding: 0em;
+const BiteBody = styled.span`
 	color: black;
-	width: 70%;
-	text-indent: 2em;
+	position: absolute;
+	left: 10em;
+	width: 15em
 `
 const BookedStatusIcon = styled.i`
 	padding: 0.5em;
+	margin: 0.3em;
 	border: 3px solid green;
 	border-radius: 50%;
 	font-size: 3.5em;
 	color: ${props => props.color ? props.color : "orange"};
+`
+const SeeMoreButton = Button.extend`
+	background: transparent;
+	position: absolute;
+	bottom: 2em;
+	right: 2em	
 `
 export class MyBites extends React.Component {
 	state = {
@@ -140,14 +148,19 @@ export class MyBites extends React.Component {
                           </div>
                         </BiteBody>
                       </Paper>;
-                  }) : <Paper style={paperStyles}>
-                    <BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
-                    <BiteBody>
-                      <h3>Jim's Original</h3>
-                      with <h4>Andrew Huang</h4>
-                      <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                      Chicago
-                    </BiteBody>
+									}) : <Paper style={paperStyles} 
+													children={
+													<div>
+														<BookedStatusIcon color="green" className={this.props.icon ? "fa fa-hourglass-o" : "fa fa-check"} />
+														<BiteBody>
+															<h3>Jim's Original</h3>
+															with <h4>Andrew Huang</h4>
+															<i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+															Chicago
+														</BiteBody>
+														<SeeMoreButton primary>See Details</SeeMoreButton>
+
+													</div>}>
                   </Paper>}
               </Col>
             </Row>
@@ -161,47 +174,3 @@ export class MyBites extends React.Component {
   }
 }
 
-
-// const ThumbnailContainer = styled.div`
-// 	position: relative;
-// `;
-
-// const CardThumbnail = styled.img`
-// 	border-radius: 0.1em;
-// 	border: tomato 0.1em solid;
-// 	padding: none;
-// `;
-
-// const CardContainer = styled.div`
-// 	background: papayawhip;
-// 	margin-bottom: 2.5em;
-// `;
-
-// const CardBody = styled.div`
-// 	color: black;
-// 	position: relative;
-// `;
-
-// const BiteDate = styled.div`
-// 	display: inline block;
-// 	border: tomato 0.1em solid;
-// 	padding: 0em 0.5em 0em 0.5em;
-// 	margin-bottom: 0em;
-// 	background: white;
-// 	position: absolute;
-// 	text-align: center;
-// 	top: 0.5em;
-// 	right: 1.5em;
-// 	clear: both;
-// `;
-
-// const BiteMonth = styled.p`
-// 	font-size: 10px;
-// 	margin-bottom: 0em;
-// 	border-bottom: tomato 0.1em solid;
-// `;
-
-// const BiteDay = styled.p`
-// 	font-size: 15px;
-// 	margin-bottom: 0em;
-// `;

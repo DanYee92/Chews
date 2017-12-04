@@ -8,11 +8,14 @@ const options = {
     // https://www.npmjs.com/package/history
     redirectUrl: "http://localhost:3000/home",
     responseType: "token",
-
+    
     params: {
       scope: "openid" // Learn about scopes: https://auth0.com/docs/scopes,
     }
   },
+  
+  allowSignUp: false,
+
   theme: {
     logo: require("../images/ChewsLogoCookie.png"),
     primaryColor: "tomato"
@@ -25,13 +28,17 @@ const options = {
 
 const optionsSignUp = {
   auth: {
-    redirectUrl: "http://localhost:3000/user/create",
-    responseType: "code",
+    redirectUrl: "http://localhost:3000/api/user/create",
+    responseType: "token",
+    
 
     params: {
       scope: "openid" // Learn about scopes: https://auth0.com/docs/scopes,
     }
   },
+
+  allowLogin: false, 
+  
   theme: {
     logo: require("../images/ChewsLogoCookie.png"),
     primaryColor: "tomato"
@@ -55,6 +62,8 @@ export default class Auth {
     optionsSignUp
   );
 
+  
+
   constructor() {
     this.login = this.login.bind(this);
     this.signUp = this.signUp.bind(this);
@@ -76,5 +85,7 @@ export default class Auth {
     // navigate to the home route
     history.replace("/home");
   }
+
+  
 }
 

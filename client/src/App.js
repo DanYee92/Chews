@@ -32,7 +32,9 @@ class App extends React.Component {
 
   // auth.testListenerFxn();
   groovyListener = () => {
+   
     groovy.on("hash_parsed", authResult => {
+      console.log("looking in the authResult for token" , authResult)
       if (authResult !== null) {
         auth.lock.getUserInfo(authResult.accessToken, (error, profile) => {
           if (error) {
@@ -44,13 +46,41 @@ class App extends React.Component {
           const tempUserId = profile.sub;
           console.log("userId:", tempUserId);
           this.setState({ userId: profile.sub });
+          localStorage.setItem('accessToken', authResult.accessToken);
+        
         });
       }
     });
   };
 
+    // auth.testListenerFxn();
+    SignUpGroovyListener = () => {
+      
+       groovy.on("hash_parsed", authResult => {
+         console.log("looking in the authResult for token" , authResult)
+         if (authResult !== null) {
+           auth.lockSignUp.getUserInfo(authResult.accessToken, (error, profile) => {
+             if (error) {
+               // Handle error
+               console.log("ERROR:", error);
+               return;
+             }
+             console.log("authResult", authResult);
+             const tempUserId = profile.sub;
+             console.log("userId:", tempUserId);
+             this.setState({ userId: profile.sub });
+             localStorage.setItem('accessToken', authResult.accessToken);
+           
+           });
+         }
+       });
+     };
+
+
+
   componentDidMount = () => {
     this.groovyListener();
+    this.SignUpGroovyListener();
   };
 
   handleInputChange = event => {
