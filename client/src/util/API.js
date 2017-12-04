@@ -56,7 +56,7 @@ export default {
 
 	getUserUnbookedBites: userId => {
 		return axios.get(`/api/user/${userId}/bites/unbooked`);
-	}
+	},
 	// userId should be a string
 	// returns array of bite Ids
 
@@ -64,6 +64,11 @@ export default {
 	// 	console.log("API.emitMessage(mesasge):", message)
 	// 	socket.emit("message", message)
 	// }
+	
+	cancelBiteTraveler: (biteId, userId) => {
+		
+	}
+
 };
 
 //TEST createNewUser

@@ -156,7 +156,7 @@ export class BiteDetail extends Component {
                     <Button primary onClick={this.showModal}>
                       Request to Book
                     </Button>) :
-                    (<Button primary onClick={this.props.auth.login}>
+                    (<Button primary onClick={this.props.auth.bookBiteLoginSignup}>
                       Log in to Book
                     </Button>)
                 }

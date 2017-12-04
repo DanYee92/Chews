@@ -48,11 +48,25 @@ class App extends React.Component {
           console.log("userId:", tempUserId);
           this.setState({ userId: profile.sub });
           localStorage.setItem('accessToken', authResult.accessToken);
+       
         
         });
       }
+      
     });
+   
   };
+// keepingUserLoggedIn = () => {
+//   console.log("keeping user logged in function!!!")
+
+//   groovy.resumeAuth("hash", (error, authResult) => {
+//     if (error) {
+//       alert("Could not parse hash");
+//     }
+//     console.log(authResult);
+//   }); 
+
+// }
 
     // auth.testListenerFxn();
     SignUpGroovyListener = () => {
@@ -82,6 +96,7 @@ class App extends React.Component {
   componentDidMount = () => {
     this.groovyListener();
     this.SignUpGroovyListener();
+    
   };
 
   handleInputChange = event => {
