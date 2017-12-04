@@ -143,7 +143,7 @@ class MyAppBar extends React.Component {
               </MyMenuItem>
               <MyMenuItem onClick={() => {
                   this.handleClose();
-                  this.props.history.push("/my-bites");
+                  this.props.history.push("/messages");
                 }}>
                 Messages
               </MyMenuItem>
@@ -156,7 +156,7 @@ class MyAppBar extends React.Component {
               </MyMenuItem>
               <MyMenuItem onClick={() => {
                   this.handleClose();
-                  this.props.history.push("/my-bites");
+                  this.props.history.push("/bite/create");
                 }}>
                 Create a Bite
               </MyMenuItem>

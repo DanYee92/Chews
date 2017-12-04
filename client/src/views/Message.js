@@ -1,6 +1,7 @@
 import React from "react";
 import socket from "../components/Socket.js"
 import API from "../util/API";
+import moment from "moment";
 
 export class Message extends React.Component{
     state = {
@@ -27,7 +28,9 @@ export class Message extends React.Component{
             .then(res => this.setState({myInfo: res.data[0]}))
             .then(() => API.getUserInfo(theirId))
             .then(res => this.setState({theirInfo: res.data[0]}))
-            .then(() => console.log(this.state))
+            .then(() => API.getMessages(myId, theirId))
+            .then(res => this.setState({messages: res.data}))
+            .then(() => console.log("state:", this.state))
     }
 
     handleInputChange = event => {
@@ -40,14 +43,25 @@ export class Message extends React.Component{
 
     sendMessage = event => {
         event.preventDefault()
-        socket.emit("message", this.state.messageInput)
+        if(this.state.messageInput.trim() !== "") {
+            const message = {
+                senderId: this.state.myInfo._id,
+                recipientId: this.state.theirInfo._id,
+                timestamp: Date.now(),
+                body: this.state.messageInput
+            }
+            console.log(message)
+            API.sendMessage(message).then(() => {
+                socket.emit("message", message)
+            })
+        }
     }
 
     render() {
         return <div>Hello, world.
             <div>
                 {this.state.messages ? this.state.messages.map((message, i) => {
-                    return <div key={i}>{message}</div>
+                    return <div key={i}>{this.props.match.params.id === message.senderId ? `${this.state.theirInfo.firstName} ${this.state.theirInfo.lastName}` : `${this.state.myInfo.firstName} ${this.state.myInfo.lastName}`} ({moment(message.timestamp).toString()}): {message.body}</div>
                 }) : ""}
             </div>
             <form onSubmit={this.sendMessage}>

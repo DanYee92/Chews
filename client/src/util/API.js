@@ -68,9 +68,14 @@ export default {
 		return axios.get(`/api/user/${localId}/bite/${biteId}/cancel`)
 	},
 
-	getMessages: (senderId) => {
-		return axios.get(`api/messages/senderId/${senderId}`)
+	getMessages: (myId, theirId) => {
+		return axios.get(`/api/messages/${myId}/${theirId}`)
+	},
+
+	sendMessage: newMessage => {
+		return axios.post("/api/message/create", newMessage)
 	}
+}
 
 	// emitMessage: message => {
 	// 	console.log("API.emitMessage(mesasge):", message)
@@ -78,7 +83,6 @@ export default {
 	// }
 	
 
-}
 
 //TEST createNewUser
 // const ali = {
