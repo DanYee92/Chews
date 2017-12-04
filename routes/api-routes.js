@@ -2,6 +2,7 @@ const router = require("express").Router();
 const db = require("../models");
 const userController = require("../controllers/userController");
 const biteController = require("../controllers/biteController");
+const messagesController = require("../controllers/messagesController")
 
 module.exports = app => {
   console.log("Back end routes connected to server 3001");
@@ -67,6 +68,11 @@ module.exports = app => {
   app.delete("/api/user/:localId/bite/:biteId/cancel", (req, res) =>
     biteController.cancelBiteLocal(req, res)
   );
+
+  //GET - get all messages by id
+  app.get("/api/messages/senderId/:senderId", (req, res) =>
+    messagesController.getMessages(req, res)
+)
 
   app.get("/api/apologize", (req, res) => {
     //TO DO - nicole apologize counter
