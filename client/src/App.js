@@ -15,7 +15,7 @@ import {
   // LogIn,
   SearchResults,
   Message,
-  MyBites,
+  MyBites
 } from "./views";
 
 // let userInfo;
@@ -33,9 +33,8 @@ class App extends React.Component {
 
   // auth.testListenerFxn();
   groovyListener = () => {
-   
     groovy.on("hash_parsed", authResult => {
-      console.log("looking in the authResult for token" , authResult)
+      console.log("looking in the authResult for token", authResult);
       if (authResult !== null) {
         auth.lock.getUserInfo(authResult.accessToken, (error, profile) => {
           if (error) {
@@ -47,56 +46,61 @@ class App extends React.Component {
           const tempUserId = profile.sub;
           console.log("userId:", tempUserId);
           this.setState({ userId: profile.sub });
-          localStorage.setItem('accessToken', authResult.accessToken);
-       
-        
+          localStorage.setItem("accessToken", authResult.accessToken);
         });
       }
-      
     });
-   
   };
-// keepingUserLoggedIn = () => {
-//   console.log("keeping user logged in function!!!")
 
-//   groovy.resumeAuth("hash", (error, authResult) => {
-//     if (error) {
-//       alert("Could not parse hash");
-//     }
-//     console.log(authResult);
-//   }); 
+  groovesterSignedUpListener = () => {
+    console.log("userSignedUpListener is listening");
 
-// }
+    groovy.on("signup submit", result => {
+      console.log("a user signed up");
+      console.log(result);
+    });
+  };
 
-    // auth.testListenerFxn();
-    SignUpGroovyListener = () => {
-      
-       groovy.on("hash_parsed", authResult => {
-         console.log("looking in the authResult for token" , authResult)
-         if (authResult !== null) {
-           auth.lockSignUp.getUserInfo(authResult.accessToken, (error, profile) => {
-             if (error) {
-               // Handle error
-               console.log("ERROR:", error);
-               return;
-             }
-             console.log("authResult", authResult);
-             const tempUserId = profile.sub;
-             console.log("userId:", tempUserId);
-             this.setState({ userId: profile.sub });
-             localStorage.setItem('accessToken', authResult.accessToken);
-           
-           });
-         }
-       });
-     };
+  // keepingUserLoggedIn = () => {
+  //   console.log("keeping user logged in function!!!")
 
+  //   groovy.resumeAuth("hash", (error, authResult) => {
+  //     if (error) {
+  //       alert("Could not parse hash");
+  //     }
+  //     console.log(authResult);
+  //   });
 
+  // }
+
+  // auth.testListenerFxn();
+  SignUpGroovyListener = () => {
+    groovy.on("hash_parsed", authResult => {
+      console.log("looking in the authResult for token", authResult);
+      if (authResult !== null) {
+        auth.lockSignUp.getUserInfo(
+          authResult.accessToken,
+          (error, profile) => {
+            if (error) {
+              // Handle error
+              console.log("ERROR:", error);
+              return;
+            }
+            console.log("authResult", authResult);
+            const tempUserId = profile.sub;
+            console.log("userId:", tempUserId);
+            this.setState({ userId: profile.sub });
+            localStorage.setItem("accessToken", authResult.accessToken);
+          }
+        );
+      }
+    });
+  };
 
   componentDidMount = () => {
     this.groovyListener();
-    this.SignUpGroovyListener();
-    
+    // this.SignUpGroovyListener();
+    this.groovesterSignedUpListener();
   };
 
   handleInputChange = event => {
@@ -156,12 +160,12 @@ class App extends React.Component {
               path="/home"
               render={props => {
                 return (
-                    <Landing
-                      {...props}
-                      handleInputChange={this.handleInputChange}
-                      searchQuery={this.state.searchQuery}
-                      handleSearchSubmit={this.handleSearchSubmit}
-                    />
+                  <Landing
+                    {...props}
+                    handleInputChange={this.handleInputChange}
+                    searchQuery={this.state.searchQuery}
+                    handleSearchSubmit={this.handleSearchSubmit}
+                  />
                 );
               }}
             />
@@ -180,11 +184,41 @@ class App extends React.Component {
               }}
             />
 
-            <Route exact path="/bite/create" render={props => <CreateBite {...props} userId={this.state.userId} />} />
-            <Route exact path="/bite/detail/:biteId" render={props => <BiteDetail {...props} auth={auth} userId={this.state.userId} />} />
-            <Route exact path="/user/edit" render={props => <EditUser {...props} userId={this.state.userId} />} />
-            <Route exact path="/my-bites" render={props => <MyBites {...props} userId={this.state.userId} />} />
-            <Route exact path="/message/:userId" render={props => <Message {...props} userId={this.state.userId} />} />
+            <Route
+              exact
+              path="/bite/create"
+              render={props => (
+                <CreateBite {...props} userId={this.state.userId} />
+              )}
+            />
+            <Route
+              exact
+              path="/bite/detail/:biteId"
+              render={props => (
+                <BiteDetail {...props} auth={auth} userId={this.state.userId} />
+              )}
+            />
+            <Route
+              exact
+              path="/user/edit"
+              render={props => (
+                <EditUser {...props} userId={this.state.userId} />
+              )}
+            />
+            <Route
+              exact
+              path="/my-bites"
+              render={props => (
+                <MyBites {...props} userId={this.state.userId} />
+              )}
+            />
+            <Route
+              exact
+              path="/message/:userId"
+              render={props => (
+                <Message {...props} userId={this.state.userId} />
+              )}
+            />
 
             <Route exact path="/browse" component={Browse} />
           </ViewContainer>
