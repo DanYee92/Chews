@@ -110,19 +110,9 @@ class MyAppBar extends React.Component {
                       Log In{" "}
                     </Button>
                   </span> : <span>
-                    <Button
-                      onClick={() => this.props.history.push("/my-bites")}
-                    >
-                      Messages
-                    </Button>
-                    <Button
-                      onClick={() => this.props.history.push("/my-bites")}
-                    >
-                      My Bites
-                    </Button>
-                    <Button onClick={this.props.auth.logout}>
-                      Log Out
-                    </Button>
+                    <Button onClick={() => this.props.history.push("/message/auth0|5a2172bf45157711be81ac47")}>Messages</Button>
+                    <Button onClick={() => this.props.history.push("/my-bites")}>My Bites</Button>
+                    <Button onClick={this.props.auth.logout}>Log Out</Button>
                   </span>}
               </div> : <CollapsedNavbarSearch searchBarVisible={this.state.searchBarVisible} handleSearchIconClick={this.handleSearchIconClick} handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />} iconStyleRight={styles.iconRight} />
 

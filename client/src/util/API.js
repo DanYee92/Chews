@@ -66,9 +66,12 @@ export default {
 
 	cancelBiteLocal: (localId, biteId) => {
 		return axios.get(`/api/user/${localId}/bite/${biteId}/cancel`)
+	},
 
-
+	getMessages: (senderId) => {
+		return axios.get(`api/messages/senderId/${senderId}`)
 	}
+
 	// emitMessage: message => {
 	// 	console.log("API.emitMessage(mesasge):", message)
 	// 	socket.emit("message", message)
@@ -128,3 +131,4 @@ export default {
 // console.log("User unbooked bites search");
 // const userId = "5a1c4d67f497743d9428014e";
 // API.getUserUnbookedBites(userId).then(result => console.log(result));
+}

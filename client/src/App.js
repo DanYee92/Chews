@@ -156,15 +156,12 @@ class App extends React.Component {
               path="/home"
               render={props => {
                 return (
-                  <div>
-                    <p> {this.state.userId} </p>
                     <Landing
                       {...props}
                       handleInputChange={this.handleInputChange}
                       searchQuery={this.state.searchQuery}
                       handleSearchSubmit={this.handleSearchSubmit}
                     />
-                  </div>
                 );
               }}
             />
