@@ -77,7 +77,7 @@ const optionsSignUp = {
 //Login and signup on bite details page
 const optionsBiteSigninLogin = {
   auth: {
-    redirect: false,
+    redirectUrl: "http://localhost:3000/home",
     responseType: "token",
 
     params: {
