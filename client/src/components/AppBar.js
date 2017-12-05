@@ -31,13 +31,8 @@ const LogoIcon = styled.img`
 `;
 
 const MyMenuItem = styled(MenuItem)`
-<<<<<<< HEAD
-	color: tomato !important;
-	text-indent: 1em !important
-=======
   font-family: ${muiTheme.fontFamily} !important;
   color: rgb(126, 81, 50) !important;
->>>>>>> 6fd03d3de9039f349376e17323794864b08b5f36
 `;
 
 function handleTouchTap() {
