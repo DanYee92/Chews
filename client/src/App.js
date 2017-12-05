@@ -15,7 +15,8 @@ import {
   // LogIn,
   SearchResults,
   Message,
-  MyBites
+  MyBites,
+  PageNotFound
 } from "./views";
 
 // let userInfo;
@@ -195,6 +196,9 @@ class App extends React.Component {
                 <Message {...props} userId={this.state.userId} />
               )}
             />
+
+            {/* 404 Error Page Not Found */}
+            <Route exact path="/error" component={PageNotFound} />
           </ViewContainer>
         </div>
       </Router>

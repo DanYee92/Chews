@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StyledButton = styled.button`
+  font-size: ${props => (props.large ? "1.5em" : "1em")};
   text-align: center;
   padding: 0.5em 1em;
   border-radius: 0.5em;
