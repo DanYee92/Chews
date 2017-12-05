@@ -9,17 +9,21 @@ import Divider from "material-ui/Divider";
 import { red500 } from "material-ui/styles/colors";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import { LinkedLogo } from "./Logo"
+import muiTheme from "../components/CustomMUI";
+
 
 const Button = styled(FlatButton)`
-	color: gray !important;
-	& > span {
-		text-transform: none !important
-	}
-	&:hover {
-		background: tomato !important;
-		color: white !important
-	}
-`;
+  font-family: ${muiTheme.fontFamily} !important;
+
+  color: gray !important;
+  & > span {
+    text-transform: none !important;
+  }
+  &:hover {
+    background: tomato !important;
+    color: white !important;
+  }
+`; 
 
 const LogoIcon = styled.img`
   width: 50%;
@@ -27,17 +31,25 @@ const LogoIcon = styled.img`
 `;
 
 const MyMenuItem = styled(MenuItem)`
+<<<<<<< HEAD
 	color: tomato !important;
 	text-indent: 1em !important
+=======
+  font-family: ${muiTheme.fontFamily} !important;
+  color: rgb(126, 81, 50) !important;
+>>>>>>> 6fd03d3de9039f349376e17323794864b08b5f36
 `;
 
 function handleTouchTap() {
 }
 
+// boxShadow: "0",
 const styles = {
 	appbar: {
-		backgroundColor: "rgba(0, 0, 0, 0)",
-		boxShadow: "0",
+    position: "fixed",
+    top: 0,
+		backgroundColor: "white",
+    borderBottom: "0.1em solid lightgrey"
 
 	},
 	title: {
@@ -46,23 +58,24 @@ const styles = {
 	},
   iconRight: {
 		marginTop: "1em",
-		color: "white",
+		background: "transparent",
 	},
 	drawer: {
 		marginTop: "0em"
 	},
 	iconLeft: {
 		float: "left",
-		margin: "0.75em 1.5em 0.5em 0.5em",
-	},
-	menuItem: {
-
-	},
-	overlay: {
-
+		margin: "auto 0.35em",
 	},
 	container: {
-		background: "papayawhip",
+		background: "rgba(255,239,213,1)",
+    background: "-moz-linear-gradient(-45deg, rgba(255,239,213,1) 0%, rgba(255,99,71,1) 100%)",
+    background: "-webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,239,213,1)), color-stop(100%, rgba(255,99,71,1)))",
+    background: "-webkit-linear-gradient(-45deg, rgba(255,239,213,1) 0%, rgba(255,99,71,1) 100%)",
+    background: "-o-linear-gradient(-45deg, rgba(255,239,213,1) 0%, rgba(255,99,71,1) 100%)",
+    background: "-ms-linear-gradient(-45deg, rgba(255,239,213,1) 0%, rgba(255,99,71,1) 100%)",
+    background: "linear-gradient(135deg, rgba(255,239,213,1) 0%, rgba(255,99,71,1) 100%)",
+    filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffefd5', endColorstr='#ff6347', GradientType=1 )",
 	}
 };
 
@@ -98,7 +111,7 @@ class MyAppBar extends React.Component {
 
   render() {
     return <div>
-        <AppBar title={<LinkedLogo to="/" style={{ marginTop: "0.75em" }} />} titleStyle={styles.title} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementLeft={<NavigationMenu style={styles.iconLeft} hoverColor={red500} />} iconStyleLeft={styles.iconLeft} iconElementRight={this.state.windowWidth > 767 ? <div>
+        <AppBar title={<LinkedLogo to="/" />} titleStyle={styles.title} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementLeft={<NavigationMenu style={styles.iconLeft} hoverColor={red500} />} iconStyleLeft={styles.iconLeft} iconElementRight={this.state.windowWidth > 767 ? <div>
                 <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />
                 {!this.props.userId ? <span>
                     <Button onClick={this.props.auth.signUp}>
@@ -172,8 +185,5 @@ class MyAppBar extends React.Component {
       </div>;
   }
 }
-
-
-  
 
 export default MyAppBar;

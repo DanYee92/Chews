@@ -4,7 +4,19 @@ import API from "../util/API";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Tabs, Tab } from "material-ui/Tabs";
 import { BitePaper } from "../components/BitePaper"
+import muiTheme from "../components/CustomMUI";
+import styled from "styled-components"
 
+const styles = {
+  tabs:{
+    height: "4.5em"
+  }
+}
+// const MyTabs = styled(Tabs)`
+//   div:first-of-type {
+//     height: 4.5em;
+//   }
+// `;
 
 export class MyBites extends React.Component {
 	state = {
@@ -81,8 +93,8 @@ export class MyBites extends React.Component {
   } // END componentDidMount
   
 	render() {
-    return <MuiThemeProvider>
-        <Tabs>
+    return <MuiThemeProvider muiTheme={muiTheme}>
+        <Tabs contentContainerStyle={styles.tabs}>
           <Tab label="Upcoming" value="a">
             <Grid>
               <Row>
@@ -98,10 +110,8 @@ export class MyBites extends React.Component {
                         return parsedBiteDate > now;
                       })
                       .map((bite, i) => {
-                        return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />
-                      }) 
-                      : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
-                  }
+                        return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
+                      }) : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />}
                 </Col>
               </Row>
             </Grid>
@@ -114,12 +124,23 @@ export class MyBites extends React.Component {
 
                   {/** if there are bites, go through them and make papers for each of them */}
                   {this.state.myBites ? this.state.myBites
-                    .filter(bite => bite.isBooked)
-                    .map((bite, i) => {
-                      return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
-                    }) 
-                    : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
-                  }
+                      .filter(bite => bite.isBooked)
+                      .map((bite, i) => {
+                        return (
+                          <BitePaper
+                            key={i}
+                            isBooked={bite.isBooked}
+                            restaurant={bite.restaurant}
+                            otherParty={bite.otherParty}
+                            biteId={bite._id}
+                          />
+                        );
+                      }) : <div>
+                      <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                      <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                      <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                      <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                    </div>}
                 </Col>
               </Row>
             </Grid>
@@ -132,12 +153,18 @@ export class MyBites extends React.Component {
 
                   {/** if there are bites, go through them and make papers for each of them */}
                   {this.state.myBites ? this.state.myBites
-                    .filter(bite => !bite.isBooked)
-                    .map((bite, i) => {
-                      return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
-                    }) 
-                    : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
-                  }
+                      .filter(bite => !bite.isBooked)
+                      .map((bite, i) => {
+                        return (
+                          <BitePaper
+                            key={i}
+                            isBooked={bite.isBooked}
+                            restaurant={bite.restaurant}
+                            otherParty={bite.otherParty}
+                            biteId={bite._id}
+                          />
+                        );
+                      }) : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />}
                 </Col>
               </Row>
             </Grid>
@@ -150,17 +177,15 @@ export class MyBites extends React.Component {
 
                   {/** if there are bites, go through them and make papers for each of them */}
                   {this.state.myBites ? this.state.myBites
-                    .filter(bite => {
-                      const parsedBiteDate = Date.parse(bite.biteDate) || Date.parse(bite.endDateRange);
-                      const now = Date.now();
-                      console.log("parsedBiteDate:", parsedBiteDate, "now:", now);
-                      return parsedBiteDate < now;
-                    })
-                    .map((bite, i) => {
-                      return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
-                    }) 
-                    : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
-                  }
+                      .filter(bite => {
+                        const parsedBiteDate = Date.parse(bite.biteDate) || Date.parse(bite.endDateRange);
+                        const now = Date.now();
+                        console.log("parsedBiteDate:", parsedBiteDate, "now:", now);
+                        return parsedBiteDate < now;
+                      })
+                      .map((bite, i) => {
+                        return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
+                      }) : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />}
                 </Col>
               </Row>
             </Grid>

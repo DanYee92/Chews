@@ -2,14 +2,7 @@ import React from "react"
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-// export const Logo = styled.h1`
-//   &:before {
-//     content: "[chews]";
-//   }
-//   color: tomato;
 
-//   font-size: ${props => (props.large ? "3em" : "1.5em")};
-// `;
 const Image = styled.img`
   width: ${props => (props.large ? "70%" : "6em")};
   height: auto;
@@ -18,16 +11,15 @@ const Image = styled.img`
 export const Logo = props => {
   return <Image src={require("../images/logo_v1.png")} {...props}/>;
 }
-// export const LinkedLogo = () => {
-//   return (
-//     <Link>
-//       {Logo}
-//     </Link>)
-// }
-
+const SearchBarLogo = styled(Link)`
+  margin: 0;
+  @media (max-width: 768px) {
+    margin: 25%;
+    transform: translateX(-50%)
+  }
+`;
 export const LinkedLogo = props => {
-    return (<Link {...props}>
+    return (<SearchBarLogo {...props}>
       <Logo/>
-    </Link>)
+    </SearchBarLogo>)
 };
-// export const LinkedLogo = Logo.withComponent(Link);

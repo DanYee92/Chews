@@ -10,6 +10,7 @@ import { Parallax } from "react-parallax";
 import { OutlineModal } from "../components/boron/Boron";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import DatePicker from "material-ui/DatePicker";
+import muiTheme from "../components/CustomMUI"
 // import TimePicker from "material-ui/TimePicker";
 
 const DetailContainer = styled.div`
@@ -31,7 +32,7 @@ const ParallaxContent = styled.div`
   height: 21em;
   @media (max-width: 768px) {
     height: 15em;
-  }
+  };
   -webkit-box-shadow: inset 0px -45px 113px -44px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: inset 0px -45px 113px -44px rgba(0, 0, 0, 0.75);
   box-shadow: inset 0px -45px 113px -44px rgba(0, 0, 0, 0.75);
@@ -121,10 +122,10 @@ export class BiteDetail extends Component {
             <h4>
               Want to grab a Bite with {this.state.firstName} {this.state.lastName} at {this.state.restaurant} on {this.state.selectedDateString} at {this.state.selectedTime}?
             </h4>
-              
-              <Button primary onClick={this.handleConfirmBite}>
-                Sure!
-              </Button>
+
+            <Button primary onClick={this.handleConfirmBite}>
+              Sure!
+            </Button>
 
             <Button onClick={this.hideModal}>No, thanks</Button>
           </Container>
@@ -132,7 +133,14 @@ export class BiteDetail extends Component {
 
         <Parallax bgImage="http://via.placeholder.com/1000x200" strength={300}>
           <ParallaxContent>
-            <h1 style={{ position: "absolute", color: "white", left: "1em", bottom: "0.5em" }}>
+            <h1
+              style={{
+                position: "absolute",
+                color: "white",
+                left: "1em",
+                bottom: "0.5em"
+              }}
+            >
               {this.state.restaurant}
             </h1>
           </ParallaxContent>
@@ -148,21 +156,16 @@ export class BiteDetail extends Component {
                 {`Grab a Bite with ${this.state.firstName} ${this.state.lastName}`}
                 <Divider />
                 <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                <MuiThemeProvider>
+                <MuiThemeProvider muiTheme={muiTheme}>
                   <DatePicker style={{ display: "inline-block", height: "1em" }} name="selectedDate" onChange={this.handleChangeSelectedDate} autoOk={false} floatingLabelText="Select a Date" shouldDisableDate={this.disableOutOfRange} disableYearSelection={false} />
                 </MuiThemeProvider>
-
               </Col>
               <Col xs={12} md={4}>
-                {
-                  this.props.userId ? (
-                    <Button primary onClick={this.showModal}>
-                      Request to Book
-                    </Button>) :
-                    (<Button primary onClick={this.props.auth.bookBiteLoginSignup}>
-                      Log in to Book
-                    </Button>)
-                }
+                {this.props.userId ? <Button primary onClick={this.showModal}>
+                    Request to Book
+                  </Button> : <Button primary onClick={this.props.auth.bookBiteLoginSignup}>
+                    Log in to Book
+                  </Button>}
               </Col>
               <Col xs={12} md={4}>
                 <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />

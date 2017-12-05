@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Paper from "material-ui/Paper";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import muiTheme from "../components/CustomMUI";
 
-const CardContainer = styled.div`
-  background: papayawhip;
-  width: 100%;
-  margin-bottom: 2.5em;
-`;
+const paperStyles = {
+  fontFamily: muiTheme.fontFamily,
+  width: "100%",
+  background: "white",
+  marginBottom: "2.5em"
+};
 
 // ======= Thumbnail Container START ========
 const ThumbnailContainer = styled.div`
@@ -36,7 +40,8 @@ const CardBody = styled.div`
 const Card = ({ title, local, startDate, endDate, location, biteLink }) => {
   console.log("biteLink:", biteLink);
   console.log("typeof biteLink:", typeof biteLink)
-  return <CardContainer>
+  return <MuiThemeProvider>
+  <Paper style={paperStyles}>
       <Link to={`${biteLink}`}>
         <ThumbnailContainer>
           <CardThumbnail src="http://via.placeholder.com/300x200" />
@@ -54,7 +59,9 @@ const Card = ({ title, local, startDate, endDate, location, biteLink }) => {
           {location}
         </p>
       </CardBody>
-    </CardContainer>;
+    </Paper>
+    
+  </MuiThemeProvider>
 };
 
 export default Card;
