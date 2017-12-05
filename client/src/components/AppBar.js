@@ -19,7 +19,7 @@ const Button = styled(FlatButton)`
 		background: tomato !important;
 		color: white !important
 	}
-` 
+`;
 
 const LogoIcon = styled.img`
   width: 50%;
@@ -29,7 +29,7 @@ const LogoIcon = styled.img`
 const MyMenuItem = styled(MenuItem)`
 	color: tomato !important;
 	text-indent: 1em !important
-`
+`;
 
 function handleTouchTap() {
 }
