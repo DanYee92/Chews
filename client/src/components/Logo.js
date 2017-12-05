@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 
 
 const Image = styled.img`
-  width: ${props => (props.large ? "70%" : "6em")};
+  width: ${props => (props.large ? "55%" : "6em")};
   height: auto;
   margin: 0 auto;
-`
+  @media (max-width: 768px) {
+    width: ${props => (props.large ? "70%" : "6em")};
+  }
+`;
 export const Logo = props => {
   return <Image src={require("../images/logo_v1.png")} {...props}/>;
 }
