@@ -15,24 +15,24 @@ const FixedSearchIcon = styled.i.attrs({
   float: none;
   position: absolute;
   top: 14%;
-  left: 7%;
+  left: 6%;
   font-size: ${props => (props.landing ? "1.5em" : "1em")};
 `;
 
 const Input = styled.input`
   box-shadow: none;
-  border-radius: 0;
+  border-radius: 25px;
   border: 0.12em solid tomato;
   color: gray;
   margin-top: -0.5em;
   margin-right: 1em;
   padding: 0.5em;
-  width: 90%;
+  width: 100%;
   height: 100%;
   text-indent: ${props => (props.landing ? "3.5em " : "2em")};
   &:focus {
-    border-color: tomato;
     box-shadow: none;
+    border-color: tomato;
     outline: none;
   }
 `;

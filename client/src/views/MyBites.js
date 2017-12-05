@@ -135,7 +135,12 @@ export class MyBites extends React.Component {
                             biteId={bite._id}
                           />
                         );
-                      }) : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />}
+                      }) : <div>
+                      <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                      <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                      <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                      <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
+                    </div>}
                 </Col>
               </Row>
             </Grid>

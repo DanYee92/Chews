@@ -1,7 +1,7 @@
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 
 const muiTheme = getMuiTheme({
-  fontFamily: "Roboto, sans-serif",
+  fontFamily: "Work Sans, sans-serif",
   palette: {
     primary1Color: "tomato",
     primary2Color: "tomato",

@@ -22,6 +22,7 @@ const SearchBarLogo = styled(Link)`
   margin: 0;
   @media (max-width: 768px) {
     margin: 25%;
+    transform: translateX(-50%)
   }
 `;
 export const LinkedLogo = props => {

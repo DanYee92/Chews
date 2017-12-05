@@ -12,15 +12,17 @@ import { LinkedLogo } from "./Logo"
 
 
 const Button = styled(FlatButton)`
-	color: gray !important;
-	& > span {
-		text-transform: none !important
-	}
-	&:hover {
-		background: tomato !important;
-		color: white !important
-	}
-` 
+  font-family: "Work Sans", sans-serif !important;
+
+  color: gray !important;
+  & > span {
+    text-transform: none !important;
+  }
+  &:hover {
+    background: tomato !important;
+    color: white !important;
+  }
+`; 
 
 const LogoIcon = styled.img`
   width: 50%;
@@ -28,6 +30,7 @@ const LogoIcon = styled.img`
 `;
 
 const MyMenuItem = styled(MenuItem)`
+  font-family: "Work Sans", sans-serif !important;
   color: rgb(126, 81, 50) !important;
 `;
 
@@ -36,9 +39,12 @@ function handleTouchTap() {
 
 const styles = {
 	appbar: {
-		backgroundColor: "rgba(0, 0, 0, 0)",
+    position: "fixed",
+    top: 0,
+		backgroundColor: "white",
 		boxShadow: "0",
     borderBottom: "0.1em solid lightgrey"
+
 	},
 	title: {
 		height: "100%",
@@ -46,7 +52,7 @@ const styles = {
 	},
   iconRight: {
 		marginTop: "1em",
-		color: "white",
+		background: "transparent",
 	},
 	drawer: {
 		marginTop: "0em"

@@ -2,9 +2,9 @@ import React from "react"
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin-top: ${props => (props.flush ? "0em" : "7em ")};
+  margin-top: ${props => (props.flush ? "4.65em" : "7em ")};
   @media (max-width: 768px) {
-    margin-top: ${props => (props.flush ? "0vh" : "7em")};
+    margin-top: ${props => (props.flush ? "4.65em" : "7em")};
   }
 `;
 
