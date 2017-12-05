@@ -7,7 +7,7 @@ const SearchBoxContainer = styled.div`
   position: relative;
   height: ${props => (props.landing ? "4.5em" : "2.5em")};
   width: ${props => (props.landing ? "100%" : "14em")};
-  margin: ${props => (props.landing ? "3em auto" : "0.15em")};
+  margin: ${props => (props.landing ? "2.5em auto" : "0.15em")};
 `;
 
 const FixedSearchIcon = styled.i.attrs({
