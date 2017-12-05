@@ -51,7 +51,7 @@ module.exports = {
 		})
 		.catch(err => console.log(err));
 		
-	}
+	},
 
 	// editUserProfile: (req, res) => {
 	// 	const userId = req.params.userId;

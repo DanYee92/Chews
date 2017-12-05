@@ -8,11 +8,9 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import AppBar from "./components/AppBar";
 import {
   BiteDetail,
-  Browse,
   CreateBite,
   EditUser,
   Landing,
-  // LogIn,
   SearchResults,
   Message,
   MyBites,
@@ -30,6 +28,7 @@ class App extends React.Component {
     searchQuery: "",
     shadow: false,
     userId: ""
+    // userId: "auth0|5a26d474cc4fc5487394af4e"
   };
 
   // auth.testListenerFxn();
@@ -70,22 +69,13 @@ class App extends React.Component {
     });
   };
 
-  // keepingUserLoggedIn = () => {
-  //   console.log("keeping user logged in function!!!")
-
-  //   groovy.resumeAuth("hash", (error, authResult) => {
-  //     if (error) {
-  //       alert("Could not parse hash");
-  //     }
-  //     console.log(authResult);
-  //   });
-
-  // }
-
-  // auth.testListenerFxn();
-
   componentDidMount = () => {
     this.groovyListener();
+  };
+
+  logoutUser = () => {
+    console.log("logging out user");
+    this.setState({ userId: "" });
   };
 
   handleInputChange = event => {
@@ -112,46 +102,116 @@ class App extends React.Component {
       });
 
       history.push(`/search/${this.state.searchQuery}`);
+      this.setState({ searchQuery: "" });
     } else {
       console.log("No search query provided.");
     }
   };
 
   render() {
-    return <Router history={history}>
+    return (
+      <Router history={history}>
         <div>
           <MuiThemeProvider>
-            <AppBar auth={auth} userId={this.state.userId} history={history} />
+            <AppBar
+              auth={auth}
+              userId={this.state.userId}
+              history={history}
+              logoutUser={this.logoutUser}
+              handleInputChange={this.handleInputChange}
+              searchQuery={this.state.searchQuery}
+              handleSearchSubmit={this.handleSearchSubmit}
+            />
           </MuiThemeProvider>
           <ViewContainer location={window.location.pathname}>
             {/** Landing Page */}
-            <Route exact path="/" render={props => <Landing {...props} handleInputChange={this.handleInputChange} searchQuery={this.state.searchQuery} handleSearchSubmit={this.handleSearchSubmit} />} />
-            <Route exact path="/home" render={props => <Landing {...props} handleInputChange={this.handleInputChange} searchQuery={this.state.searchQuery} handleSearchSubmit={this.handleSearchSubmit} />} />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Landing
+                  {...props}
+                  handleInputChange={this.handleInputChange}
+                  searchQuery={this.state.searchQuery}
+                  handleSearchSubmit={this.handleSearchSubmit}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/home"
+              render={props => (
+                <Landing
+                  {...props}
+                  handleInputChange={this.handleInputChange}
+                  searchQuery={this.state.searchQuery}
+                  handleSearchSubmit={this.handleSearchSubmit}
+                />
+              )}
+            />
 
             {/* Search Results Page */}
-            <Route path="/search/:searchQuery" render={props => <SearchResults {...props} searchResults={this.state.searchResults} />} />
+            <Route
+              path="/search/:searchQuery"
+              render={props => (
+                <SearchResults
+                  {...props}
+                  searchResults={this.state.searchResults}
+                />
+              )}
+            />
 
             {/* Create Bite Page */}
-            <Route exact path="/bite/create" render={props => <CreateBite {...props} userId={this.state.userId} />} />
+            <Route
+              exact
+              path="/bite/create"
+              render={props => (
+                <CreateBite {...props} userId={this.state.userId} />
+              )}
+            />
 
             {/* Bite Detail Page */}
-            <Route exact path="/bite/detail/:biteId" render={props => <BiteDetail {...props} auth={auth} userId={this.state.userId} />} />
+            <Route
+              exact
+              path="/bite/detail/:biteId"
+              render={props => (
+                <BiteDetail {...props} auth={auth} userId={this.state.userId} />
+              )}
+            />
 
             {/* My Bites Page */}
-           <Route exact path="/my-bites" render={props => <MyBites {...props} userId={this.state.userId} />} />
+            <Route
+              exact
+              path="/my-bites"
+              render={props => (
+                <MyBites {...props} userId={this.state.userId} />
+              )}
+            />
 
             {/* Edit User Page */}
-            <Route exact path="/user/edit" render={props => <EditUser {...props} userId={this.state.userId} />} />
+            <Route
+              exact
+              path="/user/edit"
+              render={props => (
+                <EditUser {...props} userId={this.state.userId} />
+              )}
+            />
 
             {/* Message User Page */}
-            <Route exact path="/message/:userId" render={props => <Message {...props} userId={this.state.userId} />} />
-            
+            <Route
+              exact
+              path="/message/:userId"
+              render={props => (
+                <Message {...props} userId={this.state.userId} />
+              )}
+            />
+
             {/* 404 Error Page Not Found */}
             <Route exact path="/error" component={PageNotFound} />
-            
           </ViewContainer>
         </div>
-      </Router>;
+      </Router>
+    );
   }
 }
 

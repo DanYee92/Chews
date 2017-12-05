@@ -38,8 +38,6 @@ const CardBody = styled.div`
 
 // Card takes in props: title, local, startDate, endDate, location
 const Card = ({ title, local, startDate, endDate, location, biteLink }) => {
-  console.log("biteLink:", biteLink);
-  console.log("typeof biteLink:", typeof biteLink)
   return <MuiThemeProvider>
   <Paper style={paperStyles}>
       <Link to={`${biteLink}`}>

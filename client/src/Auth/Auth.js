@@ -120,9 +120,8 @@ export default class Auth {
   constructor() {
     this.login = this.login.bind(this);
     this.signUp = this.signUp.bind(this);
-    this.logout = this.logout.bind(this);
-    this.bookBiteLoginSignup = this.bookBiteLoginSignup.bind(this)
-    
+    // this.logout = this.logout.bind(this);
+    this.bookBiteLoginSignup = this.bookBiteLoginSignup.bind(this);
   }
 
   login() {
@@ -135,16 +134,5 @@ export default class Auth {
 
   bookBiteLoginSignup() {
     return this.bitesSigninLogin.show();
-  }
-
-  logout() {
-    console.log("logging out???");
-    // Clear access information from local storage
-    localStorage.removeItem("expires_at");
-    localStorage.removeItem("userId");
-    localStorage.clear("accessToken");
-
-    // navigate to the home route
-    history.replace("/home");
   }
 }
