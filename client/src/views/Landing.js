@@ -15,7 +15,7 @@ const LandingContainer = styled.div`
 `
 
 const BackgroundDarken = styled.div`
-  background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35));
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
   background-position: center top;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -33,7 +33,7 @@ export class Landing extends React.Component {
   render() {
     return <LandingContainer>
       <BackgroundDarken>  
-        <Container column margin="0 20vw" style={{padding: "25vh 0"}}>
+        <Container column margin="0 10vw" style={{padding: "25vh 0"}}>
           <Logo large />
           <form onSubmit={this.props.handleSearchSubmit}>
             <FormGroup>
