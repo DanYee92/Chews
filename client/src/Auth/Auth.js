@@ -120,7 +120,7 @@ export default class Auth {
   constructor() {
     this.login = this.login.bind(this);
     this.signUp = this.signUp.bind(this);
-    this.logout = this.logout.bind(this);
+    // this.logout = this.logout.bind(this);
     this.bookBiteLoginSignup = this.bookBiteLoginSignup.bind(this);
   }
 

@@ -74,7 +74,8 @@ class App extends React.Component {
     this.groovyListener();
   };
 
-  logOutUser = () => {
+  logoutUser = () => {
+    console.log("logging out user");
     this.setState({ userId: "" });
   };
 
@@ -112,7 +113,12 @@ class App extends React.Component {
       <Router history={history}>
         <div>
           <MuiThemeProvider>
-            <AppBar auth={auth} userId={this.state.userId} history={history} />
+            <AppBar
+              auth={auth}
+              userId={this.state.userId}
+              history={history}
+              logoutUser={this.logoutUser}
+            />
           </MuiThemeProvider>
           <ViewContainer location={window.location.pathname}>
             {/** Landing Page */}
