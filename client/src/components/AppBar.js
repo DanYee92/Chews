@@ -39,17 +39,17 @@ function handleTouchTap() {
 }
 
 // boxShadow: "0",
+// borderBottom: "0.1em solid lightgrey"
 const styles = {
 	appbar: {
     position: "fixed",
     top: 0,
-		backgroundColor: "white",
-    borderBottom: "0.1em solid lightgrey"
-
+		backgroundColor: "papayawhip",
 	},
 	title: {
 		height: "100%",
-		width: "auto"
+    width: "auto",
+    textOverflow: "none"
 	},
   iconRight: {
 		marginTop: "1em",

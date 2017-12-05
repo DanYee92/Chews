@@ -13,7 +13,8 @@ import {
   Landing,
   SearchResults,
   Message,
-  MyBites
+  MyBites,
+  PageNotFound
 } from "./views";
 
 // let userInfo;
@@ -129,6 +130,7 @@ class App extends React.Component {
               searchQuery={this.state.searchQuery}
               handleSearchSubmit={this.handleSearchSubmit}
             />
+            
           </MuiThemeProvider>
           <ViewContainer location={window.location.pathname}>
             {/** Landing Page */}
@@ -187,31 +189,16 @@ class App extends React.Component {
             />
 
             {/* My Bites Page */}
-            <Route
-              exact
-              path="/my-bites"
-              render={props => (
-                <MyBites {...props} userId={this.state.userId} />
-              )}
-            />
+           <Route exact path="/my-bites" render={props => <MyBites {...props} userId={this.state.userId} />} />
 
             {/* Edit User Page */}
-            <Route
-              exact
-              path="/user/edit"
-              render={props => (
-                <EditUser {...props} userId={this.state.userId} />
-              )}
-            />
+            <Route exact path="/user/edit" render={props => <EditUser {...props} userId={this.state.userId} />} />
 
             {/* Message User Page */}
-            <Route
-              exact
-              path="/message/:userId"
-              render={props => (
-                <Message {...props} userId={this.state.userId} />
-              )}
-            />
+            <Route exact path="/message/:userId" render={props => <Message {...props} userId={this.state.userId} />} />
+            
+            {/* 404 Error Page Not Found */}
+            <Route exact path="/error" component={PageNotFound} />
           </ViewContainer>
         </div>
       </Router>
