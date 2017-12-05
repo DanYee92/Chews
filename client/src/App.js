@@ -15,7 +15,8 @@ import {
   // LogIn,
   SearchResults,
   Message,
-  MyBites
+  MyBites,
+  PageNotFound
 } from "./views";
 
 // let userInfo;
@@ -204,7 +205,7 @@ class App extends React.Component {
               )}
             />
 
-            <Route exact path="/browse" component={Browse} />
+            <Route exact path="/error" component={PageNotFound} />
           </ViewContainer>
         </div>
       </Router>
