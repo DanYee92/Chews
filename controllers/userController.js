@@ -27,6 +27,32 @@ module.exports = {
 			.catch(err => console.error(err));
 	},
 
+
+	editUserProfile: (req, res) => {
+		const userId = req.params.userId;
+
+		console.log("Editing User Profile", userId);
+
+		db.User
+			.findOneAndUpdate(
+				{_id: userId},
+			{
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
+				hometowm: req.body.hometowm,
+				favoriteFoods: req.body.favoriteFoods,
+				bio: req.body.bio
+			},
+			{ new: true }
+		)
+		.then(result => {
+			console.log(result);
+			res.json(result);
+		})
+		.catch(err => console.log(err));
+		
+	}
+
 	// editUserProfile: (req, res) => {
 	// 	const userId = req.params.userId;
 	// 	let updates = {};
