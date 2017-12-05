@@ -30,7 +30,7 @@ const options = {
 //Signup on homepage and redirects you to user/create page
 const optionsSignUp = {
   auth: {
-    redirectUrl: "http://localhost:3000/api/user/create",
+    redirectUrl: "http://localhost:3000/user/edit",
     responseType: "token",
 
     params: {

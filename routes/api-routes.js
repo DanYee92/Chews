@@ -79,6 +79,11 @@ module.exports = app => {
     messagesController.sendMessage(req, res)
   );
 
+  //PATCH - edit user profile
+  app.patch("/api/userId/:userId/profile/edit", (req, res) =>
+    userController.editUserProfile(req, res)
+)
+
   app.get("/api/apologize", (req, res) => {
     //TO DO - nicole apologize counter
   });

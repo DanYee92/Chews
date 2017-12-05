@@ -22,6 +22,14 @@ const UserSchema = new Schema({
 		type: String
 	},
 
+	favoriteFoods: {
+		type: String
+	},
+
+	bio: {
+		type: String
+	}, 
+
 	dateJoined: {
 		type: Date,
 		default: Date.now()
