@@ -58,16 +58,32 @@ export class Message extends React.Component{
     }
 
     render() {
-        return <div>Hello, world.
+        return <div>
+            <h1>My Messages</h1>
             <div>
-                {this.state.messages ? this.state.messages.map((message, i) => {
-                    return <div key={i}>{this.props.match.params.id === message.senderId ? `${this.state.theirInfo.firstName} ${this.state.theirInfo.lastName}` : `${this.state.myInfo.firstName} ${this.state.myInfo.lastName}`} ({moment(message.timestamp).toString()}): {message.body}</div>
-                }) : ""}
+              {this.state.messages ? this.state.messages.map(
+                    (message, i) => {
+                      return (
+                        <div key={i}>
+                          {this.props.match.params.id ===
+                          message.senderId
+                            ? `${this.state.theirInfo.firstName} ${
+                                this.state.theirInfo.lastName
+                              }`
+                            : `${this.state.myInfo.firstName} ${
+                                this.state.myInfo.lastName
+                              }`}{" "}
+                          ({moment(message.timestamp).toString()}):{" "}
+                          {message.body}
+                        </div>
+                      );
+                    }
+                  ) : ""}
             </div>
             <form onSubmit={this.sendMessage}>
-                Enter Message:
-                <input type="text" name="messageInput" value={this.state.messageInput} onChange={this.handleInputChange}/>
+              Enter Message:
+              <input type="text" name="messageInput" value={this.state.messageInput} onChange={this.handleInputChange} />
             </form>
-        </div>
+          </div>;
     }
 }

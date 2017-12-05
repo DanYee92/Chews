@@ -39,17 +39,17 @@ function handleTouchTap() {
 }
 
 // boxShadow: "0",
+// borderBottom: "0.1em solid lightgrey"
 const styles = {
 	appbar: {
     position: "fixed",
     top: 0,
-		backgroundColor: "white",
-    borderBottom: "0.1em solid lightgrey"
-
+		backgroundColor: "papayawhip",
 	},
 	title: {
 		height: "100%",
-		width: "auto"
+    width: "auto",
+    textOverflow: "none"
 	},
   iconRight: {
 		marginTop: "1em",
@@ -110,12 +110,10 @@ class MyAppBar extends React.Component {
                 <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />
                 {!this.props.userId ? <span>
                     <Button onClick={this.props.auth.signUp}>
-                      {" "}
-                      Sign Up{" "}
+                      Sign Up
                     </Button>
                     <Button onClick={this.props.auth.login}>
-                      {" "}
-                      Log In{" "}
+                      Log In
                     </Button>
                   </span> : <span>
                     <Button onClick={() => this.props.history.push("/message/auth0|5a2172bf45157711be81ac47")}>Messages</Button>
