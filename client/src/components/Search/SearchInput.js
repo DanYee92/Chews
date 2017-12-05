@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import muiTheme from "../CustomMUI";
 
 const SearchBoxContainer = styled.div`
+  font-family: ${muiTheme.fontFamily};
   position: relative;
   height: ${props => (props.landing ? "3.5em" : "2.5em")};
   width: ${props => (props.landing ? "100%" : "14em")};
