@@ -55,12 +55,6 @@ const styles = {
 		float: "left",
 		margin: "auto 0.35em",
 	},
-	menuItem: {
-
-	},
-	overlay: {
-
-	},
 	container: {
 		background: "papayawhip",
 	}

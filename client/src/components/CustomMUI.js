@@ -1,4 +1,3 @@
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 
 const muiTheme = getMuiTheme({
@@ -6,7 +5,7 @@ const muiTheme = getMuiTheme({
   palette: {
     primary1Color: "tomato",
     primary2Color: "tomato",
-    accent1Color: "tomato",
+    accent1Color: "rgb(126, 81, 50)",
     pickerHeaderColor: "tomato"
   },
   tabs: {

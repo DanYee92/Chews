@@ -12,7 +12,11 @@ const styles = {
     height: "4.5em"
   }
 }
-
+// const MyTabs = styled(Tabs)`
+//   div:first-of-type {
+//     height: 4.5em;
+//   }
+// `;
 
 export class MyBites extends React.Component {
 	state = {
