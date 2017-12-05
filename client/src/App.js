@@ -8,11 +8,9 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import AppBar from "./components/AppBar";
 import {
   BiteDetail,
-  Browse,
   CreateBite,
   EditUser,
   Landing,
-  // LogIn,
   SearchResults,
   Message,
   MyBites,
@@ -30,6 +28,7 @@ class App extends React.Component {
     searchQuery: "",
     shadow: false,
     userId: ""
+    // userId: "auth0|5a26d474cc4fc5487394af4e"
   };
 
   // auth.testListenerFxn();
@@ -103,6 +102,7 @@ class App extends React.Component {
       });
 
       history.push(`/search/${this.state.searchQuery}`);
+      this.setState({ searchQuery: "" });
     } else {
       console.log("No search query provided.");
     }
@@ -118,6 +118,9 @@ class App extends React.Component {
               userId={this.state.userId}
               history={history}
               logoutUser={this.logoutUser}
+              handleInputChange={this.handleInputChange}
+              searchQuery={this.state.searchQuery}
+              handleSearchSubmit={this.handleSearchSubmit}
             />
           </MuiThemeProvider>
           <ViewContainer location={window.location.pathname}>

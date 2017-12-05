@@ -46,7 +46,7 @@ const BiteDateContainer = styled.div`
 `;
 
 // BitePaper takes ({isBooked, restaurant, otherParty, city, biteId})
-export const BitePaper = ({ isBooked, restaurant, otherParty, city, biteId }) => {
+export const BitePaper = ({ isBooked, restaurant, otherParty, city, biteId, startMonth, startDay, endMonth, endDay }) => {
     return <Paper style={paperStyles} children={<div>
             <BookedStatusIcon isBooked={isBooked} className={isBooked ? `fa fa-check` : `fa fa-hourglass-o`} />
             <Grid>
@@ -54,31 +54,30 @@ export const BitePaper = ({ isBooked, restaurant, otherParty, city, biteId }) =>
                 <Col xs={12} md={2}>
                   <BiteDateContainer>
                     <span style={{ display: "inline-block" }}>
-                      <h5>DEC</h5>
-                      <h2 style={{ lineHeight: 0 }}>20</h2>
+                      <h5>{startMonth}</h5>
+                      <h2 style={{ lineHeight: 0 }}>{startDay}</h2>
                     </span>
                     <p style={{ display: "inline-block", margin: "0em 0.25em", fontSize: "4.5em" }}>
                       /
                     </p>
                     <span style={{ display: "inline-block" }}>
-                      <h5>DEC</h5>
-                      <h2 style={{ lineHeight: 0 }}>21</h2>
+                      <h5>{endMonth}</h5>
+                      <h2 style={{ lineHeight: 0 }}>{endDay}</h2>
                     </span>
                   </BiteDateContainer>
                 </Col>
                 <Col xs={12} md={10}>
                   <BiteBody>
-                    <h3>{restaurant}</h3>
+                    <h3 style={{ marginTop: "0em" }}>{restaurant}</h3>
                     {/**
                      * if there is another party, display their name, else display nobody
                      * this needs to be refactored a bit
                      */}
                     <h4>
                       <p>
-                        with{" "}
                         {otherParty
-                          ? `${otherParty.firstName} ${otherParty.lastName}`
-                          : "your mom"}
+                          ? `with ${otherParty.firstName} ${otherParty.lastName}`
+                          : ""}
                       </p>
                     </h4>
                     <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />

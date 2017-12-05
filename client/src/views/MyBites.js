@@ -5,7 +5,8 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Tabs, Tab } from "material-ui/Tabs";
 import { BitePaper } from "../components/BitePaper"
 import muiTheme from "../components/CustomMUI";
-import styled from "styled-components"
+// import styled from "styled-components"
+import moment from "moment";
 
 const styles = {
   tabs:{
@@ -33,9 +34,9 @@ export class MyBites extends React.Component {
   }
 
 	componentDidMount() {
-    // const myId = this.props.userId || "auth0|5a2171e2083226773d5c2f4a";
     const myId = this.props.userId;
-		API.getUserInfo(myId)
+
+    API.getUserInfo(myId)
       .then(res => {
         // create an array to store relevant bites info
         let myBites = []
@@ -110,7 +111,11 @@ export class MyBites extends React.Component {
                         return parsedBiteDate > now;
                       })
                       .map((bite, i) => {
-                        return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
+                        const startMonth = moment(bite.startDateRange).format("MMM");
+                        const startDay = moment(bite.startDateRange).format("D");
+                        const endMonth = moment(bite.endDateRange).format("MMM");
+                        const endDay = moment(bite.endDateRange).format("D");
+                        return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} city={bite.city} biteId={bite._id} startMonth={startMonth} startDay={startDay} endMonth={endMonth} endDay={endDay} />;
                       }) : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />}
                 </Col>
               </Row>
@@ -126,15 +131,11 @@ export class MyBites extends React.Component {
                   {this.state.myBites ? this.state.myBites
                       .filter(bite => bite.isBooked)
                       .map((bite, i) => {
-                        return (
-                          <BitePaper
-                            key={i}
-                            isBooked={bite.isBooked}
-                            restaurant={bite.restaurant}
-                            otherParty={bite.otherParty}
-                            biteId={bite._id}
-                          />
-                        );
+                        const startMonth = moment(bite.startDateRange).format("MMM");
+                        const startDay = moment(bite.startDateRange).format("D");
+                        const endMonth = moment(bite.endDateRange).format("MMM");
+                        const endDay = moment(bite.endDateRange).format("D");
+                        return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} city={bite.city} biteId={bite._id} startMonth={startMonth} startDay={startDay} endMonth={endMonth} endDay={endDay} />;
                       }) : <div>
                       <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
                       <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />
@@ -155,15 +156,11 @@ export class MyBites extends React.Component {
                   {this.state.myBites ? this.state.myBites
                       .filter(bite => !bite.isBooked)
                       .map((bite, i) => {
-                        return (
-                          <BitePaper
-                            key={i}
-                            isBooked={bite.isBooked}
-                            restaurant={bite.restaurant}
-                            otherParty={bite.otherParty}
-                            biteId={bite._id}
-                          />
-                        );
+                        const startMonth = moment(bite.startDateRange).format("MMM");
+                        const startDay = moment(bite.startDateRange).format("D");
+                        const endMonth = moment(bite.endDateRange).format("MMM");
+                        const endDay = moment(bite.endDateRange).format("D");
+                        return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} city={bite.city} biteId={bite._id} startMonth={startMonth} startDay={startDay} endMonth={endMonth} endDay={endDay} />;
                       }) : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />}
                 </Col>
               </Row>
@@ -184,7 +181,11 @@ export class MyBites extends React.Component {
                         return parsedBiteDate < now;
                       })
                       .map((bite, i) => {
-                        return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} biteId={bite._id} />;
+                        const startMonth = moment(bite.startDateRange).format("MMM");
+                        const startDay = moment(bite.startDateRange).format("D");
+                        const endMonth = moment(bite.endDateRange).format("MMM");
+                        const endDay = moment(bite.endDateRange).format("D");
+                        return <BitePaper key={i} isBooked={bite.isBooked} restaurant={bite.restaurant} otherParty={bite.otherParty} city={bite.city} biteId={bite._id} startMonth={startMonth} startDay={startDay} endMonth={endMonth} endDay={endDay} />;
                       }) : <BitePaper isBooked={false} restaurant={"Epic Burger"} otherParty={null} city={"Chicago"} biteId={"bite._id"} />}
                 </Col>
               </Row>
