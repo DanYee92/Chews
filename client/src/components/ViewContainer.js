@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 const ViewContainer = ({ location, children }) => {
-  return <Container flush={location.includes("/my-bites") || location.includes("/bite/detail") ? true : false}> 
+  return <Container flush={location.includes("/my-bites") || location.includes("/bite/detail") || location === "/" || location === "/home" ? true : false}> 
           { children } 
         </Container>
 }
