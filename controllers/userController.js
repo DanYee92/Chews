@@ -43,6 +43,7 @@ module.exports = {
 				favoriteFoods: req.body.favoriteFoods,
 				bio: req.body.bio
 			},
+
 			{ new: true }
 		)
 		.then(result => {
@@ -51,7 +52,7 @@ module.exports = {
 		})
 		.catch(err => console.log(err));
 		
-	}
+	},
 
 	// editUserProfile: (req, res) => {
 	// 	const userId = req.params.userId;

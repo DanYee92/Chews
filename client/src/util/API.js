@@ -74,6 +74,10 @@ export default {
 
 	sendMessage: newMessage => {
 		return axios.post("/api/message/create", newMessage)
+	},
+
+	editUserProfile: (userId, editUser) => {
+		return axios.patch(`/api/userId/${userId}/profile/edit`, editUser)
 	}
 }
 
