@@ -16,7 +16,7 @@ export class Landing extends React.Component {
       <form onSubmit={this.props.handleSearchSubmit}>
         <FormGroup>
           <MySearchBox landing="true" name="searchQuery" type="text" placeholder="Try 'Chicago'" onChange={this.props.handleInputChange} value={this.props.searchQuery} />
-          <Button type="submit" primary>
+          <Button type="submit" primary large>
             Search
           </Button>
         </FormGroup>

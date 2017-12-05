@@ -138,7 +138,7 @@ class App extends React.Component {
             <Route exact path="/bite/detail/:biteId" render={props => <BiteDetail {...props} auth={auth} userId={this.state.userId} />} />
 
             {/* My Bites Page */}
-            <Route exact path="/my-bites" render={props => <MyBites {...props} userId={this.state.userId} />} />
+           <Route exact path="/my-bites" render={props => <MyBites {...props} userId={this.state.userId} />} />
 
             {/* Edit User Page */}
             <Route exact path="/user/edit" render={props => <EditUser {...props} userId={this.state.userId} />} />
