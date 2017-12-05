@@ -12,7 +12,18 @@ export class EditUser extends Component {
 
 	componentWillMount() {
 		document.title = "Edit Profile | Chews";
+
+		const userId = this.props.userId
+		console.log("componnentdidnt mount running")
+		
+		API.getUserInfo(userId).then(result => {
+			console.log("this is the result", result.data[0])
+			console.log("firstname", result.data[0].firstName)
+
+			this.setState({firstName: result.data[0].firstName, lastName: result.data[0].lastName, hometown: result.data[0].hometown, favoriteFoods: result.data[0].favoriteFoods, bio: result.data[0].bio})
+		})
 	}
+
 
 	handleInputChange = event => {
 		const { name, value } = event.target;
@@ -30,11 +41,14 @@ export class EditUser extends Component {
 			bio: this.state.bio
 		};
 
+		const userId = this.props.userId
+
+
 		console.log(updatedUser)
 
-		API.editUserProfile(updatedUser).then(result =>
+		API.editUserProfile(userId, updatedUser).then(result =>
 			console.log("created user", result.data)
-		);
+		);	
 	};
 	render() {
 		return (
@@ -54,12 +68,14 @@ export class EditUser extends Component {
 								<FormInput
 									type="text"
 									name="firstName"
+									value={this.state.firstName}
 									placeholder="First"
 									onChange={this.handleInputChange}
 								/>
 								<FormInput
 									type="text"
 									name="lastName"
+									value={this.state.lastName}
 									placeholder="Last"
 									onChange={this.handleInputChange}
 								/>
@@ -67,6 +83,7 @@ export class EditUser extends Component {
 								<FormInput
 									type="text"
 									name="hometown"
+									value={this.state.hometown}
 									placeholder="City"
 									onChange={this.handleInputChange}
 								/>
@@ -74,7 +91,8 @@ export class EditUser extends Component {
 								<FormInput
 									type="text"
 									name="favoriteFoods"
-									placeholder="favoriteFoods"
+									value={this.state.favoriteFoods}
+									placeholder="List your favorite foods"
 									onChange={this.handleInputChange}
 								/>
 								<ControlLabel>
@@ -84,6 +102,7 @@ export class EditUser extends Component {
 									rows="5"
 									type="text"
 									name="bio"
+									value={this.state.bio}
 									placeholder="Say something"
 									onChange={this.handleInputChange}
 								/>

@@ -78,8 +78,14 @@ export default {
 
 	//Edit user profile
 	editUserProfile: (userId, updatedUser) => {
+		console.log("this is userid", userId)
+		console.log("this is updatedUser", updatedUser)
 		return axios.patch(`/api/user/${userId}/profile/edit`, updatedUser)
+		
+		
 	}
+
+	
 }
 
 	// emitMessage: message => {
