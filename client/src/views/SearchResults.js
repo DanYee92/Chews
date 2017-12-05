@@ -17,10 +17,15 @@ export class SearchResults extends React.Component {
     );
   }
 
+  componentWillReceiveProps() {
+    console.log("componentDidUpdate()")
+    this.setState({searchQuery: this.props.match.params.searchQuery})
+  }
+
   render() {
     return <Grid>
         <Row className="show-grid">
-          <h4>Search Results for "{this.state.searchQuery}"</h4>
+          <h4 style={{marginLeft: "1em", fontWeight: "lighter"}}>Search Results for <span style={{fontWeight:"normal"}}>"{this.state.searchQuery}"</span></h4>
           {/* dynamically generate here */}
           {this.props.searchResults ? this.props.searchResults
             .filter(bite => {

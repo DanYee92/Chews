@@ -130,7 +130,7 @@ class App extends React.Component {
               searchQuery={this.state.searchQuery}
               handleSearchSubmit={this.handleSearchSubmit}
             />
-            
+
           </MuiThemeProvider>
           <ViewContainer location={window.location.pathname}>
             {/** Landing Page */}
@@ -165,6 +165,7 @@ class App extends React.Component {
               render={props => (
                 <SearchResults
                   {...props}
+                  searchQuery={this.state.searchQuery}
                   searchResults={this.state.searchResults}
                 />
               )}

@@ -11,6 +11,12 @@ export class Message extends React.Component{
         theirInfo: null
     }
 
+    componentWillMount() {
+        if(!this.props.userId) {
+            this.props.history.push("/")
+        }
+    }
+
     componentDidMount() {
         this.setState({testVal: true})
 
