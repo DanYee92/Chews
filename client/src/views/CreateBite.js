@@ -49,8 +49,8 @@ export class CreateBite extends Component {
 
 		event.preventDefault();
 
-		if (localStorage.getItem("userId")) {
-			const localId = localStorage.userId;
+		if (this.props.userId) {
+			const localId = this.props.userId;
 			// const localId = "auth0|5a2171e2083226773d5c2f4a";
 
 			const newBite = {
@@ -64,7 +64,7 @@ export class CreateBite extends Component {
 			console.log("localId:", localId, "newBite:", newBite);
 
 			API.createNewBite(newBite)
-				.then(res => console.log("res", res, "new bite created"))
+				.then(res => this.props.history.push(`/bite/detail/${res.data.bites[res.data.bites.length - 1]}`))
 				.catch(err => console.error(err));
 		} else {
 			console.log("No user logged in");
