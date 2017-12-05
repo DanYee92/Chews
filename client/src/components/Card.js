@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Paper from "material-ui/Paper";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import muiTheme from "../components/CustomMUI";
 
 const paperStyles = {
-  fontFamily: "Work Sans, sans-serif",
+  fontFamily: muiTheme.fontFamily,
   width: "100%",
   background: "white",
   marginBottom: "2.5em"

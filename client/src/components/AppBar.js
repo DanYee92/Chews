@@ -9,10 +9,11 @@ import Divider from "material-ui/Divider";
 import { red500 } from "material-ui/styles/colors";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import { LinkedLogo } from "./Logo"
+import muiTheme from "../components/CustomMUI";
 
 
 const Button = styled(FlatButton)`
-  font-family: "Work Sans", sans-serif !important;
+  font-family: ${muiTheme.fontFamily} !important;
 
   color: gray !important;
   & > span {
@@ -30,7 +31,7 @@ const LogoIcon = styled.img`
 `;
 
 const MyMenuItem = styled(MenuItem)`
-  font-family: "Work Sans", sans-serif !important;
+  font-family: ${muiTheme.fontFamily} !important;
   color: rgb(126, 81, 50) !important;
 `;
 
