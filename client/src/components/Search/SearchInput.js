@@ -44,6 +44,7 @@ const Input = styled.input`
     outline: none;
   }
   @media (max-width: 768px) {
+    border: 0.12em solid tomato;
     text-indent: ${props => (props.landing ? "8vw" : "2em")};
   }
 `;
