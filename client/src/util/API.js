@@ -76,8 +76,9 @@ export default {
 		return axios.post("/api/message/create", newMessage)
 	},
 
-	editUserProfile: (userId, editUser) => {
-		return axios.patch(`/api/userId/${userId}/profile/edit`, editUser)
+	//Edit user profile
+	editUserProfile: (userId, updatedUser) => {
+		return axios.patch(`/api/user/${userId}/profile/edit`, updatedUser)
 	}
 }
 

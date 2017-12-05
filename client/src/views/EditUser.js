@@ -8,7 +8,7 @@ import ProfilePicture from "../components/ProfilePicture";
 import API from "../util/API.js";
 
 export class EditUser extends Component {
-	state = { firstName: "", lastName: "", hometown: "", summary: "" };
+	state = { firstName: "", lastName: "", hometown: "", favoriteFoods: "",  bio: "" };
 
 	componentWillMount() {
 		document.title = "Edit Profile | Chews";
@@ -22,19 +22,17 @@ export class EditUser extends Component {
 	handleFormSubmit = event => {
 		event.preventDefault();
 
-		console.log(`running handleFormSubmit - create new user
-			firstName: ${this.state.firstName}
-			lastName: ${this.state.lastName}
-			hometown: ${this.state.hometown} 
-		`);
-
-		const newUser = {
+		const updatedUser = {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
-			hometown: this.state.hometown
+			hometown: this.state.hometown,
+			favoriteFoods: this.state.favoriteFoods,
+			bio: this.state.bio
 		};
 
-		API.createNewUser(newUser).then(result =>
+		console.log(updatedUser)
+
+		API.editUserProfile(updatedUser).then(result =>
 			console.log("created user", result.data)
 		);
 	};
@@ -72,17 +70,24 @@ export class EditUser extends Component {
 									placeholder="City"
 									onChange={this.handleInputChange}
 								/>
+								<ControlLabel>What are some of your favorite foods?</ControlLabel>
+								<FormInput
+									type="text"
+									name="favoriteFoods"
+									placeholder="favoriteFoods"
+									onChange={this.handleInputChange}
+								/>
 								<ControlLabel>
 									Write a little about yourself!
 								</ControlLabel>
 								<FormTextArea
 									rows="5"
 									type="text"
-									name="summary"
+									name="bio"
 									placeholder="Say something"
 									onChange={this.handleInputChange}
 								/>
-								<Button primary style={{margin: "5px auto"}}> Save Changes </Button>
+								<Button primary style={{margin: "5px auto"}} onClick={this.handleFormSubmit}> Save Changes </Button>
 							</FormGroup>
 						</form>
 					</Col>

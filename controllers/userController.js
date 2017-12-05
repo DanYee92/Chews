@@ -32,6 +32,8 @@ module.exports = {
 		const userId = req.params.userId;
 
 		console.log("Editing User Profile", userId);
+		console.log(userId)
+		console.log(req.body)
 
 		db.User
 			.findOneAndUpdate(

@@ -80,7 +80,7 @@ module.exports = app => {
   );
 
   //PATCH - edit user profile
-  app.patch("/api/userId/:userId/profile/edit", (req, res) =>
+  app.patch("/api/user/:userId/profile/edit", (req, res) =>
     userController.editUserProfile(req, res)
 )
 
