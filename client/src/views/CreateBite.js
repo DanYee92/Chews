@@ -74,52 +74,25 @@ export class CreateBite extends Component {
 	};
 
 	render() {
-		return (
-			<MuiThemeProvider muiTheme={muiTheme}>
-				<Container column>
-					<form onSubmit={this.handleFormSubmit}>
-						<FormGroup width="22em" controlId="createBiteForm">
-							<ControlLabel>
-								Where do you want to grab a Bite?
-							</ControlLabel>
-							<FormInput
-								type="text"
-								name="city"
-								placeholder="City"
-								onChange={this.handleInputChange}
-							/>
-							<FormInput
-								type="text"
-								name="restaurant"
-								placeholder="Restaurant"
-								onChange={this.handleInputChange}
-							/>
-							<ControlLabel>
-								When do you want to grab a Bite?
-							</ControlLabel>
+		return <MuiThemeProvider muiTheme={muiTheme}>
+        <h2 style={{ marginLeft: "1em"}}>
+          Create a Bite
+        </h2>
+        <Container column>
+          <form onSubmit={this.handleFormSubmit}>
+            <FormGroup width="22em" controlId="createBiteForm">
+              <ControlLabel>Where do you want to grab a Bite?</ControlLabel>
+              <FormInput type="text" name="city" placeholder="City" onChange={this.handleInputChange} />
+              <FormInput type="text" name="restaurant" placeholder="Restaurant" onChange={this.handleInputChange} />
+              <ControlLabel>When do you want to grab a Bite?</ControlLabel>
 
-							<DatePicker
-								name="startDateRange"
-								onChange={this.handleChangeStartDateRange}
-								autoOk={false}
-								floatingLabelText="Start Date"
-								shouldDisableDate={this.disablePast}
-								disableYearSelection={false}
-							/>
-							<DatePicker
-								name="endDateRange"
-								onChange={this.handleChangeEndDateRange}
-								autoOk={false}
-								floatingLabelText="End Date"
-								shouldDisableDate={this.disablePast}
-								disableYearSelection={false}
-							/>
+              <DatePicker name="startDateRange" onChange={this.handleChangeStartDateRange} autoOk={false} floatingLabelText="Start Date" shouldDisableDate={this.disablePast} disableYearSelection={false} />
+              <DatePicker name="endDateRange" onChange={this.handleChangeEndDateRange} autoOk={false} floatingLabelText="End Date" shouldDisableDate={this.disablePast} disableYearSelection={false} />
 
-							<Button primary> Create Bite </Button>
-						</FormGroup>
-					</form>
-				</Container>
-			</MuiThemeProvider>
-		);
+              <Button primary> Create Bite </Button>
+            </FormGroup>
+          </form>
+        </Container>
+      </MuiThemeProvider>;
 	}
 }
