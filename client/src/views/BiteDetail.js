@@ -112,8 +112,20 @@ export class BiteDetail extends Component {
   }
 
   handleChangeSelectedDate = (event, date) => {
-    Promise.resolve(this.setState({ selectedDate: date, selectedDateString: date.toString() }))
-      .then(() => console.log(`Hi, ${this.state.firstName}! I just booked a bite with you at ${this.state.restaurant} in ${this.state.city} on ${moment(this.state.selectedDate).format("MMMM D, YYYY")}!`))
+    this.setState({ selectedDate: date, selectedDateString: date.toString() })
+    
+    const body = `Hi, ${this.state.firstName}! I just booked a bite with you at ${this.state.restaurant} in ${this.state.city} on ${moment(this.state.selectedDate).format("MMMM D, YYYY")}!`
+
+    const message = {
+      senderId: this.props.userId,
+      recipientId: this.state.localId._id,
+      timestamp: Date.now(),
+      body
+    }
+    console.log(message)
+    // API.sendMessage(message).then(() => {
+    //     socket.emit("message", message)
+    // })
   };
 
   disableOutOfRange = date => {
