@@ -61,21 +61,14 @@ const styles = {
     margin: "auto 0.35em"
   },
   container: {
-    background: "rgba(255,239,213,1)",
-    background:
-      "-moz-linear-gradient(-45deg, rgba(255,239,213,1) 0%, rgba(255,99,71,1) 100%)",
-    background:
-      "-webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,239,213,1)), color-stop(100%, rgba(255,99,71,1)))",
-    background:
-      "-webkit-linear-gradient(-45deg, rgba(255,239,213,1) 0%, rgba(255,99,71,1) 100%)",
-    background:
-      "-o-linear-gradient(-45deg, rgba(255,239,213,1) 0%, rgba(255,99,71,1) 100%)",
-    background:
-      "-ms-linear-gradient(-45deg, rgba(255,239,213,1) 0%, rgba(255,99,71,1) 100%)",
-    background:
-      "linear-gradient(135deg, rgba(255,239,213,1) 0%, rgba(255,99,71,1) 100%)",
-    filter:
-      "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffefd5', endColorstr='#ff6347', GradientType=1 )"
+    background: "rgba(255,239,229,1)",
+    background: "-moz-linear-gradient(top, rgba(255,239,229,1) 0%, rgba(255,229,218,1) 7%, rgba(255,99,71,1) 100%)",
+    background: "-webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,239,229,1)), color-stop(7%, rgba(255,229,218,1)), color-stop(100%, rgba(255,99,71,1)))",
+    background: "-webkit-linear-gradient(top, rgba(255,239,229,1) 0%, rgba(255,229,218,1) 7%, rgba(255,99,71,1) 100%)",
+    background: "-o-linear-gradient(top, rgba(255,239,229,1) 0%, rgba(255,229,218,1) 7%, rgba(255,99,71,1) 100%)",
+    background: "-ms-linear-gradient(top, rgba(255,239,229,1) 0%, rgba(255,229,218,1) 7%, rgba(255,99,71,1) 100%)",
+    background: "linear-gradient(to bottom, rgba(255,239,229,1) 0%, rgba(255,229,218,1) 7%, rgba(255,99,71,1) 100%)",
+    filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffefe5', endColorstr='#ff6347', GradientType=0 )"
   }
 };
 

@@ -139,7 +139,14 @@ export class BiteDetail extends Component {
 
         <Parallax bgImage="http://via.placeholder.com/1000x200" strength={300}>
           <ParallaxContent>
-            <h1 style={{ position: "absolute", color: "white", left: "1em", bottom: "0.5em" }}>
+            <h1
+              style={{
+                position: "absolute",
+                color: "white",
+                left: "1em",
+                bottom: "0.5em"
+              }}
+            >
               {this.state.restaurant}
             </h1>
           </ParallaxContent>
@@ -154,23 +161,24 @@ export class BiteDetail extends Component {
                 <Spacer />
                 {`Grab a Bite with ${this.state.firstName} ${this.state.lastName}`}
                 <Divider />
+                <div style={{ marginTop: "1.5em" }}>
+                  <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                  {this.props.city}
+                </div>
+                <Divider />
                 <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.5em" }} />
                 <MuiThemeProvider muiTheme={muiTheme}>
                   <DatePicker style={{ display: "inline-block", height: "1em" }} name="selectedDate" onChange={this.handleChangeSelectedDate} autoOk={false} floatingLabelText="Select a Date" shouldDisableDate={this.disableOutOfRange} disableYearSelection={false} />
                 </MuiThemeProvider>
-              </Col>
-              <Col xs={12} md={4}>
+
                 {this.props.userId ? <BiteDetailButton large primary onClick={this.showModal}>
                     Request to Book
                   </BiteDetailButton> : <BiteDetailButton large primary onClick={this.props.auth.bookBiteLoginSignup}>
                     Log in to Book
                   </BiteDetailButton>}
               </Col>
-              <Col xs={12} md={4}>
-                <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                {this.props.city}
-                <Divider />
-                <img alt="placeholder" src="http://via.placeholder.com/300x200" />
+              <Col xs={12} md={8}>
+                <img alt="placeholder" src="http://via.placeholder.com/600x400" />
                 <h4>(MAP HERE)</h4>
               </Col>
             </Row>
