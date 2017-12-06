@@ -88,7 +88,7 @@ export class BiteDetail extends Component {
     console.log("start handleConfirmBite()")
     event.preventDefault()
 
-    const travelerId = localStorage.getItem("userId");
+    const travelerId = this.props.userId;
 
     if(travelerId === this.state.localId._id) {
       alert("You can't grab a bite with yourself!")
