@@ -15,7 +15,7 @@ const LandingContainer = styled.div`
 `
 
 const BackgroundDarken = styled.div`
-  background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35));
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
   background-position: center top;
   -webkit-background-size: cover;
   -moz-background-size: cover;
