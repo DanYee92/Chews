@@ -38,6 +38,10 @@ const ParallaxContent = styled.div`
   box-shadow: inset 0px -45px 113px -44px rgba(0, 0, 0, 0.75);
 `;
 
+const BiteDetailButton = styled(Button)`
+  margin: 1.5em 25%;
+`
+
 export class BiteDetail extends Component {
   state = {
     biteId: "",
@@ -123,24 +127,19 @@ export class BiteDetail extends Component {
               Want to grab a Bite with {this.state.firstName} {this.state.lastName} at {this.state.restaurant} on {this.state.selectedDateString} at {this.state.selectedTime}?
             </h4>
 
-            <Button primary onClick={this.handleConfirmBite}>
+            <Button style={{ margin: "0 auto" }} primary onClick={this.handleConfirmBite}>
               Sure!
             </Button>
 
-            <Button onClick={this.hideModal}>No, thanks</Button>
+            <Button style={{ margin: "0 auto" }} onClick={this.hideModal}>
+              No, thanks
+            </Button>
           </Container>
         </OutlineModal>
 
         <Parallax bgImage="http://via.placeholder.com/1000x200" strength={300}>
           <ParallaxContent>
-            <h1
-              style={{
-                position: "absolute",
-                color: "white",
-                left: "1em",
-                bottom: "0.5em"
-              }}
-            >
+            <h1 style={{ position: "absolute", color: "white", left: "1em", bottom: "0.5em" }}>
               {this.state.restaurant}
             </h1>
           </ParallaxContent>
@@ -161,18 +160,18 @@ export class BiteDetail extends Component {
                 </MuiThemeProvider>
               </Col>
               <Col xs={12} md={4}>
-                {this.props.userId ? <Button primary onClick={this.showModal}>
+                {this.props.userId ? <BiteDetailButton large primary onClick={this.showModal}>
                     Request to Book
-                  </Button> : <Button primary onClick={this.props.auth.bookBiteLoginSignup}>
+                  </BiteDetailButton> : <BiteDetailButton large primary onClick={this.props.auth.bookBiteLoginSignup}>
                     Log in to Book
-                  </Button>}
+                  </BiteDetailButton>}
               </Col>
               <Col xs={12} md={4}>
                 <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
                 {this.props.city}
                 <Divider />
-                <h4>(MAP HERE)</h4>
                 <img alt="placeholder" src="http://via.placeholder.com/300x200" />
+                <h4>(MAP HERE)</h4>
               </Col>
             </Row>
           </DetailContainer>
