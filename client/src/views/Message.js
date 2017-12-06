@@ -28,8 +28,8 @@ export class Message extends React.Component{
             })
         })
 
-        // const myId = this.props.userID || "auth0|5a2171e2083226773d5c2f4a"
-        const myId = this.props.userID
+        // const myId = this.props.userId || "auth0|5a2171e2083226773d5c2f4a"
+        const myId = this.props.userId
         const theirId = this.props.match.params.userId
         API.getUserInfo(myId)
             .then(res => this.setState({myInfo: res.data[0]}))
@@ -80,7 +80,7 @@ export class Message extends React.Component{
                             : `${this.state.myInfo.firstName} ${
                                 this.state.myInfo.lastName
                               }`}{" "}
-                          ({moment(message.timestamp).toString()}):{" "}
+                          ({moment(message.timestamp).format("YYYY/MM/DD kk:mm ZZ")}):{" "}
                           {message.body}
                         </div>
                       );

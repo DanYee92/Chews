@@ -104,28 +104,14 @@ export class BiteDetail extends Component {
       API.bookBite(travelerId, biteId, biteDate)
         .then(res => console.log("res from API.bookBite() in handleConfirmBite()", res))
         .then(() => console.log("end handleConfirmBite()"))
+        .then(() => this.hideModal())
+        .then(() => this.props.history.push("/my-bites"))
         .catch(err => console.error(err))
-
-      this.hideModal()
-      alert(`Bite booked with ${this.state.firstName} ${this.state.lastName} at ${this.state.restaurant} on ${this.state.selectedDate}!`)
     }
   }
 
   handleChangeSelectedDate = (event, date) => {
     this.setState({ selectedDate: date, selectedDateString: date.toString() })
-    
-    const body = `Hi, ${this.state.firstName}! I just booked a bite with you at ${this.state.restaurant} in ${this.state.city} on ${moment(this.state.selectedDate).format("MMMM D, YYYY")}!`
-
-    const message = {
-      senderId: this.props.userId,
-      recipientId: this.state.localId._id,
-      timestamp: Date.now(),
-      body
-    }
-    console.log(message)
-    // API.sendMessage(message).then(() => {
-    //     socket.emit("message", message)
-    // })
   };
 
   disableOutOfRange = date => {
