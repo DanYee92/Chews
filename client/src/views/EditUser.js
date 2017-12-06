@@ -8,11 +8,22 @@ import ProfilePicture from "../components/ProfilePicture";
 import API from "../util/API.js";
 
 export class EditUser extends Component {
-	state = { firstName: "", lastName: "", hometown: "", summary: "" };
+	state = { firstName: "", lastName: "", hometown: "", favoriteFoods: "",  bio: "" };
 
 	componentWillMount() {
 		document.title = "Edit Profile | Chews";
+
+		const userId = this.props.userId
+		console.log("componnentdidnt mount running")
+		
+		API.getUserInfo(userId).then(result => {
+			console.log("this is the result", result.data[0])
+			console.log("firstname", result.data[0].firstName)
+
+			this.setState({firstName: result.data[0].firstName, lastName: result.data[0].lastName, hometown: result.data[0].hometown, favoriteFoods: result.data[0].favoriteFoods, bio: result.data[0].bio})
+		})
 	}
+
 
 	handleInputChange = event => {
 		const { name, value } = event.target;
@@ -22,21 +33,22 @@ export class EditUser extends Component {
 	handleFormSubmit = event => {
 		event.preventDefault();
 
-		console.log(`running handleFormSubmit - create new user
-			firstName: ${this.state.firstName}
-			lastName: ${this.state.lastName}
-			hometown: ${this.state.hometown} 
-		`);
-
-		const newUser = {
+		const updatedUser = {
 			firstName: this.state.firstName,
 			lastName: this.state.lastName,
-			hometown: this.state.hometown
+			hometown: this.state.hometown,
+			favoriteFoods: this.state.favoriteFoods,
+			bio: this.state.bio
 		};
 
-		API.createNewUser(newUser).then(result =>
+		const userId = this.props.userId
+
+
+		console.log(updatedUser)
+
+		API.editUserProfile(userId, updatedUser).then(result =>
 			console.log("created user", result.data)
-		);
+		);	
 	};
 	render() {
 		return (
@@ -56,12 +68,14 @@ export class EditUser extends Component {
 								<FormInput
 									type="text"
 									name="firstName"
+									value={this.state.firstName}
 									placeholder="First"
 									onChange={this.handleInputChange}
 								/>
 								<FormInput
 									type="text"
 									name="lastName"
+									value={this.state.lastName}
 									placeholder="Last"
 									onChange={this.handleInputChange}
 								/>
@@ -69,7 +83,16 @@ export class EditUser extends Component {
 								<FormInput
 									type="text"
 									name="hometown"
+									value={this.state.hometown}
 									placeholder="City"
+									onChange={this.handleInputChange}
+								/>
+								<ControlLabel>What are some of your favorite foods?</ControlLabel>
+								<FormInput
+									type="text"
+									name="favoriteFoods"
+									value={this.state.favoriteFoods}
+									placeholder="List your favorite foods"
 									onChange={this.handleInputChange}
 								/>
 								<ControlLabel>
@@ -78,11 +101,12 @@ export class EditUser extends Component {
 								<FormTextArea
 									rows="5"
 									type="text"
-									name="summary"
+									name="bio"
+									value={this.state.bio}
 									placeholder="Say something"
 									onChange={this.handleInputChange}
 								/>
-								<Button primary style={{margin: "5px auto"}}> Save Changes </Button>
+								<Button primary style={{margin: "5px auto"}} onClick={this.handleFormSubmit}> Save Changes </Button>
 							</FormGroup>
 						</form>
 					</Col>
