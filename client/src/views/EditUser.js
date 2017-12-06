@@ -51,67 +51,36 @@ export class EditUser extends Component {
 		);	
 	};
 	render() {
-		return (
-			<Grid>
-				<Row className="show-grid">
-					<Col xs={12} md={4}>
-						<Container margin="1em auto" column>
-							<ProfilePicture
-								src={"http://via.placeholder.com/350x350"}
-							/>
-						</Container>
-					</Col>
-					<Col xs={12} md={8}>
-						<form onSubmit={this.handleFormSubmit}>
-							<FormGroup controlId="createListingForm" align="left" width="80%">
-								<ControlLabel>What is your name?</ControlLabel>
-								<FormInput
-									type="text"
-									name="firstName"
-									value={this.state.firstName}
-									placeholder="First"
-									onChange={this.handleInputChange}
-								/>
-								<FormInput
-									type="text"
-									name="lastName"
-									value={this.state.lastName}
-									placeholder="Last"
-									onChange={this.handleInputChange}
-								/>
-								<ControlLabel>Where do you live?</ControlLabel>
-								<FormInput
-									type="text"
-									name="hometown"
-									value={this.state.hometown}
-									placeholder="City"
-									onChange={this.handleInputChange}
-								/>
-								<ControlLabel>What are some of your favorite foods?</ControlLabel>
-								<FormInput
-									type="text"
-									name="favoriteFoods"
-									value={this.state.favoriteFoods}
-									placeholder="List your favorite foods"
-									onChange={this.handleInputChange}
-								/>
-								<ControlLabel>
-									Write a little about yourself!
-								</ControlLabel>
-								<FormTextArea
-									rows="5"
-									type="text"
-									name="bio"
-									value={this.state.bio}
-									placeholder="Say something"
-									onChange={this.handleInputChange}
-								/>
-								<Button primary style={{margin: "5px auto"}} onClick={this.handleFormSubmit}> Save Changes </Button>
-							</FormGroup>
-						</form>
-					</Col>
-				</Row>
-			</Grid>
-		);
+		return <Grid>
+        <h2 style={{ marginLeft: "1em" }}>Edit Profile</h2>
+        <Row className="show-grid">
+          <Col xs={12} md={4}>
+            <Container margin="1em auto" column>
+              <ProfilePicture src={"http://via.placeholder.com/350x350"} />
+            </Container>
+          </Col>
+          <Col xs={12} md={8}>
+            <form onSubmit={this.handleFormSubmit}>
+              <FormGroup controlId="createListingForm" align="left" width="80%">
+                <ControlLabel>What is your name?</ControlLabel>
+                <FormInput type="text" name="firstName" value={this.state.firstName} placeholder="First" onChange={this.handleInputChange} />
+                <FormInput type="text" name="lastName" value={this.state.lastName} placeholder="Last" onChange={this.handleInputChange} />
+                <ControlLabel>Where do you live?</ControlLabel>
+                <FormInput type="text" name="hometown" value={this.state.hometown} placeholder="City" onChange={this.handleInputChange} />
+                <ControlLabel>
+                  What are some of your favorite foods?
+                </ControlLabel>
+                <FormInput type="text" name="favoriteFoods" value={this.state.favoriteFoods} placeholder="List your favorite foods" onChange={this.handleInputChange} />
+                <ControlLabel>Write a little about yourself!</ControlLabel>
+                <FormTextArea rows="5" type="text" name="bio" value={this.state.bio} placeholder="Say something" onChange={this.handleInputChange} />
+                <Button primary style={{ margin: "5px auto" }} onClick={this.handleFormSubmit}>
+                  {" "}
+                  Save Changes{" "}
+                </Button>
+              </FormGroup>
+            </form>
+          </Col>
+        </Row>
+      </Grid>;
 	}
 }
