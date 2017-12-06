@@ -12,6 +12,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import DatePicker from "material-ui/DatePicker";
 import muiTheme from "../components/CustomMUI"
 // import TimePicker from "material-ui/TimePicker";
+import moment from "moment";
 
 const DetailContainer = styled.div`
   overflow: hidden;
@@ -115,7 +116,7 @@ export class BiteDetail extends Component {
   };
 
   disableOutOfRange = date => {
-    return Date.parse(date) < Date.now();
+    return Date.parse(date) < Date.parse(this.state.startDateRange) || Date.parse(date) > Date.parse(this.state.endDateRange);
   };
 
   render() {
@@ -155,6 +156,7 @@ export class BiteDetail extends Component {
                 {`Grab a Bite with ${this.state.firstName} ${this.state.lastName}`}
                 <Divider />
                 <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                {this.state.startDateRange === this.state.endDateRange ? moment(this.state.startDateRange).format("MMM D, YYYY") : `${moment(this.state.startDateRange).format("MMM D, YYYY")} - ${moment(this.state.endDateRange).format("MMM D, YYYY")}`}
                 <MuiThemeProvider muiTheme={muiTheme}>
                   <DatePicker style={{ display: "inline-block", height: "1em" }} name="selectedDate" onChange={this.handleChangeSelectedDate} autoOk={false} floatingLabelText="Select a Date" shouldDisableDate={this.disableOutOfRange} disableYearSelection={false} />
                 </MuiThemeProvider>
@@ -168,7 +170,7 @@ export class BiteDetail extends Component {
               </Col>
               <Col xs={12} md={4}>
                 <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                {this.props.city}
+                {this.state.city}
                 <Divider />
                 <img alt="placeholder" src="http://via.placeholder.com/300x200" />
                 <h4>(MAP HERE)</h4>
