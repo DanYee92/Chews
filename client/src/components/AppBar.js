@@ -125,96 +125,98 @@ class MyAppBar extends React.Component {
 
   render() {
       return <MuiThemeProvider muiTheme={muiTheme}>
-        <div>
-          <AppBar title={<LinkedLogo to="/" />} titleStyle={styles.title} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementLeft={<NavigationMenu style={styles.iconLeft} hoverColor={red500} />} iconStyleLeft={styles.iconLeft} iconElementRight={this.state.windowWidth > 767 ? <div>
-                  <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />
-                  {!this.props.userId ? <span>
-                      <Button onClick={this.props.auth.signUp}>
-                        Sign Up
-                      </Button>
-                      <Button onClick={this.props.auth.login}>
-                        Log In
-                      </Button>
-                    </span> : <span>
-                      <Button
-                        onClick={() =>
-                          this.props.history.push(
-                            "/message/auth0|5a2172bf45157711be81ac47"
-                          )
-                        }
-                      >
-                        Messages
-                      </Button>
-                      <IconMenu menuStyle={styles.iconMenu} listStyle={styles.iconMenuList} iconButtonElement={<Button>
-                            Bites <i className="fa fa-angle-down" aria-hidden="true" />
-                          </Button>} targetOrigin={{ horizontal: "right", vertical: "top" }} anchorOrigin={{ horizontal: "right", vertical: "top" }}>
-                        <MenuItem primaryText="Create a Bite" onClick={() => this.props.history.push("/bite/create")} />
-                        <MenuItem primaryText="My Bites" onClick={() => this.props.history.push("/my-bites")} />
-                      </IconMenu>
+          <div>
+            <AppBar title={<LinkedLogo to="/" />} titleStyle={styles.title} style={styles.appbar} onTitleTouchTap={handleTouchTap} showMenuIconButton={this.state.hamburgerVisible} onLeftIconButtonTouchTap={this.handleToggle} iconElementLeft={<NavigationMenu style={styles.iconLeft} hoverColor={red500} />} iconStyleLeft={styles.iconLeft} iconElementRight={this.state.windowWidth > 767 ? <div>
+                    <ExpandedNavbarSearch handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />
+                    {!this.props.userId ? <span>
+                        <Button onClick={this.props.auth.signUp}>
+                          Sign Up
+                        </Button>
+                        <Button onClick={this.props.auth.login}>
+                          Log In
+                        </Button>
+                      </span> : <span>
+                        <Button
+                          onClick={() =>
+                            this.props.history.push(
+                              "/message/auth0|5a2172bf45157711be81ac47"
+                            )
+                          }
+                        >
+                          Messages
+                        </Button>
+                        <IconMenu menuStyle={styles.iconMenu} listStyle={styles.iconMenuList} iconButtonElement={<Button>
+                              Bites <i className="fa fa-angle-down" aria-hidden="true" />
+                            </Button>} targetOrigin={{ horizontal: "right", vertical: "top" }} anchorOrigin={{ horizontal: "right", vertical: "top" }}>
+                          <MenuItem primaryText="Create a Bite" onClick={() => this.props.history.push("/bite/create")} />
+                          <MenuItem primaryText="My Bites" onClick={() => this.props.history.push("/my-bites")} />
+                        </IconMenu>
+                        <IconMenu menuStyle={styles.iconMenu} listStyle={styles.iconMenuList} iconButtonElement={<Button>
+                              Hi, {this.props.userFirstName}!
+                            </Button>} targetOrigin={{ horizontal: "right", vertical: "top" }} anchorOrigin={{ horizontal: "right", vertical: "top" }}>
+                          <MenuItem primaryText="My Profile" onClick={() => this.props.history.push("/")} />
+                          <MenuItem primaryText="Log Out" onClick={this.props.logoutUser} />
+                        </IconMenu>
+                      </span>}
+                  </div> : <CollapsedNavbarSearch searchBarVisible={this.state.searchBarVisible} handleSearchIconClick={this.handleSearchIconClick} handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />} iconStyleRight={styles.iconRight} />
 
-                      <Button onClick={this.props.logoutUser}>
-                        Log Out
-                      </Button>
-                    </span>}
-                </div> : <CollapsedNavbarSearch searchBarVisible={this.state.searchBarVisible} handleSearchIconClick={this.handleSearchIconClick} handleInputChange={this.props.handleInputChange} searchQuery={this.props.searchQuery} handleSearchSubmit={this.props.handleSearchSubmit} />} iconStyleRight={styles.iconRight} />
-
-          <Drawer style={styles.drawer} containerStyle={styles.container} docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState(
-                { open }
-              )}>
-            <Link onClick={this.handleClose} to="/">
-              <LogoIcon src={require("../images/ChewsLogoCookie.png")} />
-            </Link>
-            {!this.props.userId ? <div>
-                <MyMenuItem onClick={() => {
-                    this.handleClose();
-                    this.props.auth.signUp();
-                  }}>
-                  Sign Up
-                </MyMenuItem>
-                <MyMenuItem onClick={() => {
-                    this.handleClose();
-                    this.props.auth.login();
-                  }}>
-                  Log In
-                </MyMenuItem>
-              </div> : <div>
-                <MyMenuItem onClick={() => {
-                    this.handleClose();
-                    this.props.history.push("/user/edit");
-                  }}>
-                  Profile
-                </MyMenuItem>
-                <MyMenuItem onClick={() => {
-                    this.handleClose();
-                    this.props.history.push("/messages");
-                  }}>
-                  Messages
-                </MyMenuItem>
-                <Divider />
-                <MyMenuItem onClick={() => {
-                    this.handleClose();
-                    this.props.history.push("/my-bites");
-                  }}>
-                  My Bites
-                </MyMenuItem>
-                <MyMenuItem onClick={() => {
-                    this.handleClose();
-                    this.props.history.push("/bite/create");
-                  }}>
-                  Create a Bite
-                </MyMenuItem>
-                <Divider />
-                <MyMenuItem onClick={() => {
-                    console.log("pressed logout on Appbar");
-                    this.handleClose();
-                    this.props.logoutUser();
-                  }}>
-                  Log Out
-                </MyMenuItem>
-              </div>}
-          </Drawer>
-        </div>
-      </MuiThemeProvider>
+            <Drawer style={styles.drawer} containerStyle={styles.container} docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState(
+                  { open }
+                )}>
+              <Link onClick={this.handleClose} to="/">
+                <LogoIcon src={require("../images/ChewsLogoCookie.png")} />
+              </Link>
+              {!this.props.userId ? <div>
+                  <MyMenuItem onClick={() => {
+                      this.handleClose();
+                      this.props.auth.signUp();
+                    }}>
+                    Sign Up
+                  </MyMenuItem>
+                  <MyMenuItem onClick={() => {
+                      this.handleClose();
+                      this.props.auth.login();
+                    }}>
+                    Log In
+                  </MyMenuItem>
+                </div> : <div>
+                  <MyMenuItem onClick={() => {
+                      this.handleClose();
+                      this.props.history.push("/user/edit");
+                    }}>
+                    Profile
+                  </MyMenuItem>
+                  <MyMenuItem onClick={() => {
+                      this.handleClose();
+                      this.props.history.push("/messages");
+                    }}>
+                    Messages
+                  </MyMenuItem>
+                  <Divider />
+                  <MyMenuItem onClick={() => {
+                      this.handleClose();
+                      this.props.history.push("/my-bites");
+                    }}>
+                    My Bites
+                  </MyMenuItem>
+                  <MyMenuItem onClick={() => {
+                      this.handleClose();
+                      this.props.history.push("/bite/create");
+                    }}>
+                    Create a Bite
+                  </MyMenuItem>
+                  <Divider />
+                  <MyMenuItem onClick={() => {
+                      console.log("pressed logout on Appbar");
+                      this.handleClose();
+                      this.props.logoutUser();
+                    }}>
+                    Log Out
+                  </MyMenuItem>
+                </div>}
+            </Drawer>
+          </div>
+        </MuiThemeProvider>;
   }
 }
 

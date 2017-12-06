@@ -26,9 +26,9 @@ class App extends React.Component {
   state = {
     searchQuery: "",
     shadow: false,
-    userId: "",
-    firstName: ""
-    // userId: "auth0|5a26d474cc4fc5487394af4e"
+    // userId: "",
+    firstName: "",
+    userId: "auth0|5a26d474cc4fc5487394af4e"
   };
 
   // auth.testListenerFxn();
@@ -122,6 +122,7 @@ class App extends React.Component {
             <AppBar
               auth={auth}
               userId={this.state.userId}
+              userFirstName={this.state.firstName}
               history={history}
               logoutUser={this.logoutUser}
               handleInputChange={this.handleInputChange}
