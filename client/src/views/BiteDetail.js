@@ -106,13 +106,14 @@ export class BiteDetail extends Component {
         .then(() => console.log("end handleConfirmBite()"))
         .catch(err => console.error(err))
 
-      alert(`Bite booked with ${this.state.firstName} ${this.state.lastName} at ${this.state.restaurant} on ${this.state.selectedDate}!`)
       this.hideModal()
+      alert(`Bite booked with ${this.state.firstName} ${this.state.lastName} at ${this.state.restaurant} on ${this.state.selectedDate}!`)
     }
   }
 
   handleChangeSelectedDate = (event, date) => {
-    this.setState({ selectedDate: date, selectedDateString: date.toString() });
+    Promise.resolve(this.setState({ selectedDate: date, selectedDateString: date.toString() }))
+      .then(() => console.log(`Hi, ${this.state.firstName}! I just booked a bite with you at ${this.state.restaurant} in ${this.state.city} on ${moment(this.state.selectedDate).format("MMMM D, YYYY")}!`))
   };
 
   disableOutOfRange = date => {
@@ -125,7 +126,7 @@ export class BiteDetail extends Component {
           <CloseBtn onClick={this.hideModal} />
           <Container column>
             <h4>
-              Want to grab a Bite with {this.state.firstName} {this.state.lastName} at {this.state.restaurant} on {this.state.selectedDateString} at {this.state.selectedTime}?
+              Want to grab a Bite with {this.state.firstName} {this.state.lastName} at {this.state.restaurant} on {this.state.selectedDateString}?
             </h4>
 
             <Button style={{ margin: "0 auto" }} primary onClick={this.handleConfirmBite}>
@@ -140,7 +141,14 @@ export class BiteDetail extends Component {
 
         <Parallax bgImage="http://via.placeholder.com/1000x200" strength={300}>
           <ParallaxContent>
-            <h1 style={{ position: "absolute", color: "white", left: "1em", bottom: "0.5em" }}>
+            <h1
+              style={{
+                position: "absolute",
+                color: "white",
+                left: "1em",
+                bottom: "0.5em"
+              }}
+            >
               {this.state.restaurant}
             </h1>
           </ParallaxContent>
@@ -153,26 +161,28 @@ export class BiteDetail extends Component {
                 <Spacer />
                 <Spacer />
                 <Spacer />
+                <i className="fa fa-user" aria-hidden="true" style={{ marginRight: "1em" }} />
                 {`Grab a Bite with ${this.state.firstName} ${this.state.lastName}`}
                 <Divider />
-                <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                {this.state.startDateRange === this.state.endDateRange ? moment(this.state.startDateRange).format("MMM D, YYYY") : `${moment(this.state.startDateRange).format("MMM D, YYYY")} - ${moment(this.state.endDateRange).format("MMM D, YYYY")}`}
+                <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "1em" }} />
+                {this.state.city}
+                <Divider />
+                <div>
+                  <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.6em" }} />
+                  {this.state.startDateRange === this.state.endDateRange ? moment(this.state.startDateRange).format("MMM D, YYYY") : `${moment(this.state.startDateRange).format("MMM D, YYYY")} - ${moment(this.state.endDateRange).format("MMM D, YYYY")}`}
+                </div>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                  <DatePicker style={{ display: "inline-block", height: "1em" }} name="selectedDate" onChange={this.handleChangeSelectedDate} autoOk={false} floatingLabelText="Select a Date" shouldDisableDate={this.disableOutOfRange} disableYearSelection={false} />
+                  <DatePicker name="selectedDate" onChange={this.handleChangeSelectedDate} autoOk={false} floatingLabelText="Select a Date" shouldDisableDate={this.disableOutOfRange} disableYearSelection={false} />
                 </MuiThemeProvider>
-              </Col>
-              <Col xs={12} md={4}>
+
                 {this.props.userId ? <BiteDetailButton large primary onClick={this.showModal}>
                     Request to Book
                   </BiteDetailButton> : <BiteDetailButton large primary onClick={this.props.auth.bookBiteLoginSignup}>
                     Log in to Book
                   </BiteDetailButton>}
               </Col>
-              <Col xs={12} md={4}>
-                <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                {this.state.city}
-                <Divider />
-                <img alt="placeholder" src="http://via.placeholder.com/300x200" />
+              <Col xs={12} md={8}>
+                <img alt="placeholder" src="http://via.placeholder.com/600x400" />
                 <h4>(MAP HERE)</h4>
               </Col>
             </Row>

@@ -12,9 +12,9 @@ export class Message extends React.Component{
     }
 
     componentWillMount() {
-        if(!this.props.userId) {
-            this.props.history.push("/")
-        }
+        // if(!this.props.userId) {
+        //     this.props.history.push("/")
+        // }
     }
 
     componentDidMount() {
