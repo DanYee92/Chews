@@ -26,9 +26,9 @@ class App extends React.Component {
   state = {
     searchQuery: "",
     shadow: false,
-    userId: "",
+    // userId: "",
+    userId: "auth0|5a26d474cc4fc5487394af4e",
     firstName: ""
-    // userId: "auth0|5a26d474cc4fc5487394af4e"
   };
 
   // auth.testListenerFxn();
