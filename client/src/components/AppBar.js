@@ -203,7 +203,7 @@ class MyAppBar extends React.Component {
               <MyMenuItem
                 onClick={() => {
                   this.handleClose();
-                  this.props.history.push("/my-bites");
+                  this.props.history.push("/user/edit");
                 }}
               >
                 Profile

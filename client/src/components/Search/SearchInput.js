@@ -7,7 +7,7 @@ const SearchBoxContainer = styled.div`
   position: relative;
   height: ${props => (props.landing ? "4.5em" : "2.5em")};
   width: ${props => (props.landing ? "100%" : "14em")};
-  margin: ${props => (props.landing ? "3em auto" : "0.15em")};
+  margin: ${props => (props.landing ? "2.5em auto" : "0.15em")};
 `;
 
 const FixedSearchIcon = styled.i.attrs({
@@ -30,6 +30,7 @@ const Input = styled.input`
   box-shadow: none;
   border-radius: 40px;
   border: 0.12em solid tomato;
+  background: ${props => (props.landing ? "rgba(255, 255, 255, 0.8)" : "white")};
   color: gray;
   font-size: ${props => (props.landing ? "1.5em" : "1em")};
   margin-top: -0.5em;
@@ -37,7 +38,7 @@ const Input = styled.input`
   padding: 0.5em;
   width: 100%;
   height: 100%;
-  text-indent: ${props => (props.landing ? "5.5vw" : "2em")};
+  text-indent: ${props => (props.landing ? "6.5vw" : "2em")};
   &:focus {
     box-shadow: none;
     border-color: tomato;
@@ -45,7 +46,7 @@ const Input = styled.input`
   }
   @media (max-width: 768px) {
     border: 0.12em solid tomato;
-    text-indent: ${props => (props.landing ? "8vw" : "2em")};
+    text-indent: ${props => (props.landing ? "10vw" : "2em")};
   }
 `;
 
