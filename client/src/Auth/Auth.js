@@ -7,7 +7,7 @@ const options = {
   auth: {
     // history documentation
     // https://www.npmjs.com/package/history
-    redirectUrl: "http://localhost:3000/home",
+    redirectUrl: "https://chewsapp.herokuapp.com/home",
     responseType: "token",
 
     params: {
@@ -30,7 +30,7 @@ const options = {
 //Signup on homepage and redirects you to user/create page
 const optionsSignUp = {
   auth: {
-    redirectUrl: "http://localhost:3000/user/edit",
+    redirectUrl: "https://chewsapp.herokuapp.com/user/edit",
     responseType: "token",
 
     params: {
@@ -77,7 +77,7 @@ const optionsSignUp = {
 //Login and signup on bite details page
 const optionsBiteSigninLogin = {
   auth: {
-    redirectUrl: "http://localhost:3000/home",
+    redirectUrl: "https://chewsapp.herokuapp.com/home",
     responseType: "token",
 
     params: {
