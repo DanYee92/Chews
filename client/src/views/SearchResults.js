@@ -35,9 +35,8 @@ export class SearchResults extends React.Component {
               return parsedBiteDate > now;
             })
             .map((bite, i) => {
-              console.log("USING PROPS");
               return <Col key={i} xs={12} sm={6} md={4} lg={3}>
-                  <Card title={bite.restaurant} local={`${bite.localId.firstName} ${bite.localId.lastName}`} startDate={moment(bite.startDateRange).format("ll")} endDate={moment(bite.endDateRange).format("ll")} location={bite.city} biteLink={`/bite/detail/${bite._id}`} />
+                  <Card title={bite.restaurant} local={bite.localId._id === this.props.userId ? "me!" : `${bite.localId.firstName} ${bite.localId.lastName}`} startDate={moment(bite.startDateRange).format("ll")} endDate={moment(bite.endDateRange).format("ll")} location={bite.city} biteLink={`/bite/detail/${bite._id}`} />
                 </Col>;
             }) : this.state.searchResults
             .filter(bite => {
@@ -47,9 +46,8 @@ export class SearchResults extends React.Component {
               return parsedBiteDate > now;
             })
             .map((bite, i) => {
-              console.log("USING PROPS");
               return <Col key={i} xs={12} sm={6} md={4} lg={3}>
-                  <Card title={bite.restaurant} local={`${bite.localId.firstName} ${bite.localId.lastName}`} startDate={moment(bite.startDateRange).format("ll")} endDate={moment(bite.endDateRange).format("ll")} location={bite.city} biteLink={`/bite/detail/${bite._id}`} />
+                  <Card title={bite.restaurant} local={bite.localId._id === this.props.userId ? "me!" : `${bite.localId.firstName} ${bite.localId.lastName}`} startDate={moment(bite.startDateRange).format("ll")} endDate={moment(bite.endDateRange).format("ll")} location={bite.city} biteLink={`/bite/detail/${bite._id}`} />
                 </Col>;
             })
           }
