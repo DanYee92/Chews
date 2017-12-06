@@ -200,13 +200,13 @@ export class BiteDetail extends Component {
                 {/* Chat with the local button only shows if the bite is booked
                     AND you are logged in as the traveler who booked the bite */}
                 {
-                  this.state.isBooked && this.props.userId === this.state.travelerId._id ? <button onClick={() => this.chatHandler(this.state.localId._id)}>Chat with {this.state.firstName} {this.state.lastName}!</button> : ""
+                  this.state.isBooked && this.props.userId === this.state.travelerId._id ? <BiteDetailButton large primary onClick={() => this.chatHandler(this.state.localId._id)}>Chat with {this.state.firstName} {this.state.lastName}!</BiteDetailButton> : ""
                 }
 
                 {/* Chat with the local button only shows if the bite is booked
                     AND you are logged in as the local who created the bite */}
                 {
-                  this.state.isBooked && this.props.userId === this.state.localId._id ? <button onClick={() => this.chatHandler(this.state.travelerId._id)}>Chat with {this.state.travelerId.firstName} {this.state.travelerId.lastName}!</button> : ""
+                  this.state.isBooked && this.props.userId === this.state.localId._id ? <BiteDetailButton large primary onClick={() => this.chatHandler(this.state.travelerId._id)}>Chat with {this.state.travelerId.firstName} {this.state.travelerId.lastName}!</BiteDetailButton> : ""
                 }
               </Col>
               <Col xs={12} md={8}>
