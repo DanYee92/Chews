@@ -55,7 +55,8 @@ export class BiteDetail extends Component {
     endDateRange: "",
     selectedDate: "",
     selectedDateString: "",
-    selectedTime: "3 pm"
+    isBooked: false,
+    travelerId: ""
   };
 
   componentWillMount() {
@@ -72,7 +73,9 @@ export class BiteDetail extends Component {
         city: bite.city,
         localId: bite.localId,
         startDateRange: bite.startDateRange,
-        endDateRange: bite.endDateRange
+        endDateRange: bite.endDateRange,
+        isBooked: bite.isBooked,
+        travelerId: bite.travelerId
       });
     });
   }
@@ -117,6 +120,10 @@ export class BiteDetail extends Component {
   disableOutOfRange = date => {
     return Date.parse(date) < Date.parse(this.state.startDateRange) || Date.parse(date) > Date.parse(this.state.endDateRange);
   };
+
+  chatHandler = target => {
+    this.props.history.push(`/message/${target}`)
+  }
 
   render() {
     return <div>
@@ -173,11 +180,34 @@ export class BiteDetail extends Component {
                   <DatePicker name="selectedDate" onChange={this.handleChangeSelectedDate} autoOk={false} floatingLabelText="Select a Date" shouldDisableDate={this.disableOutOfRange} disableYearSelection={false} />
                 </MuiThemeProvider>
 
-                {this.props.userId ? <BiteDetailButton large primary onClick={this.showModal}>
+                {/* Request to Book button only shows if the bite is not already booked
+                    AND you are logged in
+                    AND you are not logged in as the local */}
+                {
+                  !this.state.isBooked && this.props.userId && this.props.userId !== this.state.localId._id ? <BiteDetailButton large primary onClick={this.showModal}>
                     Request to Book
-                  </BiteDetailButton> : <BiteDetailButton large primary onClick={this.props.auth.bookBiteLoginSignup}>
+                  </BiteDetailButton> : ""
+                }
+                
+                {/* Log in to Book button only shows if the bite is not already booked
+                    AND you are not logged in */}
+                {
+                  !this.state.isBooked && !this.props.userId ? <BiteDetailButton large primary onClick={this.props.auth.bookBiteLoginSignup}>
                     Log in to Book
-                  </BiteDetailButton>}
+                  </BiteDetailButton> : ""
+                }
+
+                {/* Chat with the local button only shows if the bite is booked
+                    AND you are logged in as the traveler who booked the bite */}
+                {
+                  this.state.isBooked && this.props.userId === this.state.travelerId._id ? <button onClick={() => this.chatHandler(this.state.localId._id)}>Chat with {this.state.firstName} {this.state.lastName}!</button> : ""
+                }
+
+                {/* Chat with the local button only shows if the bite is booked
+                    AND you are logged in as the local who created the bite */}
+                {
+                  this.state.isBooked && this.props.userId === this.state.localId._id ? <button onClick={() => this.chatHandler(this.state.travelerId._id)}>Chat with {this.state.travelerId.firstName} {this.state.travelerId.lastName}!</button> : ""
+                }
               </Col>
               <Col xs={12} md={8}>
                 <img alt="placeholder" src="http://via.placeholder.com/600x400" />
