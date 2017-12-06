@@ -10,6 +10,7 @@ import { red500 } from "material-ui/styles/colors";
 import { CollapsedNavbarSearch, ExpandedNavbarSearch } from "./Search";
 import { LinkedLogo } from "./Logo";
 import muiTheme from "../components/CustomMUI";
+import {Link} from "react-router-dom";
 
 const Button = styled(FlatButton)`
   font-family: ${muiTheme.fontFamily} !important;
@@ -170,7 +171,7 @@ class MyAppBar extends React.Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
-          <LogoIcon src={require("../images/ChewsLogoCookie.png")} />
+          <Link onClick={this.handleClose} to="/"><LogoIcon src={require("../images/ChewsLogoCookie.png")} /></Link>
           {!this.props.userId ? (
             <div>
               <MyMenuItem

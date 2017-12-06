@@ -81,6 +81,7 @@ export class MyBites extends React.Component {
 
             // push the relevant info to an array
             myBites.push(thisBite);
+            return 0
           }); // END res.data[0].bites.map()
         } else {
           // if the user has no bites, make myBites falsy
@@ -100,14 +101,13 @@ export class MyBites extends React.Component {
             <Grid>
               <Row>
                 <Col xs={12} md={12}>
-                  <h2>All Upcoming Bites</h2>
+                  <h2>Upcoming Bites</h2>
 
                   {/** if there are bites, go through them and make papers for each of them */}
                   {this.state.myBites ? this.state.myBites
                       .filter(bite => {
                         const parsedBiteDate = Date.parse(bite.biteDate) || Date.parse(bite.endDateRange);
                         const now = Date.now();
-                        console.log("parsedBiteDate:", parsedBiteDate, "now:", now);
                         return parsedBiteDate > now;
                       })
                       .map((bite, i) => {
@@ -125,7 +125,7 @@ export class MyBites extends React.Component {
             <Grid>
               <Row>
                 <Col xs={12} md={12}>
-                  <h2>All Booked Bites</h2>
+                  <h2>Booked Bites</h2>
 
                   {/** if there are bites, go through them and make papers for each of them */}
                   {this.state.myBites ? this.state.myBites
@@ -146,11 +146,11 @@ export class MyBites extends React.Component {
               </Row>
             </Grid>
           </Tab>
-          <Tab label="Pending" value="c">
+          <Tab label="Unbooked" value="c">
             <Grid>
               <Row>
                 <Col xs={12} md={12}>
-                  <h2>All Pending Bites</h2>
+                  <h2>Unbooked Bites</h2>
 
                   {/** if there are bites, go through them and make papers for each of them */}
                   {this.state.myBites ? this.state.myBites
@@ -170,14 +170,13 @@ export class MyBites extends React.Component {
             <Grid>
               <Row>
                 <Col xs={12} md={12}>
-                  <h2>All Past Bites</h2>
+                  <h2>Past Bites</h2>
 
                   {/** if there are bites, go through them and make papers for each of them */}
                   {this.state.myBites ? this.state.myBites
                       .filter(bite => {
                         const parsedBiteDate = Date.parse(bite.biteDate) || Date.parse(bite.endDateRange);
                         const now = Date.now();
-                        console.log("parsedBiteDate:", parsedBiteDate, "now:", now);
                         return parsedBiteDate < now;
                       })
                       .map((bite, i) => {
