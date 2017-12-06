@@ -72,7 +72,7 @@ export class Message extends React.Component{
                     (message, i) => {
                       return (
                         <div key={i}>
-                          {this.props.match.params.id ===
+                          {this.props.match.params.userId ===
                           message.senderId
                             ? `${this.state.theirInfo.firstName} ${
                                 this.state.theirInfo.lastName

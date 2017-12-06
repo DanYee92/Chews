@@ -27,7 +27,9 @@ class App extends React.Component {
     searchQuery: "",
     shadow: false,
     // userId: "",
-    userId: "auth0|5a26d474cc4fc5487394af4e",
+    // userId: "auth0|5a26d2a8d1b1b723b29f1f3b", // andrew
+    userId: "auth0|5a26d41ed1b1b723b29f1f70", // imran
+    // userId: "auth0|5a26d474cc4fc5487394af4e", // nicole
     firstName: ""
   };
 
