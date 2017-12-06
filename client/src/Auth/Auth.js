@@ -1,6 +1,6 @@
 import Auth0Lock from "auth0-lock";
-import createHistory from "history/createBrowserHistory";
-const history = createHistory();
+// import createHistory from "history/createBrowserHistory";
+// const history = createHistory();
 
 //Login on homepage and redirects you to the home page
 const options = {

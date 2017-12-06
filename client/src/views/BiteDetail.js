@@ -12,6 +12,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import DatePicker from "material-ui/DatePicker";
 import muiTheme from "../components/CustomMUI"
 // import TimePicker from "material-ui/TimePicker";
+import moment from "moment";
 
 const DetailContainer = styled.div`
   overflow: hidden;
@@ -105,17 +106,30 @@ export class BiteDetail extends Component {
         .then(() => console.log("end handleConfirmBite()"))
         .catch(err => console.error(err))
 
-      alert(`Bite booked with ${this.state.firstName} ${this.state.lastName} at ${this.state.restaurant} on ${this.state.selectedDate}!`)
       this.hideModal()
+      alert(`Bite booked with ${this.state.firstName} ${this.state.lastName} at ${this.state.restaurant} on ${this.state.selectedDate}!`)
     }
   }
 
   handleChangeSelectedDate = (event, date) => {
-    this.setState({ selectedDate: date, selectedDateString: date.toString() });
+    this.setState({ selectedDate: date, selectedDateString: date.toString() })
+    
+    const body = `Hi, ${this.state.firstName}! I just booked a bite with you at ${this.state.restaurant} in ${this.state.city} on ${moment(this.state.selectedDate).format("MMMM D, YYYY")}!`
+
+    const message = {
+      senderId: this.props.userId,
+      recipientId: this.state.localId._id,
+      timestamp: Date.now(),
+      body
+    }
+    console.log(message)
+    // API.sendMessage(message).then(() => {
+    //     socket.emit("message", message)
+    // })
   };
 
   disableOutOfRange = date => {
-    return Date.parse(date) < Date.now();
+    return Date.parse(date) < Date.parse(this.state.startDateRange) || Date.parse(date) > Date.parse(this.state.endDateRange);
   };
 
   render() {
@@ -124,7 +138,7 @@ export class BiteDetail extends Component {
           <CloseBtn onClick={this.hideModal} />
           <Container column>
             <h4>
-              Want to grab a Bite with {this.state.firstName} {this.state.lastName} at {this.state.restaurant} on {this.state.selectedDateString} at {this.state.selectedTime}?
+              Want to grab a Bite with {this.state.firstName} {this.state.lastName} at {this.state.restaurant} on {this.state.selectedDateString}?
             </h4>
 
             <Button style={{ margin: "0 auto" }} primary onClick={this.handleConfirmBite}>
@@ -159,16 +173,18 @@ export class BiteDetail extends Component {
                 <Spacer />
                 <Spacer />
                 <Spacer />
+                <i className="fa fa-user" aria-hidden="true" style={{ marginRight: "1em" }} />
                 {`Grab a Bite with ${this.state.firstName} ${this.state.lastName}`}
                 <Divider />
-                <div style={{ marginTop: "1.5em" }}>
-                  <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "0.5em" }} />
-                  {this.props.city}
-                </div>
+                <i className="fa fa-map-marker" aria-hidden="true" style={{ marginRight: "1em" }} />
+                {this.state.city}
                 <Divider />
-                <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.5em" }} />
+                <div>
+                  <i className="fa fa-calendar-o" aria-hidden="true" style={{ marginRight: "0.6em" }} />
+                  {this.state.startDateRange === this.state.endDateRange ? moment(this.state.startDateRange).format("MMM D, YYYY") : `${moment(this.state.startDateRange).format("MMM D, YYYY")} - ${moment(this.state.endDateRange).format("MMM D, YYYY")}`}
+                </div>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                  <DatePicker style={{ display: "inline-block", height: "1em" }} name="selectedDate" onChange={this.handleChangeSelectedDate} autoOk={false} floatingLabelText="Select a Date" shouldDisableDate={this.disableOutOfRange} disableYearSelection={false} />
+                  <DatePicker name="selectedDate" onChange={this.handleChangeSelectedDate} autoOk={false} floatingLabelText="Select a Date" shouldDisableDate={this.disableOutOfRange} disableYearSelection={false} />
                 </MuiThemeProvider>
 
                 {this.props.userId ? <BiteDetailButton large primary onClick={this.showModal}>

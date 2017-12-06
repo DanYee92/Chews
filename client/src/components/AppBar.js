@@ -145,7 +145,6 @@ class MyAppBar extends React.Component {
                       >
                         Messages
                       </Button>
-
                       <IconMenu menuStyle={styles.iconMenu} listStyle={styles.iconMenuList} iconButtonElement={<Button>
                             Bites <i className="fa fa-angle-down" aria-hidden="true" />
                           </Button>} targetOrigin={{ horizontal: "right", vertical: "top" }} anchorOrigin={{ horizontal: "right", vertical: "top" }}>
