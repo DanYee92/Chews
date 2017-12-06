@@ -159,6 +159,7 @@ class App extends React.Component {
                   {...props}
                   searchQuery={this.state.searchQuery}
                   searchResults={this.state.searchResults}
+                  userId={this.state.userId}
                 />
               )}
             />
