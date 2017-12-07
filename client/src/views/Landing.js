@@ -40,8 +40,12 @@ const View1TextContainer = styled.div`
   width: 77vw;
   font-family: ${muiTheme.fontFamily};
   background: white;
-`
-const View2Container = styled.div`
+  @media (max-width: 768px) {
+    padding: 8em 1em 3em 3em;
+    width: 85vw;
+  }
+`;
+const View2Container = styled.div`  
   height: 92vh;
 `;
 const View2TextContainer = styled.div`
@@ -50,12 +54,29 @@ const View2TextContainer = styled.div`
   font-family: ${muiTheme.fontFamily};
   background: white;
   white-space: pre-wrap;
+  @media (max-width: 768px) {
+    padding: 8em 0em 3em 3em;
+    width: 85vw;
+  }
 `;
 const LittleLine = styled.div`
   background: black;
   width: 8em;
   height: 0em;
   border-bottom: 1px solid black;
+`
+
+const FooterContainer = styled.div`
+  background: papayawhip;
+  height: 20vh;
+  padding: 2em;
+`
+const GitHubLink = styled.i`
+color: darkgrey;
+font-size: 5em;
+&:hover {
+  color: white;
+  }
 `
 
 export class Landing extends React.Component {
@@ -107,6 +128,13 @@ Support local businesses. Make lifelong connections.`}
             </h3>
           </View2TextContainer>
         </View2Container>
+        <FooterContainer>
+          <div style={{ textAlign: "center", width: "100%" }}>
+            <a href="https://github.com/youknowme786/Chews" style={{ textDecoration: "none", width: "100%" }}>
+              <GitHubLink className="fa fa-github" aria-hidden="true" />
+            </a>
+          </div>
+        </FooterContainer>
       </div>;
   }
 };
