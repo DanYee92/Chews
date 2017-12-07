@@ -3,7 +3,7 @@
 ## The Pitch
 ### HOW MIGHT WE...
 
-> *Personalize travelers' dining experience and humanize local cultures, by travelers to connect and schedule meals with knowledgable locals*
+> *Personalize travelers' dining experience and humanize local cultures, by allowing travelers to connect and schedule meals with local foodies*
 
 ## App Functionalities
 1. Secure Login 
