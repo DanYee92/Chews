@@ -35,4 +35,4 @@ There are a number of functionalities we were unable to implement within the tim
 * [Trello Board](https://trello.com/b/9010LArh/project-3)
 * [GitHub Repository](https://github.com/youknowme786/Chews )
 * [Live on Heroku](https://chewsapp.herokuapp.com)
-* [WireFrame] (https://projects.invisionapp.com/freehand/document/bLDFwK0b8)
+* [WireFrame](https://projects.invisionapp.com/freehand/document/bLDFwK0b8)
