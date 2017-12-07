@@ -82,7 +82,7 @@ const FooterContainer = styled.div`
 const GitHubLink = styled.i`
 color: lightslategrey;
 font-size: 5em;
-transition: color 0.3s;
+transition: color 0.2s;
 &:hover {
   color: tomato;
   }
