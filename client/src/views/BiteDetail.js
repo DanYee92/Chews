@@ -137,7 +137,7 @@ export class BiteDetail extends Component {
           </Container>
         </OutlineModal>
 
-        <Parallax bgImage="http://via.placeholder.com/1000x200" strength={300}>
+        <Parallax bgImage="http://via.placeholder.com/1000x200" strength={400}>
           <ParallaxContent>
             <h1
               style={{
