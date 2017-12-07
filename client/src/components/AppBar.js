@@ -137,7 +137,7 @@ class MyAppBar extends React.Component {
                         <Button
                           onClick={() =>
                             this.props.history.push(
-                              "/message/auth0|5a2172bf45157711be81ac47"
+                              "/messages"
                             )
                           }
                         >

@@ -27,6 +27,7 @@ module.exports = {
 		db.Bite
 			.find({ _id: req.params.biteId })
 			.populate("localId")
+			.populate("travelerId")
 			.then(biteDetail => res.json(biteDetail))
 			.catch(err => console.error(err));
 	},
