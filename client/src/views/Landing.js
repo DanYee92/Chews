@@ -121,11 +121,9 @@ export class Landing extends React.Component {
           <View1TextContainer>
             <LittleLine color="white" />
             <h3 style={{ fontWeight: "lighter" }}>
-              Travelers too often miss out on the local cuisine & culture of their destinations. With <span
-                style={{ color: "tomato" }}
-              >
-                Chews
-              </span>, locals share their culture and the hidden dining gems of a city. Travelers experience the true culture of the destination. 
+              Travelers too often miss out on the local cuisine & culture of their destinations. With
+              <span style={{ color: "tomato", fontWeight: "400" }}> Chews</span>
+              , locals share their culture and the hidden dining gems of a city. Travelers experience the true culture of the destination.
             </h3>
           </View1TextContainer>
         </View1Container>
