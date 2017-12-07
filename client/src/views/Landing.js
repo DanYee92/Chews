@@ -30,54 +30,64 @@ const BackgroundDarken = styled.div`
 `;
 
 const View1Container = styled.div`
-  height: 92vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around
-  `
+  height: 95vh;
+  background: lightslategrey;
+  `;
 const View1TextContainer = styled.div`
-  padding: 8em 14em 3em 3em;
+  padding: 18em 14em 3em 3em;
   width: 77vw;
   font-family: ${muiTheme.fontFamily};
-  background: white;
+  color: white;
   @media (max-width: 768px) {
     padding: 8em 1em 3em 3em;
     width: 85vw;
   }
 `;
+// View2 Components 
+// ---------------------------------------
 const View2Container = styled.div`  
-  height: 92vh;
+  height: 95vh;
+  text-align: center;
 `;
 const View2TextContainer = styled.div`
-  padding: 8em 14em 3em 3em;
+  padding: 19em 6em 3em 6em;
   width: 77vw;
+  margin: 0 auto;
   font-family: ${muiTheme.fontFamily};
-  background: white;
+  font-weight: lighter;
+  color: lightslategrey;
   white-space: pre-wrap;
   @media (max-width: 768px) {
-    padding: 8em 0em 3em 3em;
-    width: 85vw;
+    padding: 12em 2em 3em 2em;
+    width: 100vw;
   }
 `;
+// ---------------------------------------
+
+
 const LittleLine = styled.div`
-  background: black;
-  width: 8em;
+  width: 5em;
   height: 0em;
-  border-bottom: 1px solid black;
+  margin: ${props => props.centered ? "0 auto" : ""};
+  border-bottom: 1px solid ${props => props.color};
 `
 
+// Footer Components 
+// ---------------------------------------
 const FooterContainer = styled.div`
   background: papayawhip;
   height: 20vh;
   padding: 2em;
 `
 const GitHubLink = styled.i`
-color: darkgrey;
+color: lightslategrey;
 font-size: 5em;
+transition: color 0.3s;
 &:hover {
-  color: white;
+  color: tomato;
   }
 `
+// ---------------------------------------
 
 export class Landing extends React.Component {
   componentWillMount() {
@@ -109,23 +119,25 @@ export class Landing extends React.Component {
 
         <View1Container>
           <View1TextContainer>
-            <LittleLine />
+            <LittleLine color="white" />
             <h3 style={{ fontWeight: "lighter" }}>
-              Travelers going places and not experience the local cuisine /
-              culture It is very easy for a traveler to just go somewhere
-              they are comfortable and familiar with Franchise restaurants
-              edge out and suffocate local businesses
+              Travelers too often miss out on the local cuisine & culture of their destinations. With <span
+                style={{ color: "tomato" }}
+              >
+                Chews
+              </span>, locals share their culture and the hidden dining gems of a city. Travelers experience the true culture of the destination. 
             </h3>
           </View1TextContainer>
         </View1Container>
         <View2Container>
           <View2TextContainer>
-            <LittleLine />
-            <h3 style={{ fontWeight: "lighter" }}>
-              {`Locals share their culture and expose the hidden gems of a city. Travelers experience the true culture of your destination. 
-              
-Support local businesses. Make lifelong connections.`}
-            </h3>
+            <LittleLine color="lightslategrey" centered />
+            <h1 style={{ fontWeight: "lighter" }}>
+              <span style={{ color: "tomato" }}>Chews</span> to support local businesses.
+            </h1>
+            <h1 style={{ fontWeight: "lighter" }}>
+              <span style={{ color: "tomato" }}>Chews</span> to make lifelong connections.
+            </h1>
           </View2TextContainer>
         </View2Container>
         <FooterContainer>
@@ -138,3 +150,5 @@ Support local businesses. Make lifelong connections.`}
       </div>;
   }
 };
+
+{/* <span style={{ width: "0", height: "2em", borderRight: "0.05em solid tomato", margin: "0.5em" }} /> */}

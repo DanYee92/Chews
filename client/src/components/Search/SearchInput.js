@@ -6,8 +6,11 @@ const SearchBoxContainer = styled.div`
   font-family: ${muiTheme.fontFamily};
   position: relative;
   height: ${props => (props.landing ? "4.5em" : "2.5em")};
-  width: ${props => (props.landing ? "100%" : "14em")};
-  margin: ${props => (props.landing ? "2.5em auto" : "0.15em")};
+  width: ${props => (props.landing ? "100%" : "15em")};
+  margin: ${props => (props.landing ? "2.5em auto" : "-0.1em 0.1em 0em 0em")};
+  @media (max-width: 768px) {
+    width: ${props => (props.landing ? "100%" : "65vw")};
+  }
 `;
 
 const FixedSearchIcon = styled.i.attrs({
@@ -34,7 +37,7 @@ const Input = styled.input`
   color: gray;
   font-size: ${props => (props.landing ? "1.5em" : "1em")};
   margin-top: -0.5em;
-  margin-right: 1em;
+  margin-right: 2em;
   padding: 0.5em;
   width: 100%;
   height: 100%;

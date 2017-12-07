@@ -30,7 +30,7 @@ const Button = styled(FlatButton)`
 
 const LogoIcon = styled.img`
   width: 50%;
-  margin: 10% 25%;
+  margin: 10% 22%;
 `;
 
 const MyMenuItem = styled(MenuItem)`
@@ -40,8 +40,6 @@ const MyMenuItem = styled(MenuItem)`
 
 function handleTouchTap() {}
 
-// boxShadow: "0",
-// borderBottom: "0.1em solid lightgrey"
 const styles = {
   appbar: {
     fontFamily: muiTheme.fontFamily,
