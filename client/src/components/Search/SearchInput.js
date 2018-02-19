@@ -33,7 +33,8 @@ const Input = styled.input`
   box-shadow: none;
   border-radius: 40px;
   border: 0.12em solid tomato;
-  background: ${props => (props.landing ? "rgba(255, 255, 255, 0.8)" : "white")};
+  background: ${props =>
+    props.landing ? "rgba(255, 255, 255, 0.8)" : "white"};
   color: gray;
   font-size: ${props => (props.landing ? "1.5em" : "1em")};
   margin-top: -0.5em;
@@ -54,10 +55,12 @@ const Input = styled.input`
 `;
 
 const MySearchBox = props => {
-  return <SearchBoxContainer {...props}>
+  return (
+    <SearchBoxContainer {...props}>
       <FixedSearchIcon {...props} />
       <Input {...props} />
-    </SearchBoxContainer>;
-}
-  
+    </SearchBoxContainer>
+  );
+};
+
 export default MySearchBox;
