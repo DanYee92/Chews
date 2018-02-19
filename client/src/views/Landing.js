@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components"
+import styled from "styled-components";
 import Container from "../components/Container";
 import { Logo } from "../components/Logo";
 import { FormGroup } from "../components/Form";
@@ -30,11 +30,11 @@ const BackgroundDarken = styled.div`
 `;
 
 const View1Container = styled.div`
-  height: 95vh;
+  height: 55vh;
   background: lightslategrey;
-  `;
+`;
 const View1TextContainer = styled.div`
-  padding: 18em 14em 3em 3em;
+  padding: 8em 14em 3em 3em;
   width: 77vw;
   font-family: ${muiTheme.fontFamily};
   color: white;
@@ -43,14 +43,15 @@ const View1TextContainer = styled.div`
     width: 85vw;
   }
 `;
-// View2 Components 
 // ---------------------------------------
-const View2Container = styled.div`  
-  height: 95vh;
+// View4 Components
+// ---------------------------------------
+const View4Container = styled.div`
+  height: 55vh;
   text-align: center;
 `;
-const View2TextContainer = styled.div`
-  padding: 19em 6em 3em 6em;
+const View4TextContainer = styled.div`
+  padding: 9em 6em 3em 6em;
   width: 77vw;
   margin: 0 auto;
   font-family: ${muiTheme.fontFamily};
@@ -64,29 +65,29 @@ const View2TextContainer = styled.div`
 `;
 // ---------------------------------------
 
-
 const LittleLine = styled.div`
   width: 5em;
   height: 0em;
-  margin: ${props => props.centered ? "0 auto" : ""};
+  /* margin: ${props => (props.centered ? "0 auto" : "")}; */
+  margin-bottom: 1em;
   border-bottom: 1px solid ${props => props.color};
-`
+`;
 
-// Footer Components 
+// Footer Components
 // ---------------------------------------
 const FooterContainer = styled.div`
   background: papayawhip;
   height: 20vh;
   padding: 2em;
-`
+`;
 const GitHubLink = styled.i`
-color: lightslategrey;
-font-size: 5em;
-transition: color 0.2s;
-&:hover {
-  color: tomato;
+  color: lightslategrey;
+  font-size: 5em;
+  transition: color 0.2s;
+  &:hover {
+    color: tomato;
   }
-`
+`;
 // ---------------------------------------
 
 export class Landing extends React.Component {
@@ -95,18 +96,29 @@ export class Landing extends React.Component {
   }
 
   render() {
-    return <div>
-        <Parallax bgImage={require("../images/restaurant-with-friends.jpg")} strength={380}>
+    return (
+      <div>
+        <Parallax
+          bgImage={require("../images/restaurant-with-friends.jpg")}
+          strength={380}
+        >
           <LandingContainer>
             <BackgroundDarken>
               <Container column margin="0 10vw" style={{ padding: "25vh 0" }}>
-                <Logo large />
+                <Logo large style={{ color: "white", fontWeight: "lighter" }} />
                 <h2 style={{ color: "white", fontWeight: "lighter" }}>
                   Humanizing the traveler's dining experience
                 </h2>
                 <form onSubmit={this.props.handleSearchSubmit}>
                   <FormGroup>
-                    <MySearchBox landing="true" name="searchQuery" type="text" placeholder="Try 'Chicago'" onChange={this.props.handleInputChange} value={this.props.searchQuery} />
+                    <MySearchBox
+                      landing="true"
+                      name="searchQuery"
+                      type="text"
+                      placeholder="Try 'Chicago'"
+                      onChange={this.props.handleInputChange}
+                      value={this.props.searchQuery}
+                    />
                     <Button type="submit" primary large>
                       Search
                     </Button>
@@ -121,32 +133,39 @@ export class Landing extends React.Component {
           <View1TextContainer>
             <LittleLine color="white" />
             <h3 style={{ fontWeight: "lighter" }}>
-              Travelers too often miss out on the local cuisine & culture of their destinations. With
+              Travelers too often miss out on the local cuisine & culture of
+              their destinations. With
               <span style={{ color: "tomato", fontWeight: "400" }}> Chews</span>
-              , locals share their culture and the hidden dining gems of a city. Travelers experience the true culture of the destination.
+              , locals share their culture and the hidden dining gems of a city.
+              Travelers experience the true culture of the destination.
             </h3>
           </View1TextContainer>
         </View1Container>
-        <View2Container>
-          <View2TextContainer>
+
+        <View4Container>
+          <View4TextContainer>
             <LittleLine color="lightslategrey" centered />
             <h1 style={{ fontWeight: "lighter" }}>
-              <span style={{ color: "tomato" }}>Chews</span> to support local businesses.
+              <span style={{ color: "tomato" }}>Chews</span> to support local
+              businesses.
             </h1>
             <h1 style={{ fontWeight: "lighter" }}>
-              <span style={{ color: "tomato" }}>Chews</span> to make lifelong connections.
+              <span style={{ color: "tomato" }}>Chews</span> to make lifelong
+              connections.
             </h1>
-          </View2TextContainer>
-        </View2Container>
+          </View4TextContainer>
+        </View4Container>
         <FooterContainer>
           <div style={{ textAlign: "center", width: "100%" }}>
-            <a href="https://github.com/youknowme786/Chews" style={{ textDecoration: "none", width: "100%" }}>
+            <a
+              href="https://github.com/youknowme786/Chews"
+              style={{ textDecoration: "none", width: "100%" }}
+            >
               <GitHubLink className="fa fa-github" aria-hidden="true" />
             </a>
           </div>
         </FooterContainer>
-      </div>;
+      </div>
+    );
   }
-};
-
-{/* <span style={{ width: "0", height: "2em", borderRight: "0.05em solid tomato", margin: "0.5em" }} /> */}
+}
