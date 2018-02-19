@@ -3,7 +3,7 @@
 ## The Pitch
 ### HOW MIGHT WE...
 
-> *Personalize travelers' dining experience and humanize local cultures, by travelers to connect and schedule meals with knowledgable locals*
+> *Personalize travelers' dining experience and humanize local cultures, by allowing travelers to connect and schedule meals with local foodies*
 
 ## App Functionalities
 1. Secure Login 
@@ -35,4 +35,4 @@ There are a number of functionalities we were unable to implement within the tim
 * [Trello Board](https://trello.com/b/9010LArh/project-3)
 * [GitHub Repository](https://github.com/youknowme786/Chews )
 * [Live on Heroku](https://chewsapp.herokuapp.com)
-* [WireFrame] (https://projects.invisionapp.com/freehand/document/bLDFwK0b8)
+* [WireFrame](https://projects.invisionapp.com/freehand/document/bLDFwK0b8)
