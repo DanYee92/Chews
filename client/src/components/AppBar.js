@@ -186,14 +186,20 @@ class MyAppBar extends React.Component {
                         menuStyle={styles.iconMenu}
                         listStyle={styles.iconMenuList}
                         iconButtonElement={
-                          <Button>Hi, {this.props.userFirstName}!</Button>
+                          <Button>
+                            Hi, {this.props.userFirstName}!
+                            <i
+                              className="fa fa-angle-down"
+                              aria-hidden="true"
+                            />
+                          </Button>
                         }
                         targetOrigin={{ horizontal: "right", vertical: "top" }}
                         anchorOrigin={{ horizontal: "right", vertical: "top" }}
                       >
                         <MenuItem
                           primaryText="My Profile"
-                          onClick={() => this.props.history.push("/")}
+                          onClick={() => this.props.history.push("/user/edit")}
                         />
                         <MenuItem
                           primaryText="Log Out"
