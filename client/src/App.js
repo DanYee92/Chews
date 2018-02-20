@@ -95,28 +95,28 @@ class App extends React.Component {
     });
   };
 
+  // handles search submit event for both navbar and main landing page search query
   handleSearchSubmit = event => {
     event.preventDefault();
+
+    // find out from where the search was done and what its query is
     const searchOrigin = event.target[0].getAttribute("name");
-    const searchQuery =  this.state[searchOrigin];
+    const searchQuery =  this.state[searchOrigin].trim();
 
     if (searchQuery !== "") {
+      // If search query is not empty, search the database for matching cities.
+      // The reason this code exists here, despite the search results already page having
+      // redundant code, is that for some reason, the navbar search does not work properly
+      // when already on the search page without this bit.
+      // Hopefully we will address this later, as this causes the database to be pinged twice.
+      API.searchForBites(searchQuery)
+        // save the search results in state, to pass to search results page
+        .then(res => this.setState({ searchResults: res.data }))
 
-      console.log("searching for", searchQuery);
-      console.log(`redirecting to /search/${searchQuery}`);
-
-      API.searchForBites(searchQuery).then(res => {
-        console.log("res from API.searchForBites:", res);
-        return Promise.resolve(this.setState({ searchResults: res.data }))
-      }).then(() => {
-        console.log("done searching");
-        console.log("this.state.searchResults", this.state.searchResults);
-      });
-
-      history.push(`/search/${searchQuery}`)
-      this.setState({ navbarSearchQuery: searchQuery })
-      console.log("searchQuery at the end:", searchQuery)
-      console.log("this.state[searchOrigin] at the end:", this.state[searchOrigin])
+      // redirect client to search results page
+      history.push(`/search/${searchQuery}`);
+      // reset the landing search box and put the query into the navbar search box
+      this.setState({ navbarSearchQuery: searchQuery, landingSearchQuery: "" });
     } else {
       console.log("No search query provided.");
     }

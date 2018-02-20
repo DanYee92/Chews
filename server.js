@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://chewsdb:password@ds125906.mlab.com:25906/heroku_bdvv44pr", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/chewsdb", {
 	useMongoClient: true
 });
 

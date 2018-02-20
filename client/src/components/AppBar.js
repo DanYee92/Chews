@@ -141,7 +141,7 @@ class MyAppBar extends React.Component {
                 <div>
                   <ExpandedNavbarSearch
                     handleInputChange={this.props.handleInputChange}
-                    searchQuery={this.props.searchQuery}
+                    navbarSearchQuery={this.props.navbarSearchQuery}
                     handleSearchSubmit={this.props.handleSearchSubmit}
                   />
                   {!this.props.userId ? (
@@ -214,7 +214,7 @@ class MyAppBar extends React.Component {
                   searchBarVisible={this.state.searchBarVisible}
                   handleSearchIconClick={this.handleSearchIconClick}
                   handleInputChange={this.props.handleInputChange}
-                  searchQuery={this.props.searchQuery}
+                  navbarSearchQuery={this.props.navbarSearchQuery}
                   handleSearchSubmit={this.props.handleSearchSubmit}
                 />
               )
