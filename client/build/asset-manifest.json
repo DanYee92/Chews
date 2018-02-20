@@ -1,19 +1,10 @@
 {
   "main.css": "static/css/main.16cf0be6.css",
   "main.css.map": "static/css/main.16cf0be6.css.map",
-<<<<<<< HEAD
-  "main.js": "static/js/main.2e44c181.js",
-  "main.js.map": "static/js/main.2e44c181.js.map",
+  "main.js": "static/js/main.32b3a466.js",
+  "main.js.map": "static/js/main.32b3a466.js.map",
   "static/media/404EmptyJar.png": "static/media/404EmptyJar.d93f7069.png",
   "static/media/ChewsLogoCookie.png": "static/media/ChewsLogoCookie.d0ffbda9.png",
   "static/media/logo_v1.png": "static/media/logo_v1.9d768650.png",
   "static/media/restaurant-with-friends.jpg": "static/media/restaurant-with-friends.6f3c5abb.jpg"
-=======
-  "main.js": "static/js/main.d2aa1e43.js",
-  "main.js.map": "static/js/main.d2aa1e43.js.map",
-  "static\\media\\404EmptyJar.png": "static/media/404EmptyJar.d93f7069.png",
-  "static\\media\\ChewsLogoCookie.png": "static/media/ChewsLogoCookie.d0ffbda9.png",
-  "static\\media\\logo_v1.png": "static/media/logo_v1.9d768650.png",
-  "static\\media\\restaurant-with-friends.jpg": "static/media/restaurant-with-friends.6f3c5abb.jpg"
->>>>>>> 599a0ab919efafd2695226cb46efad7317b48819
 }
