@@ -187,7 +187,7 @@ class MyAppBar extends React.Component {
                         listStyle={styles.iconMenuList}
                         iconButtonElement={
                           <Button>
-                            Hi, {this.props.userFirstName}!
+                            Hi, {this.props.userFirstName}!{" "}
                             <i
                               className="fa fa-angle-down"
                               aria-hidden="true"
