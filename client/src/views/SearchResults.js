@@ -18,7 +18,6 @@ export class SearchResults extends React.Component {
   }
 
   componentWillReceiveProps() {
-    console.log("componentDidUpdate()")
     this.setState({searchQuery: this.props.match.params.searchQuery})
   }
 
