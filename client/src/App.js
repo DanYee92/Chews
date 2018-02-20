@@ -24,7 +24,8 @@ const auth = new Auth();
 
 class App extends React.Component {
   state = {
-    searchQuery: "",
+    navbarSearchQuery: "",
+    landingSearchQuery: "",
     shadow: false,
     userId: "",
     // userId: "auth0|5a26d2a8d1b1b723b29f1f3b", // andrew
@@ -96,21 +97,26 @@ class App extends React.Component {
 
   handleSearchSubmit = event => {
     event.preventDefault();
+    const searchOrigin = event.target[0].getAttribute("name");
+    const searchQuery =  this.state[searchOrigin];
 
-    if (this.state.searchQuery !== "") {
-      console.log("searching for", this.state.searchQuery);
-      console.log(`redirecting to /search/${this.state.searchQuery}`);
+    if (searchQuery !== "") {
 
-      API.searchForBites(this.state.searchQuery).then(res => {
-        console.log(res);
-        Promise.resolve(this.setState({ searchResults: res.data })).then(() => {
-          console.log("done searching");
-          console.log("this.state.searchResults", this.state.searchResults);
-        });
+      console.log("searching for", searchQuery);
+      console.log(`redirecting to /search/${searchQuery}`);
+
+      API.searchForBites(searchQuery).then(res => {
+        console.log("res from API.searchForBites:", res);
+        return Promise.resolve(this.setState({ searchResults: res.data }))
+      }).then(() => {
+        console.log("done searching");
+        console.log("this.state.searchResults", this.state.searchResults);
       });
 
-      history.push(`/search/${this.state.searchQuery}`);
-      this.setState({ searchQuery: "" });
+      history.push(`/search/${searchQuery}`)
+      this.setState({ navbarSearchQuery: searchQuery })
+      console.log("searchQuery at the end:", searchQuery)
+      console.log("this.state[searchOrigin] at the end:", this.state[searchOrigin])
     } else {
       console.log("No search query provided.");
     }
@@ -128,7 +134,7 @@ class App extends React.Component {
               history={history}
               logoutUser={this.logoutUser}
               handleInputChange={this.handleInputChange}
-              searchQuery={this.state.searchQuery}
+              navbarSearchQuery={this.state.navbarSearchQuery}
               handleSearchSubmit={this.handleSearchSubmit}
             />
           </MuiThemeProvider>
@@ -142,7 +148,7 @@ class App extends React.Component {
                   <Landing
                     {...props}
                     handleInputChange={this.handleInputChange}
-                    searchQuery={this.state.searchQuery}
+                    landingSearchQuery={this.state.landingSearchQuery}
                     handleSearchSubmit={this.handleSearchSubmit}
                   />
                 )}
@@ -154,7 +160,7 @@ class App extends React.Component {
                   <Landing
                     {...props}
                     handleInputChange={this.handleInputChange}
-                    searchQuery={this.state.searchQuery}
+                    landingSearchQuery={this.state.landingSearchQuery}
                     handleSearchSubmit={this.handleSearchSubmit}
                   />
                 )}

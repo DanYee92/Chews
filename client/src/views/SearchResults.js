@@ -27,7 +27,7 @@ export class SearchResults extends React.Component {
         <Row className="show-grid">
           <h4 style={{marginLeft: "1em", fontWeight: "lighter"}}>Search Results for <span style={{fontWeight:"normal"}}>"{this.state.searchQuery}"</span></h4>
           {/* dynamically generate here */}
-          {this.props.searchResults ? this.props.searchResults
+          {(this.props.searchResults || this.state.searchResults)
             .filter(bite => {
               const parsedBiteDate = Date.parse(bite.biteDate) || Date.parse(bite.endDateRange);
               const now = Date.now();
@@ -38,19 +38,7 @@ export class SearchResults extends React.Component {
               return <Col key={i} xs={12} sm={6} md={4} lg={3}>
                   <Card title={bite.restaurant} local={bite.localId._id === this.props.userId ? "me!" : `${bite.localId.firstName} ${bite.localId.lastName}`} startDate={moment(bite.startDateRange).format("ll")} endDate={moment(bite.endDateRange).format("ll")} location={bite.city} biteLink={`/bite/detail/${bite._id}`} />
                 </Col>;
-            }) : this.state.searchResults
-            .filter(bite => {
-              const parsedBiteDate = Date.parse(bite.biteDate) || Date.parse(bite.endDateRange);
-              const now = Date.now();
-              console.log("bite.endDateRange:", bite.endDateRange, "parsedBiteDate:", parsedBiteDate, "now:", now);
-              return parsedBiteDate > now;
-            })
-            .map((bite, i) => {
-              return <Col key={i} xs={12} sm={6} md={4} lg={3}>
-                  <Card title={bite.restaurant} local={bite.localId._id === this.props.userId ? "me!" : `${bite.localId.firstName} ${bite.localId.lastName}`} startDate={moment(bite.startDateRange).format("ll")} endDate={moment(bite.endDateRange).format("ll")} location={bite.city} biteLink={`/bite/detail/${bite._id}`} />
-                </Col>;
-            })
-          }
+            })}
           {/* to here */}
         </Row>
       </Grid>;

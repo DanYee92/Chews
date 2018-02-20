@@ -113,11 +113,11 @@ export class Landing extends React.Component {
                   <FormGroup>
                     <MySearchBox
                       landing="true"
-                      name="searchQuery"
+                      name="landingSearchQuery"
                       type="text"
                       placeholder="Try 'Chicago'"
                       onChange={this.props.handleInputChange}
-                      value={this.props.searchQuery}
+                      value={this.props.landingSearchQuery}
                     />
                     <Button type="submit" primary large>
                       Search
